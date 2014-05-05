@@ -99,10 +99,18 @@ shared_examples_for "a database" do
 
   describe 'Teachers' do
     it "creates a teacher" do
-
+      teacher = db.create_teacher({username: "parth", password: "1234", email: "pss8te@virginia.edu", phone_number: '7576507728'})
+      expect(teacher.username).to eq("parth")
+      expect(teacher.password).to eq("1234")
     end
 
     it "gets a teacher" do
+
+    end
+    it "edits a teacher" do
+
+    end
+    it "deletes a teacher" do
 
     end
   end
