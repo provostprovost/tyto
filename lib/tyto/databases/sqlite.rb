@@ -15,7 +15,9 @@ module Tyto
       ###############
 
       class Assignment < ActiveRecord::Base
-
+        belongs_to :class
+        belongs_to :teacher
+        belongs_to :student
       end
 
       def create_assignment(attrs)
@@ -35,7 +37,7 @@ module Tyto
       ############
 
       class Chapter < ActiveRecord::Base
-
+        belongs_to :course
       end
 
       def create_chapter(attrs)
@@ -55,7 +57,8 @@ module Tyto
       ###########
 
       class Class < ActiveRecord::Base
-
+        belongs_to :teacher
+        belongs_to :course
       end
 
       def create_class(attrs)
@@ -70,12 +73,34 @@ module Tyto
       def delete_class(attrs)
       end
 
+      ###########
+      # Courses #
+      ###########
+
+      class Course < ActiveRecord::Base
+        belongs_to :teacher
+        has_many :chapters
+      end
+
+      def create_course(attrs)
+      end
+
+      def get_course(id)
+      end
+
+      def edit_course(attrs)
+      end
+
+      def delete_course(attrs)
+      end
+
       ##############
       # Questions? #
       ##############
 
       class Question < ActiveRecord::Base
-
+        belongs_to :chapter
+        has_many :responses
       end
 
       def create_question(attrs)
@@ -95,7 +120,9 @@ module Tyto
       #############
 
       class Response < ActiveRecord::Base
-
+        belongs_to :question
+        belongs_to :student
+        belongs_to :assignment
       end
 
       def create_response(attrs)
@@ -115,7 +142,7 @@ module Tyto
       ####################
 
       class StudentSession < ActiveRecord::Base
-
+        belongs_to :student
       end
 
       def create_student_session(attrs)
@@ -135,7 +162,9 @@ module Tyto
       ############
 
       class Student < ActiveRecord::Base
-
+        has_many :responses
+        has_many :assignments
+        belongs_to :class
       end
 
       def create_student(attrs)
@@ -155,7 +184,7 @@ module Tyto
       ####################
 
       class TeacherSession < ActiveRecord::Base
-
+        belongs_to :teacher
       end
 
       def create_teacher_session(attrs)
@@ -175,7 +204,8 @@ module Tyto
       ############
 
       class Teacher < ActiveRecord::Base
-
+        has_many :assignments
+        has_many :classes
       end
 
       def create_teacher(attrs)
