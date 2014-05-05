@@ -197,7 +197,7 @@ shared_examples_for "a database" do
     end
 
     it "gets a student" do
-      fetched_student = db.get_teacher(@student.id)
+      fetched_student = db.get_student(@student.id)
       expect(fetched_student.username).to eq("parth")
       expect(fetched_student.password).to eq("1234")
       expect(fetched_student.email).to eq("pss8te@virginia.edu")
