@@ -27,14 +27,14 @@ ActiveRecord::Schema.define(version: 20140505201627) do
     t.integer "parent_id"
   end
 
-  create_table "classes_users", force: true do |t|
-    t.integer "class_id"
-    t.integer "user_id"
-  end
-
   create_table "classrooms", force: true do |t|
     t.integer "teacher_id"
-    t.integer "chapter_id"
+    t.integer "course_id"
+  end
+
+  create_table "classrooms_users", force: true do |t|
+    t.integer "classroom_id"
+    t.integer "student_id"
   end
 
   create_table "courses", force: true do |t|

@@ -68,12 +68,26 @@ shared_examples_for "a database" do
   end
 
 
-  describe 'Classes' do
-    it "creates a class" do
-
+  describe 'Classroom' do
+    before do
+      @classroom = db.create_classroom( teacher_id: 55,
+                                        course_id:  66 )
     end
 
-    it "gets a class" do
+    it "creates a classroom" do
+      expect(@classroom).to be_a Tyto::Classroom
+      expect(@classroom.teacher_id).to eq 55
+      expect(@classroom.course_id).to eq 66
+    end
+
+    it "gets a classroom" do
+      retrieved_classroom = db.get_classroom(@classroom.id)
+      expect(retrieved_classroom.id).to eq @classroom.id
+      expect(retrieved_classroom.teacher_id).to eq @classroom.teacher_id
+      expect(retrieved_classroom.course_id).to eq @classroom.course_id
+    end
+
+    it "can add a student to a classroom" do
 
     end
   end
