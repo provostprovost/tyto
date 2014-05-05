@@ -1,0 +1,21 @@
+require 'ostruct'
+
+require_relative 'tyto/databases/in_memory.rb'
+
+require_relative 'tyto/entity.rb'
+require_relative 'tyto/entities/assignment.rb'
+require_relative 'tyto/entities/class.rb'
+require_relative 'tyto/entities/course.rb'
+require_relative 'tyto/entities/chapter.rb'
+require_relative 'tyto/entities/question.rb'
+require_relative 'tyto/entities/response.rb'
+require_relative 'tyto/entities/session.rb'
+require_relative 'tyto/entities/user.rb'
+
+require_relative 'tyto/use_case.rb'
+
+module Tyto
+  def self.db
+    @__db__ ||= Database::InMemory.new
+  end
+end
