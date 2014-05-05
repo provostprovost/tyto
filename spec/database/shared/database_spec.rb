@@ -95,9 +95,18 @@ shared_examples_for "a database" do
     end
 
     it "can get all students from a classroom" do
-      student1 = db.create_student({username: "parth", password: "1234", email: "pss8te@virginia.edu", phone_number: '7576507728'})
-      student2 = db.create_student({username: "brian", password: "1234", email: "asdfasd@virginia.edu", phone_number: '0987654321'})
-      student3 = db.create_student({username: "gilbert", password: "1234", email: "psffffffs8te@virginia.edu", phone_number: '1234567890'})
+      student1 = db.create_student({username: "parth",
+                                    password: "1234",
+                                    email: "pss8te@virginia.edu",
+                                    phone_number: '7576507728'})
+      student2 = db.create_student({username: "brian",
+                                    password: "1234",
+                                    email: "asdfasd@virginia.edu",
+                                    phone_number: '0987654321'})
+      student3 = db.create_student({username: "gilbert",
+                                    password: "1234",
+                                    email: "psffffffs8te@virginia.edu",
+                                    phone_number: '1234567890'})
 
       new_classroom = db.create_classroom( teacher_id: 4, course_id: 72 )
       db.add_student_to_classroom(classroom_id: new_classroom.id, student_id: student1.id )
@@ -163,7 +172,11 @@ shared_examples_for "a database" do
 
   describe 'Responses' do
     before do
-      @response = db.create_response(correct: true, question_id: 1, student_id: 5, assignment_id: 10, difficult: false)
+      @response = db.create_response( correct: true,
+                                      question_id: 1,
+                                      student_id: 5,
+                                      assignment_id: 10,
+                                      difficult: false)
     end
     it "creates a response" do
       expect(@response.correct).to eq(true)
@@ -195,9 +208,11 @@ shared_examples_for "a database" do
       student_session = db.get_student_session(@student_session.id)
       expect(@student_session.student_id).to eq(5)
     end
+
     it "creates a teacher session" do
       expect(@teacher_session.teacher_id).to eq(6)
     end
+
     it "gets a teacher session" do
       teacher_session = db.get_teacher_session(@teacher_session.id)
       expect(@teacher_session.teacher_id).to eq(6)
@@ -207,7 +222,10 @@ shared_examples_for "a database" do
 
   describe 'Students' do
     before do
-      @student = db.create_student({username: "parth", password: "1234", email: "pss8te@virginia.edu", phone_number: '7576507728'})
+      @student = db.create_student({username: "parth",
+                                    password: "1234",
+                                    email: "pss8te@virginia.edu",
+                                    phone_number: '7576507728'})
     end
     it "creates a student" do
       expect(@student.username).to eq("parth")
@@ -233,7 +251,10 @@ shared_examples_for "a database" do
 
   describe 'Teachers' do
     before do
-      @teacher = db.create_teacher({username: "parth", password: "1234", email: "pss8te@virginia.edu", phone_number: '7576507728'})
+      @teacher = db.create_teacher({username: "parth",
+                                    password: "1234",
+                                    email: "pss8te@virginia.edu",
+                                    phone_number: '7576507728'})
     end
     it "creates a teacher" do
       expect(@teacher.username).to eq("parth")
