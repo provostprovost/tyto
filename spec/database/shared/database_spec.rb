@@ -19,7 +19,17 @@ shared_examples_for "a database" do
     end
 
     it "gets an assignment" do
-
+      assignment = db.create_assignment(student_id: 1,
+                                        chapter_id: 1,
+                                        classroom_id: 1,
+                                        teacher_id: 1,
+                                        assignment_size: 10)
+      retrieved_assignment = db.get_assignment(assignment.id)
+      expect(retrieved_assignment.id).to eq(assignment.id)
+      expect(retrieved_assignment.student_id).to eq(assignment.student_id)
+      expect(retrieved_assignment.classroom_id).to eq(assignment.classroom_id)
+      expect(retrieved_assignment.teacher_id).to eq(assignment.teacher_id)
+      expect(retrieved_assignment.assignment_size).to eq(assignment.assignment_size)
     end
   end
 

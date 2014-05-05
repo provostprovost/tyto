@@ -21,17 +21,24 @@ module Tyto
       end
 
       def create_assignment(attrs)
-        # binding.pry
         assignment = Assignment.create(attrs)
-        hello = Tyto::Assignment.new( id:         assignment.id,
+        Tyto::Assignment.new( id:         assignment.id,
                               student_id: assignment.student_id,
                               chapter_id: assignment.chapter_id,
                               teacher_id: assignment.teacher_id,
-                              classroom_id:   assignment.classroom_id,
-                              assignment_size: assignment.assignment_size )
+                              classroom_id:     assignment.classroom_id,
+                              assignment_size:  assignment.assignment_size )
       end
 
       def get_assignment(id)
+        assignment = Assignment.find(id)
+        Tyto::Assignment.new( id: assignment.id,
+                              student_id:   assignment.student_id,
+                              chapter_id:   assignment.chapter_id,
+                              teacher_id:   assignment.teacher_id,
+                              classroom_id: assignment.classroom_id,
+                              assignment_size: assignment.assignment_size,
+                              complete:     assignment.complete )
       end
 
       def edit_assignment(attrs)
