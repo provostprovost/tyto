@@ -77,6 +77,7 @@ module Tyto
 
       class Chapter < ActiveRecord::Base
         belongs_to :course
+        has_many :statistics
       end
 
       def create_chapter(attrs)
@@ -223,6 +224,7 @@ module Tyto
         belongs_to :question
         belongs_to :student
         belongs_to :assignment
+        has_one :statistics
       end
 
       def create_response(attrs)
@@ -234,6 +236,16 @@ module Tyto
       def get_response(id)
         response = Response.find(id)
         new_response = Tyto::Response.new(id: response.id, correct: response.correct, question_id: response.question_id, student_id: response.student_id, assignment_id: response.assignment_id, difficult: response.difficult)
+      end
+
+      ##############
+      # Statistics #
+      ##############
+
+      class Statistic < ActiveRecord::Base
+        belongs_to :student
+        belongs_to :chapter
+        belongs_to :response
       end
 
       ####################
@@ -284,6 +296,7 @@ module Tyto
       class Student < ActiveRecord::Base
         has_many :responses
         has_many :assignments
+        has_many :statistics
         belongs_to :classroom
       end
 
