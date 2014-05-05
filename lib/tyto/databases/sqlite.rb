@@ -97,9 +97,9 @@ module Tyto
         Chapter.destroy(id)
       end
 
-      ###########
-      # Classes #
-      ###########
+      ##############
+      # Classrooms #
+      ##############
 
       class Classroom < ActiveRecord::Base
         belongs_to :teacher
@@ -107,16 +107,33 @@ module Tyto
         has_many :assignments
       end
 
-      def create_class(attrs)
+      def create_classroom(attrs)
+        classroom = Classroom.create(attrs)
+        Tyto::Classroom.new(  id:         classroom.id,
+                              course_id:  classroom.course_id,
+                              teacher_id: classroom.teacher_id )
       end
 
-      def get_class(id)
+      def get_classroom(id)
+        classroom = Classroom.find(id)
+        Tyto::Classroom.new(  id:         classroom.id,
+                              course_id:  classroom.course_id,
+                              teacher_id: classroom.teacher_id )
       end
 
-      def edit_class(attrs)
+      def edit_classroom(attrs)
       end
 
-      def delete_class(attrs)
+      def delete_classroom(id)
+        Classroom.destroy(id)
+      end
+
+      def add_student_to_classroom(student_id, classroom_id)
+
+      end
+
+      def get_students_in_classroom(id)
+
       end
 
       ###########
@@ -137,7 +154,7 @@ module Tyto
       def edit_course(attrs)
       end
 
-      def delete_course(attrs)
+      def delete_course(id)
       end
 
       ##############
