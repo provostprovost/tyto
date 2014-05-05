@@ -10,8 +10,17 @@ module Tyto
         ActiveRecord::Base.establish_connection(dbconfig["test"])
       end
 
-      def delete_all
-
+      def clear_everything
+        Assignment.delete_all
+        Chapter.delete_all
+        Classroom.delete_all
+        ClassroomsUsers.delete_all
+        Course.delete_all
+        Question.delete_all
+        Response.delete_all
+        Session.delete_all
+        Student.delete_all
+        Teacher.delete_all
       end
 
       ###############
@@ -128,12 +137,17 @@ module Tyto
         Classroom.destroy(id)
       end
 
-      def add_student_to_classroom(student_id, classroom_id)
+      class ClassroomsUsers < ActiveRecord::Base
+        belongs_to :student
+        belongs_to :classroom
+      end
 
+      def add_student_to_classroom(attrs)
+        pair = ClassroomsUsers.create(attrs)
       end
 
       def get_students_in_classroom(id)
-
+        students = ClassroomsUsers.where(classroom_id: id)
       end
 
       ###########

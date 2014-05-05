@@ -2,6 +2,7 @@ require 'spec_helper'
 
 shared_examples_for "a database" do
   let(:db) { described_class.new }
+  before { db.clear_everything }
 
   describe 'Assignments' do
     before do
@@ -88,6 +89,16 @@ shared_examples_for "a database" do
     end
 
     it "can add a student to a classroom" do
+      pair = db.add_student_to_classroom(classroom_id: @classroom.id, student_id: 55)
+      expect(pair.student_id).to eq 55
+      expect(pair.classroom_id).to eq @classroom.id
+    end
+
+    it "can get all students from a classroom" do
+      student1 = db.create_student({username: "parth", password: "1234", email: "pss8te@virginia.edu", phone_number: '7576507728'})
+      student2 = db.create_student({username: "brian", password: "1234", email: "asdfasd@virginia.edu", phone_number: '0987654321'})
+      student3 = db.create_student({username: "gilbert", password: "1234", email: "psffffffs8te@virginia.edu", phone_number: '1234567890'})
+
 
     end
   end
