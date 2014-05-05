@@ -59,6 +59,7 @@ module Tyto
       end
 
       def delete_assignment(id)
+        Assignment.destroy(id)
       end
 
       ############
@@ -84,9 +85,16 @@ module Tyto
       end
 
       def edit_chapter(attrs)
+        chapter = Chapter.find(attrs[:id])
+        attrs.delete(:id)
+        chapter.update(attrs)
+        Tyto::Chapter.new(  id: chapter.id,
+                            parent_id: chapter.parent_id,
+                            name: chapter.name )
       end
 
       def delete_chapter(id)
+        Chapter.destroy(id)
       end
 
       ###########

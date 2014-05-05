@@ -42,18 +42,28 @@ shared_examples_for "a database" do
 
 
    describe 'Chapter' do
+    before do
+      @chapter = db.create_chapter(parent_id: 1, name: "Cool Chapter")
+    end
+
     it "creates a chapter" do
-      chapter = db.create_chapter(parent_id: 1, name: "Cool Chapter")
-      expect(chapter).to be_a Tyto::Chapter
-      expect(chapter.name).to eq "Cool Chapter"
+      expect(@chapter).to be_a Tyto::Chapter
+      expect(@chapter.name).to eq "Cool Chapter"
     end
 
     it "gets a chapter" do
-      chapter = db.create_chapter(parent_id: 1, name: "Cool Chapter")
-      retrieved_chapter = db.get_chapter(chapter.id)
-      expect(retrieved_chapter.id).to eq chapter.id
-      expect(retrieved_chapter.name).to eq chapter.name
-      expect(retrieved_chapter.parent_id).to eq chapter.parent_id
+      retrieved_chapter = db.get_chapter(@chapter.id)
+      expect(retrieved_chapter.id).to eq @chapter.id
+      expect(retrieved_chapter.name).to eq @chapter.name
+      expect(retrieved_chapter.parent_id).to eq @chapter.parent_id
+    end
+
+    it "edits a chapter" do
+      db.edit_chapter(  id: @chapter.id,
+                        name: "Edited Chapter" )
+      edited_chapter = db.get_chapter(@chapter.id)
+      expect(edited_chapter.id).to eq @chapter.id
+      expect(edited_chapter.name).to eq "Edited Chapter"
     end
   end
 
