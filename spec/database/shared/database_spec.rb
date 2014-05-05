@@ -163,7 +163,7 @@ shared_examples_for "a database" do
 
   describe 'Responses' do
     before do
-      @response = db.create_response(correct: true, question_id: 1, student_id: 5, assignment_id: 10)
+      @response = db.create_response(correct: true, question_id: 1, student_id: 5, assignment_id: 10, difficult: false)
     end
     it "creates a response" do
       expect(@response.correct).to eq(true)

@@ -233,7 +233,7 @@ module Tyto
 
       def get_response(id)
         response = Response.find(id)
-        new_response = Tyto::Response.new(id: response.id, correct: response.correct, question_id: response.question_id, student_id: response.student_id, assignment_id: response.assignment_id)
+        new_response = Tyto::Response.new(id: response.id, correct: response.correct, question_id: response.question_id, student_id: response.student_id, assignment_id: response.assignment_id, difficult: response.difficult)
       end
 
       ####################
