@@ -23,7 +23,11 @@ shared_examples_for "a database" do
     end
 
     it "gets a chapter" do
-
+      chapter = db.create_chapter(parent_id: 1, name: "Cool Chapter")
+      retrieved_chapter = db.get_chapter(chapter.id)
+      expect(retrieved_chapter.id).to eq chapter.id
+      expect(retrieved_chapter.name).to eq chapter.name
+      expect(retrieved_chapter.parent_id).to eq chapter.parent_id
     end
   end
 

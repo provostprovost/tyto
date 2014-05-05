@@ -48,12 +48,17 @@ module Tyto
 
       def create_chapter(attrs)
         chapter = Chapter.create(attrs)
-        hello = Tyto::Chapter.new(  id: chapter.id,
-                                    parent_id: chapter.parent_id )
-        binding.pry
+        Tyto::Chapter.new(  id: chapter.id,
+                            parent_id: chapter.parent_id,
+                            name: chapter.name )
       end
 
       def get_chapter(id)
+        chapter = Chapter.find(id)
+        chapter = Chapter.create(attrs)
+        Tyto::Chapter.new(  id: chapter.id,
+                            parent_id: chapter.parent_id,
+                            name: chapter.name )
       end
 
       def edit_chapter(attrs)
