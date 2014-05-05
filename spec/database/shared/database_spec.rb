@@ -99,7 +99,16 @@ shared_examples_for "a database" do
       student2 = db.create_student({username: "brian", password: "1234", email: "asdfasd@virginia.edu", phone_number: '0987654321'})
       student3 = db.create_student({username: "gilbert", password: "1234", email: "psffffffs8te@virginia.edu", phone_number: '1234567890'})
 
+      new_classroom = db.create_classroom( teacher_id: 4, course_id: 72 )
+      db.add_student_to_classroom(classroom_id: new_classroom.id, student_id: student1.id )
+      db.add_student_to_classroom(classroom_id: new_classroom.id, student_id: student2.id )
+      db.add_student_to_classroom(classroom_id: new_classroom.id, student_id: student3.id )
 
+      all_students = db.get_students_in_classroom(new_classroom.id)
+
+      # expect(all_students).to be_a Array
+      expect(all_students.first).to be_a Tyto::Student
+      expect(all_students.first.id).to eq student1.id
     end
   end
 
