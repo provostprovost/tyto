@@ -84,30 +84,43 @@ shared_examples_for "a database" do
 
 
   describe 'Students' do
+    before do
+      @student = db.create_student({username: "parth", password: "1234", email: "pss8te@virginia.edu", phone_number: '7576507728'})
+    end
     it "creates a student" do
-
+      expect(@student.username).to eq("parth")
+      expect(@student.password).to eq("1234")
     end
 
     it "gets a student" do
+      fetched_student = db.get_teacher(@student.id)
+      expect(fetched_student.phone_number).to eq("7576507728")
+    end
 
+    it "edits a student" do
+      student = db.edit_student(:id => @student.id, password: "1111")
+      expect(student.username).to eq("parth")
+      expect(student.password).to eq("1111")
     end
   end
 
   describe 'Teachers' do
+    before do
+      @teacher = db.create_teacher({username: "parth", password: "1234", email: "pss8te@virginia.edu", phone_number: '7576507728'})
+    end
     it "creates a teacher" do
-      teacher = db.create_teacher({username: "parth", password: "1234", email: "pss8te@virginia.edu", phone_number: '7576507728'})
-      expect(teacher.username).to eq("parth")
-      expect(teacher.password).to eq("1234")
+      expect(@teacher.username).to eq("parth")
+      expect(@teacher.password).to eq("1234")
     end
 
     it "gets a teacher" do
-
+      fetched_teacher = db.get_teacher(@teacher.id)
+      expect(fetched_teacher.phone_number).to eq("7576507728")
     end
     it "edits a teacher" do
-
-    end
-    it "deletes a teacher" do
-
+      teacher = db.edit_teacher(:id => @teacher.id, password: "1111")
+      expect(teacher.username).to eq("parth")
+      expect(teacher.password).to eq("1111")
     end
   end
 end
