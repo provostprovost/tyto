@@ -1,0 +1,5 @@
+test:
+  adapter: sqlite3
+  database: tyto_test
+  pool: 5
+  timeout: 5000
