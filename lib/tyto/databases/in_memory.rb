@@ -4,7 +4,9 @@ module Tyto
       def initialize
       end
 
-      # Assignments
+      ###############
+      # Assignments #
+      ###############
 
       def create_assignment(attrs)
       end
@@ -18,7 +20,9 @@ module Tyto
       def delete_assignment(id)
       end
 
-      # Chapters
+      ############
+      # Chapters #
+      ############
 
       def create_chapter(attrs)
       end
@@ -32,7 +36,9 @@ module Tyto
       def delete_chapter(id)
       end
 
-      # Classes
+      ###########
+      # Classes #
+      ###########
 
       def create_class(attrs)
       end
@@ -46,7 +52,9 @@ module Tyto
       def delete_class(attrs)
       end
 
-      # Courses
+      ###########
+      # Courses #
+      ###########
 
       def create_course(attrs)
       end
@@ -60,7 +68,9 @@ module Tyto
       def delete_course(id)
       end
 
-      # Questions?
+      ##############
+      # Questions? #
+      ##############
 
       def create_question(attrs)
       end
@@ -74,7 +84,9 @@ module Tyto
       def delete_question(id)
       end
 
-      # Responses
+      #############
+      # Responses #
+      #############
 
       def create_response(attrs)
       end
@@ -88,7 +100,9 @@ module Tyto
       def delete_response(id)
       end
 
-      # Sessions
+      ############
+      # Sessions #
+      ############
 
       def create_session(attrs)
       end
@@ -102,7 +116,9 @@ module Tyto
       def delete_session(id)
       end
 
-      # Users
+      #########
+      # Users #
+      #########
 
       def create_user(attrs)
       end
