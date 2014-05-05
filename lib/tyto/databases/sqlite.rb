@@ -146,15 +146,25 @@ module Tyto
       end
 
       def create_course(attrs)
+        ar_course = Course.create(attrs)
+        attrs[:id] = ar_course.id
+        course = Tyto::Course.new(attrs)
       end
 
       def get_course(id)
+        course = Course.find(id)
+        course = Tyto::Course.new(name: course.name)
       end
 
       def edit_course(attrs)
+        course = Course.find(attrs[:id])
+        attrs.delete(:id)
+        course.update(attrs)
+        course = Tyto::Course.new(id: course.id, name: course.name)
       end
 
       def delete_course(id)
+        Course.destroy(id)
       end
 
       ##############

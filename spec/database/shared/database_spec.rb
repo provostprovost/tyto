@@ -94,12 +94,22 @@ shared_examples_for "a database" do
 
 
   describe 'Courses' do
+    before do
+      @course = db.create_course(name: "algebra")
+    end
     it "creates a course" do
-
+      expect(@course.name).to eq("algebra")
     end
 
     it "gets a course" do
+      course = db.get_course(@course.id)
+      expect(course.name).to eq("algebra")
+    end
 
+    it "edits a course" do
+      course = db.edit_course(id: @course.id, name: "algebra2")
+      expect(course.id).to eq(@course.id)
+      expect(course.name).to eq("algebra2")
     end
   end
 
@@ -182,10 +192,15 @@ shared_examples_for "a database" do
     it "creates a student" do
       expect(@student.username).to eq("parth")
       expect(@student.password).to eq("1234")
+      expect(@student.email).to eq("pss8te@virginia.edu")
+      expect(@student.phone_number).to eq("7576507728")
     end
 
     it "gets a student" do
       fetched_student = db.get_teacher(@student.id)
+      expect(fetched_student.username).to eq("parth")
+      expect(fetched_student.password).to eq("1234")
+      expect(fetched_student.email).to eq("pss8te@virginia.edu")
       expect(fetched_student.phone_number).to eq("7576507728")
     end
 
@@ -203,10 +218,15 @@ shared_examples_for "a database" do
     it "creates a teacher" do
       expect(@teacher.username).to eq("parth")
       expect(@teacher.password).to eq("1234")
+      expect(@teacher.email).to eq("pss8te@virginia.edu")
+      expect(@teacher.phone_number).to eq("7576507728")
     end
 
     it "gets a teacher" do
       fetched_teacher = db.get_teacher(@teacher.id)
+      expect(fetched_teacher.username).to eq("parth")
+      expect(fetched_teacher.password).to eq("1234")
+      expect(fetched_teacher.email).to eq("pss8te@virginia.edu")
       expect(fetched_teacher.phone_number).to eq("7576507728")
     end
     it "edits a teacher" do
