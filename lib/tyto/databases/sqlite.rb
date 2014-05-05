@@ -248,6 +248,13 @@ module Tyto
         belongs_to :response
       end
 
+      def get_proficiency(response_id)
+
+
+      end
+
+
+
       ####################
       # Student Sessions #
       ####################
