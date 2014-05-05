@@ -19,17 +19,20 @@ module Tyto
       ###############
 
       class Assignment < ActiveRecord::Base
-        belongs_to :class
+        belongs_to :classroom
         belongs_to :teacher
         belongs_to :student
       end
 
       def create_assignment(attrs)
+        # binding.pry
         assignment = Assignment.create(attrs)
-        Tyto::Assignment.new( id:         assignment.id,
+        hello = Tyto::Assignment.new( id:         assignment.id,
                               student_id: assignment.student_id,
                               chapter_id: assignment.chapter_id,
-                              class_id:   assignment.class_id )
+                              teacher_id: assignment.teacher_id,
+                              classroom_id:   assignment.classroom_id,
+                              assignment_size: assignment.assignment_size )
       end
 
       def get_assignment(id)
@@ -51,11 +54,16 @@ module Tyto
 
       def create_chapter(attrs)
         chapter = Chapter.create(attrs)
-        hello = Tyto::Chapter.new(  id: chapter.id,
-                                    parent_id: chapter.parent_id )
+        Tyto::Chapter.new(  id: chapter.id,
+                            parent_id: chapter.parent_id,
+                            name: chapter.name )
       end
 
       def get_chapter(id)
+        chapter = Chapter.find(id)
+        Tyto::Chapter.new(  id: chapter.id,
+                            parent_id: chapter.parent_id,
+                            name: chapter.name )
       end
 
       def edit_chapter(attrs)
@@ -68,9 +76,10 @@ module Tyto
       # Classes #
       ###########
 
-      class Class < ActiveRecord::Base
+      class Classroom < ActiveRecord::Base
         belongs_to :teacher
         belongs_to :course
+        has_many :assignments
       end
 
       def create_class(attrs)
@@ -177,7 +186,7 @@ module Tyto
       class Student < ActiveRecord::Base
         has_many :responses
         has_many :assignments
-        belongs_to :class
+        belongs_to :classroom
       end
 
       def create_student(attrs)
@@ -229,7 +238,7 @@ module Tyto
 
       class Teacher < ActiveRecord::Base
         has_many :assignments
-        has_many :classes
+        has_many :classrooms
       end
 
       def create_teacher(attrs)

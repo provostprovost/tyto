@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20140505164936) do
     t.integer "student_id"
     t.integer "teacher_id"
     t.integer "chapter_id"
+    t.integer "classroom_id"
     t.boolean "complete"
     t.integer "assignment_size"
   end
@@ -26,14 +27,14 @@ ActiveRecord::Schema.define(version: 20140505164936) do
     t.integer "parent_id"
   end
 
-  create_table "classes", force: true do |t|
-    t.integer "teacher_id"
-    t.integer "chapter_id"
-  end
-
   create_table "classes_users", force: true do |t|
     t.integer "class_id"
     t.integer "user_id"
+  end
+
+  create_table "classrooms", force: true do |t|
+    t.integer "teacher_id"
+    t.integer "chapter_id"
   end
 
   create_table "courses", force: true do |t|
