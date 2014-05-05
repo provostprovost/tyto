@@ -47,6 +47,28 @@ shared_examples_for "a database" do
   end
 
 
+  describe 'Questions' do
+    it "creates a question" do
+
+    end
+
+    it "gets a question" do
+
+    end
+  end
+
+
+  describe 'Responses' do
+    it "creates a response" do
+
+    end
+
+    it "gets a response" do
+
+    end
+  end
+
+
   describe 'Sessions' do
     it "creates a session" do
 
@@ -58,12 +80,22 @@ shared_examples_for "a database" do
   end
 
 
-  describe 'Users' do
-    it "creates a user" do
+  describe 'Students' do
+    it "creates a student" do
 
     end
 
-    it "gets a user" do
+    it "gets a student" do
+
+    end
+  end
+
+  describe 'Teachers' do
+    it "creates a teacher" do
+
+    end
+
+    it "gets a teacher" do
 
     end
   end
