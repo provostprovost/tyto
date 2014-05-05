@@ -105,34 +105,72 @@ shared_examples_for "a database" do
 
 
   describe 'Questions' do
+    before do
+      @question = db.create_question(level: 5, question: "2+2", answer: "4", chapter_id: 5)
+    end
     it "creates a question" do
-
+      expect(@question.level).to eq(5)
+      expect(@question.question).to eq("2+2")
+      expect(@question.answer).to eq("4")
+      expect(@question.chapter_id).to eq(5)
     end
 
     it "gets a question" do
+      question = db.get_question(@question.id)
+      expect(question.level).to eq(5)
+      expect(question.question).to eq("2+2")
+      expect(question.answer).to eq("4")
+      expect(question.chapter_id).to eq(5)
+    end
 
+    it "edits a question" do
+      question = db.edit_question(id: @question.id, chapter_id: 10)
+      expect(question.chapter_id).to eq(10)
+      expect(question.level).to eq(5)
     end
   end
 
 
   describe 'Responses' do
+    before do
+      @response = db.create_response(correct: true, question_id: 1, student_id: 5, assignment_id: 10)
+    end
     it "creates a response" do
-
+      expect(@response.correct).to eq(true)
+      expect(@response.question_id).to eq(1)
+      expect(@response.student_id).to eq(5)
+      expect(@response.assignment_id).to eq(10)
     end
 
     it "gets a response" do
-
+      response = db.get_response(@response.id)
+      expect(response.correct).to eq(true)
+      expect(response.question_id).to eq(1)
+      expect(response.student_id).to eq(5)
+      expect(response.assignment_id).to eq(10)
     end
   end
 
 
   describe 'Sessions' do
-    it "creates a session" do
-
+    before do
+      @student_session = db.create_student_session(student_id: 5)
+      @teacher_session = db.create_teacher_session(teacher_id: 6)
+    end
+    it "creates a student session" do
+      expect(@student_session.student_id).to eq(5)
     end
 
-    it "gets a session" do
-
+    it "gets a student session" do
+      student_session = db.get_student_session(@student_session.id)
+      expect(@student_session.student_id).to eq(5)
+    end
+    it "creates a teacher session" do
+      expect(@teacher_session.teacher_id).to eq(6)
+    end
+    it "gets a teacher session" do
+      teacher_session = db.get_teacher_session(@teacher_session.id)
+      expect(@teacher_session.teacher_id).to eq(6)
     end
   end
 
