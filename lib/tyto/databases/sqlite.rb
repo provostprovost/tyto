@@ -4,8 +4,7 @@ module Tyto
       def initialize
         ActiveRecord::Base.establish_connection(
             :adapter => 'sqlite3'
-            :database => 'tytest.db'
-
+            :database => 'tyto_test.db'
           )
       end
 
@@ -69,31 +68,11 @@ module Tyto
       def delete_class(attrs)
       end
 
-      ###########
-      # Courses #
-      ###########
-
-      class Question < ActiveRecord::Base
-
-      end
-
-      def create_course(attrs)
-      end
-
-      def get_course(id)
-      end
-
-      def edit_course(attrs)
-      end
-
-      def delete_course(id)
-      end
-
       ##############
       # Questions? #
       ##############
 
-      class Response < ActiveRecord::Base
+      class Question < ActiveRecord::Base
 
       end
 
@@ -113,7 +92,7 @@ module Tyto
       # Responses #
       #############
 
-      class Assignment < ActiveRecord::Base
+      class Response < ActiveRecord::Base
 
       end
 
@@ -129,44 +108,84 @@ module Tyto
       def delete_response(id)
       end
 
+      ####################
+      # Student Sessions #
+      ####################
+
+      class StudentSession < ActiveRecord::Base
+
+      end
+
+      def create_student_session(attrs)
+      end
+
+      def get_student_session(id)
+      end
+
+      def edit_student_session(attrs)
+      end
+
+      def delete_student_session(id)
+      end
+
       ############
-      # Sessions #
+      # Students #
       ############
 
-      class Assignment < ActiveRecord::Base
+      class Student < ActiveRecord::Base
 
       end
 
-      def create_session(attrs)
+      def create_student(attrs)
       end
 
-      def get_session(id)
+      def get_student(id)
       end
 
-      def edit_session(attrs)
+      def edit_student(attrs)
       end
 
-      def delete_session(id)
+      def delete_student(id)
       end
 
-      #########
-      # Users #
-      #########
+      ####################
+      # Teacher Sessions #
+      ####################
 
-      class Assignment < ActiveRecord::Base
+      class TeacherSession < ActiveRecord::Base
 
       end
 
-      def create_user(attrs)
+      def create_teacher_session(attrs)
       end
 
-      def get_user(id)
+      def get_teacher_session(id)
       end
 
-      def edit_user(attrs)
+      def edit_teacher_session(attrs)
       end
 
-      def delete_user(id)
+      def delete_teacher_session(id)
+      end
+
+      ############
+      # Teachers #
+      ############
+
+      class Teacher < ActiveRecord::Base
+
+      end
+
+      def create_teacher(attrs)
+      end
+
+      def get_teacher(id)
+      end
+
+      def edit_teacher(attrs)
+      end
+
+      def delete_teacher(id)
       end
     end
   end
