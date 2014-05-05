@@ -249,8 +249,21 @@ module Tyto
       end
 
       def get_proficiency(response_id)
+        response = get_response(response_id)
+        student_id = response.student_id
+        assignment_id = response.assignment_id
+        assignment = get_assignment(assignment_id)
+        chapter_id = assignment.chapter_id
+        question = get_question(response.question_id)
+        last_proficiency_score = get_last_proficiency_score(student_id, chapter_id)
 
+        if response.correct
+          last_proficiency_score += 6 / question.level
+        else
+          last_proficiency_score -= 6 / question.level
+        end
 
+        last_profiency_score
       end
 
 
