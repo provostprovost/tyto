@@ -61,6 +61,17 @@ ActiveRecord::Schema.define(version: 20140505201627) do
     t.integer "teacher_id"
   end
 
+  create_table "statistics", force: true do |t|
+    t.integer  "student_id"
+    t.integer  "chapter_id"
+    t.integer  "response_id"
+    t.integer  "proficiency"
+    t.integer  "current_streak"
+    t.integer  "longest_streak"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "students", force: true do |t|
     t.string "username"
     t.string "password"
