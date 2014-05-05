@@ -46,6 +46,16 @@ module Tyto
       end
 
       def edit_assignment(attrs)
+        assignment = Assignment.find(attrs[:id])
+        attrs.delete(:id)
+        assignment.update(attrs)
+        Tyto::Assignment.new( id: assignment.id,
+                              student_id:   assignment.student_id,
+                              chapter_id:   assignment.chapter_id,
+                              teacher_id:   assignment.teacher_id,
+                              classroom_id: assignment.classroom_id,
+                              assignment_size: assignment.assignment_size,
+                              complete:     assignment.complete )
       end
 
       def delete_assignment(id)

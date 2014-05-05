@@ -4,32 +4,39 @@ shared_examples_for "a database" do
   let(:db) { described_class.new }
 
   describe 'Assignments' do
-    it "creates an assignment" do
-      assignment = db.create_assignment(student_id: 1,
-                                        chapter_id: 1,
-                                        classroom_id: 1,
-                                        teacher_id: 1,
-                                        assignment_size: 10)
-      expect(assignment).to be_a Tyto::Assignment
-      expect(assignment.student_id).to eq 1
-      expect(assignment.chapter_id).to eq 1
-      expect(assignment.classroom_id).to eq 1
-      expect(assignment.id).to_not be nil
+    before do
+      @assignment = db.create_assignment( student_id: 1,
+                                          chapter_id: 1,
+                                          classroom_id: 1,
+                                          teacher_id: 1,
+                                          assignment_size: 10)
+    end
 
+    it "creates an assignment" do
+      expect(@assignment).to be_a Tyto::Assignment
+      expect(@assignment.student_id).to eq 1
+      expect(@assignment.chapter_id).to eq 1
+      expect(@assignment.classroom_id).to eq 1
+      expect(@assignment.id).to_not be nil
     end
 
     it "gets an assignment" do
-      assignment = db.create_assignment(student_id: 1,
-                                        chapter_id: 1,
-                                        classroom_id: 1,
-                                        teacher_id: 1,
-                                        assignment_size: 10)
-      retrieved_assignment = db.get_assignment(assignment.id)
-      expect(retrieved_assignment.id).to eq(assignment.id)
-      expect(retrieved_assignment.student_id).to eq(assignment.student_id)
-      expect(retrieved_assignment.classroom_id).to eq(assignment.classroom_id)
-      expect(retrieved_assignment.teacher_id).to eq(assignment.teacher_id)
-      expect(retrieved_assignment.assignment_size).to eq(assignment.assignment_size)
+      retrieved_assignment = db.get_assignment(@assignment.id)
+      expect(retrieved_assignment.id).to eq(@assignment.id)
+      expect(retrieved_assignment.student_id).to eq(@assignment.student_id)
+      expect(retrieved_assignment.classroom_id).to eq(@assignment.classroom_id)
+      expect(retrieved_assignment.teacher_id).to eq(@assignment.teacher_id)
+      expect(retrieved_assignment.assignment_size).to eq(@assignment.assignment_size)
+    end
+
+    it "edits an assignment" do
+      db.edit_assignment( id: @assignment.id,
+                          assignment_size: 15,
+                          classroom_id: 4,
+                          teacher_id: 9)
+      edited_assignment = db.get_assignment(@assignment.id)
+      expect(edited_assignment.id).to eq @assignment.id
+      expect(edited_assignment.assignment_size).to eq 15
     end
   end
 
