@@ -1,5 +1,7 @@
 class CreateClasses < ActiveRecord::Migration
   def change
-    # TODO
+    create_table :classes do |t|
+      t.references  :teacher
+    end
   end
 end
