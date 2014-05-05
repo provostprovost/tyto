@@ -1,5 +1,7 @@
-class CreateSessions < ActiveRecord::Migration
+class CreateStudentSessions < ActiveRecord::Migration
   def change
-    # TODO
+    create_table :student_sessions do |t|
+      t.references :student
+    end
   end
 end
