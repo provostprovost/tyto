@@ -1,7 +1,6 @@
 module Tyto
   class Course < Entity
-    attr_reader :id, :teacher_id
-    attr_accessor :children_ids, :questions, :name
-    validates_presence_of :id, :name, :teacher_id
+    attr_reader :id, :name
+    validates_presence_of :id, :name
   end
 end

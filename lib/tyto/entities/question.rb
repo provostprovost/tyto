@@ -1,5 +1,5 @@
 module Tyto
   class Question < Entity
-    attr_accessor :level, :question, :answer, :parent_id
+    attr_reader :level, :question, :answer, :chapter_id
   end
 end
