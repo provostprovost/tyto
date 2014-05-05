@@ -253,7 +253,14 @@ module Tyto
 
       end
 
-
+      def get_last_proficiency_score(student_id, chapter_id)
+        statistic = Statistics.where(student_id: student_id, chapter_id: chapter_id).last
+        if statistic.proficiency
+          return statistic.proficiency
+        else
+          return 0
+        end
+      end
 
       ####################
       # Student Sessions #
