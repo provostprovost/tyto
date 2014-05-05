@@ -25,23 +25,41 @@ module Tyto
       end
 
       def create_assignment(attrs)
-        # binding.pry
         assignment = Assignment.create(attrs)
-        hello = Tyto::Assignment.new( id:         assignment.id,
+        Tyto::Assignment.new( id:         assignment.id,
                               student_id: assignment.student_id,
                               chapter_id: assignment.chapter_id,
                               teacher_id: assignment.teacher_id,
-                              classroom_id:   assignment.classroom_id,
-                              assignment_size: assignment.assignment_size )
+                              classroom_id:     assignment.classroom_id,
+                              assignment_size:  assignment.assignment_size )
       end
 
       def get_assignment(id)
+        assignment = Assignment.find(id)
+        Tyto::Assignment.new( id: assignment.id,
+                              student_id:   assignment.student_id,
+                              chapter_id:   assignment.chapter_id,
+                              teacher_id:   assignment.teacher_id,
+                              classroom_id: assignment.classroom_id,
+                              assignment_size: assignment.assignment_size,
+                              complete:     assignment.complete )
       end
 
       def edit_assignment(attrs)
+        assignment = Assignment.find(attrs[:id])
+        attrs.delete(:id)
+        assignment.update(attrs)
+        Tyto::Assignment.new( id: assignment.id,
+                              student_id:   assignment.student_id,
+                              chapter_id:   assignment.chapter_id,
+                              teacher_id:   assignment.teacher_id,
+                              classroom_id: assignment.classroom_id,
+                              assignment_size: assignment.assignment_size,
+                              complete:     assignment.complete )
       end
 
       def delete_assignment(id)
+        Assignment.destroy(id)
       end
 
       ############
@@ -67,9 +85,16 @@ module Tyto
       end
 
       def edit_chapter(attrs)
+        chapter = Chapter.find(attrs[:id])
+        attrs.delete(:id)
+        chapter.update(attrs)
+        Tyto::Chapter.new(  id: chapter.id,
+                            parent_id: chapter.parent_id,
+                            name: chapter.name )
       end
 
       def delete_chapter(id)
+        Chapter.destroy(id)
       end
 
       ###########

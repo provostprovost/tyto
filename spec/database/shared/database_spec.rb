@@ -4,39 +4,66 @@ shared_examples_for "a database" do
   let(:db) { described_class.new }
 
   describe 'Assignments' do
-    it "creates an assignment" do
-      assignment = db.create_assignment(student_id: 1,
-                                        chapter_id: 1,
-                                        classroom_id: 1,
-                                        teacher_id: 1,
-                                        assignment_size: 10)
-      expect(assignment).to be_a Tyto::Assignment
-      expect(assignment.student_id).to eq 1
-      expect(assignment.chapter_id).to eq 1
-      expect(assignment.classroom_id).to eq 1
-      expect(assignment.id).to_not be nil
+    before do
+      @assignment = db.create_assignment( student_id: 1,
+                                          chapter_id: 1,
+                                          classroom_id: 1,
+                                          teacher_id: 1,
+                                          assignment_size: 10)
+    end
 
+    it "creates an assignment" do
+      expect(@assignment).to be_a Tyto::Assignment
+      expect(@assignment.student_id).to eq 1
+      expect(@assignment.chapter_id).to eq 1
+      expect(@assignment.classroom_id).to eq 1
+      expect(@assignment.id).to_not be nil
     end
 
     it "gets an assignment" do
+      retrieved_assignment = db.get_assignment(@assignment.id)
+      expect(retrieved_assignment.id).to eq(@assignment.id)
+      expect(retrieved_assignment.student_id).to eq(@assignment.student_id)
+      expect(retrieved_assignment.classroom_id).to eq(@assignment.classroom_id)
+      expect(retrieved_assignment.teacher_id).to eq(@assignment.teacher_id)
+      expect(retrieved_assignment.assignment_size).to eq(@assignment.assignment_size)
+    end
 
+    it "edits an assignment" do
+      db.edit_assignment( id: @assignment.id,
+                          assignment_size: 15,
+                          classroom_id: 4,
+                          teacher_id: 9)
+      edited_assignment = db.get_assignment(@assignment.id)
+      expect(edited_assignment.id).to eq @assignment.id
+      expect(edited_assignment.assignment_size).to eq 15
     end
   end
 
 
    describe 'Chapter' do
+    before do
+      @chapter = db.create_chapter(parent_id: 1, name: "Cool Chapter")
+    end
+
     it "creates a chapter" do
-      chapter = db.create_chapter(parent_id: 1, name: "Cool Chapter")
-      expect(chapter).to be_a Tyto::Chapter
-      expect(chapter.name).to eq "Cool Chapter"
+      expect(@chapter).to be_a Tyto::Chapter
+      expect(@chapter.name).to eq "Cool Chapter"
     end
 
     it "gets a chapter" do
-      chapter = db.create_chapter(parent_id: 1, name: "Cool Chapter")
-      retrieved_chapter = db.get_chapter(chapter.id)
-      expect(retrieved_chapter.id).to eq chapter.id
-      expect(retrieved_chapter.name).to eq chapter.name
-      expect(retrieved_chapter.parent_id).to eq chapter.parent_id
+      retrieved_chapter = db.get_chapter(@chapter.id)
+      expect(retrieved_chapter.id).to eq @chapter.id
+      expect(retrieved_chapter.name).to eq @chapter.name
+      expect(retrieved_chapter.parent_id).to eq @chapter.parent_id
+    end
+
+    it "edits a chapter" do
+      db.edit_chapter(  id: @chapter.id,
+                        name: "Edited Chapter" )
+      edited_chapter = db.get_chapter(@chapter.id)
+      expect(edited_chapter.id).to eq @chapter.id
+      expect(edited_chapter.name).to eq "Edited Chapter"
     end
   end
 
