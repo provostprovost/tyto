@@ -251,7 +251,7 @@ module Tyto
 
       def get_student(id)
         student = Student.find(id)
-        student = Tyto::student.new(id: student.id, username: student.username, password: student.password, email: student.email, phone_number: student.phone_number)
+        student = Tyto::Student.new(id: student.id, username: student.username, password: student.password, email: student.email, phone_number: student.phone_number)
       end
 
       def edit_student(attrs)
