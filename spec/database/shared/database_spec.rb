@@ -5,7 +5,8 @@ shared_examples_for "a database" do
 
   describe 'Assignments' do
     it "creates an assignment" do
-
+      assignment = db.create_assignment(student_id: 1, chapter_id: 1, class_id: 1)
+      expect(assignment).to be_a Tyto::Assignment
     end
 
     it "gets an assignment" do
@@ -16,7 +17,9 @@ shared_examples_for "a database" do
 
    describe 'Chapter' do
     it "creates a chapter" do
-
+      chapter = db.create_chapter(parent_id: 1, name: "Cool Chapter")
+      expect(chapter).to be_a Tyto::Chapter
+      expect(chapter.name).to eq "Cool Chapter"
     end
 
     it "gets a chapter" do

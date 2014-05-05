@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20140505164936) do
 
   create_table "chapters", force: true do |t|
     t.string  "name"
-    t.integer "chapter_id"
+    t.integer "parent_id"
   end
 
   create_table "classes", force: true do |t|

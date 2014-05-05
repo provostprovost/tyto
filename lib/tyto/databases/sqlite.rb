@@ -21,6 +21,11 @@ module Tyto
       end
 
       def create_assignment(attrs)
+        assignment = Assignment.create(attrs)
+        Tyto::Assignment.new( id:         assignment.id,
+                              student_id: assignment.student_id,
+                              chapter_id: assignment.chapter_id,
+                              class_id:   assignment.class_id )
       end
 
       def get_assignment(id)
@@ -41,6 +46,10 @@ module Tyto
       end
 
       def create_chapter(attrs)
+        chapter = Chapter.create(attrs)
+        hello = Tyto::Chapter.new(  id: chapter.id,
+                                    parent_id: chapter.parent_id )
+        binding.pry
       end
 
       def get_chapter(id)
