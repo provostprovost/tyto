@@ -148,6 +148,9 @@ module Tyto
 
       def get_students_in_classroom(id)
         students = ClassroomsUsers.where(classroom_id: id)
+        students.map do |pair|
+          get_student(pair.student_id)
+        end
       end
 
       ###########
@@ -256,7 +259,7 @@ module Tyto
         Session.destroy(id)
       end
 
-        ####################
+      ####################
       # Teacher Sessions #
       ####################
 
