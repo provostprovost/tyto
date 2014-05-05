@@ -10,6 +10,10 @@ module Tyto
         ActiveRecord::Base.establish_connection(dbconfig["test"])
       end
 
+      def delete_all
+
+      end
+
       ###############
       # Assignments #
       ###############
@@ -170,6 +174,7 @@ module Tyto
       end
 
       def create_student_session(attrs)
+
       end
 
       def get_student_session(id)
@@ -192,15 +197,25 @@ module Tyto
       end
 
       def create_student(attrs)
+        ar_student = Student.create(attrs)
+        attrs[:id] = ar_student.id
+        student = Tyto::Student.new(attrs)
       end
 
       def get_student(id)
+        student = Student.find(id)
+        student = Tyto::student.new(id: student.id, username: student.username, password: student.password, email: student.email, phone_number: student.phone_number)
       end
 
       def edit_student(attrs)
+        student = Student.find(attrs[:id])
+        attrs.delete(:id)
+        student.update(attrs)
+        new_student = Tyto::Student.new(id: student.id, username: student.username, password: student.password, email: student.email, phone_number: student.phone_number)
       end
 
       def delete_student(id)
+        Student.destroy(id)
       end
 
       ####################
@@ -212,6 +227,7 @@ module Tyto
       end
 
       def create_teacher_session(attrs)
+
       end
 
       def get_teacher_session(id)
@@ -234,17 +250,24 @@ module Tyto
 
       def create_teacher(attrs)
         ar_teacher = Teacher.create(attrs)
-        puts ar_teacher.username
-        teacher = Tyto::Teacher.new(:username => ar_teacher.username)
+        attrs[:id] = ar_teacher.id
+        teacher = Tyto::Teacher.new(attrs)
       end
 
       def get_teacher(id)
+        teacher = Teacher.find(id)
+        new_teacher = Tyto::Teacher.new(id: teacher.id, username: teacher.username, password: teacher.password, email: teacher.email, phone_number: teacher.phone_number)
       end
 
       def edit_teacher(attrs)
+        teacher = Teacher.find(attrs[:id])
+        attrs.delete(:id)
+        teacher.update(attrs)
+        new_teacher = Tyto::Teacher.new(id: teacher.id, username: teacher.username, password: teacher.password, email: teacher.email, phone_number: teacher.phone_number)
       end
 
       def delete_teacher(id)
+        Teacher.destroy(id)
       end
     end
   end
