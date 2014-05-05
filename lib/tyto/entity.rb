@@ -3,8 +3,8 @@ module Tyto
     include ActiveModel::Validations
 
     def initialize(attrs={})
-      attrs.each do |attr_name, value|
-        setter = "#{attr_name}="
+      attrs && attrs.each do |attr, value|
+        setter = "#{attr}="
         self.send(setter, value) if self.class.method_defined?(setter)
       end
     end

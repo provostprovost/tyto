@@ -1,6 +1,6 @@
 require "active_record"
 require "yaml"
-
+require 'pry-debugger'
 
 module Tyto
   module Database
@@ -209,6 +209,9 @@ module Tyto
       end
 
       def create_teacher(attrs)
+        ar_teacher = Teacher.create(attrs)
+        puts ar_teacher.username
+        teacher = Tyto::Teacher.new(:username => ar_teacher.username)
       end
 
       def get_teacher(id)
