@@ -1,12 +1,13 @@
+require "active_record"
+require "yaml"
+
+
 module Tyto
   module Database
     class SQLite
       def initialize
-        ActiveRecord::Base.establish_connection(
-            :adapter => 'sqlite3'
-            :database => 'tytest.db'
-
-          )
+        dbconfig = YAML::load(File.open('db/config.yml'))
+        ActiveRecord::Base.establish_connection(dbconfig["test"])
       end
 
       ###############

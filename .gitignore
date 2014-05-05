@@ -1,3 +1,4 @@
 .bundle
 vendor/bundle
 .DS_Store
+tyto_test
