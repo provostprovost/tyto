@@ -1,5 +1,5 @@
 module Tyto
   class Session < Entity
-    attr_reader :user_id, :id
+    attr_reader :id, :student_id, :teacher_id
   end
 end

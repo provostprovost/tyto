@@ -54,9 +54,14 @@ module Tyto
 
       def create_chapter(attrs)
         chapter = Chapter.create(attrs)
+<<<<<<< HEAD
+        hello = Tyto::Chapter.new(  id: chapter.id,
+                                    parent_id: chapter.parent_id )
+=======
         Tyto::Chapter.new(  id: chapter.id,
                             parent_id: chapter.parent_id,
                             name: chapter.name )
+>>>>>>> ae20cf4d9347b547d00e64ed427f771bc99402bf
       end
 
       def get_chapter(id)
@@ -125,25 +130,15 @@ module Tyto
       end
 
       def create_question(attrs)
-        ar_question = Question.create(attrs)
-        attrs[:id] = ar_question.id
-        question = Tyto::Question.new(attrs)
       end
 
       def get_question(id)
-        question = Question.find(id)
-        new_question = Tyto::Question.new(question: question.question, id: question.id, level: question.level, answer: question.answer, chapter_id: question.chapter_id)
       end
 
       def edit_question(attrs)
-        question = Question.find(attrs[:id])
-        attrs.delete(:id)
-        question.update(attrs)
-        question = Tyto::Question.new(id: question.id, level: question.level, answer: question.answer, chapter_id: question.chapter_id)
       end
 
       def delete_question(id)
-        Question.destroy(id)
       end
 
       #############
@@ -157,55 +152,36 @@ module Tyto
       end
 
       def create_response(attrs)
-        ar_response = Response.create(attrs)
-        attrs[:id] = ar_response.id
-        response = Tyto::Response.new(attrs)
       end
 
       def get_response(id)
-        response = Response.find(id)
-        new_response = Tyto::Response.new(id: response.id, correct: response.correct, question_id: response.question_id, student_id: response.student_id, assignment_id: response.assignment_id)
+      end
+
+      def edit_response(attrs)
+      end
+
+      def delete_response(id)
       end
 
       ####################
       # Student Sessions #
       ####################
 
-      class Session < ActiveRecord::Base
+      class StudentSession < ActiveRecord::Base
         belongs_to :student
-        belongs_to :teacher
       end
 
       def create_student_session(attrs)
-        ar_session = Session.create(attrs)
-        session = Tyto::Session.new(id: ar_session.id, student_id: ar_session.student_id)
+
       end
 
       def get_student_session(id)
-        ar_session = Session.find(id)
-        session = Tyto::Session.new(id: ar_session.id, student_id: ar_session.student_id)
+      end
+
+      def edit_student_session(attrs)
       end
 
       def delete_student_session(id)
-        Session.destroy(id)
-      end
-
-        ####################
-      # Teacher Sessions #
-      ####################
-
-      def create_teacher_session(attrs)
-        ar_session = Session.create(attrs)
-        session = Tyto::Session.new(id: ar_session.id, teacher_id: ar_session.teacher_id)
-      end
-
-      def get_teacher_session(id)
-        ar_session = Session.find(id)
-        session = Tyto::Session.new(id: ar_session.id, teacher_id: ar_session.teacher_id)
-      end
-
-      def delete_teacher_session(id)
-        Session.destroy(id)
       end
 
       ############
@@ -238,6 +214,27 @@ module Tyto
 
       def delete_student(id)
         Student.destroy(id)
+      end
+
+      ####################
+      # Teacher Sessions #
+      ####################
+
+      class TeacherSession < ActiveRecord::Base
+        belongs_to :teacher
+      end
+
+      def create_teacher_session(attrs)
+
+      end
+
+      def get_teacher_session(id)
+      end
+
+      def edit_teacher_session(attrs)
+      end
+
+      def delete_teacher_session(id)
       end
 
       ############
