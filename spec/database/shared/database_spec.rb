@@ -349,15 +349,15 @@ shared_examples_for "a database" do
 
   describe 'Sessions' do
     before do
-      @student_session = db.create_student_session(student_id: 5)
-      @teacher_session = db.create_teacher_session(teacher_id: 6)
+      @student_session = db.create_session(student_id: 5)
+      @teacher_session = db.create_session(teacher_id: 6)
     end
     it "creates a student session" do
       expect(@student_session.student_id).to eq(5)
     end
 
     it "gets a student session" do
-      student_session = db.get_student_session(@student_session.id)
+      student_session = db.get_session(@student_session.id)
       expect(@student_session.student_id).to eq(5)
     end
 
@@ -366,7 +366,7 @@ shared_examples_for "a database" do
     end
 
     it "gets a teacher session" do
-      teacher_session = db.get_teacher_session(@teacher_session.id)
+      teacher_session = db.get_session(@teacher_session.id)
       expect(@teacher_session.teacher_id).to eq(6)
     end
   end
@@ -402,6 +402,11 @@ shared_examples_for "a database" do
       student = db.edit_student(:id => @student.id, username: "notparth")
       expect(student.username).to eq("notparth")
     end
+
+    it "gets a student from email address" do
+      student = db.get_student_from_email("pss8te@virginia.edu")
+      expect(student.id).to eq @student.id
+    end
   end
 
   describe 'Teachers' do
@@ -425,9 +430,15 @@ shared_examples_for "a database" do
       expect(fetched_teacher.email).to eq("pss8te@virginia.edu")
       expect(fetched_teacher.phone_number).to eq("7576507728")
     end
+
     it "edits a teacher" do
       teacher = db.edit_teacher(:id => @teacher.id, username: "coolerparth")
       expect(teacher.username).to eq("coolerparth")
+    end
+
+    it "gets a teacher from email address" do
+      teacher = db.get_teacher_from_email("pss8te@virginia.edu")
+      expect(teacher.id).to eq @teacher.id
     end
   end
 end

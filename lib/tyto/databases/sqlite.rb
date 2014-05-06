@@ -335,44 +335,30 @@ module Tyto
         end
       end
 
-      ####################
-      # Student Sessions #
-      ####################
+      ############
+      # Sessions #
+      ############
 
       class Session < ActiveRecord::Base
         belongs_to :student
         belongs_to :teacher
       end
 
-      def create_student_session(attrs)
+      def create_session(attrs)
         ar_session = Session.create(attrs)
-        session = Tyto::Session.new(id: ar_session.id, student_id: ar_session.student_id)
+        session = Tyto::Session.new(id: ar_session.id,
+                                    student_id: ar_session.student_id,
+                                    teacher_id: ar_session.teacher_id)
       end
 
-      def get_student_session(id)
+      def get_session(id)
         ar_session = Session.find(id)
-        session = Tyto::Session.new(id: ar_session.id, student_id: ar_session.student_id)
+        session = Tyto::Session.new(id: ar_session.id,
+                                    student_id: ar_session.student_id,
+                                    teacher_id: ar_session.teacher_id)
       end
 
-      def delete_student_session(id)
-        Session.destroy(id)
-      end
-
-      ####################
-      # Teacher Sessions #
-      ####################
-
-      def create_teacher_session(attrs)
-        ar_session = Session.create(attrs)
-        session = Tyto::Session.new(id: ar_session.id, teacher_id: ar_session.teacher_id)
-      end
-
-      def get_teacher_session(id)
-        ar_session = Session.find(id)
-        session = Tyto::Session.new(id: ar_session.id, teacher_id: ar_session.teacher_id)
-      end
-
-      def delete_teacher_session(id)
+      def delete_session(id)
         Session.destroy(id)
       end
 
@@ -423,6 +409,18 @@ module Tyto
         Student.destroy(id)
       end
 
+      def get_student_from_email(email)
+        student = Student.find_by(email: email)
+        return nil if student.nil?
+        retrieved = Tyto::Student.new( id: student.id,
+                                      username: student.username,
+                                      password: "temp",
+                                      email: student.email,
+                                      phone_number: student.phone_number)
+        retrieved.password_digest = BCrypt::Password.new(student.password_digest)
+        retrieved
+      end
+
       ############
       # Teachers #
       ############
@@ -467,6 +465,18 @@ module Tyto
 
       def delete_teacher(id)
         Teacher.destroy(id)
+      end
+
+      def get_teacher_from_email(email)
+        teacher = Teacher.find_by(email: email)
+        return nil if teacher.nil?
+        retrieved = Tyto::Teacher.new( id: teacher.id,
+                                      username: teacher.username,
+                                      password: "temp",
+                                      email: teacher.email,
+                                      phone_number: teacher.phone_number)
+        retrieved.password_digest = BCrypt::Password.new(teacher.password_digest)
+        retrieved
       end
     end
   end
