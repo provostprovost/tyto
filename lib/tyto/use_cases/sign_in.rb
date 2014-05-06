@@ -5,10 +5,14 @@ module Tyto
       # email address
       # password
       if inputs[:teacher]
-        user = get_teacher_from_username(inputs[:username])
+        user = Tyto.db.get_teacher_from_email(inputs[:email])
       else
-        user = get_student_from_username(inputs[:username])
+        user = Tyto.db.get_student_from_email(inputs[:email])
       end
+
+      return failure :user_not_found if user.nil?
+
+      return failure :incorrect_password if !user.correct_password?(inputs[:password])
     end
   end
 end

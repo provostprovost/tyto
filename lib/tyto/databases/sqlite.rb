@@ -369,6 +369,7 @@ module Tyto
 
       def get_student_from_email(email)
         student = Student.find_by(email: email)
+        return nil if student.nil?
         retrieved = Tyto::Student.new( id: student.id,
                                       username: student.username,
                                       password: "temp",
@@ -426,6 +427,7 @@ module Tyto
 
       def get_teacher_from_email(email)
         teacher = Teacher.find_by(email: email)
+        return nil if teacher.nil?
         retrieved = Tyto::Teacher.new( id: teacher.id,
                                       username: teacher.username,
                                       password: "temp",
