@@ -444,7 +444,46 @@ shared_examples_for "a database" do
 
   describe "Other Statistics" do
     it "gets longest streak for a user in a chapter" do
+      student = db.create_student({username: "parth",
+                                    password: "1234",
+                                    email: "pss8te@virginia.edu",
+                                    phone_number: '7576507728'})
+      chapter = db.create_chapter(parent_id: 1, name: "Cool Chapter")
+      question = db.create_question( level: 2, question: "2+2",
+                                      answer: "4", chapter_id: chapter.id)
+      assignment = db.create_assignment( student_id: student.id,
+                                          chapter_id: chapter.id,
+                                          classroom_id: 1,
+                                          teacher_id: 1,
+                                          assignment_size: 20)
+      expect(db.get_longest_streak(student.id, chapter.id)).to eq(0)
 
+
+      5.times do
+        db.create_response(correct: true,
+                                 question_id: question.id,
+                                 student_id: student.id,
+                                 assignment_id: assignment.id,
+                                 difficult: false,
+                                 chapter_id: chapter.id)
+      end
+      expect(db.get_longest_streak(student.id, chapter.id)).to eq(5)
+      db.create_response(correct: false,
+                                 question_id: question.id,
+                                 student_id: student.id,
+                                 assignment_id: assignment.id,
+                                 difficult: false,
+                                 chapter_id: chapter.id)
+      expect(db.get_longest_streak(student.id, chapter.id)).to eq(5)
+      6.times do
+        db.create_response(correct: true,
+                                 question_id: question.id,
+                                 student_id: student.id,
+                                 assignment_id: assignment.id,
+                                 difficult: false,
+                                 chapter_id: chapter.id)
+      end
+    expect(db.get_longest_streak(student.id, chapter.id)).to eq(6)
     end
 
     it "gets current streak for a user in a chapter" do

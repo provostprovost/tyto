@@ -335,6 +335,21 @@ module Tyto
         end
       end
 
+      def get_longest_streak(student_id, chapter_id)
+        responses = Response.where(student_id: student_id, chapter_id: chapter_id)
+        counter = 0
+        current_response = responses.where(correct: true).last
+        longest_streak = 0
+        streak = 0
+        until counter == responses.length
+          streak += 1 if responses[counter].correct == true
+          streak = 0 if responses[counter].correct == false
+          longest_streak = streak if streak > longest_streak
+          counter += 1
+        end
+        return longest_streak
+      end
+
       ############
       # Sessions #
       ############
