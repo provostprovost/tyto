@@ -77,7 +77,6 @@ module Tyto
 
       class Chapter < ActiveRecord::Base
         belongs_to :course
-        has_many :statistics
       end
 
       def create_chapter(attrs)
@@ -231,12 +230,12 @@ module Tyto
         belongs_to :question
         belongs_to :student
         belongs_to :assignment
-        has_one :statistics
       end
 
       def create_response(attrs)
         ar_response = Response.create(attrs)
         attrs[:id] = ar_response.id
+        attrs[:proficiency] = get_proficiency(ar_response.id)
         response = Tyto::Response.new(attrs)
       end
 
@@ -253,16 +252,6 @@ module Tyto
       ##############
       # Statistics #
       ##############
-
-      class Statistic < ActiveRecord::Base
-        belongs_to :student
-        belongs_to :chapter
-        belongs_to :response
-      end
-
-      def create_statistic
-
-      end
 
       def get_proficiency(response_id)
         response = get_response(response_id)
@@ -282,7 +271,7 @@ module Tyto
       end
 
       def get_last_proficiency_score(student_id, chapter_id)
-        statistic = Statistic.where(student_id: student_id, chapter_id: chapter_id).last
+        statistic = Response.where(student_id: student_id, chapter_id: chapter_id).last
         if statistic
           return statistic.proficiency
         else
@@ -338,7 +327,6 @@ module Tyto
       class Student < ActiveRecord::Base
         has_many :responses
         has_many :assignments
-        has_many :statistics
         belongs_to :classroom
       end
 

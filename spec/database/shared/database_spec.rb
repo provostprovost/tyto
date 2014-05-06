@@ -274,7 +274,7 @@ shared_examples_for "a database" do
         expect(new_proficiency).to be < proficiency
       end
     end
-<<<<<<< HEAD
+
     it "creates a statistic"
       response = db.create_response( correct: true,
                                       question_id: 1,
@@ -286,7 +286,7 @@ shared_examples_for "a database" do
                                         response_id: response.id,
                                         })
       expect(statistic.proficiency).to eq(3)
-=======
+
 
     describe 'Get last proficiency score' do
       it "returns 0 when student has not worked on chapter" do
@@ -297,7 +297,7 @@ shared_examples_for "a database" do
       xit "returns last score when student has answered questions" do
 
       end
->>>>>>> 31665f6ea84c4109d4f27a77dca761f01b845f9f
+
     end
   end
 
