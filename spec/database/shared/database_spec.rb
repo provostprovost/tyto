@@ -310,15 +310,15 @@ shared_examples_for "a database" do
 
   describe 'Sessions' do
     before do
-      @student_session = db.create_student_session(student_id: 5)
-      @teacher_session = db.create_teacher_session(teacher_id: 6)
+      @student_session = db.create_session(student_id: 5)
+      @teacher_session = db.create_session(teacher_id: 6)
     end
     it "creates a student session" do
       expect(@student_session.student_id).to eq(5)
     end
 
     it "gets a student session" do
-      student_session = db.get_student_session(@student_session.id)
+      student_session = db.get_session(@student_session.id)
       expect(@student_session.student_id).to eq(5)
     end
 
@@ -327,7 +327,7 @@ shared_examples_for "a database" do
     end
 
     it "gets a teacher session" do
-      teacher_session = db.get_teacher_session(@teacher_session.id)
+      teacher_session = db.get_session(@teacher_session.id)
       expect(@teacher_session.teacher_id).to eq(6)
     end
   end
