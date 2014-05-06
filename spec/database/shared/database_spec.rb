@@ -227,12 +227,17 @@ shared_examples_for "a database" do
                                     phone_number: '1234567890'})
       @chapter = db.create_chapter(parent_id: 1, name: "Cool Chapter")
     end
-
-    describe 'Get last proficiency score' do
-      it "returns 0 when student has not worked on chapter" do
-        first_score = db.get_last_proficiency_score(@student.id, @chapter.id)
-        expect(first_score).to eq 0
-      end
+    it "creates a statistic"
+      response = db.create_response( correct: true,
+                                      question_id: 1,
+                                      student_id: 5,
+                                      assignment_id: 10,
+                                      difficult: false)
+      statistic = db.create_statistic({student_id: @student.id,
+                                        chapter_id: @chapter.id,
+                                        response_id: response.id,
+                                        })
+      expect(statistic.proficiency).to eq(3)
     end
   end
 

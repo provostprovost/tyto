@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140505201627) do
+ActiveRecord::Schema.define(version: 20140506081640) do
 
   create_table "assignments", force: true do |t|
     t.integer "student_id"
@@ -66,8 +66,6 @@ ActiveRecord::Schema.define(version: 20140505201627) do
     t.integer  "chapter_id"
     t.integer  "response_id"
     t.integer  "proficiency"
-    t.integer  "current_streak"
-    t.integer  "longest_streak"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
