@@ -335,7 +335,6 @@ shared_examples_for "a database" do
                                       difficult: false,
                                       chapter_id: @chapter.id)
         question = db.get_next_question(response.proficiency, @student.id, response.chapter_id)
-        puts response.proficiency
         expect(question).to eq(nil)
         question = db.get_next_question(45, @student.id, response.chapter_id)
         expect(question.level).to eq(2)
@@ -476,6 +475,16 @@ shared_examples_for "a database" do
 
         streak2 = db.current_chapter_streak(@student.id, @chapter.id)
         expect(streak2).to eq 5
+
+        db.create_response( correct: false,
+                            question_id: @question.id,
+                            student_id: @student.id,
+                            assignment_id: @assignment.id,
+                            difficult: false,
+                            chapter_id: @chapter.id)
+
+        streak3 = db.current_chapter_streak(@student.id, @chapter.id)
+        expect(streak3).to eq 0
       end
 
       it "resets current streak when a question is wrong" do
