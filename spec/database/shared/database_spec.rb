@@ -363,6 +363,11 @@ shared_examples_for "a database" do
       student = db.edit_student(:id => @student.id, username: "notparth")
       expect(student.username).to eq("notparth")
     end
+
+    it "gets a student from email address" do
+      student = db.get_student_from_email("pss8te@virginia.edu")
+      expect(student.id).to eq @student.id
+    end
   end
 
   describe 'Teachers' do
@@ -386,9 +391,15 @@ shared_examples_for "a database" do
       expect(fetched_teacher.email).to eq("pss8te@virginia.edu")
       expect(fetched_teacher.phone_number).to eq("7576507728")
     end
+
     it "edits a teacher" do
       teacher = db.edit_teacher(:id => @teacher.id, username: "coolerparth")
       expect(teacher.username).to eq("coolerparth")
+    end
+
+    it "gets a teacher from email address" do
+      teacher = db.get_teacher_from_email("pss8te@virginia.edu")
+      expect(teacher.id).to eq @teacher.id
     end
   end
 end

@@ -367,6 +367,17 @@ module Tyto
         Student.destroy(id)
       end
 
+      def get_student_from_email(email)
+        student = Student.find_by(email: email)
+        retrieved = Tyto::Student.new( id: student.id,
+                                      username: student.username,
+                                      password: "temp",
+                                      email: student.email,
+                                      phone_number: student.phone_number)
+        retrieved.password_digest = BCrypt::Password.new(student.password_digest)
+        retrieved
+      end
+
       ############
       # Teachers #
       ############
@@ -411,6 +422,17 @@ module Tyto
 
       def delete_teacher(id)
         Teacher.destroy(id)
+      end
+
+      def get_teacher_from_email(email)
+        teacher = Teacher.find_by(email: email)
+        retrieved = Tyto::Teacher.new( id: teacher.id,
+                                      username: teacher.username,
+                                      password: "temp",
+                                      email: teacher.email,
+                                      phone_number: teacher.phone_number)
+        retrieved.password_digest = BCrypt::Password.new(teacher.password_digest)
+        retrieved
       end
     end
   end
