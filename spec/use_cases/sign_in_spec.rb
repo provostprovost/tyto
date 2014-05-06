@@ -47,6 +47,20 @@ describe Tyto::SignIn do
   end
 
   it "returns a session if sign in is successful" do
+    result = subject.run( email: @teacher.email,
+                          password: "98765",
+                          teacher: true)
 
+    expect(result.success?).to eq true
+    expect(result.session_id).to be_a Integer
+    expect(result.user.username).to eq @teacher.username
+
+    result = subject.run( email: @student.email,
+                          password: "98765",
+                          teacher: false)
+
+    expect(result.success?).to eq true
+    expect(result.session_id).to be_a Integer
+    expect(result.user.username).to eq @student.username
   end
 end
