@@ -337,17 +337,21 @@ shared_examples_for "a database" do
     end
 
     it "gets a student" do
-      fetched_student = db.get_student(@student.id)
-      expect(fetched_student.username).to eq("parth")
-      expect(fetched_student.correct_password?("1234")).to eq true
-      expect(fetched_student.email).to eq("pss8te@virginia.edu")
-      expect(fetched_student.phone_number).to eq("7576507728")
+      new_student = db.create_student(  username: "Cool guy",
+                                        password: "5555",
+                                        email: "fake@email.com",
+                                        phone_number: '1234567890')
+      expect(new_student.correct_password?("5555")).to eq true
+      fetched_student = db.get_student(new_student.id)
+      expect(fetched_student.username).to eq("Cool guy")
+      expect(fetched_student.correct_password?("5555")).to eq true
+      expect(fetched_student.email).to eq("fake@email.com")
+      expect(fetched_student.phone_number).to eq("1234567890")
     end
 
     it "edits a student" do
-      student = db.edit_student(:id => @student.id, password: "1111")
-      expect(student.username).to eq("parth")
-      expect(student.correct_password?("1111")).to eq true
+      student = db.edit_student(:id => @student.id, username: "notparth")
+      expect(student.username).to eq("notparth")
     end
   end
 
@@ -373,9 +377,8 @@ shared_examples_for "a database" do
       expect(fetched_teacher.phone_number).to eq("7576507728")
     end
     it "edits a teacher" do
-      teacher = db.edit_teacher(:id => @teacher.id, password: "1111")
-      expect(teacher.username).to eq("parth")
-      expect(teacher.correct_password?("1111")).to eq true
+      teacher = db.edit_teacher(:id => @teacher.id, username: "coolerparth")
+      expect(teacher.username).to eq("coolerparth")
     end
   end
 end

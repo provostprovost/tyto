@@ -337,27 +337,34 @@ module Tyto
       end
 
       def create_student(attrs)
-        ar_student = Student.create(attrs)
-        attrs[:id] = ar_student.id
         student = Tyto::Student.new(attrs)
+        ar_student = Student.create(username: student.username,
+                                    password_digest: student.password_digest,
+                                    email: student.email,
+                                    phone_number: student.phone_number)
+        student.id = ar_student.id
+        student
       end
 
       def get_student(id)
         student = Student.find(id)
-        student = Tyto::Student.new(id: student.id,
-                                    username: student.username,
-                                    password: student.password,
-                                    email: student.email,
-                                    phone_number: student.phone_number)
+        retrieved = Tyto::Student.new( id: student.id,
+                                      username: student.username,
+                                      password: "temp",
+                                      email: student.email,
+                                      phone_number: student.phone_number)
+        retrieved.password_digest = BCrypt::Password.new(student.password_digest)
+        retrieved
       end
 
       def edit_student(attrs)
         student = Student.find(attrs[:id])
         attrs.delete(:id)
+        attrs.delete(:password_digest)
         student.update(attrs)
         new_student = Tyto::Student.new(id: student.id,
                                         username: student.username,
-                                        password: student.password,
+                                        password_digest: student.password_digest,
                                         email: student.email,
                                         phone_number: student.phone_number)
       end
@@ -376,27 +383,34 @@ module Tyto
       end
 
       def create_teacher(attrs)
-        ar_teacher = Teacher.create(attrs)
-        attrs[:id] = ar_teacher.id
         teacher = Tyto::Teacher.new(attrs)
+        ar_teacher = Teacher.create(username: teacher.username,
+                                    password_digest: teacher.password_digest,
+                                    email: teacher.email,
+                                    phone_number: teacher.phone_number)
+        teacher.id = ar_teacher.id
+        teacher
       end
 
       def get_teacher(id)
         teacher = Teacher.find(id)
-        new_teacher = Tyto::Teacher.new(id: teacher.id,
-                                        username: teacher.username,
-                                        password: teacher.password,
-                                        email: teacher.email,
-                                        phone_number: teacher.phone_number)
+        retrieved = Tyto::Teacher.new( id: teacher.id,
+                                      username: teacher.username,
+                                      password: "temp",
+                                      email: teacher.email,
+                                      phone_number: teacher.phone_number)
+        retrieved.password_digest = BCrypt::Password.new(teacher.password_digest)
+        retrieved
       end
 
       def edit_teacher(attrs)
         teacher = Teacher.find(attrs[:id])
         attrs.delete(:id)
+        attrs.delete(:password_digest)
         teacher.update(attrs)
         new_teacher = Tyto::Teacher.new(id: teacher.id,
                                         username: teacher.username,
-                                        password: teacher.password,
+                                        password_digest: teacher.password_digest,
                                         email: teacher.email,
                                         phone_number: teacher.phone_number)
       end
