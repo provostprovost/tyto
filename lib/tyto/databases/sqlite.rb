@@ -335,6 +335,18 @@ module Tyto
         end
       end
 
+      def current_chapter_streak(student_id, chapter_id)
+        responses = Response.where(student_id: student_id, chapter_id: chapter_id)
+        streak = 0
+        counter = responses.size - 1
+        while counter >= 0
+          break if !responses[counter].correct
+          counter -= 1
+          streak += 1
+        end
+        streak
+      end
+
       ############
       # Sessions #
       ############
