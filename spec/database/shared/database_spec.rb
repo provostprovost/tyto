@@ -439,6 +439,11 @@ shared_examples_for "a database" do
       teacher = db.get_teacher_from_email("pss8te@virginia.edu")
       expect(teacher.id).to eq @teacher.id
     end
+
+    it "gets a teacher from phone number" do
+      teacher = db.get_teacher_from_phone_number("7576507728")
+      expect(teacher.id).to eq @teacher.id
+    end
   end
 
   describe "Other Statistics" do
