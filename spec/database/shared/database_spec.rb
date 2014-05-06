@@ -442,7 +442,6 @@ shared_examples_for "a database" do
   end
 
   describe "Other Statistics" do
-<<<<<<< HEAD
     it "gets longest streak for a user in a chapter" do
       student = db.create_student({username: "parth",
                                     password: "1234",
@@ -485,7 +484,7 @@ shared_examples_for "a database" do
       end
     expect(db.get_longest_streak(student.id, chapter.id)).to eq(6)
     end
-=======
+
     describe "Current chapter streak" do
       before do
         @chapter = db.create_chapter(parent_id: 1, name: "Cool Chapter")
@@ -529,11 +528,6 @@ shared_examples_for "a database" do
 
         streak3 = db.current_chapter_streak(@student.id, @chapter.id)
         expect(streak3).to eq 0
-      end
-
-      it "resets current streak when a question is wrong" do
->>>>>>> 4a74b180164293ec23d822847232556ff97dddd8
-
       end
     end
 
