@@ -191,7 +191,7 @@ shared_examples_for "a database" do
                                       chapter_id: @chapter.id)
 
     end
-    xit "creates a response" do
+    it "creates a response" do
       expect(@response.correct).to eq(true)
       expect(@response.question_id).to eq(@question.id)
       expect(@response.student_id).to eq(@student.id)
@@ -200,7 +200,7 @@ shared_examples_for "a database" do
        expect(@response.proficiency).to eq(6)
     end
 
-    xit "gets a response" do
+    it "gets a response" do
       response = db.get_response(@response.id)
       expect(response.correct).to eq(true)
       expect(@response.question_id).to eq(@question.id)
