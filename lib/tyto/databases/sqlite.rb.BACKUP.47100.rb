@@ -236,6 +236,7 @@ module Tyto
 
       def create_response(attrs)
         ar_response = Response.create(attrs)
+        # binding.pry
         attrs[:id] = ar_response.id
         attrs[:proficiency] = get_proficiency(ar_response.id)
         ar_response.proficiency = attrs[:proficiency]
@@ -265,7 +266,8 @@ module Tyto
         assignment_id = response.assignment_id
         assignment = get_assignment(assignment_id)
         chapter_id = assignment.chapter_id
-        question = get_question(response.question_id)
+        # binding.pry
+        # question = get_question(response.question_id)
         proficiency_score = get_last_proficiency_score(student_id, chapter_id)
         if response.correct
           proficiency_score += ( 12 / question.level )
@@ -277,9 +279,15 @@ module Tyto
       end
 
       def get_last_proficiency_score(student_id, chapter_id)
-        response = Response.where(student_id: student_id, chapter_id: chapter_id).last(2)[0]
-        if response.proficiency != nil
-          return response.proficiency
+<<<<<<< HEAD
+        response = Response.where(student_id: student_id, chapter_id: chapter_id).last
+        # binding.pry
+        if response
+=======
+        statistic = Response.where(student_id: student_id, chapter_id: chapter_id).last(2)[0]
+        if statistic.proficiency != nil
+>>>>>>> d6fd47858de2763888793cad8dcb9506bd6fd8c9
+          return statistic.proficiency
         else
           return 0
         end
