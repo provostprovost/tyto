@@ -221,27 +221,71 @@ shared_examples_for "a database" do
         expect(new_proficiency).to be > proficiency
       end
 
-      xit 'decrements proficiency for incorrect answers' do
-        proficiency = db.get_proficiency(@response.id)
+      it 'decrements proficiency for incorrect answers' do
+        proficiency = db.get_response(@response.id).proficiency
         new_response = db.create_response(correct: false,
                                           question_id: @question.id,
                                           student_id: @student.id,
                                           assignment_id: @assignment.id,
                                           difficult: false)
-        puts proficiency
         new_proficiency = db.get_proficiency(new_response.id)
-        puts new_proficiency
         expect(new_proficiency).to be < proficiency
       end
-      describe 'Get last proficiency score' do
-        xit "returns 0 when student has not worked on chapter" do
-          first_score = db.get_last_proficiency_score(@student.id, @chapter.id)
-          expect(first_score).to eq 0
-        end
 
-        xit "returns last score when student has answered questions" do
+      it 'increments scores as expected' do
+        level1 = db.create_question(level: 1, question: "2+2", answer: "4", chapter_id: @chapter.id)
+        level2 = db.create_question(level: 2, question: "2+2", answer: "4", chapter_id: @chapter.id)
+        level3 = db.create_question(level: 3, question: "2+2", answer: "4", chapter_id: @chapter.id)
 
-        end
+        proficiency = db.get_response(@response.id).proficiency
+
+        level1_correct = db.create_response( correct: true,
+                                              question_id: level1.id,
+                                              student_id: @student.id,
+                                              assignment_id: @assignment.id,
+                                              difficult: false)
+        response1_prof = db.get_proficiency(level1_correct.id)
+        expect(response1_prof).to eq proficiency + 12
+
+        level2_correct = db.create_response( correct: true,
+                                              question_id: level2.id,
+                                              student_id: @student.id,
+                                              assignment_id: @assignment.id,
+                                              difficult: false)
+        response2_prof = db.get_proficiency(level2_correct.id)
+        expect(response2_prof).to eq proficiency + 6
+
+        level3_correct = db.create_response( correct: true,
+                                              question_id: level3.id,
+                                              student_id: @student.id,
+                                              assignment_id: @assignment.id,
+                                              difficult: false)
+        response3_prof = db.get_proficiency(level3_correct.id)
+        expect(response3_prof).to eq proficiency + 4
+
+        level1_incorrect = db.create_response(correct: false,
+                                              question_id: level1.id,
+                                              student_id: @student.id,
+                                              assignment_id: @assignment.id,
+                                              difficult: false)
+        response4_prof = db.get_proficiency(level1_incorrect.id)
+        expect(response4_prof).to eq proficiency - 6
+
+        level2_incorrect = db.create_response(correct: false,
+                                              question_id: level2.id,
+                                              student_id: @student.id,
+                                              assignment_id: @assignment.id,
+                                              difficult: false)
+        response5_prof = db.get_proficiency(level2_incorrect.id)
+        expect(response5_prof).to eq proficiency - 3
+
+        level3_incorrect = db.create_response(correct: false,
+                                              question_id: level3.id,
+                                              student_id: @student.id,
+                                              assignment_id: @assignment.id,
+                                              difficult: false)
+        response6_prof = db.get_proficiency(level2_incorrect.id)
+        expect(response6_prof).to eq proficiency - 3
       end
   end
 
