@@ -245,9 +245,11 @@ module Tyto
         new_response = Tyto::Response.new(id: response.id,
                                           correct: response.correct,
                                           question_id: response.question_id,
+                                          chapter_id: response.chapter_id,
                                           student_id: response.student_id,
                                           assignment_id: response.assignment_id,
-                                          difficult: response.difficult)
+                                          difficult: response.difficult,
+                                          proficiency: response.proficiency )
       end
 
       ##############

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140505201627) do
+ActiveRecord::Schema.define(version: 20140506084510) do
 
   create_table "assignments", force: true do |t|
     t.integer "student_id"
@@ -52,8 +52,10 @@ ActiveRecord::Schema.define(version: 20140505201627) do
     t.integer "question_id"
     t.integer "student_id"
     t.integer "assignment_id"
+    t.integer "chapter_id"
     t.boolean "correct"
     t.boolean "difficult"
+    t.integer "proficiency"
   end
 
   create_table "sessions", force: true do |t|
