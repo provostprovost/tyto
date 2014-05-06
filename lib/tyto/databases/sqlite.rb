@@ -248,6 +248,10 @@ module Tyto
         belongs_to :response
       end
 
+      def create_statistic
+
+      end
+
       def get_proficiency(response_id)
         response = get_response(response_id)
         student_id = response.student_id
