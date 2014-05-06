@@ -112,9 +112,12 @@ shared_examples_for "a database" do
                                     phone_number: '1234567890'})
 
       new_classroom = db.create_classroom( teacher_id: 4, course_id: 72 )
-      db.add_student_to_classroom(classroom_id: new_classroom.id, student_id: student1.id )
-      db.add_student_to_classroom(classroom_id: new_classroom.id, student_id: student2.id )
-      db.add_student_to_classroom(classroom_id: new_classroom.id, student_id: student3.id )
+      db.add_student_to_classroom(classroom_id: new_classroom.id,
+                                  student_id: student1.id )
+      db.add_student_to_classroom(classroom_id: new_classroom.id,
+                                  student_id: student2.id )
+      db.add_student_to_classroom(classroom_id: new_classroom.id,
+                                  student_id: student3.id )
 
       all_students = db.get_students_in_classroom(new_classroom.id)
 
@@ -155,7 +158,8 @@ shared_examples_for "a database" do
 
   describe 'Questions' do
     before do
-      @question = db.create_question(level: 5, question: "2+2", answer: "4", chapter_id: 5)
+      @question = db.create_question( level: 5, question: "2+2",
+                                      answer: "4", chapter_id: 5)
     end
     it "creates a question" do
       expect(@question.level).to eq(5)
@@ -187,7 +191,8 @@ shared_examples_for "a database" do
                                     email: "fake@email.com",
                                     phone_number: '1234567890'})
       @chapter = db.create_chapter(parent_id: 1, name: "Cool Chapter")
-      @question = db.create_question(level: 2, question: "2+2", answer: "4", chapter_id: @chapter.id)
+      @question = db.create_question( level: 2, question: "2+2",
+                                      answer: "4", chapter_id: @chapter.id)
       @assignment = db.create_assignment( student_id: @student.id,
                                           chapter_id: @chapter.id,
                                           classroom_id: 1,
@@ -243,9 +248,12 @@ shared_examples_for "a database" do
       end
 
       it 'increments scores as expected' do
-        level1 = db.create_question(level: 1, question: "2+2", answer: "4", chapter_id: @chapter.id)
-        level2 = db.create_question(level: 2, question: "2+2", answer: "4", chapter_id: @chapter.id)
-        level3 = db.create_question(level: 3, question: "2+2", answer: "4", chapter_id: @chapter.id)
+        level1 = db.create_question(level: 1, question: "2+2",
+                                    answer: "4", chapter_id: @chapter.id)
+        level2 = db.create_question(level: 2, question: "2+2",
+                                    answer: "4", chapter_id: @chapter.id)
+        level3 = db.create_question(level: 3, question: "2+2",
+                                    answer: "4", chapter_id: @chapter.id)
 
         proficiency = db.get_response(@response.id).proficiency
 
@@ -333,23 +341,27 @@ shared_examples_for "a database" do
     end
     it "creates a student" do
       expect(@student.username).to eq("parth")
-      expect(@student.password).to eq("1234")
+      expect(@student.correct_password?("1234")).to eq true
       expect(@student.email).to eq("pss8te@virginia.edu")
       expect(@student.phone_number).to eq("7576507728")
     end
 
     it "gets a student" do
-      fetched_student = db.get_student(@student.id)
-      expect(fetched_student.username).to eq("parth")
-      expect(fetched_student.password).to eq("1234")
-      expect(fetched_student.email).to eq("pss8te@virginia.edu")
-      expect(fetched_student.phone_number).to eq("7576507728")
+      new_student = db.create_student(  username: "Cool guy",
+                                        password: "5555",
+                                        email: "fake@email.com",
+                                        phone_number: '1234567890')
+      expect(new_student.correct_password?("5555")).to eq true
+      fetched_student = db.get_student(new_student.id)
+      expect(fetched_student.username).to eq("Cool guy")
+      expect(fetched_student.correct_password?("5555")).to eq true
+      expect(fetched_student.email).to eq("fake@email.com")
+      expect(fetched_student.phone_number).to eq("1234567890")
     end
 
     it "edits a student" do
-      student = db.edit_student(:id => @student.id, password: "1111")
-      expect(student.username).to eq("parth")
-      expect(student.password).to eq("1111")
+      student = db.edit_student(:id => @student.id, username: "notparth")
+      expect(student.username).to eq("notparth")
     end
   end
 
@@ -362,7 +374,7 @@ shared_examples_for "a database" do
     end
     it "creates a teacher" do
       expect(@teacher.username).to eq("parth")
-      expect(@teacher.password).to eq("1234")
+      expect(@teacher.correct_password?("1234")).to eq true
       expect(@teacher.email).to eq("pss8te@virginia.edu")
       expect(@teacher.phone_number).to eq("7576507728")
     end
@@ -370,14 +382,13 @@ shared_examples_for "a database" do
     it "gets a teacher" do
       fetched_teacher = db.get_teacher(@teacher.id)
       expect(fetched_teacher.username).to eq("parth")
-      expect(fetched_teacher.password).to eq("1234")
+      expect(fetched_teacher.correct_password?("1234")).to eq true
       expect(fetched_teacher.email).to eq("pss8te@virginia.edu")
       expect(fetched_teacher.phone_number).to eq("7576507728")
     end
     it "edits a teacher" do
-      teacher = db.edit_teacher(:id => @teacher.id, password: "1111")
-      expect(teacher.username).to eq("parth")
-      expect(teacher.password).to eq("1111")
+      teacher = db.edit_teacher(:id => @teacher.id, username: "coolerparth")
+      expect(teacher.username).to eq("coolerparth")
     end
   end
 end

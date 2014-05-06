@@ -66,14 +66,14 @@ ActiveRecord::Schema.define(version: 20140506161437) do
 
   create_table "students", force: true do |t|
     t.string "username"
-    t.string "password"
+    t.string "password_digest"
     t.string "email"
     t.string "phone_number"
   end
 
   create_table "teachers", force: true do |t|
     t.string "username"
-    t.string "password"
+    t.string "password_digest"
     t.string "email"
     t.string "phone_number"
   end
