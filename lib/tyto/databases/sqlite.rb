@@ -271,15 +271,14 @@ module Tyto
         assignment = get_assignment(assignment_id)
         chapter_id = assignment.chapter_id
         question = get_question(response.question_id)
-        last_proficiency_score = get_last_proficiency_score(student_id, chapter_id)
-
+        proficiency_score = get_last_proficiency_score(student_id, chapter_id)
         if response.correct
-          last_proficiency_score += 6 / question.level
+          proficiency_score += ( 12 / question.level )
         else
-          last_proficiency_score -= 6 / question.level
+          proficiency_score -= ( 6 / question.level )
         end
 
-        last_profiency_score
+        proficiency_score
       end
 
       def get_last_proficiency_score(student_id, chapter_id)
