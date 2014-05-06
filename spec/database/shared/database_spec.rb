@@ -193,6 +193,18 @@ shared_examples_for "a database" do
       @chapter = db.create_chapter(parent_id: 1, name: "Cool Chapter")
       @question = db.create_question( level: 2, question: "2+2",
                                       answer: "4", chapter_id: @chapter.id)
+      @question_two = db.create_question( level: 1, question: "1+1",
+                                      answer: "2", chapter_id: @chapter.id)
+      @question_three = db.create_question( level: 3, question: "3+3",
+                                      answer: "6", chapter_id: @chapter.id)
+      @question_four = db.create_question( level: 1, question: "4+4",
+                                      answer: "8", chapter_id: @chapter.id)
+      @question_five = db.create_question( level: 2, question: "5+5",
+                                      answer: "10", chapter_id: @chapter.id)
+      @question_six = db.create_question( level: 3, question: "6+6",
+                                      answer: "12", chapter_id: @chapter.id)
+      @question_seven = db.create_question( level: 4, question: "7+7",
+                                      answer: "14", chapter_id: @chapter.id)
       @assignment = db.create_assignment( student_id: @student.id,
                                           chapter_id: @chapter.id,
                                           classroom_id: 1,
@@ -212,7 +224,7 @@ shared_examples_for "a database" do
       expect(@response.student_id).to eq(@student.id)
       expect(@response.assignment_id).to eq(@assignment.id)
       expect(@response.chapter_id).to eq(@chapter.id)
-       expect(@response.proficiency).to eq(6)
+      expect(@response.proficiency).to eq(6)
     end
 
     it "gets a response" do
@@ -304,6 +316,33 @@ shared_examples_for "a database" do
                                               difficult: false)
         response6_prof = db.get_proficiency(level2_incorrect.id)
         expect(response6_prof).to eq proficiency - 3
+      end
+      it "gets the next question after you answer" do
+        question = db.get_next_question(@response.proficiency, @student.id, @response.chapter_id)
+        expect(question.level).to eq(1)
+        response = db.create_response(correct: true,
+                                      question_id: question.id,
+                                      student_id: @student.id,
+                                      assignment_id: @assignment.id,
+                                      difficult: false,
+                                      chapter_id: @chapter.id)
+        question = db.get_next_question(response.proficiency, @student.id, response.chapter_id)
+        expect(question.level).to eq(1)
+        response = db.create_response(correct: true,
+                                      question_id: question.id,
+                                      student_id: @student.id,
+                                      assignment_id: @assignment.id,
+                                      difficult: false,
+                                      chapter_id: @chapter.id)
+        question = db.get_next_question(response.proficiency, @student.id, response.chapter_id)
+        puts response.proficiency
+        expect(question).to eq(nil)
+        question = db.get_next_question(45, @student.id, response.chapter_id)
+        expect(question.level).to eq(2)
+        question = db.get_next_question(65, @student.id, response.chapter_id)
+        expect(question.level).to eq(3)
+        question = db.get_next_question(90, @student.id, response.chapter_id)
+        expect(question.level).to eq(4)
       end
   end
 

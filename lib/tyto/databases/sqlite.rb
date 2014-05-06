@@ -230,6 +230,48 @@ module Tyto
         Question.destroy(id)
       end
 
+      def get_next_question(proficiency, student_id, chapter_id)
+        questions = Question.where(chapter_id: chapter_id)
+        responses = Response.where(student_id: student_id, chapter_id: chapter_id)
+        unanswered = []
+        questions.each do |x|
+          answered = false
+          responses.each do |y|
+            answered=true if x.id==y.question_id
+          end
+          unanswered.push(x) if answered == false
+        end
+        if proficiency < 40
+          questions = unanswered.select{|x| x.level == 1}
+          if questions == []
+            return nil
+          end
+          index = rand(0...questions.length)
+          return get_question(questions[index].id)
+        elsif proficiency < 60
+          questions = unanswered.select{|x| x.level == 2}
+          if questions == []
+            return nil
+          end
+          index = rand(0...questions.length)
+          return get_question(questions[index].id)
+        elsif proficiency < 80
+          questions = unanswered.select{|x| x.level == 3}
+          if questions == []
+            return nil
+          end
+          index = rand(0...questions.length)
+          return get_question(questions[index].id)
+        else
+          questions = unanswered.select{|x| x.level == 4}
+          if questions == []
+            return nil
+          end
+          index = rand(0...questions.length)
+          return get_question(questions[index].id)
+        end
+      end
+
 
       #############
       # Responses #
