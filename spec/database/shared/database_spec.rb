@@ -530,9 +530,5 @@ shared_examples_for "a database" do
         expect(streak3).to eq 0
       end
     end
-
-    xit "gets longest streak for a user in a chapter" do
-      longest_streak = db.longest_chapter_streak(student_id: @user.id, chapter_id: @chapter.id)
-    end
   end
 end
