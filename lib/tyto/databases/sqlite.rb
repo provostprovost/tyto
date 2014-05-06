@@ -236,6 +236,8 @@ module Tyto
         ar_response = Response.create(attrs)
         attrs[:id] = ar_response.id
         attrs[:proficiency] = get_proficiency(ar_response.id)
+        ar_response.proficiency = attrs[:proficiency]
+        ar_response.save
         response = Tyto::Response.new(attrs)
       end
 
@@ -274,6 +276,7 @@ module Tyto
 
       def get_last_proficiency_score(student_id, chapter_id)
         statistic = Response.where(student_id: student_id, chapter_id: chapter_id).last
+        binding.pry
         if statistic
           return statistic.proficiency
         else
