@@ -121,14 +121,16 @@ module Tyto
         classroom = Classroom.create(attrs)
         Tyto::Classroom.new(  id:         classroom.id,
                               course_id:  classroom.course_id,
-                              teacher_id: classroom.teacher_id )
+                              teacher_id: classroom.teacher_id,
+                              name: classroom.name )
       end
 
       def get_classroom(id)
         classroom = Classroom.find(id)
         Tyto::Classroom.new(  id:         classroom.id,
                               course_id:  classroom.course_id,
-                              teacher_id: classroom.teacher_id )
+                              teacher_id: classroom.teacher_id,
+                              name: classroom.name )
       end
 
       def edit_classroom(attrs)
@@ -172,6 +174,11 @@ module Tyto
       def get_course(id)
         course = Course.find(id)
         course = Tyto::Course.new(name: course.name)
+      end
+
+      def get_course_from_name(name)
+        course = Course.where(:name => name).last
+        course = Tyto::Course.new(id: course.id, name: course.name)
       end
 
       def edit_course(attrs)
@@ -222,6 +229,7 @@ module Tyto
       def delete_question(id)
         Question.destroy(id)
       end
+
 
       #############
       # Responses #

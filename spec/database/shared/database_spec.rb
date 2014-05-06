@@ -72,13 +72,15 @@ shared_examples_for "a database" do
   describe 'Classroom' do
     before do
       @classroom = db.create_classroom( teacher_id: 55,
-                                        course_id:  66 )
+                                        course_id:  66,
+                                        name: "Period 1" )
     end
 
     it "creates a classroom" do
       expect(@classroom).to be_a Tyto::Classroom
       expect(@classroom.teacher_id).to eq 55
       expect(@classroom.course_id).to eq 66
+      expect(@classroom.name).to eq "Period 1"
     end
 
     it "gets a classroom" do
@@ -86,6 +88,7 @@ shared_examples_for "a database" do
       expect(retrieved_classroom.id).to eq @classroom.id
       expect(retrieved_classroom.teacher_id).to eq @classroom.teacher_id
       expect(retrieved_classroom.course_id).to eq @classroom.course_id
+      expect(retrieved_classroom.name).to eq "Period 1"
     end
 
     it "can add a student to a classroom" do
@@ -125,6 +128,7 @@ shared_examples_for "a database" do
   describe 'Courses' do
     before do
       @course = db.create_course(name: "algebra")
+      @course_two = db.create_course(name: "science")
     end
     it "creates a course" do
       expect(@course.name).to eq("algebra")
@@ -139,6 +143,12 @@ shared_examples_for "a database" do
       course = db.edit_course(id: @course.id, name: "algebra2")
       expect(course.id).to eq(@course.id)
       expect(course.name).to eq("algebra2")
+    end
+
+    it "gets a course from name" do
+      course = db.get_course_from_name("science")
+      expect(course.id).to eq(@course_two.id)
+      expect(course.name).to eq(@course_two.name)
     end
   end
 
