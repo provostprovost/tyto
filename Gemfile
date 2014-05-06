@@ -3,6 +3,7 @@ ruby '2.1.1'
 
 # Application
 gem 'activemodel', '~>4.1.0'
+gem 'bcrypt'
 
 # Testing
 gem 'rspec', '~> 2.14.1'
