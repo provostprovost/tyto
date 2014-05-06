@@ -335,7 +335,6 @@ shared_examples_for "a database" do
                                       difficult: false,
                                       chapter_id: @chapter.id)
         question = db.get_next_question(response.proficiency, @student.id, response.chapter_id)
-        puts response.proficiency
         expect(question).to eq(nil)
         question = db.get_next_question(45, @student.id, response.chapter_id)
         expect(question.level).to eq(2)
@@ -443,6 +442,7 @@ shared_examples_for "a database" do
   end
 
   describe "Other Statistics" do
+<<<<<<< HEAD
     it "gets longest streak for a user in a chapter" do
       student = db.create_student({username: "parth",
                                     password: "1234",
@@ -485,9 +485,60 @@ shared_examples_for "a database" do
       end
     expect(db.get_longest_streak(student.id, chapter.id)).to eq(6)
     end
+=======
+    describe "Current chapter streak" do
+      before do
+        @chapter = db.create_chapter(parent_id: 1, name: "Cool Chapter")
+        @student = db.create_student( username: "Cool guy",
+                                      password: "5555",
+                                      email: "fake@email.com",
+                                      phone_number: '1234567890')
+        @assignment = db.create_assignment( student_id: @student.id,
+                                            chapter_id: @chapter.id,
+                                            classroom_id: 1,
+                                            teacher_id: 1,
+                                            assignment_size: 1000)
+        @question = db.create_question( level: 5, question: "2+2",
+                                        answer: "4", chapter_id: @chapter.id)
+      end
 
-    it "gets current streak for a user in a chapter" do
+      it "is 0 if no questions have been answered" do
+        streak = db.current_chapter_streak(@student.id, @chapter.id)
+        expect(streak).to eq 0
+      end
 
+      it "gets current streak for a user in a chapter" do
+        5.times do
+          db.create_response( correct: true,
+                              question_id: @question.id,
+                              student_id: @student.id,
+                              assignment_id: @assignment.id,
+                              difficult: false,
+                              chapter_id: @chapter.id)
+        end
+
+        streak2 = db.current_chapter_streak(@student.id, @chapter.id)
+        expect(streak2).to eq 5
+
+        db.create_response( correct: false,
+                            question_id: @question.id,
+                            student_id: @student.id,
+                            assignment_id: @assignment.id,
+                            difficult: false,
+                            chapter_id: @chapter.id)
+
+        streak3 = db.current_chapter_streak(@student.id, @chapter.id)
+        expect(streak3).to eq 0
+      end
+
+      it "resets current streak when a question is wrong" do
+>>>>>>> 4a74b180164293ec23d822847232556ff97dddd8
+
+      end
+    end
+
+    xit "gets longest streak for a user in a chapter" do
+      longest_streak = db.longest_chapter_streak(student_id: @user.id, chapter_id: @chapter.id)
     end
   end
 end
