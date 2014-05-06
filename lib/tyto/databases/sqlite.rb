@@ -77,6 +77,7 @@ module Tyto
 
       class Chapter < ActiveRecord::Base
         belongs_to :course
+        has_many :questions
       end
 
       def create_chapter(attrs)
@@ -230,6 +231,7 @@ module Tyto
         belongs_to :question
         belongs_to :student
         belongs_to :assignment
+        belongs_to :chapter
       end
 
       def create_response(attrs)
