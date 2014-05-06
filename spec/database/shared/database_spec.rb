@@ -226,12 +226,63 @@ shared_examples_for "a database" do
                                     email: "fake@email.com",
                                     phone_number: '1234567890'})
       @chapter = db.create_chapter(parent_id: 1, name: "Cool Chapter")
+      @question = db.create_question(level: 2, question: "2+2", answer: "4", chapter_id: @chapter.id)
+      @assignment = db.create_assignment( student_id: @student.id,
+                                          chapter_id: @chapter.id,
+                                          classroom_id: 1,
+                                          teacher_id: 1,
+                                          assignment_size: 20)
+      @response = db.create_response( correct: true,
+                                      question_id: @question.id,
+                                      student_id: @student.id,
+                                      assignment_id: @assignment.id,
+                                      difficult: false)
+
+    end
+
+    it 'creates a statistic given a response id' do
+
+    end
+
+    describe 'Get proficiency' do
+      it 'gets a proficiency score' do
+        proficiency = db.get_proficiency(@response.id)
+        expect(proficiency).to eq 6
+      end
+
+      it 'increments proficieny for correct answers' do
+        proficiency = db.get_proficiency(@response.id)
+        new_response = db.create_response(correct: true,
+                                          question_id: @question.id,
+                                          student_id: @student.id,
+                                          assignment_id: @assignment.id,
+                                          difficult: false)
+        new_proficiency = db.get_proficiency(new_response.id)
+        expect(new_proficiency).to be > proficiency
+      end
+
+      it 'decrements proficiency for incorrect answers' do
+        proficiency = db.get_proficiency(@response.id)
+        new_response = db.create_response(correct: false,
+                                          question_id: @question.id,
+                                          student_id: @student.id,
+                                          assignment_id: @assignment.id,
+                                          difficult: false)
+        puts proficiency
+        new_proficiency = db.get_proficiency(new_response.id)
+        puts new_proficiency
+        expect(new_proficiency).to be < proficiency
+      end
     end
 
     describe 'Get last proficiency score' do
       it "returns 0 when student has not worked on chapter" do
         first_score = db.get_last_proficiency_score(@student.id, @chapter.id)
         expect(first_score).to eq 0
+      end
+
+      xit "returns last score when student has answered questions" do
+
       end
     end
   end
