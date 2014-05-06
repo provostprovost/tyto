@@ -219,6 +219,22 @@ shared_examples_for "a database" do
     end
   end
 
+  describe 'Statistics' do
+    before do
+      @student = db.create_student({username: "Brian",
+                                    password: "1234",
+                                    email: "fake@email.com",
+                                    phone_number: '1234567890'})
+      @chapter = db.create_chapter(parent_id: 1, name: "Cool Chapter")
+    end
+
+    describe 'Get last proficiency score' do
+      it "returns 0 when student has not worked on chapter" do
+        first_score = db.get_last_proficiency_score(@student.id, @chapter.id)
+        expect(first_score).to eq 0
+      end
+    end
+  end
 
   describe 'Students' do
     before do
