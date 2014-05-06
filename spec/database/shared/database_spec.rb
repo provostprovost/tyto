@@ -237,7 +237,7 @@ shared_examples_for "a database" do
       expect(@response.proficiency).to eq(6)
 
     end
-     it 'increments proficieny for correct answers' do
+      it 'increments proficieny for correct answers' do
         proficiency = db.get_response(@response.id).proficiency
         new_response = db.create_response(correct: true,
                                           question_id: @question.id,
@@ -439,6 +439,16 @@ shared_examples_for "a database" do
     it "gets a teacher from email address" do
       teacher = db.get_teacher_from_email("pss8te@virginia.edu")
       expect(teacher.id).to eq @teacher.id
+    end
+  end
+
+  describe "Other Statistics" do
+    it "gets longest streak for a user in a chapter" do
+
+    end
+
+    it "gets current streak for a user in a chapter" do
+
     end
   end
 end
