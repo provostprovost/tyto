@@ -52,8 +52,10 @@ ActiveRecord::Schema.define(version: 20140506081640) do
     t.integer "question_id"
     t.integer "student_id"
     t.integer "assignment_id"
+    t.integer "chapter_id"
     t.boolean "correct"
     t.boolean "difficult"
+    t.integer "proficiency"
   end
 
   create_table "sessions", force: true do |t|
