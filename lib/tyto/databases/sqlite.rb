@@ -202,14 +202,21 @@ module Tyto
 
       def get_question(id)
         question = Question.find(id)
-        new_question = Tyto::Question.new(question: question.question, id: question.id, level: question.level, answer: question.answer, chapter_id: question.chapter_id)
+        new_question = Tyto::Question.new(question: question.question,
+                                          id: question.id,
+                                          level: question.level,
+                                          answer: question.answer,
+                                          chapter_id: question.chapter_id)
       end
 
       def edit_question(attrs)
         question = Question.find(attrs[:id])
         attrs.delete(:id)
         question.update(attrs)
-        question = Tyto::Question.new(id: question.id, level: question.level, answer: question.answer, chapter_id: question.chapter_id)
+        question = Tyto::Question.new(id: question.id,
+                                      level: question.level,
+                                      answer: question.answer,
+                                      chapter_id: question.chapter_id)
       end
 
       def delete_question(id)
@@ -235,7 +242,12 @@ module Tyto
 
       def get_response(id)
         response = Response.find(id)
-        new_response = Tyto::Response.new(id: response.id, correct: response.correct, question_id: response.question_id, student_id: response.student_id, assignment_id: response.assignment_id, difficult: response.difficult)
+        new_response = Tyto::Response.new(id: response.id,
+                                          correct: response.correct,
+                                          question_id: response.question_id,
+                                          student_id: response.student_id,
+                                          assignment_id: response.assignment_id,
+                                          difficult: response.difficult)
       end
 
       ##############
@@ -271,8 +283,8 @@ module Tyto
       end
 
       def get_last_proficiency_score(student_id, chapter_id)
-        statistic = Statistics.where(student_id: student_id, chapter_id: chapter_id).last
-        if statistic.proficiency
+        statistic = Statistic.where(student_id: student_id, chapter_id: chapter_id).last
+        if statistic
           return statistic.proficiency
         else
           return 0
@@ -339,14 +351,22 @@ module Tyto
 
       def get_student(id)
         student = Student.find(id)
-        student = Tyto::Student.new(id: student.id, username: student.username, password: student.password, email: student.email, phone_number: student.phone_number)
+        student = Tyto::Student.new(id: student.id,
+                                    username: student.username,
+                                    password: student.password,
+                                    email: student.email,
+                                    phone_number: student.phone_number)
       end
 
       def edit_student(attrs)
         student = Student.find(attrs[:id])
         attrs.delete(:id)
         student.update(attrs)
-        new_student = Tyto::Student.new(id: student.id, username: student.username, password: student.password, email: student.email, phone_number: student.phone_number)
+        new_student = Tyto::Student.new(id: student.id,
+                                        username: student.username,
+                                        password: student.password,
+                                        email: student.email,
+                                        phone_number: student.phone_number)
       end
 
       def delete_student(id)
@@ -370,14 +390,22 @@ module Tyto
 
       def get_teacher(id)
         teacher = Teacher.find(id)
-        new_teacher = Tyto::Teacher.new(id: teacher.id, username: teacher.username, password: teacher.password, email: teacher.email, phone_number: teacher.phone_number)
+        new_teacher = Tyto::Teacher.new(id: teacher.id,
+                                        username: teacher.username,
+                                        password: teacher.password,
+                                        email: teacher.email,
+                                        phone_number: teacher.phone_number)
       end
 
       def edit_teacher(attrs)
         teacher = Teacher.find(attrs[:id])
         attrs.delete(:id)
         teacher.update(attrs)
-        new_teacher = Tyto::Teacher.new(id: teacher.id, username: teacher.username, password: teacher.password, email: teacher.email, phone_number: teacher.phone_number)
+        new_teacher = Tyto::Teacher.new(id: teacher.id,
+                                        username: teacher.username,
+                                        password: teacher.password,
+                                        email: teacher.email,
+                                        phone_number: teacher.phone_number)
       end
 
       def delete_teacher(id)
