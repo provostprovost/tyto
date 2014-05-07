@@ -44,7 +44,8 @@ module Tyto
       end
 
       def get_assignment(id)
-        assignment = Assignment.find(id)
+        assignment = Assignment.find_by(:id => id)
+        return nil if assignment == nil
         Tyto::Assignment.new( id: assignment.id,
                               student_id:   assignment.student_id,
                               chapter_id:   assignment.chapter_id,
@@ -55,7 +56,8 @@ module Tyto
       end
 
       def edit_assignment(attrs)
-        assignment = Assignment.find(attrs[:id])
+        assignment = Assignment.find_by(:id => attrs[:id])
+        return nil if assignment == nil
         attrs.delete(:id)
         assignment.update(attrs)
         Tyto::Assignment.new( id: assignment.id,
@@ -88,14 +90,16 @@ module Tyto
       end
 
       def get_chapter(id)
-        chapter = Chapter.find(id)
+        chapter = Chapter.find_by(:id => id)
+        return nil if chapter == nil
         Tyto::Chapter.new(  id: chapter.id,
                             parent_id: chapter.parent_id,
                             name: chapter.name )
       end
 
       def edit_chapter(attrs)
-        chapter = Chapter.find(attrs[:id])
+        chapter = Chapter.find_by(id: attrs[:id])
+        return nil if chapter == nil
         attrs.delete(:id)
         chapter.update(attrs)
         Tyto::Chapter.new(  id: chapter.id,
@@ -126,7 +130,8 @@ module Tyto
       end
 
       def get_classroom(id)
-        classroom = Classroom.find(id)
+        classroom = Classroom.find_by(id: id)
+        return nil if classroom == nil
         Tyto::Classroom.new(  id:         classroom.id,
                               course_id:  classroom.course_id,
                               teacher_id: classroom.teacher_id,
@@ -134,6 +139,20 @@ module Tyto
       end
 
       def edit_classroom(attrs)
+      end
+
+      def get_classroom_from_name(name, teacher_id)
+        #THIS METHOD NEEDS TO BE TESTED#
+        classroom = Classroom.find_by(:name => name, :teacher_id => teacher_id)
+        return nil if classroom == nil
+        Tyto::Classroom.new(  id:         classroom.id,
+                              course_id:  classroom.course_id,
+                              teacher_id: classroom.teacher_id,
+                              name: classroom.name)
+      end
+
+      def get_students_in_class(classroom_id)
+
       end
 
       def delete_classroom(id)
@@ -151,6 +170,7 @@ module Tyto
 
       def get_students_in_classroom(id)
         students = ClassroomsUsers.where(classroom_id: id)
+        return nil if students.last == nil
         students.map do |pair|
           get_student(pair.student_id)
         end
@@ -172,17 +192,20 @@ module Tyto
       end
 
       def get_course(id)
-        course = Course.find(id)
+        course = Course.find_by(id: id)
+        return nil if course == nil
         course = Tyto::Course.new(name: course.name)
       end
 
       def get_course_from_name(name)
-        course = Course.where(:name => name).last
+        course = Course.find_by(:name => name)
+        return nil if course == nil
         course = Tyto::Course.new(id: course.id, name: course.name)
       end
 
       def edit_course(attrs)
-        course = Course.find(attrs[:id])
+        course = Course.find_by(id: attrs[:id])
+        return nil if course == nil
         attrs.delete(:id)
         course.update(attrs)
         course = Tyto::Course.new(id: course.id, name: course.name)
@@ -208,7 +231,8 @@ module Tyto
       end
 
       def get_question(id)
-        question = Question.find(id)
+        question = Question.find_by(id: id)
+        return nil if question == nil
         new_question = Tyto::Question.new(question: question.question,
                                           id: question.id,
                                           level: question.level,
@@ -217,7 +241,8 @@ module Tyto
       end
 
       def edit_question(attrs)
-        question = Question.find(attrs[:id])
+        question = Question.find_by(id: attrs[:id])
+        return nil if question == nil
         attrs.delete(:id)
         question.update(attrs)
         question = Tyto::Question.new(id: question.id,
@@ -232,7 +257,9 @@ module Tyto
 
       def get_next_question(proficiency, student_id, chapter_id)
         questions = Question.where(chapter_id: chapter_id)
+        return nil if questions.last == nil
         responses = Response.where(student_id: student_id, chapter_id: chapter_id)
+        return nil if responses.last == nil
         unanswered = []
         questions.each do |x|
           answered = false
@@ -294,7 +321,8 @@ module Tyto
       end
 
       def get_response(id)
-        response = Response.find(id)
+        response = Response.find_by(id: id)
+        return nil if response == nil
         new_response = Tyto::Response.new(id: response.id,
                                           correct: response.correct,
                                           question_id: response.question_id,
@@ -327,7 +355,9 @@ module Tyto
       end
 
       def get_last_proficiency_score(student_id, chapter_id)
-        response = Response.where(student_id: student_id, chapter_id: chapter_id).last(2)[0]
+        response = Response.where(student_id: student_id, chapter_id: chapter_id)
+        return nil if response.last == nil
+        response = response.last(2)[0]
         if response.proficiency != nil
           return response.proficiency
         else
@@ -337,6 +367,7 @@ module Tyto
 
       def get_longest_streak(student_id, chapter_id)
         responses = Response.where(student_id: student_id, chapter_id: chapter_id)
+
         counter = 0
         current_response = responses.where(correct: true).last
         longest_streak = 0
@@ -379,7 +410,8 @@ module Tyto
       end
 
       def get_session(id)
-        ar_session = Session.find(id)
+        ar_session = Session.find_by(id: id)
+        return nil if ar_session == nil
         session = Tyto::Session.new(id: ar_session.id,
                                     student_id: ar_session.student_id,
                                     teacher_id: ar_session.teacher_id)
@@ -410,7 +442,8 @@ module Tyto
       end
 
       def get_student(id)
-        student = Student.find(id)
+        student = Student.find_by(id: id)
+        return nil if student == nil
         retrieved = Tyto::Student.new( id: student.id,
                                       username: student.username,
                                       password: "temp",
@@ -421,7 +454,8 @@ module Tyto
       end
 
       def edit_student(attrs)
-        student = Student.find(attrs[:id])
+        student = Student.find_by(id: attrs[:id])
+        return nil if student == nil
         attrs.delete(:id)
         attrs.delete(:password_digest)
         student.update(attrs)
@@ -468,7 +502,8 @@ module Tyto
       end
 
       def get_teacher(id)
-        teacher = Teacher.find(id)
+        teacher = Teacher.find_by(id: id)
+        return nil if teacher == nil
         retrieved = Tyto::Teacher.new( id: teacher.id,
                                       username: teacher.username,
                                       password: "temp",
@@ -479,7 +514,8 @@ module Tyto
       end
 
       def edit_teacher(attrs)
-        teacher = Teacher.find(attrs[:id])
+        teacher = Teacher.find_by(id: attrs[:id])
+        return nil if teacher == nil
         attrs.delete(:id)
         attrs.delete(:password_digest)
         teacher.update(attrs)
