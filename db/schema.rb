@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20140507202146) do
 
   create_table "invites", force: true do |t|
     t.integer  "teacher_id"
-    t.integer  "student_id"
+    t.string   "email"
     t.boolean  "accepted"
     t.integer  "classroom_id"
     t.string   "code"

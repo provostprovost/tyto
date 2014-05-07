@@ -18,14 +18,14 @@ shared_examples_for "a database" do
                                     password: "1234",
                                     email: "pss8te@virginia.edu",
                                     phone_number: '7576507728'})
-      @invite = db.create_invite(student_id: @student.id,
-                       teacher_id: @teacher.id,
-                       classroom_id: @classroom.id,
-                       code: "1234",
-                       accepted: false )
+      @invite = db.create_invite(email: "parthshahva@gmail.com",
+                                 teacher_id: @teacher.id,
+                                 classroom_id: @classroom.id,
+                                 code: "1234",
+                                 accepted: false)
     end
     it "creates an invite" do
-      expect(@invite.student_id).to eq(@student.id)
+      expect(@invite.email).to eq("parthshahva@gmail.com")
       expect(@invite.classroom_id).to eq(@classroom.id)
       expect(@invite.code).to eq("1234")
       expect(@invite.accepted).to eq(false)
@@ -33,7 +33,7 @@ shared_examples_for "a database" do
     end
     it "gets an invite" do
       invite = db.get_invite(@invite.id)
-      expect(invite.student_id).to eq(@student.id)
+      expect(invite.email).to eq("parthshahva@gmail.com")
       expect(invite.classroom_id).to eq(@classroom.id)
       expect(invite.code).to eq("1234")
       expect(invite.accepted).to eq(false)

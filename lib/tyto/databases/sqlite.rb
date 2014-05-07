@@ -86,7 +86,7 @@ module Tyto
       def create_invite(attrs)
         invite = Invite.create(attrs)
         Tyto::Invite.new( id:           invite.id,
-                          student_id:   invite.student_id,
+                          email:        invite.email,
                           teacher_id:   invite.teacher_id,
                           classroom_id: invite.classroom_id,
                           code:         invite.code,
@@ -98,7 +98,7 @@ module Tyto
         invite = Invite.find_by(:id => id)
         return nil if invite == nil
         Tyto::Invite.new(id:           invite.id,
-                         student_id:   invite.student_id,
+                         email:        invite.email,
                          teacher_id:   invite.teacher_id,
                          classroom_id: invite.classroom_id,
                          code:         invite.code,
@@ -110,7 +110,7 @@ module Tyto
         return nil if invite == nil
         invite.accepted = true
         Tyto::Invite.new(id:           invite.id,
-                         student_id:   invite.student_id,
+                         email:        invite.email,
                          teacher_id:   invite.teacher_id,
                          classroom_id: invite.classroom_id,
                          code:         invite.code,
@@ -309,35 +309,21 @@ module Tyto
           end
           unanswered.push(x) if answered == false
         end
-        if proficiency < 40
-          questions = unanswered.select{|x| x.level == 1}
+          if proficiency < 40
+            level = 1
+          elsif proficiency < 60
+            level = 2
+          elsif proficiency < 80
+            level = 3
+          else
+            level = 4
+          end
+          questions = unanswered.select{|x| x.level == level}
           if questions == []
             return nil
           end
           index = rand(0...questions.length)
           return get_question(questions[index].id)
-        elsif proficiency < 60
-          questions = unanswered.select{|x| x.level == 2}
-          if questions == []
-            return nil
-          end
-          index = rand(0...questions.length)
-          return get_question(questions[index].id)
-        elsif proficiency < 80
-          questions = unanswered.select{|x| x.level == 3}
-          if questions == []
-            return nil
-          end
-          index = rand(0...questions.length)
-          return get_question(questions[index].id)
-        else
-          questions = unanswered.select{|x| x.level == 4}
-          if questions == []
-            return nil
-          end
-          index = rand(0...questions.length)
-          return get_question(questions[index].id)
-        end
       end
 
 

@@ -2,7 +2,7 @@ class CreateInvites < ActiveRecord::Migration
   def change
     create_table :invites do |t|
       t.references :teacher
-      t.references :student
+      t.string :email
       t.boolean :accepted
       t.references :classroom
       t.string :code
