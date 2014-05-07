@@ -356,7 +356,7 @@ module Tyto
 
       def get_last_proficiency_score(student_id, chapter_id)
         response = Response.where(student_id: student_id, chapter_id: chapter_id)
-        return nil if response.last == nil
+        return 0 if response.last == nil
         response = response.last(2)[0]
         if response.proficiency != nil
           return response.proficiency
