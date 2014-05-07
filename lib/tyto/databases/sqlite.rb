@@ -374,6 +374,10 @@ module Tyto
                                           proficiency: response.proficiency )
       end
 
+      def get_responses_for_assignment(assignment_id)
+        Response.where(assignment_id: assignment_id)
+      end
+
       ##############
       # Statistics #
       ##############
@@ -397,7 +401,7 @@ module Tyto
 
       def get_last_proficiency_score(student_id, chapter_id)
         response = Response.where(student_id: student_id, chapter_id: chapter_id)
-        return nil if response.last == nil
+        return 0 if response.last == nil
         response = response.last(2)[0]
         if response.proficiency != nil
           return response.proficiency
@@ -474,6 +478,8 @@ module Tyto
       end
 
       def create_student(attrs)
+        attrs[:password_digest] = BCrypt::Password.create(attrs.delete(:password))
+
         student = Tyto::Student.new(attrs)
         ar_student = Student.create(username: student.username,
                                     password_digest: student.password_digest,
@@ -524,6 +530,30 @@ module Tyto
         retrieved
       end
 
+      def get_student_from_email(email)
+        student = Student.find_by(email: email)
+        return nil if student.nil?
+        retrieved = Tyto::Student.new( id: student.id,
+                                      username: student.username,
+                                      password: "temp",
+                                      email: student.email,
+                                      phone_number: student.phone_number)
+        retrieved.password_digest = BCrypt::Password.new(student.password_digest)
+        retrieved
+      end
+
+      def get_student_from_phone_number(phone_number)
+        student = Student.find_by(phone_number: phone_number)
+        return nil if student.nil?
+        retrieved = Tyto::Student.new( id: student.id,
+                                      username: student.username,
+                                      password: "temp",
+                                      email: student.email,
+                                      phone_number: student.phone_number)
+        retrieved.password_digest = BCrypt::Password.new(student.password_digest)
+        retrieved
+      end
+
       ############
       # Teachers #
       ############
@@ -535,7 +565,10 @@ module Tyto
       end
 
       def create_teacher(attrs)
+        attrs[:password_digest] = BCrypt::Password.create(attrs.delete(:password))
+
         teacher = Tyto::Teacher.new(attrs)
+
         ar_teacher = Teacher.create(username: teacher.username,
                                     password_digest: teacher.password_digest,
                                     email: teacher.email,

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Tyto::Student do
   before do
-    @student = Tyto::Student.new(username: "Brian",
+    @student = Tyto.db.create_student(username: "Brian",
                                 email: "brian@fake.com",
                                 phone_number: "1234567890",
                                 password: "12983712")
