@@ -21,8 +21,16 @@ module Tyto
                                           difficult: inputs[:difficult],
                                           correct: check_answer(question.id, inputs[:answer]),
                                           chapter_id: assignment.chapter_id )
-      binding.pry
-      success :response => response
+
+      next_question = Tyto.db.get_next_question(  response.proficiency,
+                                                  student.id,
+                                                  assignment.chapter_id)
+
+      questions_completed = Tyto.db.get_responses_for_assignment(assignment.id)
+
+      complete = questions_completed.size >= assignment.assignment_size
+
+      success :response => response, :question => next_question, :complete => complete
     end
 
     def check_answer(question_id, answer)

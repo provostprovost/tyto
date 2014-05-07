@@ -90,6 +90,43 @@ describe Tyto::AnswerQuestion do
   end
 
   it "returns the next question" do
+    10.times do
+      Tyto.db.create_question(  level: 1,
+                                question: "What's up kool guy?",
+                                answer: "NM here",
+                                chapter_id: @chapter.id)
+    end
 
+    result = subject.run( question_id: @question.id,
+                          answer: "NM here",
+                          assignment_id: @assignment.id,
+                          session_id: @session.id,
+                          difficult: false )
+
+    expect(result.question).to be_a(Tyto::Question)
+    expect(result.question.chapter_id).to eq @chapter.id
+  end
+
+  it "returns complete=false if assignment is not finished" do
+    result = subject.run( question_id: @question.id,
+                          answer: "NM here",
+                          assignment_id: @assignment.id,
+                          session_id: @session.id,
+                          difficult: false )
+    expect(result.complete).to eq false
+  end
+
+  it "returns complete=true if assignment is finished" do
+    assignment1 = Tyto.db.create_assignment(  student_id: @student.id,
+                                              chapter_id: @chapter.id,
+                                              classroom_id: 1,
+                                              teacher_id: 1,
+                                              assignment_size: 1)
+    result = subject.run( question_id: @question.id,
+                          answer: "NM here",
+                          assignment_id: assignment1.id,
+                          session_id: @session.id,
+                          difficult: false )
+    expect(result.complete).to eq true
   end
 end

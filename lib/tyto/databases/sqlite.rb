@@ -333,6 +333,10 @@ module Tyto
                                           proficiency: response.proficiency )
       end
 
+      def get_responses_for_assignment(assignment_id)
+        Response.where(assignment_id: assignment_id)
+      end
+
       ##############
       # Statistics #
       ##############
