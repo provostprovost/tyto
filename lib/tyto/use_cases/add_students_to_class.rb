@@ -1,3 +1,5 @@
+require 'mail'
+
 module Tyto
   class AddStudentsToClass < UseCase
     def run(inputs)
@@ -8,14 +10,27 @@ module Tyto
      return failure(:classroom_not_found) if classroom == nil
      return failure(:no_students_added) if inputs[:students]==[]
      code = rand(100000...999999)
-     inputs[:students].map! do |x|
+     invites = inputs[:students].map do |x|
         Tyto.db.create_invite(email: x,
                               teacher_id: teacher_id,
-                              classroom_id: @classroom.id,
+                              classroom_id: classroom.id,
                               code: code,
                               accepted: false)
      end
-     success :classroom => classroom, :students => inputs[:students]
+     Mail.defaults do
+          delivery_method :test
+     end
+     invites.each do |x|
+        mail = Mail.deliver do
+          from    'parthshahva@gmail.com'
+          to      x.email
+          subject 'This is a test email'
+          body    'whats good'
+        end
+     end
+     emails = Mail::TestMailer.deliveries
+
+     success :classroom => classroom, :invites => invites, :emails => emails
    end
   end
 end
