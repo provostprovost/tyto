@@ -227,15 +227,16 @@ shared_examples_for "a database" do
 
   describe 'Responses' do
     before do
+      db.clear_everything
       @student = db.create_student({username: "Brian",
                                     password: "1234",
                                     email: "fake@email.com",
                                     phone_number: '1234567890'})
       @chapter = db.create_chapter(parent_id: 1, name: "Cool Chapter")
-      @question = db.create_question( level: 2, question: "2+2",
-                                      answer: "4", chapter_id: @chapter.id)
       @question_two = db.create_question( level: 1, question: "1+1",
                                       answer: "2", chapter_id: @chapter.id)
+      @question = db.create_question( level: 2, question: "2+2",
+                                      answer: "4", chapter_id: @chapter.id)
       @question_three = db.create_question( level: 3, question: "3+3",
                                       answer: "6", chapter_id: @chapter.id)
       @question_four = db.create_question( level: 1, question: "4+4",
