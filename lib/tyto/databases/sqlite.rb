@@ -118,6 +118,17 @@ module Tyto
 
       end
 
+      def get_invite_by_email_and_code(email, code)
+        invite = Invite.find_by(email: email, code: code)
+        return nil if invite == nil
+        Tyto::Invite.new(id:           invite.id,
+                         email:        invite.email,
+                         teacher_id:   invite.teacher_id,
+                         classroom_id: invite.classroom_id,
+                         code:         invite.code,
+                         accepted:     invite.accepted)
+      end
+
       def delete_invite(id)
         Invite.destroy(id)
       end
