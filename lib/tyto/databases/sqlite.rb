@@ -436,6 +436,8 @@ module Tyto
       end
 
       def create_student(attrs)
+        attrs[:password_digest] = BCrypt::Password.create(attrs.delete(:password))
+
         student = Tyto::Student.new(attrs)
         ar_student = Student.create(username: student.username,
                                     password_digest: student.password_digest,
@@ -496,7 +498,10 @@ module Tyto
       end
 
       def create_teacher(attrs)
+        attrs[:password_digest] = BCrypt::Password.create(attrs.delete(:password))
+
         teacher = Tyto::Teacher.new(attrs)
+
         ar_teacher = Teacher.create(username: teacher.username,
                                     password_digest: teacher.password_digest,
                                     email: teacher.email,
