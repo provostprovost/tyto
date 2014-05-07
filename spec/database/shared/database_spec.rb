@@ -380,6 +380,14 @@ shared_examples_for "a database" do
         expect(question).to eq(nil)
         question = db.get_next_question(45, @student.id, response.chapter_id)
         expect(question.level).to eq(2)
+        db.create_response( correct: true,
+                            question_id: question.id,
+                            student_id: @student.id,
+                            assignment_id: @assignment.id,
+                            difficult: false,
+                            chapter_id: @chapter.id)
+        question = db.get_next_question(45, @student.id, response.chapter_id)
+        expect(question).to eq(nil)
         question = db.get_next_question(65, @student.id, response.chapter_id)
         expect(question.level).to eq(3)
         question = db.get_next_question(90, @student.id, response.chapter_id)
