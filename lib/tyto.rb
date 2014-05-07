@@ -11,6 +11,7 @@ require_relative 'tyto/entities/response.rb'
 require_relative 'tyto/entities/session.rb'
 require_relative 'tyto/entities/student.rb'
 require_relative 'tyto/entities/teacher.rb'
+require_relative 'tyto/entities/invite.rb'
 
 require_relative 'tyto/databases/in_memory.rb'
 require_relative 'tyto/databases/sqlite.rb'
@@ -21,6 +22,7 @@ require_relative 'tyto/use_cases/sign_in.rb'
 require_relative 'tyto/use_cases/student_sign_up.rb'
 require_relative 'tyto/use_cases/teacher_sign_up.rb'
 require_relative 'tyto/use_cases/assign_homework.rb'
+require_relative 'tyto/use_cases/add_students_to_class.rb'
 
 module Tyto
   def self.db

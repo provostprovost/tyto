@@ -20,20 +20,20 @@ describe Tyto::AssignHomework do
                                         course_id:  @course.id,
                                         name: "Period 1" )
     @chapter = Tyto.db.create_chapter(parent_id: @course.id, name: "Cool Chapter")
-
+    @session = Tyto.db.create_session(teacher_id: @teacher.id)
 
   end
 
   it "returns correct errors" do
-    result = Tyto::AssignHomework.run(:classroom_name => "Session 3",
+    result = Tyto::AssignHomework.run(:classroom_id => 500000,
                                       :chapter_id => @chapter.id,
-                                      :teacher_id => @teacher.id,
+                                      :session_id => @session.id,
                                       :assignment_size => 5
                                                           )
     expect(result.error).to eq(:classroom_not_found)
-    result = Tyto::AssignHomework.run(:classroom_name => "Period 1",
+    result = Tyto::AssignHomework.run(:classroom_id => @classroom.id,
                                       :chapter_id => @chapter.id,
-                                      :teacher_id => @teacher.id,
+                                      :session_id => @session.id,
                                       :assignment_size => 5
                                                           )
     expect(result.error).to eq(:no_students_in_class)
@@ -47,9 +47,9 @@ describe Tyto::AssignHomework do
     Tyto.db.add_student_to_classroom(classroom_id: @classroom.id,
                                      student_id: @student_two.id
                                                                )
-    result = Tyto::AssignHomework.run(:classroom_name => "Period 1",
+    result = Tyto::AssignHomework.run(:classroom_id => @classroom.id,
                                       :chapter_id => @chapter.id,
-                                      :teacher_id => @teacher.id,
+                                      :session_id => @session.id,
                                       :assignment_size => 5
                                                           )
     expect(result.success?).to eq(true)

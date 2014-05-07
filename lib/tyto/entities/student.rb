@@ -4,7 +4,7 @@ module Tyto
   class Student < Entity
     attr_reader :username, :email, :phone_number
     attr_accessor :id, :password_digest
-    validates_presence_of :username, :password, :email, :phone_number
+    validates_presence_of :email
 
     def initialize(attrs)
       @password_digest = BCrypt::Password.create(attrs.delete(:password))

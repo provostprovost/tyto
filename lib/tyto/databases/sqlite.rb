@@ -1,7 +1,7 @@
 require "active_record"
 require "yaml"
 require 'pry-debugger'
-
+### USE ACTIVE RECORD ORDER, DON'T ASSUME ACTIVE RECORD ORDERS THINGS FOR YOU ###
 module Tyto
   module Database
     class SQLite
@@ -73,6 +73,56 @@ module Tyto
         Assignment.destroy(id)
       end
 
+      ###############
+      # Invites #
+      ###############
+
+      class Invite < ActiveRecord::Base
+        belongs_to :teacher
+        belongs_to :student
+        belongs_to :classroom
+      end
+
+      def create_invite(attrs)
+        invite = Invite.create(attrs)
+        Tyto::Invite.new( id:           invite.id,
+                          student_id:   invite.student_id,
+                          teacher_id:   invite.teacher_id,
+                          classroom_id: invite.classroom_id,
+                          code:         invite.code,
+                          accepted:     invite.accepted
+                              )
+      end
+
+      def get_invite(id)
+        invite = Invite.find_by(:id => id)
+        return nil if invite == nil
+        Tyto::Invite.new(id:           invite.id,
+                         student_id:   invite.student_id,
+                         teacher_id:   invite.teacher_id,
+                         classroom_id: invite.classroom_id,
+                         code:         invite.code,
+                         accepted:     invite.accepted)
+      end
+
+      def accept_invite(id)
+        invite = Invite.find_by(:id => id)
+        return nil if invite == nil
+        invite.accepted = true
+        Tyto::Invite.new(id:           invite.id,
+                         student_id:   invite.student_id,
+                         teacher_id:   invite.teacher_id,
+                         classroom_id: invite.classroom_id,
+                         code:         invite.code,
+                         accepted:     invite.accepted)
+
+      end
+
+      def delete_invite(id)
+        Invite.destroy(id)
+      end
+
+
       ############
       # Chapters #
       ############
@@ -118,6 +168,7 @@ module Tyto
       class Classroom < ActiveRecord::Base
         belongs_to :teacher
         belongs_to :course
+        has_many :invites
         has_many :assignments
       end
 
@@ -141,18 +192,7 @@ module Tyto
       def edit_classroom(attrs)
       end
 
-      def get_classroom_from_name(name, teacher_id)
-        #THIS METHOD NEEDS TO BE TESTED#
-        classroom = Classroom.find_by(:name => name, :teacher_id => teacher_id)
-        return nil if classroom == nil
-        Tyto::Classroom.new(  id:         classroom.id,
-                              course_id:  classroom.course_id,
-                              teacher_id: classroom.teacher_id,
-                              name: classroom.name)
-      end
-
       def get_students_in_class(classroom_id)
-
       end
 
       def delete_classroom(id)
@@ -256,6 +296,7 @@ module Tyto
       end
 
       def get_next_question(proficiency, student_id, chapter_id)
+        ##SHORTEN THIS METHOD ##
         questions = Question.where(chapter_id: chapter_id)
         return nil if questions.last == nil
         responses = Response.where(student_id: student_id, chapter_id: chapter_id)
@@ -428,6 +469,7 @@ module Tyto
       class Student < ActiveRecord::Base
         has_many :responses
         has_many :assignments
+        has_many :invites
         belongs_to :classroom
       end
 
@@ -489,6 +531,7 @@ module Tyto
       class Teacher < ActiveRecord::Base
         has_many :assignments
         has_many :classrooms
+        has_many :invites
       end
 
       def create_teacher(attrs)

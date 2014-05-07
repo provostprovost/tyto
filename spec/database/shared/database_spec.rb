@@ -4,6 +4,47 @@ shared_examples_for "a database" do
   let(:db) { described_class.new }
   before { db.clear_everything }
 
+  describe 'Invites' do
+    before do
+      @course = db.create_course(name: "algebra")
+      @classroom = db.create_classroom( teacher_id: 55,
+                                        course_id:  66,
+                                        name: "Period 1" )
+      @student = db.create_student({username: "Brian",
+                                    password: "1234",
+                                    email: "fake@email.com",
+                                    phone_number: '1234567890'})
+      @teacher = db.create_teacher({username: "parth",
+                                    password: "1234",
+                                    email: "pss8te@virginia.edu",
+                                    phone_number: '7576507728'})
+      @invite = db.create_invite(student_id: @student.id,
+                       teacher_id: @teacher.id,
+                       classroom_id: @classroom.id,
+                       code: "1234",
+                       accepted: false )
+    end
+    it "creates an invite" do
+      expect(@invite.student_id).to eq(@student.id)
+      expect(@invite.classroom_id).to eq(@classroom.id)
+      expect(@invite.code).to eq("1234")
+      expect(@invite.accepted).to eq(false)
+      expect(@invite.teacher_id).to eq(@teacher.id)
+    end
+    it "gets an invite" do
+      invite = db.get_invite(@invite.id)
+      expect(invite.student_id).to eq(@student.id)
+      expect(invite.classroom_id).to eq(@classroom.id)
+      expect(invite.code).to eq("1234")
+      expect(invite.accepted).to eq(false)
+      expect(invite.teacher_id).to eq(@teacher.id)
+    end
+    it "accepts an invite" do
+      invite = db.accept_invite(@invite.id)
+      expect(invite.accepted).to eq(true)
+    end
+  end
+
   describe 'Assignments' do
     before do
       @assignment = db.create_assignment( student_id: 1,
