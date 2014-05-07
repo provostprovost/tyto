@@ -14,23 +14,29 @@
 ActiveRecord::Schema.define(version: 20140507202146) do
 
   create_table "assignments", force: true do |t|
-    t.integer "student_id"
-    t.integer "teacher_id"
-    t.integer "chapter_id"
-    t.integer "classroom_id"
-    t.boolean "complete"
-    t.integer "assignment_size"
+    t.integer  "student_id"
+    t.integer  "teacher_id"
+    t.integer  "chapter_id"
+    t.integer  "classroom_id"
+    t.boolean  "complete"
+    t.integer  "assignment_size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "chapters", force: true do |t|
-    t.string  "name"
-    t.integer "parent_id"
+    t.string   "name"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "classrooms", force: true do |t|
-    t.integer "teacher_id"
-    t.integer "course_id"
-    t.string  "name"
+    t.integer  "teacher_id"
+    t.integer  "course_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "classrooms_users", force: true do |t|
@@ -39,7 +45,9 @@ ActiveRecord::Schema.define(version: 20140507202146) do
   end
 
   create_table "courses", force: true do |t|
-    t.string "name"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "invites", force: true do |t|
@@ -53,39 +61,49 @@ ActiveRecord::Schema.define(version: 20140507202146) do
   end
 
   create_table "questions", force: true do |t|
-    t.integer "chapter_id"
-    t.string  "question"
-    t.string  "answer"
-    t.integer "level"
+    t.integer  "chapter_id"
+    t.string   "question"
+    t.string   "answer"
+    t.integer  "level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "responses", force: true do |t|
-    t.integer "question_id"
-    t.integer "student_id"
-    t.integer "assignment_id"
-    t.integer "chapter_id"
-    t.boolean "correct"
-    t.boolean "difficult"
-    t.integer "proficiency"
+    t.integer  "question_id"
+    t.integer  "student_id"
+    t.integer  "assignment_id"
+    t.integer  "chapter_id"
+    t.boolean  "correct"
+    t.boolean  "difficult"
+    t.integer  "proficiency"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sessions", force: true do |t|
-    t.integer "student_id"
-    t.integer "teacher_id"
+    t.integer  "student_id"
+    t.integer  "teacher_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "students", force: true do |t|
-    t.string "username"
-    t.string "password_digest"
-    t.string "email"
-    t.string "phone_number"
+    t.string   "username"
+    t.string   "password_digest"
+    t.string   "email"
+    t.string   "phone_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "teachers", force: true do |t|
-    t.string "username"
-    t.string "password_digest"
-    t.string "email"
-    t.string "phone_number"
+    t.string   "username"
+    t.string   "password_digest"
+    t.string   "email"
+    t.string   "phone_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
