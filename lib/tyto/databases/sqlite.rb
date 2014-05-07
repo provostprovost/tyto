@@ -488,6 +488,30 @@ module Tyto
         retrieved
       end
 
+      def get_student_from_email(email)
+        student = Student.find_by(email: email)
+        return nil if student.nil?
+        retrieved = Tyto::Student.new( id: student.id,
+                                      username: student.username,
+                                      password: "temp",
+                                      email: student.email,
+                                      phone_number: student.phone_number)
+        retrieved.password_digest = BCrypt::Password.new(student.password_digest)
+        retrieved
+      end
+
+      def get_student_from_phone_number(phone_number)
+        student = Student.find_by(phone_number: phone_number)
+        return nil if student.nil?
+        retrieved = Tyto::Student.new( id: student.id,
+                                      username: student.username,
+                                      password: "temp",
+                                      email: student.email,
+                                      phone_number: student.phone_number)
+        retrieved.password_digest = BCrypt::Password.new(student.password_digest)
+        retrieved
+      end
+
       ############
       # Teachers #
       ############
