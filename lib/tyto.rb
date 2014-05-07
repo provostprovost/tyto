@@ -20,6 +20,7 @@ require_relative 'tyto/use_cases/answer_question.rb'
 require_relative 'tyto/use_cases/sign_in.rb'
 require_relative 'tyto/use_cases/student_sign_up.rb'
 require_relative 'tyto/use_cases/teacher_sign_up.rb'
+require_relative 'tyto/use_cases/assign_homework.rb'
 
 module Tyto
   def self.db
