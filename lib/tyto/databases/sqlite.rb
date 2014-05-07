@@ -1,7 +1,7 @@
 require "active_record"
 require "yaml"
 require 'pry-debugger'
-### USE ACTIVE RECORD ORDER, DON'T ASSUME ACTIVE RECORD ORDERS THINGS FOR YOU ###
+
 module Tyto
   module Database
     class SQLite
@@ -397,7 +397,7 @@ module Tyto
       end
 
       def get_longest_streak(student_id, chapter_id)
-        responses = Response.where(student_id: student_id, chapter_id: chapter_id)
+        responses = Response.where(student_id: student_id, chapter_id: chapter_id).order(:created_at)
 
         counter = 0
         current_response = responses.where(correct: true).last
@@ -413,7 +413,7 @@ module Tyto
       end
 
       def current_chapter_streak(student_id, chapter_id)
-        responses = Response.where(student_id: student_id, chapter_id: chapter_id)
+        responses = Response.where(student_id: student_id, chapter_id: chapter_id).order(:created_at)
         streak = 0
         counter = responses.size - 1
         while counter >= 0

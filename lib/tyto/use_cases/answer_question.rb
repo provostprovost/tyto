@@ -28,9 +28,14 @@ module Tyto
 
       questions_completed = Tyto.db.get_responses_for_assignment(assignment.id)
 
-      complete = questions_completed.size >= assignment.assignment_size
+      number_answered = questions_completed.size
 
-      success :response => response, :question => next_question, :complete => complete
+      complete = number_answered >= assignment.assignment_size
+
+      success :response => response,
+              :question => next_question,
+              :complete => complete,
+              :number_answered => number_answered
     end
 
     def check_answer(question_id, answer)

@@ -72,61 +72,70 @@ describe Tyto::AnswerQuestion do
     expect(incorrect).to eq false
   end
 
-  it "creates a new response" do
-    result = subject.run( question_id: @question.id,
-                          answer: "NM here",
-                          assignment_id: @assignment.id,
-                          session_id: @session.id,
-                          difficult: false )
-
-    expect(result.response).to be_a(Tyto::Response)
-    expect(result.response.correct).to eq true
-    expect(result.response.proficiency).to be_a Integer
-    expect(result.response.question_id).to eq @question.id
-    expect(result.response.student_id).to eq @student.id
-    expect(result.response.assignment_id).to eq @assignment.id
-    expect(result.response.difficult).to eq false
-    expect(result.response.chapter_id).to eq @chapter.id
-  end
-
-  it "returns the next question" do
-    10.times do
-      Tyto.db.create_question(  level: 1,
-                                question: "What's up kool guy?",
-                                answer: "NM here",
-                                chapter_id: @chapter.id)
+  describe "with correct inputs" do
+    before do
+      @result = subject.run( question_id: @question.id,
+                            answer: "NM here",
+                            assignment_id: @assignment.id,
+                            session_id: @session.id,
+                            difficult: false )
     end
 
-    result = subject.run( question_id: @question.id,
-                          answer: "NM here",
-                          assignment_id: @assignment.id,
-                          session_id: @session.id,
-                          difficult: false )
+    it "creates a new response" do
+      expect(@result.response).to be_a(Tyto::Response)
+      expect(@result.response.correct).to eq true
+      expect(@result.response.proficiency).to be_a Integer
+      expect(@result.response.question_id).to eq @question.id
+      expect(@result.response.student_id).to eq @student.id
+      expect(@result.response.assignment_id).to eq @assignment.id
+      expect(@result.response.difficult).to eq false
+      expect(@result.response.chapter_id).to eq @chapter.id
+    end
 
-    expect(result.question).to be_a(Tyto::Question)
-    expect(result.question.chapter_id).to eq @chapter.id
-  end
+    it "returns the next question" do
+      10.times do
+        Tyto.db.create_question(  level: 1,
+                                  question: "What's up kool guy?",
+                                  answer: "NM here",
+                                  chapter_id: @chapter.id)
+      end
+      result = subject.run( question_id: @question.id,
+                            answer: "NM here",
+                            assignment_id: @assignment.id,
+                            session_id: @session.id,
+                            difficult: false )
 
-  it "returns complete=false if assignment is not finished" do
-    result = subject.run( question_id: @question.id,
-                          answer: "NM here",
-                          assignment_id: @assignment.id,
-                          session_id: @session.id,
-                          difficult: false )
-    expect(result.complete).to eq false
-  end
+      expect(result.question).to be_a(Tyto::Question)
+      expect(result.question.chapter_id).to eq @chapter.id
+    end
 
-  it "returns complete=true if assignment is finished" do
-    assignment1 = Tyto.db.create_assignment(  student_id: @student.id,
-                                              chapter_id: @chapter.id,
-                                              classroom_id: 1,
-                                              teacher_id: 1,
-                                              assignment_size: 1)
-    result = subject.run( question_id: @question.id,
-                          answer: "NM here",
-                          assignment_id: assignment1.id,
-                          session_id: @session.id,
-                          difficult: false )
-    expect(result.complete).to eq true
+    it "returns complete=false if assignment is not finished" do
+      expect(@result.complete).to eq false
+    end
+
+    it "returns complete=true if assignment is finished" do
+      assignment1 = Tyto.db.create_assignment(  student_id: @student.id,
+                                                chapter_id: @chapter.id,
+                                                classroom_id: 1,
+                                                teacher_id: 1,
+                                                assignment_size: 1)
+      @result = subject.run( question_id: @question.id,
+                            answer: "NM here",
+                            assignment_id: assignment1.id,
+                            session_id: @session.id,
+                            difficult: false )
+      expect(@result.complete).to eq true
+    end
+
+    it "keeps track of number of questions completed" do
+      expect(@result.number_answered).to eq 1
+
+      result1 = subject.run( question_id: @question.id,
+                            answer: "chilling bro",
+                            assignment_id: @assignment.id,
+                            session_id: @session.id,
+                            difficult: false )
+      expect(result1.number_answered).to eq 2
+    end
   end
 end
