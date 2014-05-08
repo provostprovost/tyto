@@ -1,5 +1,3 @@
-require 'bcrypt'
-
 module Tyto
   class Teacher < Entity
     attr_reader :username, :email, :phone_number

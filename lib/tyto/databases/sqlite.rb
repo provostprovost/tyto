@@ -1,6 +1,7 @@
 require "active_record"
 require "yaml"
-require 'pry-debugger'
+# require 'pry-debugger'
+require 'bcrypt'
 
 module Tyto
   module Database
@@ -472,6 +473,7 @@ module Tyto
         has_many :assignments
         has_many :invites
         belongs_to :classroom
+        include BCrypt
       end
 
       def create_student(attrs)
@@ -559,6 +561,7 @@ module Tyto
         has_many :assignments
         has_many :classrooms
         has_many :invites
+        include BCrypt
       end
 
       def create_teacher(attrs)
