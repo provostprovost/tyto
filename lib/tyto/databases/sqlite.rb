@@ -11,6 +11,10 @@ module Tyto
         ActiveRecord::Base.establish_connection(dbconfig["test"])
       end
 
+      def seed_database
+        require_relative '../../../db/seeds.rb'
+      end
+
       def clear_everything
         Assignment.delete_all
         Chapter.delete_all

@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :students, :teachers
   resources :sessions, only: [:new, :create, :destroy]
   resources :questions
+  resources :courses
+  resources :chapters
 
   root 'static_pages#home'
 
