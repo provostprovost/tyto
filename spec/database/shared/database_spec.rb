@@ -227,7 +227,6 @@ shared_examples_for "a database" do
 
   describe 'Responses' do
     before do
-      db.clear_everything
       @student = db.create_student({username: "Brian",
                                     password: "1234",
                                     email: "fake@email.com",
@@ -260,6 +259,25 @@ shared_examples_for "a database" do
                                       chapter_id: @chapter.id)
 
     end
+
+    it "updates the current assignment question and gets it" do
+      last = db.update_last_question(question_id: @question.id,
+                              student_id: @student.id,
+                              assignment_id: @assignment.id)
+      expect(last.id).to eq(@question.id)
+      last_two = db.get_last_question(student_id: @student.id,
+                                  assignment_id: @assignment.id)
+      expect(last_two.id).to eq(@question.id)
+      db.update_last_question(question_id: @question_two.id,
+                              student_id: @student.id,
+                              assignment_id: @assignment.id)
+      last = db.get_last_question(student_id: @student.id,
+                                  assignment_id: @assignment.id)
+      expect(last.id).to eq(@question.id)
+
+    end
+
+
     it "creates a response" do
       expect(@response.correct).to eq(true)
       expect(@response.question_id).to eq(@question.id)

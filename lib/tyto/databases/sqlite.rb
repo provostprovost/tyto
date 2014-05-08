@@ -315,14 +315,17 @@ module Tyto
         questions = Question.where(chapter_id: chapter_id)
         return nil if questions.last == nil
         responses = Response.where(student_id: student_id, chapter_id: chapter_id)
-        return nil if responses.last == nil
         unanswered = []
-        questions.each do |x|
-          answered = false
-          responses.each do |y|
-            answered=true if x.id==y.question_id
+        if responses != []
+          questions.each do |x|
+            answered = false
+            responses.each do |y|
+              answered=true if x.id==y.question_id
+            end
+            unanswered.push(x) if answered == false
           end
-          unanswered.push(x) if answered == false
+        else
+          unanswered = questions
         end
           if proficiency < 40
             level = 1
@@ -339,6 +342,31 @@ module Tyto
           end
           index = rand(0...questions.length)
           return get_question(questions[index].id)
+      end
+
+      class UsersQuestions < ActiveRecord::Base
+        belongs_to :student
+        belongs_to :assignment
+        belongs_to :chapter
+        belongs_to :question
+      end
+
+      def get_last_question(attrs)
+        last = UsersQuestions.find_by(attrs)
+        return nil if last == nil
+        question = get_question(last.question_id)
+      end
+
+      def update_last_question(attrs)
+        last = UsersQuestions.find_by(attrs)
+        if last == nil
+          last = UsersQuestions.create(attrs)
+          question = get_question(last.question_id)
+        else
+          last.question_id = attrs[:question_id]
+          last.save
+          question = get_question(last.question_id)
+        end
       end
 
       #############
