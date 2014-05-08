@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   match '/studentsignup', to: 'students#new', via: 'get'
 
   match '/signin', to: 'sessions#new', via: 'get'
+
+  match '/signout', to: 'sessions#destroy', via: 'delete'
 end

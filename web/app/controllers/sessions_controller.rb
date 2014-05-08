@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
   def create
     result = Tyto::SignIn.run(params)
     if result.success?
+      cookies.permanent[:remember_token] = result.session_id
       if params[:teacher]
         redirect_to "/teachers/#{result.user.id}"
       else
