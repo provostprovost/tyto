@@ -118,8 +118,8 @@ module Tyto
 
       end
 
-      def get_invite_by_email_and_code(email, code)
-        invite = Invite.find_by(email: email, code: code)
+      def get_invite_from_email_and_code(email, code)
+        invite = Invite.where(email: email, code: code).last
         return nil if invite == nil
         Tyto::Invite.new(id:           invite.id,
                          email:        invite.email,

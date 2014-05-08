@@ -4,3 +4,4 @@ module Tyto
     validates_presence_of :id, :name
   end
 end
+
