@@ -74,9 +74,9 @@ module Tyto
         Assignment.destroy(id)
       end
 
-      ###############
+      ###########
       # Invites #
-      ###############
+      ###########
 
       class Invite < ActiveRecord::Base
         belongs_to :teacher
@@ -308,7 +308,6 @@ module Tyto
       end
 
       def get_next_question(proficiency, student_id, chapter_id)
-        ##SHORTEN THIS METHOD ##
         questions = Question.where(chapter_id: chapter_id)
         return nil if questions.last == nil
         responses = Response.where(student_id: student_id, chapter_id: chapter_id)
@@ -337,7 +336,6 @@ module Tyto
           index = rand(0...questions.length)
           return get_question(questions[index].id)
       end
-
 
       #############
       # Responses #
