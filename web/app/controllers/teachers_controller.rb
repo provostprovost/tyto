@@ -14,6 +14,8 @@ class TeachersController < ApplicationController
 
   def show
     @teacher = Tyto.db.get_teacher(params[:id])
+    @classrooms = Tyto::Database::SQLite::Teacher.find_by(id: @teacher.id).classrooms
+
   end
 
   private
