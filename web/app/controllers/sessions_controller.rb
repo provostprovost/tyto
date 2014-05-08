@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
         redirect_to "/students/#{result.user.id}"
       end
     else
-      flash.now[:error] =
+      flash.now[:error] = result.error
       render 'new'
     end
   end
