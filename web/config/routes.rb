@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :students, :teachers
+  resources :sessions, only: [:new, :create, :destroy]
 
   root 'static_pages#home'
 
@@ -9,4 +10,5 @@ Rails.application.routes.draw do
 
   match '/studentsignup', to: 'students#new', via: 'get'
 
+  match '/signin', to: 'sessions#new', via: 'get'
 end

@@ -1,0 +1,12 @@
+<%= form_tag('/sessions', method: 'post') do %>
+  <%= label_tag(:email, "Email address:") %>
+  <%= text_field_tag(:email) %>
+
+  <%= label_tag(:password, "Password:") %>
+  <%= password_field_tag(:password) %>
+
+  <%= label_tag(:teacher, "Teacher sign in:") %>
+  <%= check_box_tag(:teacher) %>
+
+  <%= submit_tag "Sign in", class: "btn btn-large btn-primary" %>
+<% end %>

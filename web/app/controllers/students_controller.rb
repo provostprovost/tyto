@@ -3,7 +3,7 @@ class StudentsController < ApplicationController
   end
 
   def create
-    @student = Tyto.db.create_student(params)
+    @student = Tyto::StudentSignUp.run(params).student
     redirect_to "/students/#{@student.id}"
   end
 
