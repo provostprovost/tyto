@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
   def create
     result = Tyto::SignIn.run(params)
     if result.success?
+      session[:app_session_id] = result.session_id
       if params[:teacher]
         redirect_to "/teachers/#{result.user.id}"
       else
@@ -17,5 +18,7 @@ class SessionsController < ApplicationController
   end
 
   def delete
+    Tyto.db.delete_session(session[:app_session_id])
+    redirect_to root_url
   end
 end

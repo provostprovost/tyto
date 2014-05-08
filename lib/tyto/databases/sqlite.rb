@@ -1,6 +1,6 @@
 require "active_record"
 require "yaml"
-require 'pry-debugger'
+# require 'pry-debugger'
 require 'bcrypt'
 
 module Tyto
@@ -74,9 +74,9 @@ module Tyto
         Assignment.destroy(id)
       end
 
-      ###############
+      ###########
       # Invites #
-      ###############
+      ###########
 
       class Invite < ActiveRecord::Base
         belongs_to :teacher
