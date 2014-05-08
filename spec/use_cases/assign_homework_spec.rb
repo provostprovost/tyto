@@ -21,6 +21,8 @@ describe Tyto::AssignHomework do
                                         name: "Period 1" )
     @chapter = Tyto.db.create_chapter(parent_id: @course.id, name: "Cool Chapter")
     @session = Tyto.db.create_session(teacher_id: @teacher.id)
+    @question = Tyto.db.create_question( level: 1, question: "2+2",
+                                      answer: "4", chapter_id: @chapter.id)
 
   end
 

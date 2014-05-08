@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507202146) do
+ActiveRecord::Schema.define(version: 20140508125819) do
 
   create_table "assignments", force: true do |t|
     t.integer  "student_id"
@@ -102,6 +102,15 @@ ActiveRecord::Schema.define(version: 20140507202146) do
     t.string   "password_digest"
     t.string   "email"
     t.string   "phone_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users_questions", force: true do |t|
+    t.integer  "chapter_id"
+    t.integer  "student_id"
+    t.integer  "question_id"
+    t.integer  "assignment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

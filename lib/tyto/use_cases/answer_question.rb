@@ -10,10 +10,11 @@ module Tyto
 
       return failure :assignment_not_found if assignment.nil?
       return failure :assignment_not_valid if assignment.student_id != student.id
+      question = Tyto.db.get_last_question(assignment_id: assignment.id,
+                                           student_id: student.id
+                                                        )
 
-      question = Tyto.db.get_question(inputs[:question_id])
-
-      return failure :question_not_found if question.nil?
+      # return failure :question_not_found if question.nil?
 
       response = Tyto.db.create_response( question_id: question.id,
                                           student_id:  student.id,
@@ -21,15 +22,16 @@ module Tyto
                                           difficult: inputs[:difficult],
                                           correct: check_answer(question.id, inputs[:answer]),
                                           chapter_id: assignment.chapter_id )
-
       next_question = Tyto.db.get_next_question(  response.proficiency,
                                                   student.id,
                                                   assignment.chapter_id)
+      Tyto.db.update_last_question(question_id: next_question.id,
+                              student_id: student.id,
+                              assignment_id: assignment.id)
 
       questions_completed = Tyto.db.get_responses_for_assignment(assignment.id)
 
       number_answered = questions_completed.size
-
       complete = number_answered >= assignment.assignment_size
 
       success :response => response,

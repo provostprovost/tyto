@@ -18,12 +18,28 @@ describe Tyto::AnswerQuestion do
                                               classroom_id: 1,
                                               teacher_id: 1,
                                               assignment_size: 10)
+    @assignment1 = Tyto.db.create_assignment( student_id: @student.id,
+                                              chapter_id: @chapter.id,
+                                              classroom_id: 1,
+                                              teacher_id: 1,
+                                              assignment_size: 1)
     @session = Tyto.db.create_session(student_id: @student.id)
+               Tyto.db.update_last_question(question_id: @question.id,
+                                            student_id: @student.id,
+                                            assignment_id: @assignment.id)
+               Tyto.db.update_last_question(question_id: @question.id,
+                                            student_id: @student.id,
+                                            assignment_id: @assignment1.id)
+    10.times do
+      Tyto.db.create_question(level: 1,
+                              question: "What's up kool guy?",
+                              answer: "NM here",
+                              chapter_id: @chapter.id)
+    end
   end
 
   it "returns an error if session is not valid" do
-    result = subject.run( question_id: @question.id,
-                          answer: "NM here",
+    result = subject.run( answer: "NM here",
                           assignment_id: @assignment.id,
                           session_id: 999999,
                           difficult: false )
@@ -32,8 +48,7 @@ describe Tyto::AnswerQuestion do
   end
 
   it "returns an error if assignment is not found" do
-    result = subject.run( question_id: @question.id,
-                          answer: "NM here",
+    result = subject.run( answer: "NM here",
                           assignment_id: 99999,
                           session_id: @session.id,
                           difficult: false )
@@ -47,21 +62,11 @@ describe Tyto::AnswerQuestion do
                                                   classroom_id: 1,
                                                   teacher_id: 1,
                                                   assignment_size: 10)
-    result = subject.run( question_id: @question.id,
-                          answer: "NM here",
+    result = subject.run( answer: "NM here",
                           assignment_id: other_assignment.id,
                           session_id: @session.id,
                           difficult: false )
     expect(result.error).to eq :assignment_not_valid
-  end
-
-  it "returns an error if question does not exist" do
-    result = subject.run( question_id: 999999,
-                          answer: "NM here",
-                          assignment_id: @assignment.id,
-                          session_id: @session.id,
-                          difficult: false )
-    expect(result.error).to eq :question_not_found
   end
 
   it "check answer method checks answer!" do
@@ -74,8 +79,7 @@ describe Tyto::AnswerQuestion do
 
   describe "with correct inputs" do
     before do
-      @result = subject.run( question_id: @question.id,
-                            answer: "NM here",
+      @result = subject.run(answer: "NM here",
                             assignment_id: @assignment.id,
                             session_id: @session.id,
                             difficult: false )
@@ -93,14 +97,7 @@ describe Tyto::AnswerQuestion do
     end
 
     it "returns the next question" do
-      10.times do
-        Tyto.db.create_question(  level: 1,
-                                  question: "What's up kool guy?",
-                                  answer: "NM here",
-                                  chapter_id: @chapter.id)
-      end
-      result = subject.run( question_id: @question.id,
-                            answer: "NM here",
+      result = subject.run( answer: "NM here",
                             assignment_id: @assignment.id,
                             session_id: @session.id,
                             difficult: false )
@@ -114,24 +111,17 @@ describe Tyto::AnswerQuestion do
     end
 
     it "returns complete=true if assignment is finished" do
-      assignment1 = Tyto.db.create_assignment(  student_id: @student.id,
-                                                chapter_id: @chapter.id,
-                                                classroom_id: 1,
-                                                teacher_id: 1,
-                                                assignment_size: 1)
-      @result = subject.run( question_id: @question.id,
-                            answer: "NM here",
-                            assignment_id: assignment1.id,
+      result = subject.run(answer: "NM here",
+                            assignment_id: @assignment1.id,
                             session_id: @session.id,
                             difficult: false )
-      expect(@result.complete).to eq true
+      expect(result.complete).to eq true
     end
 
     it "keeps track of number of questions completed" do
       expect(@result.number_answered).to eq 1
 
-      result1 = subject.run( question_id: @question.id,
-                            answer: "chilling bro",
+      result1 = subject.run(answer: "chilling bro",
                             assignment_id: @assignment.id,
                             session_id: @session.id,
                             difficult: false )
