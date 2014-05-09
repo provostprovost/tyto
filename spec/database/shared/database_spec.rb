@@ -47,11 +47,13 @@ shared_examples_for "a database" do
 
   describe 'Assignments' do
     before do
+      @chapter = db.create_chapter(parent_id: 1, name: "Cool Chapter")
       @assignment = db.create_assignment( student_id: 1,
-                                          chapter_id: 1,
+                                          chapter_id: @chapter.id,
                                           classroom_id: 1,
                                           teacher_id: 1,
-                                          assignment_size: 10)
+                                          assignment_size: 10
+                          )
     end
 
     it "creates an assignment" do

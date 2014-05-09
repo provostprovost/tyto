@@ -73,10 +73,10 @@ section3 = Tyto.db.create_chapter(parent_id: chapter1.id, name: "1.3")
 section4 = Tyto.db.create_chapter(parent_id: chapter2.id, name: "2.1")
 section5 = Tyto.db.create_chapter(parent_id: chapter2.id, name: "2.2")
 section6 = Tyto.db.create_chapter(parent_id: chapter2.id, name: "2.3")
-
+question = nil
 subtopics = [section1, section2, section3, section1, section2, section3]
 subtopics.each do |x|
- Tyto.db.create_question(level: 1, question: "1+1",
+ question = Tyto.db.create_question(level: 1, question: "1+1",
                               answer: "2", chapter_id: x.id)
  Tyto.db.create_question(level: 1, question: "1+2",
                               answer: "3", chapter_id: x.id)
@@ -187,4 +187,10 @@ assignment6 = Tyto.db.create_assignment(student_id: student1.id,
                                         teacher_id: teacher1.id,
                                         classroom_id: classroom1.id,
                                         assignment_size: 5 )
+[assignment1, assignment4, assignment5, assignment6].each do |x|
+    Tyto.db.update_last_question(question_id: question.id,
+                              student_id: student1.id,
+                              assignment_id: x.id)
+
+end
 
