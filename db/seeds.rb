@@ -187,4 +187,9 @@ assignment6 = Tyto.db.create_assignment(student_id: student1.id,
                                         teacher_id: teacher1.id,
                                         classroom_id: classroom1.id,
                                         assignment_size: 5 )
-
+[assignment1, assignment2, assignment3, assignment4, assignment5, assignment6].each do |x|
+    question = Tyto.db.get_next_question(0, student.id, chapter.id)
+    Tyto.db.update_last_question(question_id: question.id,
+                              student_id: x.student_id,
+                              assignment_id: x.id)
+end
