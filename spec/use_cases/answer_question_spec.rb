@@ -118,7 +118,7 @@ describe Tyto::AnswerQuestion do
                             session_id: @session.id,
                             difficult: false )
       expect(result.complete).to eq true
-      expect(result.current_streak).to eq(2)
+      expect(result.current_streak).to eq
       expect(result.longest_streak).to eq(2)
     end
 
