@@ -5,7 +5,9 @@
     <%= classroom.name %>
     <ul>
       <%@students[classroom.id].each do |student|%>
-        <li><%=student.username%></li>
+        <li><%=student.username%> <%= "A+" if student.username[0]==
+        "H"%></li>
+
       <%end%>
     </ul>
   </li>
