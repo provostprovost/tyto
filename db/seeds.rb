@@ -154,4 +154,37 @@ subtopics.each do |x|
 end
 
 
+assignment1 = Tyto.db.create_assignment(student_id: student1.id,
+                                        chapter_id: section1.id,
+                                        teacher_id: teacher1.id,
+                                        classroom_id: classroom1.id,
+                                        assignment_size: 5 )
+assignment2 = Tyto.db.create_assignment(student_id: student2.id,
+                                        chapter_id: section1.id,
+                                        teacher_id: teacher1.id,
+                                        classroom_id: classroom1.id,
+                                        assignment_size: 5 )
+assignment3 = Tyto.db.create_assignment(student_id: student3.id,
+                                        chapter_id: section1.id,
+                                        teacher_id: teacher1.id,
+                                        classroom_id: classroom1.id,
+                                        assignment_size: 5 )
+
+assignment4 = Tyto.db.create_assignment(student_id: student1.id,
+                                        chapter_id: section2.id,
+                                        teacher_id: teacher1.id,
+                                        classroom_id: classroom1.id,
+                                        assignment_size: 5 )
+
+assignment5 = Tyto.db.create_assignment(student_id: student1.id,
+                                        chapter_id: section3.id,
+                                        teacher_id: teacher1.id,
+                                        classroom_id: classroom1.id,
+                                        assignment_size: 5 )
+
+assignment6 = Tyto.db.create_assignment(student_id: student1.id,
+                                        chapter_id: section4.id,
+                                        teacher_id: teacher1.id,
+                                        classroom_id: classroom1.id,
+                                        assignment_size: 5 )
 

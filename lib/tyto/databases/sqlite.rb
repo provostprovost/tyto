@@ -57,7 +57,8 @@ module Tyto
                               teacher_id:   assignment.teacher_id,
                               classroom_id: assignment.classroom_id,
                               assignment_size: assignment.assignment_size,
-                              complete:     assignment.complete )
+                              complete:     assignment.complete,
+                              name:         get_chapter(assignment.chapter_id).name )
       end
 
       def edit_assignment(attrs)
@@ -72,6 +73,11 @@ module Tyto
                               classroom_id: assignment.classroom_id,
                               assignment_size: assignment.assignment_size,
                               complete:     assignment.complete )
+      end
+
+      def get_assignments_for_student(student_id)
+        assignments = Assignment.where(student_id: student_id)
+        assignments.map { |assignment| get_assignment(assignment.id) }
       end
 
       def delete_assignment(id)

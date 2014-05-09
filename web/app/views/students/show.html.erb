@@ -1,1 +1,8 @@
 <%= @student.username %>
+<div class="row assignments">
+  <% @assignments.each do |assignment| %>
+    <div class = "span4">
+      <%= link_to assignment.name, "/assignments/#{assignment.id}" %>
+    </div>
+  <% end %>
+</div>
