@@ -8,6 +8,6 @@ class AssignmentsController < ApplicationController
   end
 
   def show
-
+    @assignment = Tyto.db.get_assignment(params[:id])
   end
 end
