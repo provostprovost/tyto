@@ -1,6 +1,6 @@
 require "active_record"
 require "yaml"
-# require 'pry-debugger'
+require 'pry-debugger'
 require 'bcrypt'
 
 module Tyto
@@ -200,6 +200,7 @@ module Tyto
       end
 
       def create_classroom(attrs)
+        attrs[:course_id] = attrs[:course_id].to_i
         classroom = Classroom.create(attrs)
         Tyto::Classroom.new(  id:         classroom.id,
                               course_id:  classroom.course_id,

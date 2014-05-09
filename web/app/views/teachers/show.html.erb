@@ -1,24 +1,4 @@
-<%= @teacher.username %>
-<ul>
-<% @classrooms.each do |classroom| %>
-  <li>
-    <%= classroom.name %>
-    <ul>
-      <%@students[classroom.id].each do |student|%>
-        <li><%=student.username%> <%= "A+" if student.username[0]==
-        "H"%></li>
-      <%end%>
-      <li> Assignments
-      <ul>
-        <%@assignments[classroom.id].each do |assignment|%>
-          <li><%=assignment.name%></li>
-        <%end%>
-      </ul>
-    </li>
-    </ul>
-    </li>
-<%end%>
-</ul>
+
 
 <%= form_tag('/assignments/create', method: 'post') do %>
   <%= label_tag(:classroom_id, "Classroom Id:") %>
@@ -29,6 +9,16 @@
 
   <%= label_tag(:assignment_size, "Assignment Size:") %>
   <%= text_field_tag(:assignment_size) %>
+
+  <%= submit_tag "Create", class: "btn btn-large btn-primary" %>
+  <% end %>
+
+  <%= form_tag('/classrooms/create', method: 'post') do %>
+
+  <%= label_tag(:name, "Classroom Name:") %>
+  <%= text_field_tag(:name) %>
+  <%= label_tag(:course_id, "Course Id:") %>
+  <%= text_field_tag(:course_id) %>
 
   <%= submit_tag "Create", class: "btn btn-large btn-primary" %>
 <% end %>
