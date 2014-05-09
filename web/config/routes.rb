@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :questions
   resources :courses
   resources :chapters
+  resources :classrooms
   resources :assignments, :as => :tyto_assignments
 
 
@@ -20,4 +21,5 @@ Rails.application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: 'delete'
 
   post '/assignments/create' => 'assignments#create'
+  post '/classrooms/create' => 'classrooms#create'
 end
