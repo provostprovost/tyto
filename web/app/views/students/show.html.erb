@@ -2,7 +2,8 @@
 <div class="row assignments">
   <% @assignments.each do |assignment| %>
     <div class = "span4">
-      <%= link_to assignment.name, "/assignments/#{assignment.id}" %>
+      <%= link_to assignment.name, tyto_assignment_path(assignment.id) %>
+      <%= assignment.assignment_size %> problems
     </div>
   <% end %>
 </div>
