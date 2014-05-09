@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :courses
   resources :chapters
 
+
   root 'static_pages#home'
 
   post '/students', to: 'students#create'
@@ -16,4 +17,6 @@ Rails.application.routes.draw do
   match '/signin', to: 'sessions#new', via: 'get'
 
   match '/signout', to: 'sessions#destroy', via: 'delete'
+
+  post '/assignments/create' => 'assignments#create'
 end

@@ -74,6 +74,19 @@ module Tyto
                               complete:     assignment.complete )
       end
 
+      def get_assignments_for_classroom(classroom_id, student_id)
+        assignments = Assignment.where(classroom_id: classroom_id, student_id: student_id)
+        assignments.map do |assignment|
+          Tyto::Assignment.new( id: assignment.id,
+                              student_id:   assignment.student_id,
+                              chapter_id:   assignment.chapter_id,
+                              teacher_id:   assignment.teacher_id,
+                              classroom_id: assignment.classroom_id,
+                              assignment_size: assignment.assignment_size,
+                              complete:     assignment.complete )
+          end
+      end
+
       def delete_assignment(id)
         Assignment.destroy(id)
       end
