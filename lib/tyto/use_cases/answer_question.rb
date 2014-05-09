@@ -34,10 +34,16 @@ module Tyto
       number_answered = questions_completed.size
       complete = number_answered >= assignment.assignment_size
 
+      longest_streak = Tyto.db.get_longest_streak(student.id, assignment.chapter_id)
+
+      current_streak = Tyto.db.current_chapter_streak(student.id, assignment.chapter_id)
+
       success :response => response,
               :question => next_question,
               :complete => complete,
-              :number_answered => number_answered
+              :number_answered => number_answered,
+              :longest_streak => longest_streak,
+              :current_streak => current_streak
     end
 
     def check_answer(question_id, answer)
