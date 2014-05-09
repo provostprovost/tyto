@@ -1,8 +1,13 @@
 <%= @teacher.username %>
 <ul>
-<% @classrooms.each do |x| %>
+<% @classrooms.each do |classroom| %>
   <li>
-    <%= x.name %>
+    <%= classroom.name %>
+    <ul>
+      <%@students[classroom.id].each do |student|%>
+        <li><%=student.username%></li>
+      <%end%>
+    </ul>
   </li>
 <%end%>
 </ul>
