@@ -1,5 +1,5 @@
 test:
   adapter: sqlite3
   database: ../tyto_test
-  pool: 5
+  pool: 1
   timeout: 5000

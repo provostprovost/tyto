@@ -1,4 +1,5 @@
 /** @jsx React.DOM */
+console.log(document.URL);
 var Question = React.createClass({
   render: function() {
     // get result.question, render it as new question
@@ -29,10 +30,24 @@ var Assignment = React.createClass({
     return {  questionText: "",
               answer: "",
               questionsAnswered: 0,
-              assignmentSize: 5,
+              assignmentSize: 0,
               currentStreak: 0,
-              longestStreak: 5 };
+              longestStreak: 0 };
   },
+
+  componentDidMount: function() {
+    $.get(document.URL, function(result) {
+      this.setState({
+        questionText: result.current_question_text,
+              answer: "",
+              questionsAnswered: result.questions_answered,
+              assignmentSize: result.assignment_size,
+              currentStreak: result.current_streak,
+              longestStreak: result.longest_streak
+      });
+    }.bind(this));
+  },
+
   onChange: function(e) {
     this.setState({ answer: e.target.value });
   },
@@ -54,3 +69,13 @@ var Assignment = React.createClass({
     // );
   }
 });
+
+
+React.renderComponent(
+  <Assignment />,
+  mountNode
+);
+
+
+
+
