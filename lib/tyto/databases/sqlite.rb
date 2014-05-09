@@ -208,9 +208,6 @@ module Tyto
       def edit_classroom(attrs)
       end
 
-      def get_students_in_class(classroom_id)
-      end
-
       def delete_classroom(id)
         Classroom.destroy(id)
       end
@@ -233,7 +230,8 @@ module Tyto
       end
 
       def get_classrooms_for_teacher(teacher_id)
-        Teacher.find_by(id: teacher_id).classrooms
+        classrooms = Teacher.find_by(id: teacher_id).classrooms
+        classrooms.map { |classroom| get_classroom(classroom.id) }
       end
 
       ###########
