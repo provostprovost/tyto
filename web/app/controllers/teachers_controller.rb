@@ -1,4 +1,4 @@
-require 'pry-debugger'
+require "pry-debugger"
 
 class TeachersController < ApplicationController
   def new
@@ -15,7 +15,12 @@ class TeachersController < ApplicationController
   end
 
   def show
-
+    @teacher = Tyto.db.get_teacher(params[:id])
+    @classrooms = Tyto.db.get_classrooms_for_teacher(params[:id])
+    @students = {}
+    @classrooms.each do |classroom|
+      @students[classroom.id] = Tyto.db.get_students_in_classroom(classroom.id)
+    end
   end
 
   private
