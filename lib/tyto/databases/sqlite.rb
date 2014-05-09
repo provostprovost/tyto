@@ -51,6 +51,8 @@ module Tyto
       def get_assignment(id)
         assignment = Assignment.find_by(:id => id)
         return nil if assignment == nil
+        current_question = get_last_question(student_id: assignment.student_id, assignment_id: assignment.id)
+        question_text = current_question.question unless current_question.nil?
         Tyto::Assignment.new( id: assignment.id,
                               student_id:   assignment.student_id,
                               chapter_id:   assignment.chapter_id,
@@ -58,7 +60,11 @@ module Tyto
                               classroom_id: assignment.classroom_id,
                               assignment_size: assignment.assignment_size,
                               complete:     assignment.complete,
-                              name:         get_chapter(assignment.chapter_id).name )
+                              name:         get_chapter(assignment.chapter_id).name,
+                              questions_answered: get_responses_for_assignment(assignment.id).count,
+                              current_streak: current_chapter_streak(assignment.student_id, assignment.chapter_id),
+                              longest_streak: get_longest_streak(assignment.student_id, assignment.chapter_id),
+                              current_question_text: question_text )
       end
 
       def edit_assignment(attrs)
