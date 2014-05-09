@@ -1,5 +1,3 @@
-require "pry-debugger"
-
 class TeachersController < ApplicationController
   def new
   end
