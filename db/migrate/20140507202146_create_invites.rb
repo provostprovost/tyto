@@ -1,5 +1,6 @@
 class CreateInvites < ActiveRecord::Migration
   def change
+    drop_table :invites
     create_table :invites do |t|
       t.references :teacher
       t.string :email
