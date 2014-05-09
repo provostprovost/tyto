@@ -59,7 +59,7 @@ shared_examples_for "a database" do
     it "creates an assignment" do
       expect(@assignment).to be_a Tyto::Assignment
       expect(@assignment.student_id).to eq 1
-      expect(@assignment.chapter_id).to eq 1
+      expect(@assignment.chapter_id).to eq @chapter.id
       expect(@assignment.classroom_id).to eq 1
       expect(@assignment.id).to_not be nil
     end

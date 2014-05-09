@@ -94,6 +94,8 @@ describe Tyto::AnswerQuestion do
       expect(@result.response.assignment_id).to eq @assignment.id
       expect(@result.response.difficult).to eq false
       expect(@result.response.chapter_id).to eq @chapter.id
+      expect(@result.current_streak).to eq(1)
+      expect(@result.longest_streak).to eq(1)
     end
 
     it "returns the next question" do
@@ -116,6 +118,8 @@ describe Tyto::AnswerQuestion do
                             session_id: @session.id,
                             difficult: false )
       expect(result.complete).to eq true
+      expect(result.current_streak).to eq(2)
+      expect(result.longest_streak).to eq(2)
     end
 
     it "keeps track of number of questions completed" do
