@@ -1,3 +1,5 @@
+require 'pry-debugger'
+
 class TeachersController < ApplicationController
   def new
   end
@@ -13,8 +15,6 @@ class TeachersController < ApplicationController
   end
 
   def show
-    @teacher = Tyto.db.get_teacher(params[:id])
-    @classrooms = Tyto.db
 
   end
 
