@@ -232,6 +232,10 @@ module Tyto
         end
       end
 
+      def get_classrooms_for_teacher(teacher_id)
+        Teacher.find_by(id: teacher_id).classrooms
+      end
+
       ###########
       # Courses #
       ###########
