@@ -39,7 +39,6 @@ var Assignment = React.createClass({
 
   componentDidMount: function() {
     $.getJSON(document.URL, function(result) {
-      console.log(result);
       this.setState({
         questionText: result.current_question_text,
               answer: "",
@@ -68,7 +67,14 @@ var Assignment = React.createClass({
   },
   render: function() {
     return (
-      <p> whats good brian </p>
+      <div>
+        <h3>Answer Question</h3>
+        {this.state.questionText}
+        <form onSubmit={this.handleSubmit}>
+          <input onChange={this.onChange} value={this.state.answer} />
+          <button>Submit Son</button>
+        </form>
+      </div>
     );
   }
 });
