@@ -1,4 +1,5 @@
 /** @jsx React.DOM */
+$(function() {
 console.log(document.URL);
 var Question = React.createClass({
   render: function() {
@@ -73,8 +74,9 @@ var Assignment = React.createClass({
 
 React.renderComponent(
   <Assignment />,
-  mountNode
+  document.getElementById('content')
 );
+});
 
 
 
