@@ -1,6 +1,5 @@
 /** @jsx React.DOM */
 $(function() {
-console.log(document.URL);
 var Question = React.createClass({
   render: function() {
     // get result.question, render it as new question
@@ -39,7 +38,8 @@ var Assignment = React.createClass({
   },
 
   componentDidMount: function() {
-    $.get(document.URL, function(result) {
+    $.getJSON(document.URL, function(result) {
+      console.log(result);
       this.setState({
         questionText: result.current_question_text,
               answer: "",
