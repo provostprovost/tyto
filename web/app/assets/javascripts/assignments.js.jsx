@@ -4,9 +4,9 @@ console.log(document.URL);
 var Question = React.createClass({
   render: function() {
     // get result.question, render it as new question
-    // return (
-
-    // );
+    return (
+      <p> whats good brian </p>
+    );
   }
 });
 
@@ -14,15 +14,17 @@ var Question = React.createClass({
 console.log("hello");
 var Progress = React.createClass({
   render: function() {
-    // return (
-
-    // );
+    return (
+      <p> whats good brian </p>
+    );
   }
 });
 
 var Streaks = React.createClass({
   render: function() {
-
+    return (
+      <p> whats good brian </p>
+    );
   }
 });
 
@@ -65,9 +67,9 @@ var Assignment = React.createClass({
                     longestStreak: nextLongestStreak });
   },
   render: function() {
-    // return (
-
-    // );
+    return (
+      <p> whats good brian </p>
+    );
   }
 });
 
