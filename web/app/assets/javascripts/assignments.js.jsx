@@ -55,15 +55,7 @@ var Assignment = React.createClass({
   },
   handleSubmit: function(e) {
     e.preventDefault();
-    var nextQuestionText = "";//get next question
-    var nextQuestionsAnswered = 1;//get next questions answered
-    var nextCurrentStreak = 2;//get current streak
-    var nextLongestStreak = 3;//get longest streak
-    this.setState({ questionText: nextQuestionText,
-                    answer: "",
-                    questionsAnswered: nextQuestionsAnswered,
-                    currentStreak: nextCurrentStreak,
-                    longestStreak: nextLongestStreak });
+
   },
   render: function() {
     return (
@@ -82,7 +74,7 @@ var Assignment = React.createClass({
 
 React.renderComponent(
   <Assignment />,
-  document.getElementById('content')
+  document.getElementById('question')
 );
 });
 
