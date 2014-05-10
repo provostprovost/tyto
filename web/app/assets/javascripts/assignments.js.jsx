@@ -10,7 +10,7 @@ var Question = React.createClass({
 });
 
 // proficiency array for D3
-
+console.log("hello");
 var Progress = React.createClass({
   render: function() {
     // return (
