@@ -8,5 +8,9 @@ class AssignmentsController < ApplicationController
 
   def show
     @assignment = Tyto.db.get_assignment(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render json: @assignment }
+    end
   end
 end
