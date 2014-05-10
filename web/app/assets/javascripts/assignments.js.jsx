@@ -29,7 +29,8 @@ var Streaks = React.createClass({
 
 var Assignment = React.createClass({
   getInitialState: function() {
-    return {  questionText: "",
+    return {  id: 0,
+              questionText: "",
               answer: "",
               questionsAnswered: 0,
               assignmentSize: 0,
@@ -40,7 +41,8 @@ var Assignment = React.createClass({
   componentDidMount: function() {
     $.getJSON(document.URL, function(result) {
       this.setState({
-        questionText: result.current_question_text,
+              id: result.id,
+              questionText: result.current_question_text,
               answer: "",
               questionsAnswered: result.questions_answered,
               assignmentSize: result.assignment_size,
@@ -55,7 +57,33 @@ var Assignment = React.createClass({
   },
   handleSubmit: function(e) {
     e.preventDefault();
-
+    params = {answer: this.state.answer,
+              assignment_id: this.state.id};
+    //           questionText: result.question.question
+    //           // answer: "",
+    //           // questionsAnswered: result.number_answered,
+    //           // currentStreak: result.current_streak,
+    //           // longestStreak: result.longest_streak
+    //   });
+    // });
+      $.ajax({
+        url: '/responses/create',
+        dataType: 'json',
+        type: 'POST',
+        data: params,
+        success: function(data) {
+          result = data.table
+          this.setState({questionText: result.question.question,
+                         answer: "",
+                         questionsAnswered: result.number_answered,
+                         currentStreak: result.current_streak,
+                         longestStreak: result.longest_streak
+          });
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error(this.props.url, status, err.toString());
+        }.bind(this)
+      });
   },
   render: function() {
     return (
@@ -64,7 +92,7 @@ var Assignment = React.createClass({
         {this.state.questionText}
         <form onSubmit={this.handleSubmit}>
           <input onChange={this.onChange} value={this.state.answer} />
-          <button>Submit Son</button>
+          <button>Submit</button>
         </form>
       </div>
     );
