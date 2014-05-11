@@ -65,7 +65,7 @@ module Tyto
                               current_streak: current_chapter_streak(assignment.student_id, assignment.chapter_id),
                               longest_streak: get_longest_streak(assignment.student_id, assignment.chapter_id),
                               current_question_text: question_text,
-                              proficiency: get_last_proficiency_score(assignment.student_id, assignment.chapter_id) )
+                              proficiencies: get_responses_for_assignment(id).map { |response| response.proficiency} )
       end
 
       def edit_assignment(attrs)
@@ -424,7 +424,7 @@ module Tyto
       end
 
       def get_responses_for_assignment(assignment_id)
-        Response.where(assignment_id: assignment_id)
+        Response.where(assignment_id: assignment_id).order(:created_at)
       end
 
       ##############
