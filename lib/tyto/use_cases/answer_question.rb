@@ -7,13 +7,11 @@ module Tyto
 
       student = Tyto.db.get_student(session.student_id)
       assignment = Tyto.db.get_assignment(inputs[:assignment_id])
-
       return failure :assignment_not_found if assignment.nil?
       return failure :assignment_not_valid if assignment.student_id != student.id
       question = Tyto.db.get_last_question(assignment_id: assignment.id,
                                            student_id: student.id
                                                         )
-
       # return failure :question_not_found if question.nil?
 
       response = Tyto.db.create_response( question_id: question.id,

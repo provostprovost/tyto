@@ -19,7 +19,6 @@ class TeachersController < ApplicationController
     @students = {}
     @classrooms.each do |classroom|
       @students[classroom.id] = Tyto.db.get_students_in_classroom(classroom.id)
-      end
     end
   end
 

@@ -35,11 +35,15 @@ var Assignment = React.createClass({
               questionsAnswered: 0,
               assignmentSize: 0,
               currentStreak: 0,
-              longestStreak: 0 };
+              longestStreak: 0,
+              proficiency:0,
+              questionLevel:1,
+                     };
   },
 
   componentDidMount: function() {
     $.getJSON(document.URL, function(result) {
+      console.log(result)
       this.setState({
               id: result.id,
               questionText: result.current_question_text,
@@ -47,7 +51,8 @@ var Assignment = React.createClass({
               questionsAnswered: result.questions_answered,
               assignmentSize: result.assignment_size,
               currentStreak: result.current_streak,
-              longestStreak: result.longest_streak
+              longestStreak: result.longest_streak,
+              proficiency: result.proficiency
       });
     }.bind(this));
   },
@@ -58,14 +63,7 @@ var Assignment = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
     params = {answer: this.state.answer,
-              assignment_id: this.state.id};
-    //           questionText: result.question.question
-    //           // answer: "",
-    //           // questionsAnswered: result.number_answered,
-    //           // currentStreak: result.current_streak,
-    //           // longestStreak: result.longest_streak
-    //   });
-    // });
+              assignment_id: this.state.id}
       $.ajax({
         url: '/responses/create',
         dataType: 'json',
@@ -77,7 +75,9 @@ var Assignment = React.createClass({
                          answer: "",
                          questionsAnswered: result.number_answered,
                          currentStreak: result.current_streak,
-                         longestStreak: result.longest_streak
+                         longestStreak: result.longest_streak,
+                         proficiency: result.response.proficiency,
+                         questionLevel: result.question.level,
           });
         }.bind(this),
         error: function(xhr, status, err) {
@@ -88,8 +88,11 @@ var Assignment = React.createClass({
   render: function() {
     return (
       <div>
-        <h3>Answer Question</h3>
-        {this.state.questionText}
+         Current Streak: {this.state.currentStreak}<br></br>
+         Longest Streak: {this.state.longestStreak}<br></br>
+         Proficiency: {this.state.proficiency} <br></br>
+         Level: {this.state.questionLevel}<br></br>
+        Current Question: {this.state.questionText}
         <form onSubmit={this.handleSubmit}>
           <input onChange={this.onChange} value={this.state.answer} />
           <button>Submit</button>
