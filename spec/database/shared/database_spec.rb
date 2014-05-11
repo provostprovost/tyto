@@ -275,7 +275,7 @@ shared_examples_for "a database" do
                               assignment_id: @assignment.id)
       last = db.get_last_question(student_id: @student.id,
                                   assignment_id: @assignment.id)
-      expect(last.id).to eq(@question.id)
+      expect(last.id).to eq(@question_two.id)
 
     end
 
