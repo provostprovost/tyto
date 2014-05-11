@@ -28,6 +28,7 @@ module Tyto
                               assignment_id: assignment.id)
 
       questions_completed = Tyto.db.get_responses_for_assignment(assignment.id)
+      proficiencies = questions_completed.map { |response| response.proficiency}
 
       number_answered = questions_completed.size
       complete = number_answered >= assignment.assignment_size
@@ -42,7 +43,7 @@ module Tyto
               :number_answered => number_answered,
               :longest_streak => longest_streak,
               :current_streak => current_streak,
-              :assignment => Tyto.db.get_assignment(inputs[:assignment_id])
+              :proficiencies => proficiencies
     end
 
     def check_answer(question_id, answer)
