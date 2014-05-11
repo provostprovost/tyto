@@ -65,7 +65,7 @@ module Tyto
                               current_streak: current_chapter_streak(assignment.student_id, assignment.chapter_id),
                               longest_streak: get_longest_streak(assignment.student_id, assignment.chapter_id),
                               current_question_text: question_text,
-                              proficiency: get_last_proficiency_score(assignment.student_id, assignment.chapter_id) )
+                              proficiency: get_last_proficiency_score(assignment.student_id, assignment.chapter_id, true) )
       end
 
       def edit_assignment(attrs)
@@ -448,10 +448,11 @@ module Tyto
         proficiency_score
       end
 
-      def get_last_proficiency_score(student_id, chapter_id)
-        response = Response.where(student_id: student_id, chapter_id: chapter_id)
-        return 0 if response.last == nil
-        response = response.last(2)[0]
+      def get_last_proficiency_score(student_id, chapter_id, actual=nil)
+        responses = Response.where(student_id: student_id, chapter_id: chapter_id)
+        return 0 if responses.last == nil
+        response = responses.last(2)[0]
+        response = responses.last if actual != nil
         if response.proficiency != nil
           return response.proficiency
         else
