@@ -11,7 +11,8 @@ module Tyto
                 :questions_answered,
                 :current_streak,
                 :longest_streak,
-                :current_question_text
+                :current_question_text,
+                :proficiency
     validates_presence_of :id, :student_id, :chapter_id, :classroom_id, :assignment_size, :teacher_id
   end
 end

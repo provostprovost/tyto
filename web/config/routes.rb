@@ -22,4 +22,5 @@ Rails.application.routes.draw do
 
   post '/assignments/create' => 'assignments#create'
   post '/classrooms/create' => 'classrooms#create'
+  post '/responses/create' => 'responses#create'
 end

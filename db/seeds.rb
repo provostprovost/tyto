@@ -1,10 +1,4 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+
 Tyto.db.clear_everything
 
 teacher1 = Tyto.db.create_teacher(username: "Brian Provost",
@@ -74,7 +68,7 @@ section4 = Tyto.db.create_chapter(parent_id: chapter2.id, name: "2.1")
 section5 = Tyto.db.create_chapter(parent_id: chapter2.id, name: "2.2")
 section6 = Tyto.db.create_chapter(parent_id: chapter2.id, name: "2.3")
 question = nil
-subtopics = [section1, section2, section3, section1, section2, section3]
+subtopics = [section1, section2, section3, section4, section5, section6]
 subtopics.each do |x|
  question = Tyto.db.create_question(level: 1, question: "1+1",
                               answer: "2", chapter_id: x.id)
@@ -191,6 +185,5 @@ assignment6 = Tyto.db.create_assignment(student_id: student1.id,
     Tyto.db.update_last_question(question_id: question.id,
                               student_id: student1.id,
                               assignment_id: x.id)
-
 end
 

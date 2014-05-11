@@ -64,7 +64,8 @@ module Tyto
                               questions_answered: get_responses_for_assignment(assignment.id).count,
                               current_streak: current_chapter_streak(assignment.student_id, assignment.chapter_id),
                               longest_streak: get_longest_streak(assignment.student_id, assignment.chapter_id),
-                              current_question_text: question_text )
+                              current_question_text: question_text,
+                              proficiency: get_last_proficiency_score(assignment.student_id, assignment.chapter_id) )
       end
 
       def edit_assignment(attrs)
@@ -378,7 +379,7 @@ module Tyto
       end
 
       def update_last_question(attrs)
-        last = UsersQuestions.find_by(attrs)
+        last = UsersQuestions.find_by(student_id: attrs[:student_id], assignment_id: attrs[:assignment_id])
         if last == nil
           last = UsersQuestions.create(attrs)
           question = get_question(last.question_id)

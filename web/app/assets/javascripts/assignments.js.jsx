@@ -29,23 +29,30 @@ var Streaks = React.createClass({
 
 var Assignment = React.createClass({
   getInitialState: function() {
-    return {  questionText: "",
+    return {  id: 0,
+              questionText: "",
               answer: "",
               questionsAnswered: 0,
               assignmentSize: 0,
               currentStreak: 0,
-              longestStreak: 0 };
+              longestStreak: 0,
+              proficiency:0,
+              questionLevel:1,
+                     };
   },
 
   componentDidMount: function() {
     $.getJSON(document.URL, function(result) {
+      console.log(result)
       this.setState({
-        questionText: result.current_question_text,
+              id: result.id,
+              questionText: result.current_question_text,
               answer: "",
               questionsAnswered: result.questions_answered,
               assignmentSize: result.assignment_size,
               currentStreak: result.current_streak,
-              longestStreak: result.longest_streak
+              longestStreak: result.longest_streak,
+              proficiency: result.proficiency
       });
     }.bind(this));
   },
@@ -55,16 +62,40 @@ var Assignment = React.createClass({
   },
   handleSubmit: function(e) {
     e.preventDefault();
-
+    params = {answer: this.state.answer,
+              assignment_id: this.state.id}
+      $.ajax({
+        url: '/responses/create',
+        dataType: 'json',
+        type: 'POST',
+        data: params,
+        success: function(data) {
+          result = data.table
+          this.setState({questionText: result.question.question,
+                         answer: "",
+                         questionsAnswered: result.number_answered,
+                         currentStreak: result.current_streak,
+                         longestStreak: result.longest_streak,
+                         proficiency: result.response.proficiency,
+                         questionLevel: result.question.level,
+          });
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error(this.props.url, status, err.toString());
+        }.bind(this)
+      });
   },
   render: function() {
     return (
       <div>
-        <h3>Answer Question</h3>
-        {this.state.questionText}
+         Current Streak: {this.state.currentStreak}<br></br>
+         Longest Streak: {this.state.longestStreak}<br></br>
+         Proficiency: {this.state.proficiency} <br></br>
+         Level: {this.state.questionLevel}<br></br>
+        Current Question: {this.state.questionText}
         <form onSubmit={this.handleSubmit}>
           <input onChange={this.onChange} value={this.state.answer} />
-          <button>Submit Son</button>
+          <button>Submit</button>
         </form>
       </div>
     );
