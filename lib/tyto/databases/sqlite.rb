@@ -350,7 +350,6 @@ module Tyto
         else
           unanswered = questions
         end
-
           if proficiency < 40
             level = 1
           elsif proficiency < 60
