@@ -53,6 +53,7 @@ module Tyto
         return nil if assignment == nil
         current_question = get_last_question(student_id: assignment.student_id, assignment_id: assignment.id)
         question_text = current_question.question unless current_question.nil?
+        question_level = current_question.level unless current_question.nil?
         Tyto::Assignment.new( id: assignment.id,
                               student_id:   assignment.student_id,
                               chapter_id:   assignment.chapter_id,
@@ -65,7 +66,8 @@ module Tyto
                               current_streak: current_chapter_streak(assignment.student_id, assignment.chapter_id),
                               longest_streak: get_longest_streak(assignment.student_id, assignment.chapter_id),
                               current_question_text: question_text,
-                              proficiency: get_last_proficiency_score(assignment.student_id, assignment.chapter_id, true) )
+                              proficiency: get_last_proficiency_score(assignment.student_id, assignment.chapter_id, true),
+                              question_level: question_level  )
       end
 
       def edit_assignment(attrs)
