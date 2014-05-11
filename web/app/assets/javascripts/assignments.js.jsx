@@ -29,15 +29,15 @@ var Streaks = React.createClass({
 
 var Assignment = React.createClass({
   getInitialState: function() {
-    return {  id: 0,
+    return {  id: "",
               questionText: "",
               answer: "",
-              questionsAnswered: 0,
-              assignmentSize: 0,
-              currentStreak: 0,
-              longestStreak: 0,
-              proficiency:0,
-              questionLevel:1,
+              questionsAnswered: "",
+              assignmentSize: "",
+              currentStreak: "",
+              longestStreak: "",
+              proficiency:"",
+              questionLevel:"",
                      };
   },
 
