@@ -350,6 +350,7 @@ module Tyto
         else
           unanswered = questions
         end
+
           if proficiency < 40
             level = 1
           elsif proficiency < 60
@@ -359,12 +360,12 @@ module Tyto
           else
             level = 4
           end
-          questions = unanswered.select{|x| x.level == level}
-          if questions == []
-            return nil
+          selected_questions = unanswered.select{|x| x.level == level}
+          if selected_questions == []
+            selected_questions = questions.select{|x| x.level == level}
           end
-          index = rand(0...questions.length)
-          return get_question(questions[index].id)
+          index = rand(0...selected_questions.length)
+          return get_question(selected_questions[index].id)
       end
 
       class UsersQuestions < ActiveRecord::Base
