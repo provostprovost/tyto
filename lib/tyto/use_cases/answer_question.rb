@@ -41,7 +41,8 @@ module Tyto
               :complete => complete,
               :number_answered => number_answered,
               :longest_streak => longest_streak,
-              :current_streak => current_streak
+              :current_streak => current_streak,
+              :assignment => Tyto.db.get_assignment(inputs[:assignment_id])
     end
 
     def check_answer(question_id, answer)
