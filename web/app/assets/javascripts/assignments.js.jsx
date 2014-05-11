@@ -52,7 +52,8 @@ var Assignment = React.createClass({
               assignmentSize: result.assignment_size,
               currentStreak: result.current_streak,
               longestStreak: result.longest_streak,
-              proficiency: result.proficiency
+              proficiency: result.proficiency,
+              questionLevel: result.question_level
       });
     }.bind(this));
   },

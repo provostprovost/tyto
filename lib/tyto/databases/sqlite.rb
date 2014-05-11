@@ -53,6 +53,7 @@ module Tyto
         return nil if assignment == nil
         current_question = get_last_question(student_id: assignment.student_id, assignment_id: assignment.id)
         question_text = current_question.question unless current_question.nil?
+        question_level = current_question.level unless current_question.nil?
         Tyto::Assignment.new( id: assignment.id,
                               student_id:   assignment.student_id,
                               chapter_id:   assignment.chapter_id,
@@ -65,6 +66,8 @@ module Tyto
                               current_streak: current_chapter_streak(assignment.student_id, assignment.chapter_id),
                               longest_streak: get_longest_streak(assignment.student_id, assignment.chapter_id),
                               current_question_text: question_text,
+                              proficiency: get_last_proficiency_score(assignment.student_id, assignment.chapter_id, true),
+                              question_level: question_level  )
                               proficiencies: get_responses_for_assignment(id).map { |response| response.proficiency} )
       end
 
@@ -357,12 +360,12 @@ module Tyto
           else
             level = 4
           end
-          questions = unanswered.select{|x| x.level == level}
-          if questions == []
-            return nil
+          selected_questions = unanswered.select{|x| x.level == level}
+          if selected_questions == []
+            selected_questions = questions.select{|x| x.level == level}
           end
-          index = rand(0...questions.length)
-          return get_question(questions[index].id)
+          index = rand(0...selected_questions.length)
+          return get_question(selected_questions[index].id)
       end
 
       class UsersQuestions < ActiveRecord::Base
@@ -448,10 +451,11 @@ module Tyto
         proficiency_score
       end
 
-      def get_last_proficiency_score(student_id, chapter_id)
-        response = Response.where(student_id: student_id, chapter_id: chapter_id)
-        return 0 if response.last == nil
-        response = response.last(2)[0]
+      def get_last_proficiency_score(student_id, chapter_id, actual=nil)
+        responses = Response.where(student_id: student_id, chapter_id: chapter_id)
+        return 0 if responses.last == nil
+        response = responses.last(2)[0]
+        response = responses.last if actual != nil
         if response.proficiency != nil
           return response.proficiency
         else

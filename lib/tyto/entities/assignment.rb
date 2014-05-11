@@ -13,6 +13,8 @@ module Tyto
                 :longest_streak,
                 :current_question_text,
                 :proficiencies
+                :proficiency,
+                :question_level
     validates_presence_of :id, :student_id, :chapter_id, :classroom_id, :assignment_size, :teacher_id
   end
 end

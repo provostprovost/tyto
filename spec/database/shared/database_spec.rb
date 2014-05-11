@@ -397,7 +397,6 @@ shared_examples_for "a database" do
                                       difficult: false,
                                       chapter_id: @chapter.id)
         question = db.get_next_question(response.proficiency, @student.id, response.chapter_id)
-        expect(question).to eq(nil)
         question = db.get_next_question(45, @student.id, response.chapter_id)
         expect(question.level).to eq(2)
         db.create_response( correct: true,
@@ -407,7 +406,6 @@ shared_examples_for "a database" do
                             difficult: false,
                             chapter_id: @chapter.id)
         question = db.get_next_question(45, @student.id, response.chapter_id)
-        expect(question).to eq(nil)
         question = db.get_next_question(65, @student.id, response.chapter_id)
         expect(question.level).to eq(3)
         question = db.get_next_question(90, @student.id, response.chapter_id)
