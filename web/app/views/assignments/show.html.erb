@@ -20,3 +20,16 @@
 
 <div id="question">
 </div>
+
+<script type="text/javascript">
+var assignment = new Assignment(<%= @assignment.to_json %>);
+// var assignment = <%= @assignment.to_json %>;
+var view = React.renderComponent(
+  <QuestionForm />,
+  document.getElementById('dash-ui')
+);
+var presenter = new AssignmentPresenter({
+  model: assignment,
+  view: view
+});
+</script>
