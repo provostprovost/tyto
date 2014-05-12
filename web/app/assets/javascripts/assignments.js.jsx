@@ -65,7 +65,8 @@ var Assignment = React.createClass({
     e.preventDefault();
     params = {answer: this.state.answer,
               assignment_id: this.state.id}
-      if(params.answer===''){
+    str = params.answer.replace(/\s+/g, '');
+      if(str===''){
         console.log("blank string rejected")
       }
       else{
