@@ -456,8 +456,8 @@ module Tyto
         responses = Response.where(student_id: student_id, chapter_id: chapter_id)
         return 0 if responses.last == nil
         response = responses.last(2)[0]
-        response = responses.last if actual != nil
-        if response.proficiency != nil
+        response = responses.last if actual
+        if response.proficiency
           return response.proficiency
         else
           return 0
@@ -490,6 +490,24 @@ module Tyto
           streak += 1
         end
         streak
+      end
+
+      def ema(array, alpha_n=1)
+        alpha = alpha_n.to_f / array.count
+        n = (1..array.count).to_a.map{|tidx| (1 - alpha) ** (tidx - 1) * array[array.count - tidx]}.sum
+        d = (1..array.count).to_a.map{|tidx| (1 - alpha) ** (tidx -1)}.sum
+        n / d
+      end
+
+      def score(array, assignment_size, alpha_n=1)
+        multiplier = array.size / (assignment_size.to_f / 3)
+        multiplier = 1 if multiplier > 1
+        score = Math.log(ema(array, alpha_n)+1) * multiplier
+        if score > 0
+          return score
+        else
+          return 0
+        end
       end
 
       ############
