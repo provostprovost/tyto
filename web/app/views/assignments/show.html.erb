@@ -27,7 +27,7 @@
   // var assignment = <%= @assignment.to_json %>;
   var view = React.renderComponent(
     <QuestionForm />,
-    document.getElementById('dash-ui')
+    document.getElementById('question')
   );
   var presenter = new AssignmentPresenter({
     model: assignment,
