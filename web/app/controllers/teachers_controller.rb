@@ -40,6 +40,6 @@ class TeachersController < ApplicationController
 
   def correct_user
     current_session = Tyto.db.get_session(session[:app_session_id].to_i)
-    redirect_to root_url, notice: "Incorrect user." unless current_session.teacher_id == params[:id]
+    redirect_to root_url, notice: "Incorrect user." unless current_session.teacher_id == params[:id].to_i
   end
 end
