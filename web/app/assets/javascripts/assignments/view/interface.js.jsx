@@ -15,7 +15,7 @@
     }
   });
 
-  var Chart = React.createClass({
+  window.Chart = React.createClass({
     render: function() {
       return (
         <div class="chart">
@@ -25,7 +25,7 @@
     }
   });
 
-  var Progress = React.createClass({
+  window.Progress = React.createClass({
     render: function() {
       return (
         <div class="progress">
@@ -36,7 +36,7 @@
     }
   });
 
-  var Streaks = React.createClass({
+  window.Streaks = React.createClass({
     render: function() {
       return (
         <div class="streaks">
@@ -46,4 +46,24 @@
       );
     }
   });
+  React.renderComponent(
+  <QuestionForm />,
+  document.getElementById('question')
+);
+});
+React.renderComponent(
+  <Chart />,
+  document.getElementById('chart')
+);
+});
+React.renderComponent(
+  <Progress />,
+  document.getElementById('progress')
+);
+});
+React.renderComponent(
+  <Streaks />,
+  document.getElementById('streaks')
+);
+});
 })();
