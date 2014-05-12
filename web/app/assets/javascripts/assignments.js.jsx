@@ -65,6 +65,11 @@ var Assignment = React.createClass({
     e.preventDefault();
     params = {answer: this.state.answer,
               assignment_id: this.state.id}
+    str = params.answer.replace(/\s+/g, '');
+      if(str===''){
+        console.log("blank string rejected")
+      }
+      else{
       $.ajax({
         url: '/responses/create',
         dataType: 'json',
@@ -85,6 +90,7 @@ var Assignment = React.createClass({
           console.error(this.props.url, status, err.toString());
         }.bind(this)
       });
+    }
   },
   render: function() {
     return (
