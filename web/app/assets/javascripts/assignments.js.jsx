@@ -10,7 +10,6 @@ var Question = React.createClass({
 });
 
 // proficiency array for D3
-console.log("hello");
 var Progress = React.createClass({
   render: function() {
     return (
@@ -38,16 +37,16 @@ var Assignment = React.createClass({
               longestStreak: "",
               proficiency:"",
               questionLevel:"",
+              submittedAnswer:""
                      };
   },
 
   componentDidMount: function() {
     $.getJSON(document.URL, function(result) {
-      console.log(result)
+      // console.log(result)
       this.setState({
               id: result.id,
               questionText: result.current_question_text,
-              answer: "",
               questionsAnswered: result.questions_answered,
               assignmentSize: result.assignment_size,
               currentStreak: result.current_streak,
@@ -78,12 +77,13 @@ var Assignment = React.createClass({
         success: function(data) {
           result = data.table
           this.setState({questionText: result.question.question,
-                         answer: "",
                          questionsAnswered: result.number_answered,
                          currentStreak: result.current_streak,
                          longestStreak: result.longest_streak,
                          proficiency: result.response.proficiency,
                          questionLevel: result.question.level,
+                         answer: "",
+                         submittedAnswer: result.response.answer
           });
         }.bind(this),
         error: function(xhr, status, err) {
@@ -99,7 +99,8 @@ var Assignment = React.createClass({
          Longest Streak: {this.state.longestStreak}<br></br>
          Proficiency: {this.state.proficiency} <br></br>
          Level: {this.state.questionLevel}<br></br>
-        Current Question: {this.state.questionText}
+         Your answer was {this.state.submittedAnswer}<br></br>
+         Current Question: {this.state.questionText}
         <form onSubmit={this.handleSubmit}>
           <input onChange={this.onChange} value={this.state.answer} />
           <button>Submit</button>

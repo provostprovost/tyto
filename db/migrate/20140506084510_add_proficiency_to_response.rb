@@ -10,6 +10,7 @@ class AddProficiencyToResponse < ActiveRecord::Migration
       t.boolean    :correct
       t.boolean    :difficult
       t.integer    :proficiency
+      t.string     :answer
     end
   end
 end

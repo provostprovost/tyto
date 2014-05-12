@@ -423,7 +423,8 @@ module Tyto
                                           student_id: response.student_id,
                                           assignment_id: response.assignment_id,
                                           difficult: response.difficult,
-                                          proficiency: response.proficiency )
+                                          proficiency: response.proficiency,
+                                          answer: response.answer )
       end
 
       def get_responses_for_assignment(assignment_id)

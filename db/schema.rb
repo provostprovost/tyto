@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20140508125819) do
     t.boolean  "correct"
     t.boolean  "difficult"
     t.integer  "proficiency"
+    t.string   "answer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

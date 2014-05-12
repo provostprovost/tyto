@@ -19,7 +19,8 @@ module Tyto
                                           assignment_id: assignment.id,
                                           difficult: inputs[:difficult],
                                           correct: check_answer(question.id, inputs[:answer]),
-                                          chapter_id: assignment.chapter_id )
+                                          chapter_id: assignment.chapter_id,
+                                          answer: inputs[:answer] )
       next_question = Tyto.db.get_next_question(  response.proficiency,
                                                   student.id,
                                                   assignment.chapter_id)

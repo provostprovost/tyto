@@ -7,6 +7,7 @@ module Tyto
                 :assignment_id,
                 :difficult,
                 :chapter_id,
-                :proficiency
+                :proficiency,
+                :answer
   end
 end
