@@ -66,7 +66,7 @@ var Assignment = React.createClass({
     params = {answer: this.state.answer,
               assignment_id: this.state.id}
       if(params.answer===''){
-        console.log("type something stupidface")
+        console.log("blank string rejected")
       }
       else{
       $.ajax({
