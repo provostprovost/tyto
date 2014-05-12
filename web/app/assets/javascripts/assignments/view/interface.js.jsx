@@ -49,21 +49,21 @@
   React.renderComponent(
   <QuestionForm />,
   document.getElementById('question')
-);
-});
+  );
+
 React.renderComponent(
   <Chart />,
   document.getElementById('chart')
 );
-});
+
 React.renderComponent(
   <Progress />,
   document.getElementById('progress')
 );
-});
+
 React.renderComponent(
   <Streaks />,
   document.getElementById('streaks')
 );
-});
+
 })();
