@@ -28,7 +28,7 @@ describe StudentMailer do
 
     it "renders the headers" do
       mail.subject.should eq("Tyto: Teacher Guy invited you to Period 1")
-      mail.to.should eq(["b@gmail.com"])
+      mail.to.should eq(["a@gmail.com"])
       mail.from.should eq(["dontreply@tyto.com"])
     end
 
