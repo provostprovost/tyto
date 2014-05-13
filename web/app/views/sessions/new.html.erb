@@ -1,27 +1,25 @@
 <%= form_tag('/sessions', method: 'post') do %>
   <div class="row">
-    <div class="large-4 columns">&nbsp;</div>
-    <div class="large-4 columns">
-      <div class="row">
-          <%= label_tag(:email, "Email address:") %>
-          <%= text_field_tag(:email) %>
+    <div class="large-4 medium-6 small-centered columns">
+      <%= label_tag(:email, "Email address:") %>
+      <%= text_field_tag(:email) %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-4 medium-6 small-centered columns">
+      <%= label_tag(:password, "Password:") %>
+      <%= password_field_tag(:password) %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-4 medium-6 small-centered columns">
+      <div class="small-6 columns">
+        <%= label_tag(:teacher, "Teacher sign in:") %>
+        <%= check_box_tag(:teacher) %>
       </div>
-      <div class="row">
-        <div class="large-12 columns">
-          <%= label_tag(:password, "Password:") %>
-          <%= password_field_tag(:password) %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="large-6 columns">
-          <%= label_tag(:teacher, "Teacher sign in:", class: "right inline") %>
-          <%= check_box_tag(:teacher) %>
-        </div>
-        <div class="large-6 columns">
-          <%= submit_tag "Sign in", class: "button" %>
-        </div>
+      <div class="small-6 columns">
+        <%= submit_tag "Sign in", class: "button" %>
       </div>
     </div>
-    <div class="large-4 columns">&nbsp;</div>
   </div>
 <% end %>

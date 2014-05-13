@@ -1,29 +1,23 @@
-<div class="container">
-  <div class="row">
-    Assignment Section:<%= @assignment.name %><br>
-    Assignment Size: <%= @assignment.assignment_size %>
-  </div>
-<br>
-<div class="container">
-  <div class="row">
+<div class="row">
+  Assignment Section:<%= @assignment.name %><br>
+  Assignment Size: <%= @assignment.assignment_size %>
+</div>
+<div class="row">
+  <div class="small-12 medium-8 columns">
     <div id="question">
     </div>
   </div>
-<br>
-  <div class="row">
-    <div class='col-md-4'>
-      <div id="chart">
-      </div>
+  <div class="small-12 medium-4 columns">
+    <div class="row">
+      <div id="chart"></div>
     </div>
-    <div class='col-md-4'>
-      <div id="progress">
-      </div>
+    <div class="row">
+      <div id="progress"></div>
     </div>
-
-    <div class='col-md-4'>
-      <div id="streaks">
-      </div>
+    <div class="row">
+      <div id="streaks"></div>
     </div>
+  </div>
 </div>
 
 <script src="http://fb.me/JSXTransformer-0.10.0.js"></script>
