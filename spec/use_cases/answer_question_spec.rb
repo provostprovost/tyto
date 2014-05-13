@@ -88,7 +88,7 @@ describe Tyto::AnswerQuestion do
     it "creates a new response" do
       expect(@result.response).to be_a(Tyto::Response)
       expect(@result.response.correct).to eq true
-      expect(@result.response.proficiency).to be_a Integer
+      expect(@result.response.proficiency).to be_a Float
       expect(@result.response.question_id).to eq @question.id
       expect(@result.response.student_id).to eq @student.id
       expect(@result.response.assignment_id).to eq @assignment.id
@@ -110,16 +110,6 @@ describe Tyto::AnswerQuestion do
 
     it "returns complete=false if assignment is not finished" do
       expect(@result.complete).to eq false
-    end
-
-    it "returns complete=true if assignment is finished" do
-      result = subject.run(answer: "NM here",
-                            assignment_id: @assignment1.id,
-                            session_id: @session.id,
-                            difficult: false )
-      expect(result.complete).to eq true
-      expect(result.current_streak).to eq (2)
-      expect(result.longest_streak).to eq(2)
     end
 
     it "keeps track of number of questions completed" do

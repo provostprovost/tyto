@@ -286,7 +286,6 @@ shared_examples_for "a database" do
       expect(@response.student_id).to eq(@student.id)
       expect(@response.assignment_id).to eq(@assignment.id)
       expect(@response.chapter_id).to eq(@chapter.id)
-      expect(@response.proficiency).to eq(6)
     end
 
     it "gets a response" do
@@ -296,7 +295,6 @@ shared_examples_for "a database" do
       expect(@response.student_id).to eq(@student.id)
       expect(@response.assignment_id).to eq(@assignment.id)
       expect(@response.chapter_id).to eq(@chapter.id)
-      expect(@response.proficiency).to eq(6)
 
     end
       it 'increments proficieny for correct answers' do
@@ -311,74 +309,20 @@ shared_examples_for "a database" do
       end
 
       it 'decrements proficiency for incorrect answers' do
-        proficiency = db.get_response(@response.id).proficiency
+        proficiency = db.create_response( correct: true,
+                                          question_id: @question.id,
+                                          student_id: @student.id,
+                                          assignment_id: @assignment.id,
+                                          difficult: false).proficiency
         new_response = db.create_response(correct: false,
                                           question_id: @question.id,
                                           student_id: @student.id,
                                           assignment_id: @assignment.id,
                                           difficult: false)
-        new_proficiency = db.get_proficiency(new_response.id)
+        new_proficiency = new_response.proficiency
         expect(new_proficiency).to be < proficiency
       end
 
-      it 'increments scores as expected' do
-        level1 = db.create_question(level: 1, question: "2+2",
-                                    answer: "4", chapter_id: @chapter.id)
-        level2 = db.create_question(level: 2, question: "2+2",
-                                    answer: "4", chapter_id: @chapter.id)
-        level3 = db.create_question(level: 3, question: "2+2",
-                                    answer: "4", chapter_id: @chapter.id)
-
-        proficiency = db.get_response(@response.id).proficiency
-
-        level1_correct = db.create_response( correct: true,
-                                              question_id: level1.id,
-                                              student_id: @student.id,
-                                              assignment_id: @assignment.id,
-                                              difficult: false)
-        response1_prof = db.get_proficiency(level1_correct.id)
-        expect(response1_prof).to eq proficiency + 12
-
-        level2_correct = db.create_response( correct: true,
-                                              question_id: level2.id,
-                                              student_id: @student.id,
-                                              assignment_id: @assignment.id,
-                                              difficult: false)
-        response2_prof = db.get_proficiency(level2_correct.id)
-        expect(response2_prof).to eq proficiency + 6
-
-        level3_correct = db.create_response( correct: true,
-                                              question_id: level3.id,
-                                              student_id: @student.id,
-                                              assignment_id: @assignment.id,
-                                              difficult: false)
-        response3_prof = db.get_proficiency(level3_correct.id)
-        expect(response3_prof).to eq proficiency + 4
-
-        level1_incorrect = db.create_response(correct: false,
-                                              question_id: level1.id,
-                                              student_id: @student.id,
-                                              assignment_id: @assignment.id,
-                                              difficult: false)
-        response4_prof = db.get_proficiency(level1_incorrect.id)
-        expect(response4_prof).to eq proficiency - 6
-
-        level2_incorrect = db.create_response(correct: false,
-                                              question_id: level2.id,
-                                              student_id: @student.id,
-                                              assignment_id: @assignment.id,
-                                              difficult: false)
-        response5_prof = db.get_proficiency(level2_incorrect.id)
-        expect(response5_prof).to eq proficiency - 3
-
-        level3_incorrect = db.create_response(correct: false,
-                                              question_id: level3.id,
-                                              student_id: @student.id,
-                                              assignment_id: @assignment.id,
-                                              difficult: false)
-        response6_prof = db.get_proficiency(level2_incorrect.id)
-        expect(response6_prof).to eq proficiency - 3
-      end
       it "gets the next question after you answer" do
         question = db.get_next_question(@response.proficiency, @student.id, @response.chapter_id)
         expect(question.level).to eq(1)
@@ -397,7 +341,7 @@ shared_examples_for "a database" do
                                       difficult: false,
                                       chapter_id: @chapter.id)
         question = db.get_next_question(response.proficiency, @student.id, response.chapter_id)
-        question = db.get_next_question(45, @student.id, response.chapter_id)
+        question = db.get_next_question(0.45, @student.id, response.chapter_id)
         expect(question.level).to eq(2)
         db.create_response( correct: true,
                             question_id: question.id,
@@ -405,10 +349,10 @@ shared_examples_for "a database" do
                             assignment_id: @assignment.id,
                             difficult: false,
                             chapter_id: @chapter.id)
-        question = db.get_next_question(45, @student.id, response.chapter_id)
-        question = db.get_next_question(65, @student.id, response.chapter_id)
+        question = db.get_next_question(0.45, @student.id, response.chapter_id)
+        question = db.get_next_question(0.75, @student.id, response.chapter_id)
         expect(question.level).to eq(3)
-        question = db.get_next_question(90, @student.id, response.chapter_id)
+        question = db.get_next_question(0.95, @student.id, response.chapter_id)
         expect(question.level).to eq(4)
       end
   end
@@ -602,6 +546,13 @@ shared_examples_for "a database" do
         streak3 = db.current_chapter_streak(@student.id, @chapter.id)
         expect(streak3).to eq 0
       end
+    end
+  end
+
+  describe "Exponential moving average" do
+    it "receives an array and returns a number" do
+      average = db.ema([1,2,3,4,5,6])
+      expect(average).to be_a Float
     end
   end
 end
