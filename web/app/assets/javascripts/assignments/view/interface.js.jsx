@@ -3,14 +3,15 @@
 (function () {
   window.QuestionForm = React.createClass({
     getInitialState: function() {
-      return { answer: "" };
+      return { answer: "", questionText: assignment.questionText, questionLevel: assignment.questionLevel};
     },
     render: function() {
       return (
         <div className="question">
-          Current Question: {assignment.questionText}
+          Level: {this.state.questionLevel}<br></br>
+          Current Question: {this.state.questionText}
           <form onSubmit={this.onSubmit}>
-            <input onChange={this.onChange} placeholder="Hi brian you are a cool guy" />
+            <input onChange={this.onChange} value={this.state.answer} />
             <button>Submit</button>
           </form>
         </div>
@@ -20,7 +21,6 @@
       e.preventDefault();
       assignment_id = assignment.id;
       this.props.handleSubmit({answer: this.state.answer, assignment_id: assignment_id});
-      this.setState({answer: ""});
     },
 
     onChange: function(e) {
@@ -29,6 +29,9 @@
   });
 
   window.Chart = React.createClass({
+    getInitialState: function() {
+      return { proficiencies: assignment.proficiencies};
+    },
     render: function() {
       return (
         <div className="chart">
@@ -39,22 +42,27 @@
   });
 
   window.Progress = React.createClass({
+    getInitialState: function() {
+      return { proficiency: assignment.proficiency};
+    },
     render: function() {
       return (
         <div className="progress">
-          Proficiency: {assignment.proficiency}<br></br>
-          Level: {assignment.questionLevel}<br></br>
+          Proficiency: {this.state.proficiency}<br></br>
         </div>
       );
     }
   });
 
   window.Streaks = React.createClass({
+    getInitialState: function() {
+      return { currentStreak: assignment.currentStreak, longestStreak: assignment.longestStreak};
+    },
     render: function() {
       return (
         <div className="streaks">
-          Current Streak: {assignment.currentStreak}<br></br>
-          Longest Streak: {assignment.longestStreak}<br></br>
+          Current Streak: {this.state.currentStreak} <br></br>
+          Longest Streak: {this.state.longestStreak} <br></br>
         </div>
       );
     }
