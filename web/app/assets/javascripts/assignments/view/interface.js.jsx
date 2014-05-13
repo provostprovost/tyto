@@ -5,9 +5,9 @@
     render: function() {
       return (
         <div class="question">
-          Current Question: {this.state.questionText}
+          Current Question: {assignment.questionText}
           <form onSubmit={this.onSubmit}>
-            <input ref="answer" value={this.state.answer} />
+            <input ref="answer" value={assignment.answer} />
             <button>Submit</button>
           </form>
         </div>
@@ -35,8 +35,8 @@
     render: function() {
       return (
         <div class="progress">
-          Proficiency: {this.state.proficiency}<br></br>
-          Level: {this.state.questionLevel}<br></br>
+          Proficiency: {assignment.proficiency}<br></br>
+          Level: {assignment.questionLevel}<br></br>
         </div>
       );
     }
@@ -46,8 +46,8 @@
     render: function() {
       return (
         <div class="streaks">
-          Current Streak: {this.state.currentStreak}<br></br>
-          Longest Streak: {this.state.longestStreak}<br></br>
+          Current Streak: {assignment.currentStreak}<br></br>
+          Longest Streak: {assignment.longestStreak}<br></br>
         </div>
       );
     }

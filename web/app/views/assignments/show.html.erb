@@ -25,7 +25,8 @@
 <script type="text/jsx">
 /** @jsx React.DOM **/
 (function () {
-  var assignment = new Assignment(<%= @assignment.to_json.html_safe %>);
+  window.assignment = new Assignment(<%= @assignment.to_json.html_safe %>);
+  console.log(assignment);
   var questionForm = React.renderComponent(
     <QuestionForm />,
     document.getElementById('question')

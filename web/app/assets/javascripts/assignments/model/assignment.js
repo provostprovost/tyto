@@ -11,7 +11,5 @@
     this.proficiencies = assignment.proficiencies;
     this.complete = assignment.complete;
   };
-
-
 })();
 

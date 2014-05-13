@@ -1,12 +1,12 @@
 (function () {
   window.AssignmentPresenter = function (options){
-    this.view = options.view;
+    this.view = options.views[0];
     this.model = options.model;
 
     var presenter = this;
 
     this.view.setProps({ handleSubmit: function (data){
-      e.preventDefault();
+      // e.preventDefault();
 
       str = data.answer.replace(/\s+/g, '');
       if(str===''){
