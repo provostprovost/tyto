@@ -9,7 +9,7 @@
   <section class="top-bar-section">
     <ul class="right">
       <% if session[:app_session_id] %>
-        <li><%= link_to "Dashboard", "/dashboards" %></li>
+        <li class="active"><%= link_to "Dashboard", "/dashboards" %></li>
         <li class="has-dropdown">
           <a href="#">Account</a>
           <ul class="dropdown">
@@ -18,7 +18,7 @@
           </ul>
         </li>
       <% else %>
-        <li><%= link_to "Sign in", signin_path %></li>
+        <li class="active"><%= link_to "Sign in", signin_path %></li>
         <li class="has-dropdown">
           <a href="#">Sign up</a>
           <ul class="dropdown">

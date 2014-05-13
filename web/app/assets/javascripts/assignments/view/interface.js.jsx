@@ -65,6 +65,7 @@
         <div className="progress">
           Proficiency: {this.state.proficiency}<br></br>
         </div>
+        // <div className="progress large-6 success round"><span class="meter" style="width: {this.state.proficiency}"></span></div>
       );
     }
   });
