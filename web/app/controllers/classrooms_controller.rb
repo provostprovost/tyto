@@ -8,6 +8,7 @@ class ClassroomsController < ApplicationController
 
   def update
     params[:session_id] = session[:app_session_id]
+    #NEED TO COME IN WITH AN ARRAY OF STUDENTS FROM TEACHER DASHBOARD#
     params[:students] = [params[:student_one], params[:student_two]]
     result = Tyto::AddStudentsToClass.run(students_params)
     if result.success?
