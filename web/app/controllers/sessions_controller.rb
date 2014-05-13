@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
   def new
     if session[:app_session_id]
       existing_session = Tyto.db.get_session(session[:app_session_id])
-      # binding.pry
       if existing_session.student_id
         redirect_to "/students/#{existing_session.student_id}"
       elsif existing_session.teacher_id
