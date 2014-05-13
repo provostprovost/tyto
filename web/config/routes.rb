@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :chapters
   resources :classrooms
   resources :assignments, :as => :tyto_assignments
-
+  resources :accounts
 
   root 'static_pages#home'
 

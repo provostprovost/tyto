@@ -1,5 +1,3 @@
-require 'pry-debugger'
-
 class ResponsesController < ApplicationController
   def create
     params[:session_id] = session[:app_session_id]
