@@ -79,4 +79,6 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.react.variant = :production
+
+  config.assets.precompile += %w( vendor/modernizr.js )
 end
