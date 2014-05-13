@@ -6,16 +6,15 @@ class StudentMailer < ActionMailer::Base
   #
   #   en.student_mailer.classroom_invite.subject
   #
-  def classroom_invite(invite_ids, classroom_id)
-    @invites = invite_ids.map {|x| Tyto.db.get_invite(x)}
+  def classroom_invite(invite_id, classroom_id)
+    @invite = Tyto.db.get_invite(invite_id)
     @classroom = Tyto.db.get_classroom(classroom_id)
     @teacher = Tyto.db.get_teacher(@classroom.teacher_id)
-    @invites.each do |x|
-      mail(
+    mail(
       from: "dontreply@tyto.com",
-      to: x.email,
+      to: @invite.email,
       subject: "Tyto: #{@teacher.username} invited you to #{@classroom.name}"
     )
-    end
+
   end
 end

@@ -1,6 +1,7 @@
 module Tyto
   class AddStudentsToClass < UseCase
     def run(inputs)
+     inputs[:students] = [inputs[:student_one], inputs[:student_two]]
      session = Tyto.db.get_session(inputs[:session_id])
      return failure(:session_not_found) if session==nil
      teacher_id = session.teacher_id

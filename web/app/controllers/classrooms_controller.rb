@@ -7,11 +7,14 @@ class ClassroomsController < ApplicationController
   end
 
   def update
-    params[:teacher_id] = Tyto.db.get_session(session[:app_session_id]).teacher_id
+    params[:session_id] = session[:app_session_id]
     params[:students] = [params[:student_one], params[:student_two]]
-    result = Tyto.db.AddStudentsToClass(students_params)
+    result = Tyto::AddStudentsToClass.run(students_params)
     if result.success?
-      StudentMailer.classroom_invite(result.invite_ids, result.classroom.id)
+        result.invite_ids.each do |x|
+          email = StudentMailer.classroom_invite(x, result.classroom.id)
+          email.deliver
+        end
     end
     render json: result
   end
@@ -24,8 +27,10 @@ class ClassroomsController < ApplicationController
 
   def students_params
     params.permit(:classroom_id,
-                  :teacher_id,
-                  :students)
+                  :session_id,
+                  :students,
+                  :student_one,
+                  :student_two)
 
   end
 end
