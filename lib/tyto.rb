@@ -24,6 +24,8 @@ require_relative 'tyto/use_cases/teacher_sign_up.rb'
 require_relative 'tyto/use_cases/assign_homework.rb'
 require_relative 'tyto/use_cases/add_students_to_class.rb'
 require_relative 'tyto/use_cases/accept_invite.rb'
+require_relative 'tyto/use_cases/update_teacher.rb'
+require_relative 'tyto/use_cases/update_student.rb'
 
 module Tyto
   def self.db

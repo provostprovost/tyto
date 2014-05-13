@@ -1,12 +1,12 @@
-<%= form_tag('/teachers', method: 'post') do %>
+<%= form_tag("/teachers/#{@teacher.id}", method: 'patch') do %>
   <%= label_tag(:username, "Username:") %>
-  <%= text_field_tag(:username) %>
+  <%= text_field_tag(:username, @teacher.username) %>
 
   <%= label_tag(:email, "Email address:") %>
-  <%= text_field_tag(:email) %>
+  <%= text_field_tag(:email, @teacher.email) %>
 
   <%= label_tag(:phone_number, "Mobile phone number:") %>
-  <%= phone_field_tag(:phone_number) %>
+  <%= phone_field_tag(:phone_number, @teacher.phone_number) %>
 
   <%= label_tag(:password, "Password:") %>
   <%= password_field_tag(:password) %>
@@ -14,6 +14,6 @@
   <%= label_tag(:password_confirmation, "Confirmation:") %>
   <%= password_field_tag(:password_confirmation) %>
 
-  <%= submit_tag "Create my account", class: "btn btn-large btn-primary" %>
+  <%= submit_tag "Edit account", class: "btn btn-large btn-primary" %>
 
 <% end %>

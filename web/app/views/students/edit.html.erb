@@ -1,0 +1,19 @@
+<%= form_tag("/students/#{@student.id}", method: 'patch') do %>
+  <%= label_tag(:username, "Username:") %>
+  <%= text_field_tag(:username, @student.username) %>
+
+  <%= label_tag(:email, "Parent's email address:") %>
+  <%= text_field_tag(:email, @student.email) %>
+
+  <%= label_tag(:phone_number, "Parent's mobile phone number:") %>
+  <%= phone_field_tag(:phone_number, @student.phone_number) %>
+
+  <%= label_tag(:password, "Password:") %>
+  <%= password_field_tag(:password) %>
+
+  <%= label_tag(:password_confirmation, "Confirmation:") %>
+  <%= password_field_tag(:password_confirmation) %>
+
+  <%= submit_tag "Edit account", class: "btn btn-large btn-primary" %>
+
+<% end %>

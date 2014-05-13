@@ -580,7 +580,7 @@ module Tyto
         student = Student.find_by(id: attrs[:id])
         return nil if student == nil
         attrs.delete(:id)
-        attrs.delete(:password_digest)
+        attrs[:password_digest] = BCrypt::Password.create(attrs.delete(:password)) if attrs[:password]
         student.update(attrs)
         new_student = Tyto::Student.new(id: student.id,
                                         username: student.username,
@@ -669,7 +669,7 @@ module Tyto
         teacher = Teacher.find_by(id: attrs[:id])
         return nil if teacher == nil
         attrs.delete(:id)
-        attrs.delete(:password_digest)
+        attrs[:password_digest] = BCrypt::Password.create(attrs.delete(:password)) if attrs[:password]
         teacher.update(attrs)
         new_teacher = Tyto::Teacher.new(id: teacher.id,
                                         username: teacher.username,
