@@ -21,16 +21,14 @@
   </div>
 </div>
 
-
+<script src="http://fb.me/JSXTransformer-0.10.0.js"></script>
 <script type="text/jsx">
 /** @jsx React.DOM **/
 (function () {
-  var assignment = new Assignment(JSON.parse("<%= @assignment.to_json %>"));
+  var assignment = new Assignment(<%= @assignment.to_json.html_safe %>);
   var questionForm = React.renderComponent(
     <QuestionForm />,
     document.getElementById('question')
-<<<<<<< HEAD
-=======
   );
   var chart = React.renderComponent(
     <Chart />,
@@ -43,7 +41,6 @@
   var streaks = React.renderComponent(
     <Streaks />,
     document.getElementById('streaks')
->>>>>>> ca17353aa82b7443dd99f3675ffca2ff8cd0d427
   );
   var presenter = new AssignmentPresenter({
     model: assignment,
