@@ -1,5 +1,15 @@
 class SessionsController < ApplicationController
   def new
+    if session[:app_session_id]
+      existing_session = Tyto.db.get_session(session[:app_session_id])
+      if existing_session.student_id
+        redirect_to "/students/#{existing_session.student_id}"
+      elsif existing_session.teacher_id
+        redirect_to "/teachers/#{existing_session.teacher_id}"
+      else
+        redirect_to root_url
+      end
+    end
   end
 
   def create
@@ -17,8 +27,9 @@ class SessionsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     Tyto.db.delete_session(session[:app_session_id])
+    session[:app_session_id] = nil
     redirect_to root_url
   end
 end
