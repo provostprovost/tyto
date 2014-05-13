@@ -32,7 +32,7 @@ module Tyto
       proficiencies = questions_completed.map { |response| response.proficiency}
 
       number_answered = questions_completed.size
-      complete = number_answered >= assignment.assignment_size
+      complete = (number_answered >= assignment.assignment_size) || (proficiencies.last > 1)
 
       longest_streak = Tyto.db.get_longest_streak(student.id, assignment.chapter_id)
 
