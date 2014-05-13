@@ -6,12 +6,18 @@
       return (
         <div class="question">
           Current Question: {this.state.questionText}
-          <form onSubmit={this.props.handleSubmit}>
-            <input value={this.state.answer} />
+          <form onSubmit={this.onSubmit}>
+            <input ref="answer" value={this.state.answer} />
             <button>Submit</button>
           </form>
         </div>
       );
+    },
+    onSubmit: function (e) {
+      e.preventDefault();
+      answer = this.refs.answer
+      assignment_id = assignment.id
+      this.props.handleSubmit({answer: answer, assignment_id: assignment_id});
     }
   });
 
@@ -46,24 +52,7 @@
       );
     }
   });
-  React.renderComponent(
-  <QuestionForm />,
-  document.getElementById('question')
-  );
-
-React.renderComponent(
-  <Chart />,
-  document.getElementById('chart')
-);
-
-React.renderComponent(
-  <Progress />,
-  document.getElementById('progress')
-);
-
-React.renderComponent(
-  <Streaks />,
-  document.getElementById('streaks')
-);
 
 })();
+
+
