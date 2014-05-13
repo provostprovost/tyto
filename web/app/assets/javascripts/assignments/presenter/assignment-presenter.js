@@ -1,11 +1,14 @@
 (function () {
   window.AssignmentPresenter = function (options){
-    this.view = options.views;
+    this.questionForm = options.questionForm;
+    this.chart = options.chart;
+    this.progress = options.progress;
+    this.streaks = options.streaks;
     this.model = options.model;
 
     var presenter = this;
 
-    this.view[0].setProps({
+    this.questionForm.setProps({
       handleSubmit: function (data){
         console.log(data);
         str = data.answer.replace(/\s+/g, '');
@@ -30,16 +33,16 @@
               assignment.questionLevel = result.question.level;
               assignment.proficiencies = result.proficiencies;
               assignment.complete = result.complete;
-              presenter.view[0].setState({questionText: result.question.question,
+              presenter.questionForm.setState({questionText: result.question.question,
                                           answer: "",
                                           questionLevel: result.question.level
               });
-              presenter.view[1].setState({proficiencies: result.proficiencies
+              presenter.chart.setState({proficiencies: result.proficiencies
               });
-              presenter.view[2].setState({questionsAnswered: result.number_answered,
+              presenter.progress.setState({questionsAnswered: result.number_answered,
                                           proficiency: result.response.proficiency
               });
-              presenter.view[3].setState({currentStreak: result.current_streak,
+              presenter.streaks.setState({currentStreak: result.current_streak,
                                           longestStreak: result.longest_streak
               });
             }

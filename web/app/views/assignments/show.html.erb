@@ -45,7 +45,10 @@
   );
   var presenter = new AssignmentPresenter({
     model: assignment,
-    views: [questionForm, chart, progress, streaks]
+    questionForm: questionForm,
+    chart: chart,
+    progress: progress,
+    streaks: streaks
   });
 })();
 </script>
