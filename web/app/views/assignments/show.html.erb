@@ -6,17 +6,46 @@
     <%= @assignment.assignment_size %>
     <%= @assignment.complete %>
   </div>
-  <div class="row">
-    <div id ='question' class="col-sm-8">
-      Question goes here
-    </div>
-    <div class="col-sm-4">
-      <div class="row">Cool D3 line graph here</div>
-      <div class="row">Streak and progress bar here</div>
-      <div class="row">Class leaderboard here</div>
-    </div>
+
+<div class="container">
+  <div id="question">
+  </div>
+
+  <div id="chart">
+  </div>
+
+  <div id="progress">
+  </div>
+
+  <div id="streaks">
   </div>
 </div>
 
-<div id="question">
-</div>
+<script src="http://fb.me/JSXTransformer-0.10.0.js"></script>
+<script type="text/jsx">
+/** @jsx React.DOM **/
+(function () {
+  window.assignment = new Assignment(<%= @assignment.to_json.html_safe %>);
+  console.log(assignment);
+  var questionForm = React.renderComponent(
+    <QuestionForm />,
+    document.getElementById('question')
+  );
+  var chart = React.renderComponent(
+    <Chart />,
+    document.getElementById('chart')
+  );
+  var progress = React.renderComponent(
+    <Progress />,
+    document.getElementById('progress')
+  );
+  var streaks = React.renderComponent(
+    <Streaks />,
+    document.getElementById('streaks')
+  );
+  var presenter = new AssignmentPresenter({
+    model: assignment,
+    views: [questionForm, chart, progress, streaks]
+  });
+})();
+</script>
