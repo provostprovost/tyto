@@ -8,6 +8,7 @@ class ClassroomsController < ApplicationController
 
   def update
     params[:teacher_id] = Tyto.db.get_session(session[:app_session_id]).teacher_id
+    params[:students] = [params[:student_one], params[:student_two]]
     result = Tyto.db.AddStudentsToClass(students_params)
     if result.success?
       StudentMailer.classroom_invite(result.invite_ids, result.classroom.id)
