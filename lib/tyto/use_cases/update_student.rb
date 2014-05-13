@@ -1,6 +1,10 @@
 module Tyto
   class UpdateStudent < UseCase
     def run(inputs)
+      session = Tyto.db.get_session(inputs[:session_id])
+
+      return failure :session_not_found if session.nil?
+
       return failure :email_address_not_valid unless inputs[:email] =~ /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
       return failure :password_confirmation_does_not_match if inputs[:password] != inputs[:password_confirmation]
@@ -9,7 +13,7 @@ module Tyto
 
       return failure :phone_number_not_valid if phone_number.length < 10
 
-      student = Tyto.db.get_student(inputs[:id])
+      student = Tyto.db.get_student(session.student_id)
 
       email_student = Tyto.db.get_student_from_email(inputs[:email])
       return failure :email_address_taken if email_student && student.id != email_student.id
