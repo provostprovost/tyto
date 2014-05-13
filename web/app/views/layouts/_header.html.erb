@@ -6,6 +6,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li><%= link_to "Home", root_path %></li>
           <% if session[:app_session_id] %>
+            <li><%= link_to "Settings", "/accounts" %></li>
             <li><%= link_to "Sign out", "/signout", method: "delete" %></li>
           <% else %>
             <li><%= link_to "Sign in", signin_path %></li>
