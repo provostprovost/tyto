@@ -1,5 +1,3 @@
-require 'mail'
-
 module Tyto
   class AcceptInvite < UseCase
     def run(inputs)

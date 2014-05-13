@@ -11,9 +11,9 @@
   <%= text_field_tag(:assignment_size) %>
 
   <%= submit_tag "Create", class: "btn btn-large btn-primary" %>
-  <% end %>
+<% end %>
 
-  <%= form_tag('/classrooms/create', method: 'post') do %>
+<%= form_tag('/classrooms/create', method: 'post') do %>
 
   <%= label_tag(:name, "Classroom Name:") %>
   <%= text_field_tag(:name) %>
@@ -23,5 +23,16 @@
   <%= submit_tag "Create", class: "btn btn-large btn-primary" %>
 <% end %>
 
+<%= form_tag('/classrooms/update', method: 'post') do %>
+
+  <%= label_tag(:student_one, "Student Email:") %>
+  <%= text_field_tag(:student_one) %>
+  <%= label_tag(:student_two, "Student Email:") %>
+  <%= text_field_tag(:student_two) %>
+  <%= label_tag(:classroom_id, "Classroom Id:") %>
+  <%= text_field_tag(:classroom_id) %>
+
+  <%= submit_tag "Create", class: "btn btn-large btn-primary" %>
+<% end %>
 
 
