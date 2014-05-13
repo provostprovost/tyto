@@ -351,11 +351,11 @@ module Tyto
         else
           unanswered = questions
         end
-          if proficiency < 40
+          if proficiency < 0.4
             level = 1
-          elsif proficiency < 60
+          elsif proficiency < 0.7
             level = 2
-          elsif proficiency < 80
+          elsif proficiency < 0.9
             level = 3
           else
             level = 4
@@ -435,21 +435,39 @@ module Tyto
       # Statistics #
       ##############
 
+      # def get_proficiency(response_id)
+      #   response = get_response(response_id)
+      #   student_id = response.student_id
+      #   assignment_id = response.assignment_id
+      #   assignment = get_assignment(assignment_id)
+      #   chapter_id = assignment.chapter_id
+      #   question = get_question(response.question_id)
+      #   proficiency_score = get_last_proficiency_score(student_id, chapter_id)
+      #   if response.correct
+      #     proficiency_score += ( 12 / question.level )
+      #   else
+      #     proficiency_score -= ( 6 / question.level )
+      #   end
+
+      #   proficiency_score
+      # end
+
       def get_proficiency(response_id)
         response = get_response(response_id)
         student_id = response.student_id
-        assignment_id = response.assignment_id
-        assignment = get_assignment(assignment_id)
-        chapter_id = assignment.chapter_id
-        question = get_question(response.question_id)
-        proficiency_score = get_last_proficiency_score(student_id, chapter_id)
-        if response.correct
-          proficiency_score += ( 12 / question.level )
-        else
-          proficiency_score -= ( 6 / question.level )
+        chapter_id = response.chapter_id
+        assignment = get_assignment(response.assignment_id)
+        responses = Response.where(student_id: student_id, chapter_id: chapter_id).order(:created_at).to_a
+        points = []
+        responses.each_index do |response_index|
+          question = get_question(responses[response_index].question_id)
+          if responses[response_index].correct
+            points[response_index] = question.level
+          else
+            points[response_index] = -1 + 0.5 * (question.level - 1)
+          end
         end
-
-        proficiency_score
+        score(points, assignment.assignment_size)
       end
 
       def get_last_proficiency_score(student_id, chapter_id, actual=nil)
