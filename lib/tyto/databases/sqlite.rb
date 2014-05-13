@@ -435,39 +435,23 @@ module Tyto
       # Statistics #
       ##############
 
-      # def get_proficiency(response_id)
-      #   response = get_response(response_id)
-      #   student_id = response.student_id
-      #   assignment_id = response.assignment_id
-      #   assignment = get_assignment(assignment_id)
-      #   chapter_id = assignment.chapter_id
-      #   question = get_question(response.question_id)
-      #   proficiency_score = get_last_proficiency_score(student_id, chapter_id)
-      #   if response.correct
-      #     proficiency_score += ( 12 / question.level )
-      #   else
-      #     proficiency_score -= ( 6 / question.level )
-      #   end
-
-      #   proficiency_score
-      # end
-
       def get_proficiency(response_id)
         response = get_response(response_id)
         student_id = response.student_id
         chapter_id = response.chapter_id
         assignment = get_assignment(response.assignment_id)
         responses = Response.where(student_id: student_id, chapter_id: chapter_id).order(:created_at).to_a
-        points = []
-        responses.each_index do |response_index|
-          question = get_question(responses[response_index].question_id)
-          if responses[response_index].correct
-            points[response_index] = question.level
+
+        responses.map! do |response|
+          question = get_question(response.question_id)
+          if response.correct
+            question.level
           else
-            points[response_index] = -1 + 0.5 * (question.level - 1)
+            -1 + 0.5 * (question.level - 1)
           end
         end
-        score(points, assignment.assignment_size)
+
+        score(responses, assignment.assignment_size)
       end
 
       def get_last_proficiency_score(student_id, chapter_id, actual=nil)
