@@ -8,6 +8,10 @@
     this.longestStreak = assignment.longest_streak;
     this.proficiency = assignment.proficiency;
     this.questionLevel = assignment.question_level;
-  }
+    this.proficiencies = assignment.proficiencies;
+    this.complete = assignment.complete;
+  };
+
+
 })();
 

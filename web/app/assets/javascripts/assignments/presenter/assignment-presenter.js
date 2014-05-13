@@ -2,11 +2,13 @@
   window.AssignmentPresenter = function (options){
     this.view = options.view;
     this.model = options.model;
-    this.view.setProps({ handleSubmit: function (e){
+
+    var presenter = this;
+
+    this.view.setProps({ handleSubmit: function (data){
       e.preventDefault();
-      params = {answer: this.state.answer,
-              assignment_id: this.state.id}
-      str = params.answer.replace(/\s+/g, '');
+
+      str = data.answer.replace(/\s+/g, '');
       if(str===''){
         console.log("blank string rejected")
       }
@@ -18,7 +20,7 @@
           data: params,
           success: function(data) {
             result = data.table
-            this.setState({questionText: result.question.question,
+            presenter.view.setState({questionText: result.question.question,
                            questionsAnswered: result.number_answered,
                            currentStreak: result.current_streak,
                            longestStreak: result.longest_streak,

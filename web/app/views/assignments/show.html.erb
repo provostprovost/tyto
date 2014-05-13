@@ -21,17 +21,33 @@
   </div>
 </div>
 
-<script type="text/javascript">
+
+<script type="text/jsx">
+/** @jsx React.DOM **/
 (function () {
-  var assignment = new Assignment(<%= @assignment.to_json %>);
-  // var assignment = <%= @assignment.to_json %>;
-  var view = React.renderComponent(
+  var assignment = new Assignment(JSON.parse("<%= @assignment.to_json %>"));
+  var questionForm = React.renderComponent(
     <QuestionForm />,
     document.getElementById('question')
+<<<<<<< HEAD
+=======
+  );
+  var chart = React.renderComponent(
+    <Chart />,
+    document.getElementById('chart')
+  );
+  var progress = React.renderComponent(
+    <Progress />,
+    document.getElementById('progress')
+  );
+  var streaks = React.renderComponent(
+    <Streaks />,
+    document.getElementById('streaks')
+>>>>>>> ca17353aa82b7443dd99f3675ffca2ff8cd0d427
   );
   var presenter = new AssignmentPresenter({
     model: assignment,
-    view: view
+    views: [questionForm, chart, progress, streaks]
   });
 })();
 </script>
