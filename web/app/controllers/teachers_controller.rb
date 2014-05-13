@@ -39,7 +39,16 @@ class TeachersController < ApplicationController
   end
 
   def update
+    params[:session_id] = session[:app_session_id]
     @teacher = Tyto.db.get_teacher(params[:id])
+    result = Tyto::UpdateTeacher.run(teacher_params)
+    if result.success?
+      flash[:success] = "Account updated."
+      redirect_to "/teachers/#{@teacher.id}"
+    else
+      flash.now[:error] = result.error
+      render 'edit'
+    end
   end
 
   private
@@ -49,7 +58,8 @@ class TeachersController < ApplicationController
                   :email,
                   :phone_number,
                   :password,
-                  :password_confirmation)
+                  :password_confirmation,
+                  :session_id)
   end
 
   def signed_in_user
