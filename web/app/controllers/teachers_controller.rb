@@ -1,6 +1,6 @@
 class TeachersController < ApplicationController
-  before_action :signed_in_user,  only: [:show]
-  before_action :correct_user,    only: [:show]
+  before_action :signed_in_user,  only: [:show, :edit, :update]
+  before_action :correct_user,    only: [:show, :edit, :update]
 
   def new
     if session[:app_session_id]
@@ -32,6 +32,14 @@ class TeachersController < ApplicationController
     @classrooms.each do |classroom|
       @students[classroom.id] = Tyto.db.get_students_in_classroom(classroom.id)
     end
+  end
+
+  def edit
+    @teacher = Tyto.db.get_teacher(params[:id])
+  end
+
+  def update
+    @teacher = Tyto.db.get_teacher(params[:id])
   end
 
   private
