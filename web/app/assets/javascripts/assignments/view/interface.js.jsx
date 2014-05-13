@@ -3,7 +3,7 @@
 (function () {
   window.QuestionForm = React.createClass({
     getInitialState: function() {
-      return { answer: "", questionText: assignment.questionText, questionLevel: assignment.questionLevel};
+      return { answer: "", questionText: assignment.questionText, questionLevel: assignment.questionLevel, difficult: false, };
     },
     render: function() {
       return (
@@ -14,13 +14,28 @@
             <input onChange={this.onChange} value={this.state.answer} />
             <button>Submit</button>
           </form>
+          <button onClick={this.onClick} id="difficult" className='easy'> Difficult </button>
         </div>
       );
+    },
+    onClick: function(e) {
+      e.preventDefault;
+      var button = document.getElementById("difficult")
+      if(this.state.difficult===false){
+        this.state.difficult = true;
+        button.className = "hard"
+
+      }
+      else{
+        this.state.difficult=false;
+         button.className = "easy"
+
+      }
     },
     onSubmit: function (e) {
       e.preventDefault();
       assignment_id = assignment.id;
-      this.props.handleSubmit({answer: this.state.answer, assignment_id: assignment_id});
+      this.props.handleSubmit({answer: this.state.answer, assignment_id: assignment_id, difficult: this.state.difficult});
     },
 
     onChange: function(e) {

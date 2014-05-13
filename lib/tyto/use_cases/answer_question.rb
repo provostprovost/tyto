@@ -13,11 +13,12 @@ module Tyto
                                            student_id: student.id
                                                         )
       # return failure :question_not_found if question.nil?
-
+      difficult = true if inputs[:difficult] == "true"
+      difficult = false if inputs[:difficult]== "false"
       response = Tyto.db.create_response( question_id: question.id,
                                           student_id:  student.id,
                                           assignment_id: assignment.id,
-                                          difficult: inputs[:difficult],
+                                          difficult: difficult,
                                           correct: check_answer(question.id, inputs[:answer]),
                                           chapter_id: assignment.chapter_id,
                                           answer: inputs[:answer] )

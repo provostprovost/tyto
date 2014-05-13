@@ -1,24 +1,30 @@
 <div id='content'></div>
 <div class="container">
   <div class="row">
-    Assignment info can go here
-    <%= @assignment.name %>
-    <%= @assignment.assignment_size %>
-    <%= @assignment.complete %>
+    Assignment Section:<%= @assignment.name %><br>
+    Assignment Size: <%= @assignment.assignment_size %>
   </div>
-
+<br>
 <div class="container">
-  <div id="question">
+  <div class="row">
+    <div id="question">
+    </div>
   </div>
+<br>
+  <div class="row">
+    <div class='col-md-4'>
+      <div id="chart">
+      </div>
+    </div>
+    <div class='col-md-4'>
+      <div id="progress">
+      </div>
+    </div>
 
-  <div id="chart">
-  </div>
-
-  <div id="progress">
-  </div>
-
-  <div id="streaks">
-  </div>
+    <div class='col-md-4'>
+      <div id="streaks">
+      </div>
+    </div>
 </div>
 
 <script src="http://fb.me/JSXTransformer-0.10.0.js"></script>
@@ -26,7 +32,6 @@
 /** @jsx React.DOM **/
 (function () {
   window.assignment = new Assignment(<%= @assignment.to_json.html_safe %>);
-  console.log(assignment);
   var questionForm = React.renderComponent(
     <QuestionForm />,
     document.getElementById('question')

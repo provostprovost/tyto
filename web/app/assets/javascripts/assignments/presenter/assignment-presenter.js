@@ -35,7 +35,8 @@
               assignment.complete = result.complete;
               presenter.questionForm.setState({questionText: result.question.question,
                                           answer: "",
-                                          questionLevel: result.question.level
+                                          questionLevel: result.question.level,
+                                          difficult: false
               });
               presenter.chart.setState({proficiencies: result.proficiencies
               });
