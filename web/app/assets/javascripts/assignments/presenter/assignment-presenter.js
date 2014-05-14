@@ -22,7 +22,7 @@
             data: data,
             success: function(data) {
               result = data.table;
-
+              console.log(result);
               assignment.questionText = result.question.questionText;
               assignment.questionsAnswered = result.number_answered;
               assignment.currentStreak = result.current_streak;
@@ -44,6 +44,8 @@
               presenter.streaks.setState({currentStreak: result.current_streak,
                                           longestStreak: result.longest_streak
               });
+
+
             }
           });
         }

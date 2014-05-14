@@ -60,10 +60,11 @@
       return { proficiencies: assignment.proficiencies};
     },
     render: function() {
+      var ctx = document.getElementById("chart").getContext("2d");
+      var chart = new Chart(ctx);
+      console.log(this.state.proficiencies);
       return (
-        <div className="chart panel">
-          <img src="http://placehold.it/300x200"></img>
-        </div>
+        <canvas id="chart-canvas" width="300" height="200"></canvas>
       );
     }
   });
@@ -90,20 +91,20 @@
     render: function() {
       return (
         <div className="streaks panel">
-          <div class="row">Streaks</div>
-          <div class="row">
-            <div class="small-8 columns">
+          <div className="row">Streaks</div>
+          <div className="row">
+            <div className="small-8 columns">
               Current:
             </div>
-            <div class="small-4 columns">
+            <div className="small-4 columns">
               {this.state.currentStreak}
             </div>
           </div>
-          <div class="row">
-            <div class="small-8 columns">
+          <div className="row">
+            <div className="small-8 columns">
               Longest:
             </div>
-            <div class="small-4 columns">
+            <div className="small-4 columns">
               {this.state.longestStreak}
             </div>
           </div>
