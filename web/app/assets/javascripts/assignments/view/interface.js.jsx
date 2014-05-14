@@ -9,10 +9,10 @@
       return (
         <div className="question">
           Level: {this.state.questionLevel}<br></br>
-          Current Question: {this.state.questionText}
+          {this.state.questionText}
           <form onSubmit={this.onSubmit}>
-            <input onChange={this.onChange} value={this.state.answer} />
-            <button>Submit</button>
+            <input onChange={this.onChange} value={this.state.answer} /><br></br>
+            <button className="round">Submit</button>
           </form>
           <button onClick={this.onClick} id="difficult" className='easy'> Difficult </button>
         </div>
@@ -50,7 +50,7 @@
     render: function() {
       return (
         <div className="chart">
-          A cool chart!
+          <img src="http://placehold.it/300x200"></img>
         </div>
       );
     }
@@ -61,11 +61,10 @@
       return { proficiency: assignment.proficiency};
     },
     render: function() {
+      var barWidth = Math.min((this.state.proficiency * 100), 100) + "%";
+      var barStyle = {width: barWidth};
       return (
-        <div className="progress">
-          Proficiency: {this.state.proficiency}<br></br>
-        </div>
-        // <div className="progress large-6 success round"><span class="meter" style="width: {this.state.proficiency}"></span></div>
+        <div className="progress small-12 success round"><span className="meter" style={barStyle}></span></div>
       );
     }
   });

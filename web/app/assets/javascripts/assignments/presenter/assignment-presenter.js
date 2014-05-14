@@ -10,19 +10,18 @@
 
     this.questionForm.setProps({
       handleSubmit: function (data){
-        console.log(data);
-        str = data.answer.replace(/\s+/g, '');
-        if(str===''){
+        data["answer"] = data["answer"].trim();
+        if(data["answer"]===''){
           console.log("blank string rejected")
         }
         else{
+        console.log(data["answer"]);
           $.ajax({
             url: '/responses/create',
             dataType: 'json',
             type: 'POST',
             data: data,
             success: function(data) {
-              console.log(data);
               result = data.table;
 
               assignment.questionText = result.question.questionText;

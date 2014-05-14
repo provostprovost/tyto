@@ -1,5 +1,10 @@
 <div class="row assignment-header">
-  <%= @assignment.name %>: <%= @assignment.assignment_size %> Problems
+  <div class="small-12 medium-6 columns">
+    <%= @assignment.name %>: <%= @assignment.assignment_size %> Problems
+  </div>
+  <div class="small-12 medium-6 columns">
+    <div id="progress"></div>
+  </div>
 </div>
 <div class="row">
   <div class="small-12 medium-8 columns">
@@ -9,9 +14,6 @@
   <div class="small-12 medium-4 columns">
     <div class="row">
       <div id="chart"></div>
-    </div>
-    <div class="row">
-      <div id="progress"></div>
     </div>
     <div class="row">
       <div id="streaks"></div>
