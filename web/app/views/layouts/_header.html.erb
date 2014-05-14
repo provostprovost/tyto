@@ -1,18 +1,32 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container">
-      <%= link_to "Tyto", root_path, id: "logo" %>
-      <nav>
-        <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "Home", root_path %></li>
-          <% if session[:app_session_id] %>
+<nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <li class="name">
+      <h1 class="logo"><%= link_to "Tyto", root_path %></h1>
+    </li>
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+
+  <section class="top-bar-section">
+    <ul class="right">
+      <% if session[:app_session_id] %>
+        <li class="active"><%= link_to "Dashboard", "/dashboards" %></li>
+        <li class="has-dropdown">
+          <a href="#">Account</a>
+          <ul class="dropdown">
             <li><%= link_to "Settings", "/accounts" %></li>
             <li><%= link_to "Sign out", "/signout", method: "delete" %></li>
-          <% else %>
-            <li><%= link_to "Sign in", signin_path %></li>
-          <% end %>
-        </ul>
-      </nav>
-    </div>
-  </div>
-</header>
+          </ul>
+        </li>
+      <% else %>
+        <li class="active"><%= link_to "Sign in", signin_path %></li>
+        <li class="has-dropdown">
+          <a href="#">Sign up</a>
+          <ul class="dropdown">
+            <li><%= link_to "Students", "/studentsignup" %></li>
+            <li><%= link_to "Teachers", "/teachersignup" %></li>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+</nav>

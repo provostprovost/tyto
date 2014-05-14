@@ -1,104 +1,45 @@
-@import "bootstrap";
-
-/* universal */
-
-html {
-  overflow-y: scroll;
-}
-
 body {
-  padding-top: 60px;
 }
 
-section {
-  overflow: auto;
+/* Header */
+.logo {
 }
 
-textarea {
-  resize: vertical;
-}
 
-.center {
-  text-align: center;
-}
+/* Assignment Show */
 
-.center h1 {
-  margin-bottom: 10px;
-}
-
-/* typography */
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-}
-
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: #999;
-}
-
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
-}
-
-/* header */
-
-#logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: #FFF;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
-  line-height: 1;
-}
-
-#logo:hover {
+.assignment-header {
+  background-color: #2ba6cb;
+  width: 100%;
+  max-width: 100%;
+  padding-top: 1.2em;
   color: #fff;
-  text-decoration: none;
+  text-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px;
 }
 
-/* footer */
-
-footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid #eaeaea;
-  color: #999;
+.question-text {
+  font-size: 3em;
+  padding: 0.5em;
+  text-align: center;
 }
 
-footer a {
-  color: #555;
+.progress {
+  /*margin-top: 0.7em;*/
 }
 
-footer a:hover {
-  color: #222;
+
+#question {
+
 }
 
-footer small {
-  float: left;
+#chart {
+  text-align: center;
 }
 
-footer ul {
-  float: right;
-  list-style: none;
+#progress {
+
 }
 
-footer ul li {
-  float: left;
-  margin-left: 10px;
+#streaks {
+
 }

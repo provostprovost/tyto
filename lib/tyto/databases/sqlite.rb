@@ -537,7 +537,7 @@ module Tyto
       end
 
       def delete_session(id)
-        Session.destroy(id)
+        Session.destroy(id) if get_session(id)
       end
 
       ############
@@ -590,7 +590,7 @@ module Tyto
       end
 
       def delete_student(id)
-        Student.destroy(id)
+        Student.destroy(id) if get_student(id)
       end
 
       def get_student_from_email(email)
@@ -679,7 +679,7 @@ module Tyto
       end
 
       def delete_teacher(id)
-        Teacher.destroy(id)
+        Teacher.destroy(id) if get_teacher(id)
       end
 
       def get_teacher_from_email(email)

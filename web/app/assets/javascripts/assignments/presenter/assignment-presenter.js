@@ -10,9 +10,8 @@
 
     this.questionForm.setProps({
       handleSubmit: function (data){
-        console.log(data);
-        str = data.answer.replace(/\s+/g, '');
-        if(str===''){
+        data["answer"] = data["answer"].trim();
+        if(data["answer"]===''){
           console.log("blank string rejected")
         }
         else{
@@ -22,7 +21,6 @@
             type: 'POST',
             data: data,
             success: function(data) {
-              console.log(data);
               result = data.table;
 
               assignment.questionText = result.question.questionText;
@@ -36,7 +34,7 @@
               presenter.questionForm.setState({questionText: result.question.question,
                                           answer: "",
                                           questionLevel: result.question.level,
-                                          difficult: false
+                                          difficult: false,
               });
               presenter.chart.setState({proficiencies: result.proficiencies
               });
