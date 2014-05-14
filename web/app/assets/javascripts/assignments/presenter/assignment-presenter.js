@@ -15,7 +15,6 @@
           console.log("blank string rejected")
         }
         else{
-        console.log(data["answer"]);
           $.ajax({
             url: '/responses/create',
             dataType: 'json',
@@ -35,7 +34,7 @@
               presenter.questionForm.setState({questionText: result.question.question,
                                           answer: "",
                                           questionLevel: result.question.level,
-                                          difficult: false
+                                          difficult: false,
               });
               presenter.chart.setState({proficiencies: result.proficiencies
               });
