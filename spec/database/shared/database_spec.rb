@@ -164,7 +164,6 @@ shared_examples_for "a database" do
 
       all_students = db.get_students_in_classroom(new_classroom.id)
 
-      # expect(all_students).to be_a Array
       expect(all_students.first).to be_a Tyto::Student
       expect(all_students.first.id).to eq student1.id
     end
@@ -195,6 +194,14 @@ shared_examples_for "a database" do
       course = db.get_course_from_name("science")
       expect(course.id).to eq(@course_two.id)
       expect(course.name).to eq(@course_two.name)
+    end
+
+    it "gets a course for a chapter" do
+      chapter1 = db.create_chapter(course_id: @course.id, parent_id: @course.id, name: "1st chapter")
+      chapter2 = db.create_chapter(course_id: chapter1.course_id, parent_id: chapter1.id, name: "2nd chapter")
+      chapter3 = db.create_chapter(course_id: chapter2.course_id, parent_id: chapter2.id, name: "3rd chapter")
+
+      expect(chapter3.course_id).to eq @course.id
     end
   end
 

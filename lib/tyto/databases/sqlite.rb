@@ -167,12 +167,14 @@ module Tyto
       class Chapter < ActiveRecord::Base
         belongs_to :course
         has_many :questions
+        has_many :chapters
       end
 
       def create_chapter(attrs)
         chapter = Chapter.create(attrs)
         Tyto::Chapter.new(  id: chapter.id,
                             parent_id: chapter.parent_id,
+                            course_id: chapter.course_id,
                             name: chapter.name )
       end
 
