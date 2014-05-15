@@ -95,6 +95,7 @@ module Tyto
         assignments.map { |assignment| get_assignment(assignment.id) }
       end
 
+
       def delete_assignment(id)
         Assignment.destroy(id)
       end

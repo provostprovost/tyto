@@ -1,5 +1,5 @@
 require 'pry-debugger'
-
+require 'chronic'
 module Tyto
   class AssignHomework < UseCase
     def run(inputs)
@@ -12,12 +12,14 @@ module Tyto
      students = Tyto.db.get_students_in_classroom(classroom.id)
      return failure(:no_students_in_class) if students == nil
      assignments = []
+     # deadline = Chronic.parse(inputs[:day] + inputs[:time]) if inputs[:day]!= nil
      students.each do |student|
         assignment = Tyto.db.create_assignment(student_id: student.id,
                                           chapter_id: chapter.id,
                                           classroom_id: classroom.id,
                                           teacher_id: teacher_id,
-                                          assignment_size: inputs[:assignment_size].to_i)
+                                          assignment_size: inputs[:assignment_size].to_i
+ )
         assignments.push(assignment)
         question = Tyto.db.get_next_question(0, student.id, chapter.id)
         Tyto.db.update_last_question(question_id: question.id,

@@ -13,4 +13,5 @@ gem 'pry-debugger', '~>0.2.2'
 gem 'sqlite3', :group => :development
 gem 'activerecord', '~> 4.1.0'
 gem 'active_record_tasks', '~> 1.0.3'
+gem 'chronic'
 

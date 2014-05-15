@@ -14,7 +14,8 @@ module Tyto
                 :current_question_text,
                 :proficiencies,
                 :proficiency,
-                :question_level
+                :question_level,
+                :deadline
     validates_presence_of :id, :student_id, :chapter_id, :classroom_id, :assignment_size, :teacher_id
   end
 end
