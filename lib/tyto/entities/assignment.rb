@@ -5,6 +5,7 @@ module Tyto
                 :chapter_id,
                 :classroom_id,
                 :complete,
+                :course_name,
                 :assignment_size,
                 :teacher_id,
                 :name,

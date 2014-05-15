@@ -1,19 +1,24 @@
-<%= form_tag('/students', method: 'post') do %>
-  <%= label_tag(:username, "Username:") %>
-  <%= text_field_tag(:username) %>
+<div class="body-container">
+  <div class="row">
+    <div class="small-12 medium-6 large-4 small-centered columns">
+      <%= form_tag('/students', method: 'post') do %>
+        <%= label_tag(:username, "Username:") %>
+        <%= text_field_tag(:username) %>
 
-  <%= label_tag(:email, "Parent's email address:") %>
-  <%= text_field_tag(:email) %>
+        <%= label_tag(:email, "Parent's email address:") %>
+        <%= text_field_tag(:email) %>
 
-  <%= label_tag(:phone_number, "Parent's mobile phone number:") %>
-  <%= text_field_tag(:phone_number) %>
+        <%= label_tag(:phone_number, "Parent's mobile phone number:") %>
+        <%= text_field_tag(:phone_number) %>
 
-  <%= label_tag(:password, "Password:") %>
-  <%= password_field_tag(:password) %>
+        <%= label_tag(:password, "Password:") %>
+        <%= password_field_tag(:password) %>
 
-  <%= label_tag(:password_confirmation, "Confirmation:") %>
-  <%= password_field_tag(:password_confirmation) %>
+        <%= label_tag(:password_confirmation, "Confirmation:") %>
+        <%= password_field_tag(:password_confirmation) %>
 
-  <%= submit_tag "Create my account", class: "btn btn-large btn-primary" %>
-
-<% end %>
+        <%= submit_tag "Create my account", class: "button expand" %>
+      <% end %>
+    </div>
+  </div>
+</div>

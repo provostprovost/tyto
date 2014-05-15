@@ -1,3 +1,51 @@
 // Place all the styles related to the Students controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.assignment {
+  /*margin-bottom: 1em;*/
+}
+
+.row.button-header {
+  width: 100%;
+  max-width: 100%;
+}
+
+.assignment-container{
+  background-color: #2ba6cb;
+  padding: 1em;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.75);
+  box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.75);
+}
+
+.course-name {
+  color: #fff;
+  text-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px;
+  font-size: 2em;
+  line-height: 1em;
+}
+
+.assignment-name {
+  color: #fff;
+  text-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px;
+}
+
+.questions-complete {
+  color: #fff;
+  text-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px;
+  font-size: 2em;
+  line-height: 1em;
+}
+
+.green {
+  background-color: green;
+}
+
+.button-group {
+  display: inline;
+}
