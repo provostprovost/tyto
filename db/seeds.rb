@@ -30,7 +30,7 @@ student3 = Tyto.db.create_student(username: "Hasmukh Shah",
                                   password: "password1",
                                   email: "hasmukh@student.com",
                                   phone_number: "5125555555")
-course = Tyto.db.create_course(name: "algebra")
+course = Tyto.db.create_course(name: "Algebra")
 
 classroom1 = Tyto.db.create_classroom(teacher_id: teacher1.id,
                                       course_id:  course.id,
@@ -70,80 +70,80 @@ section6 = Tyto.db.create_chapter(course_id: chapter2.course_id, parent_id: chap
 question = nil
 subtopics = [section1, section2, section3, section4, section5, section6]
 subtopics.each do |x|
- question = Tyto.db.create_question(level: 1, question: "1+1",
+ question = Tyto.db.create_question(level: 1, question: "1 + 1",
                               answer: "2", chapter_id: x.id)
- Tyto.db.create_question(level: 1, question: "1+2",
+ Tyto.db.create_question(level: 1, question: "1 + 2",
                               answer: "3", chapter_id: x.id)
- Tyto.db.create_question(level: 1, question: "1+3",
+ Tyto.db.create_question(level: 1, question: "1 + 3",
                               answer: "4", chapter_id: x.id)
- Tyto.db.create_question(level: 1, question: "1+4",
+ Tyto.db.create_question(level: 1, question: "1 + 4",
                               answer: "5", chapter_id: x.id)
- Tyto.db.create_question(level: 1, question: "1+5",
+ Tyto.db.create_question(level: 1, question: "1 + 5",
                               answer: "6", chapter_id: x.id)
- Tyto.db.create_question(level: 1, question: "1+6",
+ Tyto.db.create_question(level: 1, question: "1 + 6",
                               answer: "7", chapter_id: x.id)
- Tyto.db.create_question(level: 1, question: "1+7",
+ Tyto.db.create_question(level: 1, question: "1 + 7",
                               answer: "8", chapter_id: x.id)
- Tyto.db.create_question(level: 1, question: "1+8",
+ Tyto.db.create_question(level: 1, question: "1 + 8",
                               answer: "9", chapter_id: x.id)
- Tyto.db.create_question(level: 1, question: "1+9",
+ Tyto.db.create_question(level: 1, question: "1 + 9",
                               answer: "10", chapter_id: x.id)
 
- Tyto.db.create_question(level: 2, question: "2+1",
+ Tyto.db.create_question(level: 2, question: "2 + 1",
                               answer: "3", chapter_id: x.id)
- Tyto.db.create_question(level: 2, question: "2+2",
+ Tyto.db.create_question(level: 2, question: "2 + 2",
                               answer: "4", chapter_id: x.id)
- Tyto.db.create_question(level: 2, question: "2+3",
+ Tyto.db.create_question(level: 2, question: "2 + 3",
                               answer: "5", chapter_id: x.id)
- Tyto.db.create_question(level: 2, question: "2+4",
+ Tyto.db.create_question(level: 2, question: "2 + 4",
                               answer: "6", chapter_id: x.id)
- Tyto.db.create_question(level: 2, question: "2+5",
+ Tyto.db.create_question(level: 2, question: "2 + 5",
                               answer: "7", chapter_id: x.id)
- Tyto.db.create_question(level: 2, question: "2+6",
+ Tyto.db.create_question(level: 2, question: "2 + 6",
                               answer: "8", chapter_id: x.id)
- Tyto.db.create_question(level: 2, question: "2+7",
+ Tyto.db.create_question(level: 2, question: "2 + 7",
                               answer: "9", chapter_id: x.id)
- Tyto.db.create_question(level: 2, question: "2+8",
+ Tyto.db.create_question(level: 2, question: "2 + 8",
                               answer: "10", chapter_id: x.id)
- Tyto.db.create_question(level: 2, question: "2+9",
+ Tyto.db.create_question(level: 2, question: "2 + 9",
                               answer: "11", chapter_id: x.id)
 
- Tyto.db.create_question(level: 3, question: "3+1",
+ Tyto.db.create_question(level: 3, question: "3 + 1",
                               answer: "4", chapter_id: x.id)
- Tyto.db.create_question(level: 3, question: "3+2",
+ Tyto.db.create_question(level: 3, question: "3 + 2",
                               answer: "5", chapter_id: x.id)
- Tyto.db.create_question(level: 3, question: "3+3",
+ Tyto.db.create_question(level: 3, question: "3 + 3",
                               answer: "6", chapter_id: x.id)
- Tyto.db.create_question(level: 3, question: "3+4",
+ Tyto.db.create_question(level: 3, question: "3 + 4",
                               answer: "7", chapter_id: x.id)
- Tyto.db.create_question(level: 3, question: "3+5",
+ Tyto.db.create_question(level: 3, question: "3 + 5",
                               answer: "8", chapter_id: x.id)
- Tyto.db.create_question(level: 3, question: "3+6",
+ Tyto.db.create_question(level: 3, question: "3 + 6",
                               answer: "9", chapter_id: x.id)
- Tyto.db.create_question(level: 3, question: "3+7",
+ Tyto.db.create_question(level: 3, question: "3 + 7",
                               answer: "10", chapter_id: x.id)
- Tyto.db.create_question(level: 3, question: "3+8",
+ Tyto.db.create_question(level: 3, question: "3 + 8",
                               answer: "11", chapter_id: x.id)
- Tyto.db.create_question(level: 3, question: "3+9",
+ Tyto.db.create_question(level: 3, question: "3 + 9",
                               answer: "12", chapter_id: x.id)
 
- Tyto.db.create_question(level: 4, question: "4+1",
+ Tyto.db.create_question(level: 4, question: "4 + 1",
                               answer: "5", chapter_id: x.id)
- Tyto.db.create_question(level: 4, question: "4+2",
+ Tyto.db.create_question(level: 4, question: "4 + 2",
                               answer: "6", chapter_id: x.id)
- Tyto.db.create_question(level: 4, question: "4+3",
+ Tyto.db.create_question(level: 4, question: "4 + 3",
                               answer: "7", chapter_id: x.id)
- Tyto.db.create_question(level: 4, question: "4+4",
+ Tyto.db.create_question(level: 4, question: "4 + 4",
                               answer: "8", chapter_id: x.id)
- Tyto.db.create_question(level: 4, question: "4+5",
+ Tyto.db.create_question(level: 4, question: "4 + 5",
                               answer: "9", chapter_id: x.id)
- Tyto.db.create_question(level: 4, question: "4+6",
+ Tyto.db.create_question(level: 4, question: "4 + 6",
                               answer: "10", chapter_id: x.id)
- Tyto.db.create_question(level: 4, question: "4+7",
+ Tyto.db.create_question(level: 4, question: "4 + 7",
                               answer: "11", chapter_id: x.id)
- Tyto.db.create_question(level: 4, question: "4+8",
+ Tyto.db.create_question(level: 4, question: "4 + 8",
                               answer: "12", chapter_id: x.id)
- Tyto.db.create_question(level: 4, question: "4+9",
+ Tyto.db.create_question(level: 4, question: "4 + 9",
                               answer: "13", chapter_id: x.id)
 end
 

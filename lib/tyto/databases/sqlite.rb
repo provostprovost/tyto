@@ -54,11 +54,15 @@ module Tyto
         current_question = get_last_question(student_id: assignment.student_id, assignment_id: assignment.id)
         question_text = current_question.question unless current_question.nil?
         question_level = current_question.level unless current_question.nil?
+        chapter = get_chapter(assignment.chapter_id)
+        course = get_course(chapter.course_id)
+        course_name = course.name if course
         Tyto::Assignment.new( id: assignment.id,
                               student_id:   assignment.student_id,
                               chapter_id:   assignment.chapter_id,
                               teacher_id:   assignment.teacher_id,
                               classroom_id: assignment.classroom_id,
+                              course_name: course_name,
                               assignment_size: assignment.assignment_size,
                               complete:     assignment.complete,
                               name:         get_chapter(assignment.chapter_id).name,
@@ -183,6 +187,7 @@ module Tyto
         return nil if chapter == nil
         Tyto::Chapter.new(  id: chapter.id,
                             parent_id: chapter.parent_id,
+                            course_id: chapter.course_id,
                             name: chapter.name )
       end
 
@@ -192,6 +197,7 @@ module Tyto
         attrs.delete(:id)
         chapter.update(attrs)
         Tyto::Chapter.new(  id: chapter.id,
+                            course_id: course_id,
                             parent_id: chapter.parent_id,
                             name: chapter.name )
       end

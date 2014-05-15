@@ -3,6 +3,8 @@
   <% @assignments.each do |assignment| %>
     <div class = "span4">
       <%= link_to assignment.name, tyto_assignment_path(assignment.id) %>
+      <% %>
+      Course: <%= assignment.course_name %>
       <%= assignment.assignment_size %> problems
     </div>
   <% end %>
