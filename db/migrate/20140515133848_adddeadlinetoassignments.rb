@@ -1,6 +1,6 @@
 class Adddeadlinetoassignments < ActiveRecord::Migration
   def change
-    drop_table :assigments
+    drop_table :assignments
     create_table :assignments do |t|
       t.references :student
       t.references :teacher
