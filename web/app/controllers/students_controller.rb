@@ -28,6 +28,7 @@ class StudentsController < ApplicationController
   def show
     @student = Tyto.db.get_student(params[:id])
     @assignments = Tyto.db.get_assignments_for_student(params[:id])
+    @classrooms = Tyto.db.get_classrooms_for_student(params[:id])
   end
 
   def edit

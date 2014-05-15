@@ -263,6 +263,14 @@ module Tyto
         end
       end
 
+      def get_classrooms_for_student(id)
+        classrooms = ClassroomsUsers.where(student_id: id)
+        return nil if classrooms.last.nil?
+        classrooms.map do |pair|
+          get_classroom(pair.classroom_id)
+        end
+      end
+
       def get_classrooms_for_teacher(teacher_id)
         classrooms = Teacher.find_by(id: teacher_id).classrooms
         classrooms.map { |classroom| get_classroom(classroom.id) }
