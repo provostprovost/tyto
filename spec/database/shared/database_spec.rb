@@ -18,30 +18,35 @@ shared_examples_for "a database" do
                                     password: "1234",
                                     email: "pss8te@virginia.edu",
                                     phone_number: '7576507728'})
-      @invite = db.create_invite(email: "parthshahva@gmail.com",
+      @invite = db.create_invite(email: @student.email,
                                  teacher_id: @teacher.id,
                                  classroom_id: @classroom.id,
-                                 code: "1234",
                                  accepted: false)
+      @invite2 = db.create_invite(email: @student.email,
+                                  teacher_id: @teacher.id,
+                                  classroom_id: @classroom.id,
+                                  accepted: true)
     end
     it "creates an invite" do
-      expect(@invite.email).to eq("parthshahva@gmail.com")
+      expect(@invite.email).to eq("fake@email.com")
       expect(@invite.classroom_id).to eq(@classroom.id)
-      expect(@invite.code).to eq("1234")
       expect(@invite.accepted).to eq(false)
       expect(@invite.teacher_id).to eq(@teacher.id)
     end
     it "gets an invite" do
       invite = db.get_invite(@invite.id)
-      expect(invite.email).to eq("parthshahva@gmail.com")
+      expect(invite.email).to eq("fake@email.com")
       expect(invite.classroom_id).to eq(@classroom.id)
-      expect(invite.code).to eq("1234")
       expect(invite.accepted).to eq(false)
       expect(invite.teacher_id).to eq(@teacher.id)
     end
     it "accepts an invite" do
       invite = db.accept_invite(@invite.id)
       expect(invite.accepted).to eq(true)
+    end
+    it "gets unaccepted invites by student id" do
+      invites = db.get_invites_for_student(@student.id)
+      expect(invites.count).to eq 1
     end
   end
 

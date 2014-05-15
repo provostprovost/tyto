@@ -16,7 +16,7 @@ describe Tyto::AcceptInvite do
   end
   it "returns correct errors" do
     result = subject.run(session_id: @session.id,
-                         code:       "13134124124")
+                         invite_id: 99999)
     expect(result.error).to eq(:invite_not_found)
   end
 
@@ -27,10 +27,9 @@ describe Tyto::AcceptInvite do
     invite = Tyto.db.create_invite(email: "parthshahva1@gmail.com",
                                    teacher_id: @teacher.id,
                                    classroom_id: classroom.id,
-                                   code: "123456789",
                                    accepted: true)
     result = subject.run(session_id: @session.id,
-                         code:       invite.code)
+                         invite_id:  invite.id)
     expect(result.error).to eq(:invite_already_accepted)
 
   end
@@ -42,10 +41,9 @@ describe Tyto::AcceptInvite do
     invite = Tyto.db.create_invite(email: "parthshahva1@gmail.com",
                                  teacher_id: @teacher.id,
                                  classroom_id: classroom.id,
-                                 code: "123456",
                                  accepted: false)
     result = subject.run(session_id: @session.id,
-                         code:       invite.code)
+                         invite_id:       invite.id)
     expect(result.classroom_user.student_id).to eq(@student.id)
     expect(result.classroom_user.classroom_id).to eq(classroom.id)
   end

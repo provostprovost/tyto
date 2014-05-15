@@ -22,6 +22,7 @@ module Tyto
         ClassroomsUsers.delete_all
         Course.delete_all
         Question.delete_all
+        Invite.delete_all
         Response.delete_all
         Session.delete_all
         Student.delete_all
@@ -152,21 +153,14 @@ module Tyto
 
       end
 
-      def get_invite_from_email_and_code(email, code)
-        invite = Invite.where(email: email, code: code).last
-        return nil if invite == nil
-        Tyto::Invite.new(id:           invite.id,
-                         email:        invite.email,
-                         teacher_id:   invite.teacher_id,
-                         classroom_id: invite.classroom_id,
-                         code:         invite.code,
-                         accepted:     invite.accepted)
-      end
-
       def delete_invite(id)
         Invite.destroy(id)
       end
 
+      def get_invites_for_student(id)
+        student = get_student(id)
+        invites = Invite.where(email: student.email, accepted: false)
+      end
 
       ############
       # Chapters #
@@ -201,7 +195,7 @@ module Tyto
         attrs.delete(:id)
         chapter.update(attrs)
         Tyto::Chapter.new(  id: chapter.id,
-                            course_id: course_id,
+                            course_id: chapter.course_id,
                             parent_id: chapter.parent_id,
                             name: chapter.name )
       end

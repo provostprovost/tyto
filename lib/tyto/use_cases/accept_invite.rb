@@ -5,7 +5,7 @@ module Tyto
       return failure(:session_not_found) if session==nil
       student_id = session.student_id
       student = Tyto.db.get_student(student_id)
-      invite = Tyto.db.get_invite_from_email_and_code(student.email, inputs[:code])
+      invite = Tyto.db.get_invite(inputs[:invite_id])
       return failure(:invite_not_found) if invite == nil
       return failure(:invite_already_accepted) if invite.accepted == true
       invite = Tyto.db.accept_invite(invite.id)
