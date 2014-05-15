@@ -1,3 +1,26 @@
 // Place all the styles related to the Students controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.assignment {
+  background-color: #2ba6cb;
+  padding: 2em;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.course-name {
+  color: #fff;
+  text-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px;
+  font-size: 2em;
+}
+
+.complete {
+  background-color: green;
+}
+
+.incomplete {
+  background-color: red;
+}

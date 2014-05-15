@@ -36,6 +36,8 @@ module Tyto
       number_answered = questions_completed.size
       complete = (number_answered >= assignment.assignment_size) || (proficiencies.last > 1 && Tyto.db.get_question(questions_completed.last.question_id).level >= 3)
 
+      Tyto.db.edit_assignment(id: assignment.id, complete: complete) if complete
+
       longest_streak = Tyto.db.get_longest_streak(student.id, assignment.chapter_id)
 
       current_streak = Tyto.db.current_chapter_streak(student.id, assignment.chapter_id)

@@ -1,11 +1,15 @@
 <%= @student.username %>
 <div class="row assignments">
   <% @assignments.each do |assignment| %>
-    <div class = "span4">
-      <%= link_to assignment.name, tyto_assignment_path(assignment.id) %>
-      <% %>
-      Course: <%= assignment.course_name %>
+      <%= link_to tyto_assignment_path(assignment.id) do %>
+    <div class = "large-3 medium-4 small-12 columns assignment <% if assignment.complete %>complete<% end %>">
+      <div class="row">
+        <p class="course-name"><%= assignment.course_name %></p>
+        <% if assignment.complete %>complete<% end %>
+        <%= assignment.complete.to_s %>
+      </div>
       <%= assignment.assignment_size %> problems
     </div>
+    <% end %>
   <% end %>
 </div>

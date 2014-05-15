@@ -39,13 +39,15 @@ module Tyto
       end
 
       def create_assignment(attrs)
+        attrs[:complete] = false
         assignment = Assignment.create(attrs)
         Tyto::Assignment.new( id:         assignment.id,
                               student_id: assignment.student_id,
                               chapter_id: assignment.chapter_id,
                               teacher_id: assignment.teacher_id,
                               classroom_id:     assignment.classroom_id,
-                              assignment_size:  assignment.assignment_size )
+                              assignment_size:  assignment.assignment_size,
+                              complete: assignment.complete )
       end
 
       def get_assignment(id)
