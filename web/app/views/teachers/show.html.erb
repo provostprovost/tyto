@@ -1,36 +1,37 @@
 <div class="row">
   <div class="small-12 large-9 columns" id="tabs">
     <dl class="tabs" data-tab>
-      <%@classrooms.each_index do |x| %>
-         <dd><a href="#panel<%=x%>"><%=@classrooms[x].name%></a></dd>
+      <%@classrooms.each do |a| %>
+         <dd><a href="#panel<%=a.id%>"><%=a.name%></a></dd>
       <%end%>
       <dd class="active"><a href="#panelcreate">Add Class</a></dd>
     </dl>
 
     <div class="tabs-content">
-      <%@classrooms.each_index do |x| %>
-        <div class="content" id="panel<%=x%>">
+      <%@classrooms.each do |a| %>
+        <div class="content" id="panel<%=a.id%>">
           <table>
             <thead>
               <tr>
                 <th width="200">Student</th>
-                <%if @assignments[@classrooms[x].id] != nil %>
-                  <%@assignments[@classrooms[x].id].each do |x| %>
-                    <th><%=x.name%></th>
+                <%if @assignments[a.id] != nil %>
+                  <%@assignments[a.id].each do |b| %>
+                    <th><%=b.name%></th>
                   <%end%>
                 <%end%>
               </tr>
             </thead>
             <tbody>
-              <%@students[@classrooms[x].id].each do |x| %>
+              <%@students[a.id].each do |c| %>
               <tr>
-                <td><%=x.username%></td>
+                <td><%=c.username%></td>
+                <%@studenthomework[a.id][c.id].each do |q| %>
+                  <td><%=q.proficiency%></td>
+                <%end%>
               </tr>
               <%end%>
             </tbody>
           </table>
-            <%@students[@classrooms[x].id].each do |x| %>
-            <%end%>
         </div>
       <%end%>
         <div class="content active" id="panelcreate">
