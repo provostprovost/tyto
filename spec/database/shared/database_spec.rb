@@ -297,15 +297,18 @@ shared_examples_for "a database" do
       expect(@response.chapter_id).to eq(@chapter.id)
 
     end
-      it 'increments proficieny for correct answers' do
-        proficiency = db.get_response(@response.id).proficiency
+      it 'increments proficiency for correct answers' do
         new_response = db.create_response(correct: true,
                                           question_id: @question.id,
                                           student_id: @student.id,
                                           assignment_id: @assignment.id,
                                           difficult: false)
-        new_proficiency = db.get_proficiency(new_response.id)
-        expect(new_proficiency).to be > proficiency
+        other_response = db.create_response(correct: true,
+                                          question_id: @question.id,
+                                          student_id: @student.id,
+                                          assignment_id: @assignment.id,
+                                          difficult: false)
+        expect(other_response.proficiency).to be > new_response.proficiency
       end
 
       it 'decrements proficiency for incorrect answers' do
