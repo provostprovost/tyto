@@ -2,13 +2,12 @@
 <div class="row assignments">
   <% @assignments.each do |assignment| %>
       <%= link_to tyto_assignment_path(assignment.id) do %>
-    <div class = "large-3 medium-4 small-12 columns assignment <% if assignment.complete %>complete<% end %>">
-      <div class="row">
+    <div class = "large-3 medium-4 small-12 columns assignment">
+      <div class="assignment-container <% if assignment.complete %>complete<% end %>">
         <p class="course-name"><%= assignment.course_name %></p>
-        <% if assignment.complete %>complete<% end %>
-        <%= assignment.complete.to_s %>
+        <p class="assignment-name"><%= assignment.name %></p>
+        <p class="questions-complete"><%= assignment.questions_answered %>/<%= assignment.assignment_size %></p>
       </div>
-      <%= assignment.assignment_size %> problems
     </div>
     <% end %>
   <% end %>

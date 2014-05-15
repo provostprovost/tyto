@@ -60,13 +60,13 @@ Tyto.db.add_student_to_classroom(classroom_id: classroom3.id,
 chapter1 = Tyto.db.create_chapter(course_id: course.id, name: "Chapter One")
 chapter2 = Tyto.db.create_chapter(course_id: course.id, name: "Chapter Two")
 
-section1 = Tyto.db.create_chapter(course_id: chapter1.course_id, parent_id: chapter1.id, name: "1.1")
-section2 = Tyto.db.create_chapter(course_id: chapter1.course_id, parent_id: chapter1.id, name: "1.2")
-section3 = Tyto.db.create_chapter(course_id: chapter1.course_id, parent_id: chapter1.id, name: "1.3")
+section1 = Tyto.db.create_chapter(course_id: chapter1.course_id, parent_id: chapter1.id, name: "The Integers")
+section2 = Tyto.db.create_chapter(course_id: chapter1.course_id, parent_id: chapter1.id, name: "The Rational Numbers")
+section3 = Tyto.db.create_chapter(course_id: chapter1.course_id, parent_id: chapter1.id, name: "Numbers as Measurements")
 
-section4 = Tyto.db.create_chapter(course_id: chapter2.course_id, parent_id: chapter2.id, name: "2.1")
-section5 = Tyto.db.create_chapter(course_id: chapter2.course_id, parent_id: chapter2.id, name: "2.2")
-section6 = Tyto.db.create_chapter(course_id: chapter2.course_id, parent_id: chapter2.id, name: "2.3")
+section4 = Tyto.db.create_chapter(course_id: chapter2.course_id, parent_id: chapter2.id, name: "Solving Equations Using More Than One Operation")
+section5 = Tyto.db.create_chapter(course_id: chapter2.course_id, parent_id: chapter2.id, name: "Simplifying Each Side of an Equation")
+section6 = Tyto.db.create_chapter(course_id: chapter2.course_id, parent_id: chapter2.id, name: "Solving Equations that Have the Variable in Both Sides")
 question = nil
 subtopics = [section1, section2, section3, section4, section5, section6]
 subtopics.each do |x|

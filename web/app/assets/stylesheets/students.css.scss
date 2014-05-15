@@ -3,18 +3,33 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .assignment {
+  margin-bottom: 1em;
+}
+
+.assignment-container{
   background-color: #2ba6cb;
-  padding: 2em;
+  padding: 1em;
   text-align: center;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  -webkit-box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.75);
+  box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.75);
 }
 
 .course-name {
   color: #fff;
   text-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px;
   font-size: 2em;
+  line-height: 1em;
+}
+
+.questions-complete {
+  color: #fff;
+  text-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px;
+  font-size: 2em;
+  line-height: 1em;
 }
 
 .complete {
