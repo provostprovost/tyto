@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
-  resources :students, :teachers
-  resources :sessions, only: [:new, :create, :destroy]
-  resources :questions
-  resources :courses
+  resources :accounts, only: [:index]
+  resources :assignments, :as => :tyto_assignments
   resources :chapters
   resources :classrooms
-  resources :assignments, :as => :tyto_assignments
-  resources :accounts, only: [:index]
+  resources :courses
   resources :dashboards, only: [:index]
+  resources :invites, only: [:create, :update]
+  resources :questions
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :students, :teachers
 
   root 'static_pages#home'
 
