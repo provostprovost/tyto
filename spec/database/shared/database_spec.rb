@@ -87,7 +87,7 @@ shared_examples_for "a database" do
 
    describe 'Chapter' do
     before do
-      @chapter = db.create_chapter(parent_id: 1, name: "Cool Chapter")
+      @chapter = db.create_chapter(parent_id: 1, name: "Cool Chapter", course_id: 777)
     end
 
     it "creates a chapter" do
@@ -104,7 +104,8 @@ shared_examples_for "a database" do
 
     it "edits a chapter" do
       db.edit_chapter(  id: @chapter.id,
-                        name: "Edited Chapter" )
+                        name: "Edited Chapter",
+                        course_id: 777 )
       edited_chapter = db.get_chapter(@chapter.id)
       expect(edited_chapter.id).to eq @chapter.id
       expect(edited_chapter.name).to eq "Edited Chapter"

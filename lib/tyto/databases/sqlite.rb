@@ -199,7 +199,7 @@ module Tyto
         attrs.delete(:id)
         chapter.update(attrs)
         Tyto::Chapter.new(  id: chapter.id,
-                            course_id: course_id,
+                            course_id: chapter.course_id,
                             parent_id: chapter.parent_id,
                             name: chapter.name )
       end
