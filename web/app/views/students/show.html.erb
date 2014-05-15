@@ -29,6 +29,10 @@
       <% @classrooms.each do |classroom| %>
         <p><%= classroom.name %></p>
       <% end %>
+      <% @invites.each do |invite| %>
+        <p><%= invite.course_name %></p>
+        <p><%= invite.teacher_name %></p>
+      <% end %>
     </div>
   </div>
 </div>

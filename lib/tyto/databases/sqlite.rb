@@ -124,8 +124,9 @@ module Tyto
                           email:        invite.email,
                           teacher_id:   invite.teacher_id,
                           classroom_id: invite.classroom_id,
-                          code:         invite.code,
-                          accepted:     invite.accepted
+                          accepted:     invite.accepted,
+                          teacher_name: get_teacher(invite.teacher_id).username,
+                          course_name:  get_course(get_classroom(invite.classroom_id).course_id).name
                               )
       end
 
@@ -136,8 +137,10 @@ module Tyto
                          email:        invite.email,
                          teacher_id:   invite.teacher_id,
                          classroom_id: invite.classroom_id,
-                         code:         invite.code,
-                         accepted:     invite.accepted)
+                         accepted:     invite.accepted,
+                         teacher_name: get_teacher(invite.teacher_id).username,
+                         course_name:  get_course(get_classroom(invite.classroom_id).course_id).name
+                         )
       end
 
       def accept_invite(id)
@@ -148,8 +151,10 @@ module Tyto
                          email:        invite.email,
                          teacher_id:   invite.teacher_id,
                          classroom_id: invite.classroom_id,
-                         code:         invite.code,
-                         accepted:     invite.accepted)
+                         accepted:     invite.accepted,
+                         teacher_name: get_teacher(invite.teacher_id).username,
+                         course_name:  get_course(get_classroom(invite.classroom_id).course_id).name
+                        )
 
       end
 
@@ -160,6 +165,7 @@ module Tyto
       def get_invites_for_student(id)
         student = get_student(id)
         invites = Invite.where(email: student.email, accepted: false)
+        invites.map {|invite| get_invite(invite.id)}
       end
 
       ############
