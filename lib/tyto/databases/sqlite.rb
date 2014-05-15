@@ -26,6 +26,7 @@ module Tyto
         Session.delete_all
         Student.delete_all
         Teacher.delete_all
+        UsersQuestions.delete_all
       end
 
       ###############

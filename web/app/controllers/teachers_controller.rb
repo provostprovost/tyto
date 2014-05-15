@@ -40,7 +40,6 @@ class TeachersController < ApplicationController
           @studenthomework[classroom.id][x.id] = Tyto.db.get_assignments_for_classroom(classroom.id, x.id)
         end
     end
-    binding.pry
   end
 
   def edit
