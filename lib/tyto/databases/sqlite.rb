@@ -233,10 +233,15 @@ module Tyto
       def get_classroom(id)
         classroom = Classroom.find_by(id: id)
         return nil if classroom == nil
+        students = get_students_in_classroom(id)
+        assignments = nil
+        assignments = get_assignments_for_classroom(id, students.first.id) if students != nil
         Tyto::Classroom.new(  id:         classroom.id,
                               course_id:  classroom.course_id,
                               teacher_id: classroom.teacher_id,
-                              name: classroom.name )
+                              name: classroom.name,
+                              students: students,
+                              assignments: assignments)
       end
 
       def edit_classroom(attrs)
