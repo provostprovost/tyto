@@ -1,14 +1,31 @@
-<%= @student.username %>
-<div class="row assignments">
-  <% @assignments.each do |assignment| %>
-      <%= link_to tyto_assignment_path(assignment.id) do %>
-    <div class = "large-3 medium-4 small-12 columns assignment">
-      <div class="assignment-container <% if assignment.complete %>complete<% end %>">
-        <p class="course-name"><%= assignment.course_name %></p>
-        <p class="assignment-name"><%= assignment.name %></p>
-        <p class="questions-complete"><%= assignment.questions_answered %>/<%= assignment.assignment_size %></p>
-      </div>
-    </div>
-    <% end %>
-  <% end %>
+
+
+<div class="row">
+  <ul id="filters" class="button-group">
+    <li><a data-filter="*" href="#" class="button">Show all</a></li>
+    <li><a data-filter=".complete" href="#" class="button">Complete</a></li>
+    <li><a data-filter=".incomplete" href="#" class="button">Incomplete</a></li>
+  </ul>
+
+
+</div>
+<div class="row" data-equalizer>
+  <div class="small-12 columns">
+    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3 isotope-container">
+      <% @assignments.each do |assignment| %>
+        <li class="assignment-li <% if !assignment.complete %>in<% end %>complete" data-equalizer-watch>
+          <%= link_to tyto_assignment_path(assignment.id) do %>
+            <div class="assignment-container <% if assignment.complete %>green<% end %>">
+              <p class="course-name"><%= assignment.course_name %></p>
+              <p class="assignment-name"><%= assignment.name %></p>
+              <p class="questions-complete"><%= assignment.questions_answered %>/<%= assignment.assignment_size %></p>
+              <div class="progress small-12 success round">
+                <span class="meter" style="width: <%= [assignment.proficiency, 1].min * 100 %>%"></span>
+              </div>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>

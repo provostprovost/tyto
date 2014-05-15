@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .assignment {
-  margin-bottom: 1em;
+  /*margin-bottom: 1em;*/
 }
 
 .assignment-container{
@@ -25,6 +25,11 @@
   line-height: 1em;
 }
 
+.assignment-name {
+  color: #fff;
+  text-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px;
+}
+
 .questions-complete {
   color: #fff;
   text-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px;
@@ -32,10 +37,10 @@
   line-height: 1em;
 }
 
-.complete {
+.green {
   background-color: green;
 }
 
-.incomplete {
-  background-color: red;
+.button-group {
+  display: inline;
 }
