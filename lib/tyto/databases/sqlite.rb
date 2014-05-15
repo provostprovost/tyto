@@ -66,7 +66,7 @@ module Tyto
                               chapter_id:   assignment.chapter_id,
                               teacher_id:   assignment.teacher_id,
                               classroom_id: assignment.classroom_id,
-                              course_name: course_name,
+                              course_name:  course_name,
                               assignment_size: assignment.assignment_size,
                               complete:     assignment.complete,
                               name:         get_chapter(assignment.chapter_id).name,
