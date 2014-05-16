@@ -28,18 +28,6 @@ class TeachersController < ApplicationController
   def show
     @teacher = Tyto.db.get_teacher(params[:id])
     @classrooms = Tyto.db.get_classrooms_for_teacher(params[:id])
-    @students = {}
-    @assignments = {}
-    @studenthomework = {}
-
-    @classrooms.each do |classroom|
-      @students[classroom.id] = Tyto.db.get_students_in_classroom(classroom.id)
-      @assignments[classroom.id] = Tyto.db.get_assignments_for_classroom(classroom.id, @students[classroom.id].first.id)
-      @studenthomework[classroom.id] = {}
-        @students[classroom.id].each do |x|
-          @studenthomework[classroom.id][x.id] = Tyto.db.get_assignments_for_classroom(classroom.id, x.id)
-        end
-    end
   end
 
   def edit
