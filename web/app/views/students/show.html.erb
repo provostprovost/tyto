@@ -39,3 +39,34 @@
     </div>
   </div>
 </div>
+
+<script src="http://fb.me/JSXTransformer-0.10.0.js"></script>
+<script type="text/jsx">
+/** @jsx React.DOM **/
+(function () {
+  window.assignment = new Assignment(<%= @assignment.to_json.html_safe %>);
+  var questionForm = React.renderComponent(
+    <QuestionForm />,
+    document.getElementById('question')
+  );
+  var chart = React.renderComponent(
+    <Chart />,
+    document.getElementById('chart')
+  );
+  var progress = React.renderComponent(
+    <Progress />,
+    document.getElementById('progress')
+  );
+  var streaks = React.renderComponent(
+    <Streaks />,
+    document.getElementById('streaks')
+  );
+  var presenter = new StudentPresenter({
+    model: assignment,
+    questionForm: questionForm,
+    chart: chart,
+    progress: progress,
+    streaks: streaks
+  });
+})();
+</script>
