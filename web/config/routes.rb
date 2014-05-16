@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :classrooms
   resources :courses
   resources :dashboards, only: [:index]
-  resources :invites, only: [:create, :update]
+  resources :invites, only: [:create, :index, :update]
   resources :questions
   resources :sessions, only: [:new, :create, :destroy]
   resources :students, :teachers

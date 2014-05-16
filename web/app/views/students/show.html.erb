@@ -32,6 +32,9 @@
       <% @invites.each do |invite| %>
         <p><%= invite.course_name %></p>
         <p><%= invite.teacher_name %></p>
+        <%= form_tag("/invites/#{invite.id}", method: 'patch') do %>
+          <% submit_tag "Accept Invite", class: "button" %>
+        <% end %>
       <% end %>
     </div>
   </div>

@@ -168,6 +168,11 @@ module Tyto
         invites.map {|invite| get_invite(invite.id)}
       end
 
+      def get_invites_for_teacher(id)
+        invites = Invite.where(teacher_id: id, accepted: false)
+        invites.map {|invite| get_invite(invite.id)}
+      end
+
       ############
       # Chapters #
       ############
