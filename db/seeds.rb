@@ -178,5 +178,65 @@ assignment4 = Tyto.db.create_assignment(student_id: x.id,
   end
 end
 
+[student1, student2].each do |x|
+assignment1 = Tyto.db.create_assignment(student_id: x.id,
+                                        chapter_id: section1.id,
+                                        teacher_id: teacher1.id,
+                                        classroom_id: classroom2.id,
+                                        assignment_size: 20 )
+
+assignment2 = Tyto.db.create_assignment(student_id: x.id,
+                                        chapter_id: section2.id,
+                                        teacher_id: teacher1.id,
+                                        classroom_id: classroom2.id,
+                                        assignment_size: 20 )
+
+assignment3 = Tyto.db.create_assignment(student_id: x.id,
+                                        chapter_id: section3.id,
+                                        teacher_id: teacher1.id,
+                                        classroom_id: classroom2.id,
+                                        assignment_size: 20 )
+
+assignment4 = Tyto.db.create_assignment(student_id: x.id,
+                                        chapter_id: section4.id,
+                                        teacher_id: teacher1.id,
+                                        classroom_id: classroom2.id,
+                                        assignment_size: 20 )
+  [assignment1, assignment2, assignment3, assignment4].each do |y|
+      Tyto.db.update_last_question(question_id: question.id,
+                                student_id: x.id,
+                                assignment_id: y.id)
+  end
+end
+
+
+assignment1 = Tyto.db.create_assignment(student_id: student1.id,
+                                        chapter_id: section1.id,
+                                        teacher_id: teacher1.id,
+                                        classroom_id: classroom3.id,
+                                        assignment_size: 20 )
+
+assignment2 = Tyto.db.create_assignment(student_id: student1.id,
+                                        chapter_id: section2.id,
+                                        teacher_id: teacher1.id,
+                                        classroom_id: classroom3.id,
+                                        assignment_size: 20 )
+
+assignment3 = Tyto.db.create_assignment(student_id: student1.id,
+                                        chapter_id: section3.id,
+                                        teacher_id: teacher1.id,
+                                        classroom_id: classroom3.id,
+                                        assignment_size: 20 )
+
+assignment4 = Tyto.db.create_assignment(student_id: student1.id,
+                                        chapter_id: section4.id,
+                                        teacher_id: teacher1.id,
+                                        classroom_id: classroom3.id,
+                                        assignment_size: 20 )
+  [assignment1, assignment2, assignment3, assignment4].each do |y|
+      Tyto.db.update_last_question(question_id: question.id,
+                                student_id: student1.id,
+                                assignment_id: y.id)
+  end
 
 

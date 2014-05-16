@@ -233,9 +233,22 @@ module Tyto
       def get_classroom(id)
         classroom = Classroom.find_by(id: id)
         return nil if classroom == nil
-        students = get_students_in_classroom(id)
-        assignments = nil
-        assignments = get_assignments_for_classroom(id, students.first.id) if students != nil
+        student = get_students_in_classroom(id)
+        students = {}
+        if student != nil
+          student.each do |x|
+            x.assignments = get_assignments_for_classroom(id, x.id)
+            students[x.id] = x
+          end
+        end
+        assignment = nil
+        assignment = get_assignments_for_classroom(id, students.keys.first) if students != nil
+        assignments = {}
+        if assignment != nil
+          assignment.each do |x|
+            assignments[x.id] = x
+          end
+        end
         Tyto::Classroom.new(  id:         classroom.id,
                               course_id:  classroom.course_id,
                               teacher_id: classroom.teacher_id,
