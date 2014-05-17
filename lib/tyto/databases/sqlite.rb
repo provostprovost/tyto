@@ -124,8 +124,9 @@ module Tyto
                           email:        invite.email,
                           teacher_id:   invite.teacher_id,
                           classroom_id: invite.classroom_id,
-                          code:         invite.code,
-                          accepted:     invite.accepted
+                          accepted:     invite.accepted,
+                          teacher_name: get_teacher(invite.teacher_id).username,
+                          course_name:  get_course(get_classroom(invite.classroom_id).course_id).name
                               )
       end
 
@@ -136,21 +137,25 @@ module Tyto
                          email:        invite.email,
                          teacher_id:   invite.teacher_id,
                          classroom_id: invite.classroom_id,
-                         code:         invite.code,
-                         accepted:     invite.accepted)
+                         accepted:     invite.accepted,
+                         teacher_name: get_teacher(invite.teacher_id).username,
+                         course_name:  get_course(get_classroom(invite.classroom_id).course_id).name
+                         )
       end
 
       def accept_invite(id)
         invite = Invite.find_by(:id => id)
         return nil if invite == nil
         invite.accepted = true
+        invite.save
         Tyto::Invite.new(id:           invite.id,
                          email:        invite.email,
                          teacher_id:   invite.teacher_id,
                          classroom_id: invite.classroom_id,
-                         code:         invite.code,
-                         accepted:     invite.accepted)
-
+                         accepted:     invite.accepted,
+                         teacher_name: get_teacher(invite.teacher_id).username,
+                         course_name:  get_course(get_classroom(invite.classroom_id).course_id).name
+                        )
       end
 
       def delete_invite(id)
@@ -160,6 +165,12 @@ module Tyto
       def get_invites_for_student(id)
         student = get_student(id)
         invites = Invite.where(email: student.email, accepted: false)
+        invites.map {|invite| get_invite(invite.id)}
+      end
+
+      def get_invites_for_teacher(id)
+        invites = Invite.where(teacher_id: id, accepted: false)
+        invites.map {|invite| get_invite(invite.id)}
       end
 
       ############

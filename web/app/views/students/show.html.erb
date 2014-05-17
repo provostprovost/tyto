@@ -10,7 +10,7 @@
     <div class="small-12 medium-9 large-10 columns">
       <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3 isotope-container">
         <% @assignments.each do |assignment| %>
-          <li class="assignment-li <% if !assignment.complete %>in<% end %>complete" data-equalizer-watch>
+          <li class="assignment-li classroom<%= assignment.classroom_id %> <% if !assignment.complete %>in<% end %>complete" data-equalizer-watch>
             <%= link_to tyto_assignment_path(assignment.id) do %>
               <div class="assignment-container <% if assignment.complete %>green<% end %>">
                 <p class="course-name"><%= assignment.course_name %></p>
@@ -26,9 +26,8 @@
       </ul>
     </div>
     <div class="small-12 medium-3 large-2 columns">
-      <% @classrooms.each do |classroom| %>
-        <p><%= classroom.name %></p>
-      <% end %>
+      <div id="classroom-container"></div>
+      <div id="invite-container"></div>
     </div>
   </div>
 </div>

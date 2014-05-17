@@ -8,7 +8,7 @@ shared_examples_for "a database" do
     before do
       @course = db.create_course(name: "algebra")
       @classroom = db.create_classroom( teacher_id: 55,
-                                        course_id:  66,
+                                        course_id:  @course.id,
                                         name: "Period 1" )
       @student = db.create_student({username: "Brian",
                                     password: "1234",

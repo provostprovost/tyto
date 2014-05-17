@@ -31,6 +31,8 @@ student3 = Tyto.db.create_student(username: "Hasmukh Shah",
                                   email: "hasmukh@student.com",
                                   phone_number: "5125555555")
 course = Tyto.db.create_course(name: "Algebra")
+other_course = Tyto.db.create_course(name: "History")
+another_course = Tyto.db.create_course(name: "English")
 
 classroom1 = Tyto.db.create_classroom(teacher_id: teacher1.id,
                                       course_id:  course.id,
@@ -41,6 +43,25 @@ classroom2 = Tyto.db.create_classroom(teacher_id: teacher1.id,
 classroom3 = Tyto.db.create_classroom(teacher_id: teacher1.id,
                                       course_id:  course.id,
                                       name: "Period 3" )
+
+classroom4 = Tyto.db.create_classroom(teacher_id: teacher2.id,
+                                      course_id: other_course.id,
+                                      name: "Period 4")
+
+classroom5 = Tyto.db.create_classroom(teacher_id: teacher3.id,
+                                      course_id: another_course.id,
+                                      name: "Period 5")
+
+invite1 = Tyto.db.create_invite(email: student1.email,
+                                teacher_id: teacher2.id,
+                                classroom_id: classroom4.id,
+                                accepted: false)
+
+invite2 = Tyto.db.create_invite(email: student1.email,
+                                teacher_id: teacher3.id,
+                                classroom_id: classroom5.id,
+                                accepted: false)
+
 
 Tyto.db.add_student_to_classroom(classroom_id: classroom1.id,
                                  student_id: student1.id)

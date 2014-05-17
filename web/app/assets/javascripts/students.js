@@ -1,6 +1,4 @@
 (function () {
-  console.log("Hello");
-
   var $container = $('.isotope-container');
 
   $container.isotope({
@@ -8,7 +6,7 @@
     layoutMode: 'fitRows'
   });
 
-  $('#filters').on('click', 'a', function() {
+  $('#filters, #classroom-container').on('click', 'a', function() {
     var filterValue = $(this).attr('data-filter');
     $container.isotope({ filter: filterValue });
   });
