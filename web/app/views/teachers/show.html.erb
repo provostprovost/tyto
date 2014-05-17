@@ -7,13 +7,14 @@
       <dd class="active"><a href="#panelcreate">Add Class</a></dd>
     </dl>
 
-    <div class="tabs-content">
+    <div class="tabs-content table">
       <%@classrooms.each do |a| %>
         <div class="content" id="panel<%=a.id%>">
-          <table>
+          <table class="classroomTable">
             <thead>
               <tr>
                 <th width="200">Student</th>
+                <th width="200">Text?</th>
                 <%if @assignments[a.id] != nil %>
                   <%@assignments[a.id].each do |b| %>
                     <th><%=b.name%></th>
@@ -25,6 +26,7 @@
               <%@students[a.id].each do |c| %>
               <tr>
                 <td><%=c.username%></td>
+                <td>checkbox</td>
                 <%@studenthomework[a.id][c.id].each do |q| %>
                   <td><%=q.proficiency%></td>
                 <%end%>
@@ -40,16 +42,17 @@
     </div>
   </div>
 
-  <div class="small-12 large-3 columns">
+  <div class="small-12 large-3 columns sidebar">
     <div class="row" id="assign">
       assign
-    </div>
-    <div class="row" id="struggling">
-      struggling
     </div>
     <div class="row" id="search">
       search
     </div>
   </div>
 </div>
+
+<script>
+
+</script>
 

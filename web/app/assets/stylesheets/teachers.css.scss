@@ -2,8 +2,26 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#assign, #struggling, #search {
+.sidebar {
+position: relative;
+}
+
+#assign {
   height: 250px;
   border: 1px solid red;
 
 }
+
+#search {
+border: 1px solid green;
+
+}
+
+#assign {
+  background-color: cyan;
+}
+
+.table {
+  overflow: scroll;
+}
+
