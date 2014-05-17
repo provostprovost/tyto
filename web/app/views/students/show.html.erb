@@ -29,14 +29,6 @@
       <% @classrooms.each do |classroom| %>
         <p><%= classroom.name %></p>
       <% end %>
-      <% @invites.each do |invite| %>
-        <p><%= invite.course_name %></p>
-        <p><%= invite.teacher_name %></p>
-        <%= form_tag("/invites/#{invite.id}", method: 'patch') do %>
-          <% submit_tag "Accept Invite", class: "button accept-invite" %>
-        <% end %>
-      <% end %>
-      <hr/>
       <div id="invite-container"></div>
     </div>
   </div>
@@ -63,12 +55,19 @@
         }.bind(this)
       });
     },
-    handleInviteSubmit: function() {
-      console.log("You are super cool");
+    handleInviteSubmit: function(data) {
+      $.ajax({
+        type: "PATCH",
+        url: data.url,
+        dataType: 'json'
+      });
+      this.componentWillMount();
     },
     render: function() {
+      var inviteList = this;
+      console.log(inviteList.handleInviteSubmit);
       var inviteNodes = this.state.data.map(function (invite) {
-        return <Invite onInviteSubmit={this.handleInviteSubmit} key={invite.id} courseName={invite.course_name} teacherName={invite.teacher_name}></Invite>
+        return <Invite onInviteSubmit={inviteList.handleInviteSubmit} key={invite.id} courseName={invite.course_name} teacherName={invite.teacher_name}></Invite>
       });
       return (
         <div className="invite-box">
@@ -80,11 +79,8 @@
   var Invite = React.createClass({
     handleAccept: function(e) {
       e.preventDefault();
-      $.ajax({
-        type: "PATCH",
-        url: "/invites/" + this.props.key,
-        dataType: 'json'
-      });
+      var url = "/invites/" + this.props.key;
+      this.props.onInviteSubmit({url: url, accept: true});
     },
     render: function() {
       return (
