@@ -5,6 +5,8 @@ class ResponsesController < ApplicationController
     render json: result
   end
 
+  private
+
   def response_params
     params.permit(:session_id,
                   :assignment_id,
