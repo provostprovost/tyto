@@ -33,40 +33,78 @@
         <p><%= invite.course_name %></p>
         <p><%= invite.teacher_name %></p>
         <%= form_tag("/invites/#{invite.id}", method: 'patch') do %>
-          <% submit_tag "Accept Invite", class: "button" %>
+          <% submit_tag "Accept Invite", class: "button accept-invite" %>
         <% end %>
       <% end %>
+      <hr/>
+      <div id="invite-container"></div>
     </div>
   </div>
 </div>
+
 
 <script src="http://fb.me/JSXTransformer-0.10.0.js"></script>
 <script type="text/jsx">
 /** @jsx React.DOM **/
 (function () {
-  window.assignment = new Assignment(<%= @assignment.to_json.html_safe %>);
-  var questionForm = React.renderComponent(
-    <QuestionForm />,
-    document.getElementById('question')
-  );
-  var chart = React.renderComponent(
-    <Chart />,
-    document.getElementById('chart')
-  );
-  var progress = React.renderComponent(
-    <Progress />,
-    document.getElementById('progress')
-  );
-  var streaks = React.renderComponent(
-    <Streaks />,
-    document.getElementById('streaks')
-  );
-  var presenter = new StudentPresenter({
-    model: assignment,
-    questionForm: questionForm,
-    chart: chart,
-    progress: progress,
-    streaks: streaks
+  var InviteList = React.createClass({
+    getInitialState: function() {
+      return {data: []};
+    },
+    componentWillMount: function() {
+      $.ajax({
+        url: this.props.url,
+        dataType: 'json',
+        success: function(data) {
+          this.setState({data: data});
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error(this.props.url, status, err.toString());
+        }.bind(this)
+      });
+    },
+    handleInviteSubmit: function() {
+      console.log("You are super cool");
+    },
+    render: function() {
+      var inviteNodes = this.state.data.map(function (invite) {
+        return <Invite onInviteSubmit={this.handleInviteSubmit} key={invite.id} courseName={invite.course_name} teacherName={invite.teacher_name}></Invite>
+      });
+      return (
+        <div className="invite-box">
+          {inviteNodes}
+        </div>
+      );
+    }
   });
+  var Invite = React.createClass({
+    handleAccept: function(e) {
+      e.preventDefault();
+      $.ajax({
+        type: "PATCH",
+        url: "/invites/" + this.props.key,
+        dataType: 'json'
+      });
+    },
+    render: function() {
+      return (
+        <div className="invite">
+          <p className="inviteCourseName">
+            {this.props.courseName}
+          </p>
+          <p className="inviteTeacherName">
+            {this.props.teacherName}
+          </p>
+          <form className="acceptInviteButton" onSubmit={this.handleAccept}>
+            <input type="submit" className="button" value="Accept" />
+          </form>
+        </div>
+      );
+    }
+  });
+  React.renderComponent(
+    <InviteList url="/invites"/>,
+    document.getElementById('invite-container')
+  );
 })();
 </script>

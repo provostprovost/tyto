@@ -1,6 +1,4 @@
 (function () {
-  console.log("Hello");
-
   var $container = $('.isotope-container');
 
   $container.isotope({

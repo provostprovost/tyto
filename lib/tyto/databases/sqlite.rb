@@ -147,6 +147,7 @@ module Tyto
         invite = Invite.find_by(:id => id)
         return nil if invite == nil
         invite.accepted = true
+        invite.save
         Tyto::Invite.new(id:           invite.id,
                          email:        invite.email,
                          teacher_id:   invite.teacher_id,
@@ -155,7 +156,6 @@ module Tyto
                          teacher_name: get_teacher(invite.teacher_id).username,
                          course_name:  get_course(get_classroom(invite.classroom_id).course_id).name
                         )
-
       end
 
       def delete_invite(id)
