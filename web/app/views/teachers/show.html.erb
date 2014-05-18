@@ -32,6 +32,8 @@
                     <td class="notStarted"><%=q.proficiency.round(3)*100%>%</td>
                   <%elsif q.complete == true && q.question_level <= 2 %>
                    <td class="poorPerformance"><%=q.proficiency.round(3)*100%>%</td>
+                  <%elsif q.complete == true && q.question_level > 2 %>
+                   <td class="goodPerformance"><%=q.proficiency.round(3)*100%>%</td>
                   <% else %>
                    <td><%=q.proficiency.round(3)*100%>%</td>
                   <% end %>
