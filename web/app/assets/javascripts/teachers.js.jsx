@@ -13,11 +13,13 @@ var classroomRow = React.createClass({
 
 var studentRow = React.createClass({
     render: function() {
-        var name = this.props.Student.struggling ?
-            this.props.Student.name :
-            <span style={{color: 'red'}}>
-                {this.props.Student.name}
-            </span>;
+        var name = <span>{this.props.Student.name}</span>
+        if(this.props.Student.struggling === true){
+            name = <span style={{color: 'red'}}>{this.props.Student.name}</span>;
+        }
+        else if(this.props.Student.late === true){
+            name = <span style={{color: 'orange'}}>{this.props.Student.name}</span>;
+        }
         return (
             <tr>
                 <td>{name}</td>
@@ -34,7 +36,7 @@ var StudentTable = React.createClass({
         var rows = [];
         var lastclassroom = null;
         this.props.students.forEach(function(Student) {
-            if (Student.name.indexOf(this.props.filterText) === -1 || (!Student.struggling && this.props.strugglingOnly)) {
+            if (Student.name.indexOf(this.props.filterText) === -1 || (!Student.struggling && this.props.strugglingOnly)||(!Student.late && this.props.lateOnly)) {
                 return;
             }
             if (Student.classroom !== lastclassroom) {
@@ -54,8 +56,9 @@ var StudentTable = React.createClass({
 var SearchBar = React.createClass({
     handleChange: function() {
         this.props.onUserInput(
-            this.refs.filterTextInput.getDOMNode().value,
-            this.refs.strugglingOnlyInput.getDOMNode().checked
+            this.refs.filterTextInput.getDOMNode().value.charAt(0).toUpperCase() + string.slice(1),
+            this.refs.strugglingOnlyInput.getDOMNode().checked,
+            this.refs.lateOnlyInput.getDOMNode().checked
         );
     },
     render: function() {
@@ -77,6 +80,15 @@ var SearchBar = React.createClass({
                     />
                     Only show struggling students
                 </p>
+                <p>
+                 <input
+                        type="checkbox"
+                        value={this.props.lateOnly}
+                        ref="lateOnlyInput"
+                        onChange={this.handleChange}
+                    />
+                    Only show students not completing work
+                </p>
             </form>
         );
     }
@@ -86,14 +98,16 @@ var FilterableStudentTable = React.createClass({
     getInitialState: function() {
         return {
             filterText: '',
-            strugglingOnly: false
+            strugglingOnly: false,
+            lateOnly: false
         };
     },
 
-    handleUserInput: function(filterText, strugglingOnly) {
+    handleUserInput: function(filterText, strugglingOnly, lateOnly) {
         this.setState({
             filterText: filterText,
-            strugglingOnly: strugglingOnly
+            strugglingOnly: strugglingOnly,
+            lateOnly: lateOnly
         });
     },
 
@@ -103,12 +117,14 @@ var FilterableStudentTable = React.createClass({
                 <SearchBar
                     filterText={this.state.filterText}
                     strugglingOnly={this.state.strugglingOnly}
+                    lateOnly={this.state.lateOnly}
                     onUserInput={this.handleUserInput}
                 />
                 <StudentTable
                     students={this.props.students}
                     filterText={this.state.filterText}
                     strugglingOnly={this.state.strugglingOnly}
+                    lateOnly={this.state.lateOnly}
                 />
             </div>
         );
