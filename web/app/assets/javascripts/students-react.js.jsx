@@ -2,6 +2,8 @@
 
 (function () {
 
+  var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
   var ClassroomList = React.createClass({
     getInitialState: function() {
       return {data: []};
@@ -61,7 +63,7 @@
       classroomClass = ".classroom" + this.props.key
       return (
         <div className="classroom">
-          <a data-filter={classroomClass} href="#" class="button small">{this.props.name}</a>
+          <a data-filter={classroomClass} href="#" className="button small">{this.props.name}</a>
         </div>
       );
     }
