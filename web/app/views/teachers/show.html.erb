@@ -28,7 +28,13 @@
                 <td><%=c.username%></td>
                 <td>checkbox</td>
                 <%@studenthomework[a.id][c.id].each do |q| %>
-                  <td><%=q.proficiency.round(3)*100%>%</td>
+                  <%if q.complete == false %>
+                    <td class="notStarted"><%=q.proficiency.round(3)*100%>%</td>
+                  <%elsif q.complete == true && q.question_level <= 2 %>
+                   <td class="poorPerformance"><%=q.proficiency.round(3)*100%>%</td>
+                  <% else %>
+                   <td><%=q.proficiency.round(3)*100%>%</td>
+                  <% end %>
                 <%end%>
               </tr>
               <%end%>

@@ -2,23 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.sidebar {
-  position: relative;
-}
-
 #assign {
   height: 250px;
-  border: 1px solid red;
+   background-color: green;
 
 }
 
 #search {
   border: 1px solid green;
 
-}
-
-#assign {
-  background-color: cyan;
 }
 
 .table {
@@ -44,4 +36,16 @@ th.headerSortDown {
 th.headerSortUp {
     background-image: url('http://tablesorter.com/themes/blue/asc.gif');
     background-color: #3399FF;
+}
+
+.notStarted {
+  background-color: gray;
+}
+
+.poorPerformance {
+  background-color: orange;
+}
+
+.lateAssignment {
+  background-color: red;
 }
