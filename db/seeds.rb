@@ -52,17 +52,20 @@ classroom5 = Tyto.db.create_classroom(teacher_id: teacher3.id,
                                       course_id: another_course.id,
                                       name: "Period 5")
 
-invite1 = Tyto.db.create_invite(email: student1.email,
+invite1 = Tyto.db.create_invite(email: student2.email,
                                 teacher_id: teacher2.id,
                                 classroom_id: classroom4.id,
                                 accepted: false)
 
-invite2 = Tyto.db.create_invite(email: student1.email,
+invite2 = Tyto.db.create_invite(email: student2.email,
                                 teacher_id: teacher3.id,
                                 classroom_id: classroom5.id,
                                 accepted: false)
 
-
+Tyto.db.add_student_to_classroom(classroom_id: classroom4.id,
+                                 student_id: student1.id)
+Tyto.db.add_student_to_classroom(classroom_id: classroom5.id,
+                                 student_id: student1.id)
 Tyto.db.add_student_to_classroom(classroom_id: classroom1.id,
                                  student_id: student1.id)
 Tyto.db.add_student_to_classroom(classroom_id: classroom1.id,
@@ -77,6 +80,24 @@ Tyto.db.add_student_to_classroom(classroom_id: classroom2.id,
 
 Tyto.db.add_student_to_classroom(classroom_id: classroom3.id,
                                  student_id: student1.id)
+
+other_chapter = Tyto.db.create_chapter(course_id: other_course.id, name: "The Alamo")
+another_chapter = Tyto.db.create_chapter(course_id: another_course.id, name: "Gerunds")
+Tyto.db.create_question(level:1, question: "What is a gerund?", answer: "Who knows?", chapter_id: another_chapter.id)
+Tyto.db.create_question(level:1, question: "What's up?", answer: "Not much", chapter_id: other_chapter.id)
+assignment10 = Tyto.db.create_assignment(student_id: student1.id,
+                                        chapter_id: other_chapter.id,
+                                        teacher_id: teacher2.id,
+                                        classroom_id: classroom4.id,
+                                        assignment_size: 20,
+                                        deadline: Chronic.parse("tomorrow") )
+assignment11 = Tyto.db.create_assignment(student_id: student1.id,
+                                        chapter_id: another_chapter.id,
+                                        teacher_id: teacher3.id,
+                                        classroom_id: classroom5.id,
+                                        assignment_size: 20,
+                                        deadline: Chronic.parse("yesterday") )
+
 
 chapter1 = Tyto.db.create_chapter(course_id: course.id, name: "Chapter One")
 chapter2 = Tyto.db.create_chapter(course_id: course.id, name: "Chapter Two")
