@@ -55,20 +55,6 @@
     }
   });
 
-  window.Chart = React.createClass({
-    getInitialState: function() {
-      return { proficiencies: assignment.proficiencies};
-    },
-    render: function() {
-      var ctx = document.getElementById("chart").getContext("2d");
-      var chart = new Chart(ctx);
-      console.log(this.state.proficiencies);
-      return (
-        <canvas id="chart-canvas" width="300" height="200"></canvas>
-      );
-    }
-  });
-
   window.Progress = React.createClass({
     getInitialState: function() {
       return { proficiency: assignment.proficiency};
@@ -109,6 +95,102 @@
             </div>
           </div>
         </div>
+      );
+    }
+  });
+
+  // window.Chart = React.createClass({
+  //   getInitialState: function() {
+  //     return { proficiencies: assignment.proficiencies};
+  //   },
+  //   render: function() {
+  //     var ctx = document.getElementById("chart").getContext("2d");
+  //     var chart = new Chart(ctx);
+  //     console.log(this.state.proficiencies);
+  //     return (
+  //       <canvas id="chart-canvas" width="300" height="200"></canvas>
+  //     );
+  //   }
+  // });
+
+  var Chart = React.createClass({
+    render: function() {
+      return (
+        <svg width={this.props.width} height={this.props.height}>{this.props.children}</svg>
+      );
+    }
+  });
+
+  var Line = React.createClass({
+    getDefaultProps: function() {
+      return {
+        path: "",
+        color: "green",
+        width: 3
+      }
+    },
+    render: function() {
+      return (
+        <path d={this.props.path} stroke={this.props.color} strokeWidth={this.props.width} fill="none" />
+      );
+    }
+  });
+
+  var DataSeries = React.createClass({
+    getDefaultProps: function() {
+      return{
+        data: [],
+        interpolate: "cardinal"
+      }
+    },
+    render: function() {
+      var yScale = this.props.yScale;
+      var xScale = this.props.xScale;
+      var path = d3.svg.line()
+        .x(function(d) {return xScale(d.x); })
+        .y(function(d) {return yScale(d.y); })
+        .interpolate(this.props.interpolate);
+        console.log(this.props.data);
+      return (
+        <Line path={path(this.props.data)} color={this.props.color} />
+      )
+    }
+  });
+
+  window.LineChart = React.createClass({
+    getInitialState: function() {
+      return {proficiencies: assignment.proficiencies}
+    },
+    getDefaultProps: function() {
+      return {
+        width: 300,
+        height: 200
+      }
+    },
+    render: function() {
+      var data = this.state.proficiencies,
+          size = { width: this.props.width, height: this.props.height };
+          console.log(this);
+      var max = _.chain(data)
+        .zip()
+        .map(function(values) {
+          return _.reduce(values, function(memo, value) { return Math.max(memo, value.y); }, 0);
+        })
+        .max()
+        .value();
+
+      var xScale = d3.scale.linear()
+        .domain([0, data.length-1])
+        .range([0, this.props.width]);
+
+      var yScale = d3.scale.linear()
+        .domain([0, max])
+        .range([this.props.height, 0]);
+
+      return (
+        <Chart width={this.props.width} height={this.props.height}>
+          <DataSeries data={this.state.proficiencies} size={size} xScale={xScale} yScale={yScale} ref="series1" color="cornflowerblue" />
+        </Chart>
       );
     }
   });

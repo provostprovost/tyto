@@ -21,22 +21,27 @@
             type: 'POST',
             data: data,
             success: function(data) {
-              result = data.table;
-              console.log(result);
+              var result = data.table;
+              var counter = 0;
+              var newProficiencies = _.map(result.proficiencies, function(proficiency) {
+                counter++;
+                return { x: counter, y: proficiency }
+              });
+              console.log(newProficiencies);
               assignment.questionText = result.question.questionText;
               assignment.questionsAnswered = result.number_answered;
               assignment.currentStreak = result.current_streak;
               assignment.longestStreak = result.longest_streak;
               assignment.proficiency = result.response.proficiency;
               assignment.questionLevel = result.question.level;
-              assignment.proficiencies = result.proficiencies;
+              assignment.proficiencies = newProficiencies;
               assignment.complete = result.complete;
               presenter.questionForm.setState({questionText: result.question.question,
                                           answer: "",
                                           questionLevel: result.question.level,
                                           difficult: false,
               });
-              presenter.chart.setState({proficiencies: result.proficiencies
+              presenter.chart.setState({proficiencies: newProficiencies
               });
               presenter.progress.setState({questionsAnswered: result.number_answered,
                                           proficiency: result.response.proficiency

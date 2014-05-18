@@ -12,9 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require underscore
+//= require d3
 //= require foundation
 //= require react
-//= require d3
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

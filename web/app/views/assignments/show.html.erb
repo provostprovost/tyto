@@ -15,7 +15,7 @@
     <div class="small-12 large-4 columns">
       <div class="row">
         <div class="small-12 medium-6 large-12 columns">
-          <canvas id="chart"></canvas>
+          <div id="chart"></div>
         </div>
         <div class="small-12 medium-6 large-12 columns">
           <div id="streaks"></div>
@@ -34,10 +34,6 @@
     <QuestionForm />,
     document.getElementById('question')
   );
-  var chart = React.renderComponent(
-    <Chart />,
-    document.getElementById('chart')
-  );
   var progress = React.renderComponent(
     <Progress />,
     document.getElementById('progress')
@@ -46,6 +42,17 @@
     <Streaks />,
     document.getElementById('streaks')
   );
+
+  var data = {
+    series1: [ { x: 0, y: 20 }, { x: 1, y: 30 }, { x: 2, y: 10 }, { x: 3, y: 5 }, { x: 4, y: 8 }, { x: 5, y: 15 }, { x: 6, y: 10 } ],
+    series2: [ { x: 0, y: 8 }, { x: 1, y: 5 }, { x: 2, y: 20 }, { x: 3, y: 12 }, { x: 4, y: 4 }, { x: 5, y: 6 }, { x: 6, y: 2 } ],
+    series3: [ { x: 0, y: 0 }, { x: 1, y: 5 }, { x: 2, y: 8 }, { x: 3, y: 2 }, { x: 4, y: 6 }, { x: 5, y: 4 }, { x: 6, y: 2 } ]
+  };
+  var chart = React.renderComponent(
+    <LineChart />,
+    document.getElementById('chart')
+  );
+
   var presenter = new AssignmentPresenter({
     model: assignment,
     questionForm: questionForm,
