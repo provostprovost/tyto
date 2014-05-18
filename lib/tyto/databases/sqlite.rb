@@ -76,7 +76,8 @@ module Tyto
                               current_question_text: question_text,
                               proficiency: get_last_proficiency_score(assignment.student_id, assignment.chapter_id, true),
                               question_level: question_level,
-                              proficiencies: get_responses_for_assignment(id).map { |response| response.proficiency} )
+                              proficiencies: get_responses_for_assignment(id).map { |response| response.proficiency},
+                              deadline: assignment.deadline )
       end
 
       def edit_assignment(attrs)
