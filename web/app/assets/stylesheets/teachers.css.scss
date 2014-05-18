@@ -38,8 +38,12 @@ th.headerSortUp {
     background-color: #3399FF;
 }
 
-.notStarted {
+.notLateAssignment {
   background-color: white;
+}
+
+.lateAssignment {
+  background-color: red;
 }
 
 .poorPerformance {
@@ -50,6 +54,3 @@ th.headerSortUp {
   background-color: gray;
 }
 
-.lateAssignment {
-  background-color: red;
-}

@@ -61,6 +61,7 @@ module Tyto
         chapter = get_chapter(assignment.chapter_id)
         course = get_course(chapter.course_id)
         course_name = course.name if course
+        deadline = assignment.deadline
         Tyto::Assignment.new( id: assignment.id,
                               student_id:   assignment.student_id,
                               chapter_id:   assignment.chapter_id,
@@ -77,7 +78,7 @@ module Tyto
                               proficiency: get_last_proficiency_score(assignment.student_id, assignment.chapter_id, true),
                               question_level: question_level,
                               proficiencies: get_responses_for_assignment(id).map { |response| response.proficiency},
-                              deadline: assignment.deadline )
+                              deadline: deadline )
       end
 
       def edit_assignment(attrs)

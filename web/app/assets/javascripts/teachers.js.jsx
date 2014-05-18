@@ -40,7 +40,7 @@ var StudentTable = React.createClass({
             if (Student.classroom !== lastclassroom) {
                 rows.push(<classroomRow classroom={Student.classroom} key={Student.classroom} />);
             }
-            rows.push(<studentRow Student={Student} key={Student.name} />);
+            rows.push(<studentRow Student={Student} key={Student.id} />);
             lastclassroom = Student.classroom;
         }.bind(this));
         return (
@@ -116,16 +116,7 @@ var FilterableStudentTable = React.createClass({
 });
 
 
-var students = [
-  {classroom: 'Period 1', Email: '', struggling: true, name: 'Parth Shah'},
-  {classroom: 'Period 1', Email: '', struggling: false, name: 'Johnny Football'},
-  {classroom: 'Period 2', Email: '', struggling: false, name: 'Brian Provost'},
-  {classroom: 'Period 2', Email: '', struggling: true, name: 'Jeff Greene'},
-  {classroom: 'Period 3', Email: '', struggling: false, name: 'Cool Calille'},
-  {classroom: 'Period 3', Email: '', struggling: true, name: 'Woody Johnson'}
-];
-
-React.renderComponent(<FilterableStudentTable students={students} />, document.getElementById('search'));
+React.renderComponent(<FilterableStudentTable students={window.students} />, document.getElementById('search'));
 
 
 

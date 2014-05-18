@@ -1,39 +1,41 @@
 <div class="row">
   <div class="small-12 large-9 columns" id="tabs">
     <dl class="tabs" data-tab>
-      <%@classrooms.each do |a| %>
-         <dd><a href="#panel<%=a.id%>"><%=a.name%></a></dd>
+      <%@classrooms.each do |classroom| %>
+         <dd><a href="#panel<%=classroom.id%>"><%=classroom.name%></a></dd>
       <%end%>
       <dd class="active"><a href="#panelcreate">Add Class</a></dd>
     </dl>
 
     <div class="tabs-content table">
-      <%@classrooms.each do |a| %>
-        <div class="content" id="panel<%=a.id%>">
+      <%@classrooms.each do |classroom| %>
+        <div class="content" id="panel<%=classroom.id%>">
           <table class="classroomTable">
             <thead>
               <tr>
                 <th width="200">Student</th>
                 <th width="200">Text?</th>
-                <%if @assignments[a.id] != nil %>
-                  <%@assignments[a.id].each do |b| %>
-                    <th><%=b.name%></th>
+                <%if @assignments[classroom.id] != nil %>
+                  <%@assignments[classroom.id].each do |assignment| %>
+                    <th><%=assignment.name%></th>
                   <%end%>
                 <%end%>
               </tr>
             </thead>
             <tbody>
-              <%@students[a.id].each do |c| %>
+              <%@students[classroom.id].each do |student| %>
               <tr>
-                <td><%=c.username%></td>
+                <td><%=student.username%></td>
                 <td>checkbox</td>
-                <%@studenthomework[a.id][c.id].each do |q| %>
-                  <%if q.complete == false %>
-                    <td class="notStarted"><%=q.proficiency.round(3)*100%>%</td>
-                  <%elsif q.complete == true && q.question_level <= 2 %>
-                   <td class="poorPerformance"><%=q.proficiency.round(3)*100%>%</td>
-                  <%elsif q.complete == true && q.question_level > 2 %>
-                   <td class="goodPerformance"><%=q.proficiency.round(3)*100%>%</td>
+                <%@studenthomework[classroom.id][student.id].each do |assignment| %>
+                  <%if Time.now < assignment.deadline  %>
+                    <td class="notLateAssignment"><%=assignment.proficiency.round(3)*100%>%</td>
+                  <%elsif Time.now > assignment.deadline && assignment.complete == false  %>
+                    <td class="lateAssignment"><%=assignment.proficiency.round(3)*100%>%</td>
+                  <%elsif assignment.complete == true && assignment.question_level <= 2 %>
+                   <td class="poorPerformance"><%=assignment.proficiency.round(3)*100%>%</td>
+                  <%elsif assignment.complete == true && assignment.question_level > 2 %>
+                   <td class="goodPerformance"><%=assignment.proficiency.round(3)*100%>%</td>
                   <% else %>
                    <td><%=q.proficiency.round(3)*100%>%</td>
                   <% end %>
@@ -61,6 +63,14 @@
 </div>
 
 <script>
-
+window.students = [];
+<% counter = 0 %>
+<% @classrooms.each do |classroom| %>
+  <% @students[classroom.id].each do |student| %>
+    window.students.push({classroom: "<%=classroom.name%>", email: "<%=student.email%>", struggling: false, name: "<%=student.username%>", id: <%=counter%>  })
+    <% counter += 1 %>
+  <% end %>
+<% end%>
+console.log(window.students)
 </script>
 
