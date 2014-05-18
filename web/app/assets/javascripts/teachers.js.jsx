@@ -117,12 +117,12 @@ var FilterableStudentTable = React.createClass({
 
 
 var students = [
-  {classroom: 'Period 1', Email: '$49.99', struggling: true, name: 'Parth Shah'},
-  {classroom: 'Period 1', Email: '$9.99', struggling: false, name: 'Johnny Football'},
-  {classroom: 'Period 2', Email: '$29.99', struggling: false, name: 'Brian Provost'},
-  {classroom: 'Period 2', Email: '$99.99', struggling: true, name: 'Jeff Greene'},
-  {classroom: 'Period 3', Email: '$399.99', struggling: false, name: 'Cool Calille'},
-  {classroom: 'Period 3', Email: '$199.99', struggling: true, name: 'Woody Johnson'}
+  {classroom: 'Period 1', Email: '', struggling: true, name: 'Parth Shah'},
+  {classroom: 'Period 1', Email: '', struggling: false, name: 'Johnny Football'},
+  {classroom: 'Period 2', Email: '', struggling: false, name: 'Brian Provost'},
+  {classroom: 'Period 2', Email: '', struggling: true, name: 'Jeff Greene'},
+  {classroom: 'Period 3', Email: '', struggling: false, name: 'Cool Calille'},
+  {classroom: 'Period 3', Email: '', struggling: true, name: 'Woody Johnson'}
 ];
 
 React.renderComponent(<FilterableStudentTable students={students} />, document.getElementById('search'));

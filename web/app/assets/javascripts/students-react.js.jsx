@@ -1,7 +1,6 @@
 /** @jsx React.DOM **/
 
 (function () {
-  var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
   var ClassroomList = React.createClass({
     getInitialState: function() {

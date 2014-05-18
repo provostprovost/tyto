@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .sidebar {
-position: relative;
+  position: relative;
 }
 
 #assign {
@@ -13,7 +13,7 @@ position: relative;
 }
 
 #search {
-border: 1px solid green;
+  border: 1px solid green;
 
 }
 
@@ -25,3 +25,23 @@ border: 1px solid green;
   overflow: scroll;
 }
 
+th.header {
+  background-image: url('http://tablesorter.com/themes/blue/bg.gif');
+  cursor: pointer;
+  font-weight: bold;
+  background-repeat: no-repeat;
+  background-position: center left;
+  padding-left: 20px;
+  border-right: 1px solid #dad9c7;
+  margin-left: -1px;
+}
+
+th.headerSortDown {
+    background-image: url('http://tablesorter.com/themes/blue/desc.gif');
+    background-color: #3399FF;
+}
+
+th.headerSortUp {
+    background-image: url('http://tablesorter.com/themes/blue/asc.gif');
+    background-color: #3399FF;
+}
