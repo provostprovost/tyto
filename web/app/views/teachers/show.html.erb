@@ -28,7 +28,7 @@
                 <td><%=c.username%></td>
                 <td>checkbox</td>
                 <%@studenthomework[a.id][c.id].each do |q| %>
-                  <td><%=q.proficiency%></td>
+                  <td><%=q.proficiency.round(3)*100%>%</td>
                 <%end%>
               </tr>
               <%end%>
