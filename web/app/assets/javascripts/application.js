@@ -13,8 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require Chart
 //= require react
+//= require d3
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
