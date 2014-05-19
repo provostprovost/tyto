@@ -1,6 +1,8 @@
 /** @jsx React.DOM */
 
 (function () {
+  var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
   window.QuestionForm = React.createClass({
     getInitialState: function() {
       return { answer: "", questionText: assignment.questionText, questionLevel: assignment.questionLevel, difficult: false };
