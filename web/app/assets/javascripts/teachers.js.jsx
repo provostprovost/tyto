@@ -2,13 +2,58 @@
 $(document).ready(function()
     {
         $(".classroomTable").tablesorter();
-    }
-);
+        $("form.createClassroom").on('submit', function(e){
+            e.preventDefault();
+            console.log("hello");
+            React.renderComponent(<StudentList />, document.getElementById('panelcreate'));
+        });
+    });
 
 var classroomRow = React.createClass({
     render: function() {
         return (<tr><th colSpan="3">{this.props.classroom}</th></tr>);
     }
+});
+
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
+var StudentList = React.createClass({
+  getInitialState: function() {
+    return {students: ["pss8te@virginia.edu"],
+            emailField: ''      };
+  },
+  handleAdd: function() {
+    var newstudents = this.state.students.concat(this.state.emailField);
+    this.setState({students: newstudents});
+    this.setState({emailField: ''});
+  },
+  handleRemove: function(i) {
+    var newstudents = this.state.students;
+    newstudents.splice(i, 1);
+    this.setState({students: newstudents});
+    console.log(this.state.students);
+  },
+  onChange: function(e) {
+    this.setState({emailField: e.target.value});
+  },
+  render: function() {
+    console.log(this.state.students)
+    var students = this.state.students.map(function(student, i) {
+      return (
+        <div key={student} onClick={this.handleRemove.bind(this, i)}>
+          {student}
+        </div>
+      );
+    }.bind(this));
+    return (
+      <div>
+        <div><input type="text" placeholder="Parent Email:" value={this.state.emailField} onChange={this.onChange}></input><button className="button small" onClick={this.handleAdd}>Add Student</button></div>
+        <ReactCSSTransitionGroup transitionName="example">
+          {students}
+        </ReactCSSTransitionGroup>
+      </div>
+    );
+  }
 });
 
 var studentRow = React.createClass({
@@ -132,7 +177,9 @@ var FilterableStudentTable = React.createClass({
 });
 
 
-React.renderComponent(<FilterableStudentTable students={window.students} />, document.getElementById('search'));
+React.renderComponent(<FilterableStudentTable students={window.studentsAll} />, document.getElementById('search'));
+
+
 
 
 

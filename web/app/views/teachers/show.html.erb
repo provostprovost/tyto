@@ -47,7 +47,18 @@
         </div>
       <%end%>
         <div class="content active" id="panelcreate">
-          <p>Create classroom</p>
+          <form class="createClassroom">
+          <div class="row">
+            <div class="large-6 columns">
+              <input type="text" placeholder="Class Name">
+            </div>
+            <div class="large-2 columns">
+              <input type="submit" class="button postfix" placeholder="Create" >
+            </div>
+            <div class="large-4 columns"></div>
+          </div>
+          </form>
+          <form id="createClassroom">
         </div>
     </div>
   </div>
@@ -63,14 +74,13 @@
 </div>
 
 <script>
-window.students = [];
+window.studentsAll = [];
 <% counter = 0 %>
 <% @classrooms.each do |classroom| %>
   <% @students[classroom.id].each do |student| %>
-    window.students.push({classroom: "<%=classroom.name%>", email: "<%=student.email%>", struggling: true, name: "<%=student.username%>", id: <%=counter%>, late: true  })
+    window.studentsAll.push({classroom: "<%=classroom.name%>", email: "<%=student.email%>", struggling: true, name: "<%=student.username%>", id: <%=counter%>, late: true  })
     <% counter += 1 %>
   <% end %>
 <% end%>
-console.log(window.students)
 </script>
 
