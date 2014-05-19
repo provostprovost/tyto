@@ -3,10 +3,7 @@ require 'chronic'
 module Tyto
   class AssignHomework < UseCase
     def run(inputs)
-     session = Tyto.db.get_session(inputs[:session_id].to_i)
-     return failure(:session_not_found) if session==nil
-     teacher_id = session.teacher_id
-     classroom = Tyto.db.get_classroom(inputs[:classroom_id].to_i)
+     classroom = Tyto.db.get_classroom_from_name(inputs[:name])
      return failure(:classroom_not_found) if classroom == nil
      chapter = Tyto.db.get_chapter(inputs[:chapter_id].to_i)
      students = Tyto.db.get_students_in_classroom(classroom.id)
@@ -18,7 +15,7 @@ module Tyto
         assignment = Tyto.db.create_assignment(student_id: student.id,
                                           chapter_id: chapter.id,
                                           classroom_id: classroom.id,
-                                          teacher_id: teacher_id,
+                                          teacher_id: inputs[:teacher_id].to_i,
                                           assignment_size: inputs[:assignment_size].to_i,
                                           deadline: deadline
  )

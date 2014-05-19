@@ -27,18 +27,18 @@ describe Tyto::AssignHomework do
   end
 
   it "returns correct errors" do
-    result = Tyto::AssignHomework.run(:classroom_id => 500000,
+    result = Tyto::AssignHomework.run(:name => "British",
                                       :chapter_id => @chapter.id,
-                                      :session_id => @session.id,
+                                      :teacher_id => @teacher.id,
                                       :assignment_size => 5
                                                           )
     expect(result.error).to eq(:classroom_not_found)
-    result = Tyto::AssignHomework.run(:classroom_id => @classroom.id,
+    result2 = Tyto::AssignHomework.run(:name =>"Period 1",
                                       :chapter_id => @chapter.id,
-                                      :session_id => @session.id,
+                                      :teacher_id => @teacher.id,
                                       :assignment_size => 5
                                                           )
-    expect(result.error).to eq(:no_students_in_class)
+    expect(result2.error).to eq(:no_students_in_class)
 
   end
 
@@ -49,9 +49,9 @@ describe Tyto::AssignHomework do
     Tyto.db.add_student_to_classroom(classroom_id: @classroom.id,
                                      student_id: @student_two.id
                                                                )
-    result = Tyto::AssignHomework.run(:classroom_id => @classroom.id,
+    result = Tyto::AssignHomework.run(:name => "Period 1",
                                       :chapter_id => @chapter.id,
-                                      :session_id => @session.id,
+                                      :teacher_id => @teacher.id,
                                       :assignment_size => 5
                                                           )
     expect(result.success?).to eq(true)

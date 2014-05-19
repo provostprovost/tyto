@@ -6,7 +6,7 @@ module Tyto
      return failure(:no_students_added) if inputs[:students]==[]
      invites = inputs[:students].map do |x|
         Tyto.db.create_invite(email: x,
-                              teacher_id: inputs[:teacher_id],
+                              teacher_id: inputs[:teacher_id].to_i,
                               classroom_id: classroom.id,
                               accepted: false)
      end

@@ -34,13 +34,13 @@
                 <% if @studenthomework[classroom.id][student.id] != nil %>
                 <%@studenthomework[classroom.id][student.id].each do |assignment| %>
                   <%if Time.now < assignment.deadline  %>
-                    <td class="notLateAssignment"><%=assignment.proficiency.round(3)*100%>%</td>
+                    <td class="notLateAssignment"><%=assignment.proficiency.round(3)*100%></td>
                   <%elsif Time.now > assignment.deadline && assignment.complete == false  %>
-                    <td class="lateAssignment"><%=assignment.proficiency.round(3)*100%>%</td>
+                    <td class="lateAssignment"><%=assignment.proficiency.round(3)*100%></td>
                   <%elsif assignment.complete == true && assignment.question_level <= 2 %>
-                   <td class="poorPerformance"><%=assignment.proficiency.round(3)*100%>%</td>
+                   <td class="poorPerformance"><%=assignment.proficiency.round(3)*100%></td>
                   <%elsif assignment.complete == true && assignment.question_level > 2 %>
-                   <td class="goodPerformance"><%=assignment.proficiency.round(3)*100%>%</td>
+                   <td class="goodPerformance"><%=assignment.proficiency.round(3)*100%></td>
                   <% else %>
                    <td><%=q.proficiency.round(3)*100%>%</td>
                   <% end %>
@@ -81,74 +81,18 @@
 
   <div class="small-12 large-3 columns sidebar">
     <div class="row" id="assign">
-      <% if @classrooms != nil %>
-        <h4> Assign Homework </h4>
-        <form id="AssignHomework">
-              <div class="row">
-                <div class="large-12 columns">
-
-                    <select>
-                      <%if @classrooms != nil %>
-                        <%@classrooms.each do |classroom| %>
-                          <option value="<%=classroom.name%>"><%=classroom.name.capitalize%></option>
-                        <%end%>
-                      <% end %>
-                    </select>
-
-                </div>
-              </div>
-              <div class="row">
-                <div class="large-12 columns">
-
-                      <select>
-                        <option value="chapter11">Chapter 1.1 filler</option>
-                        <option value="chapter12">Chapter 1.2 filler</option>
-                        <option value="chapter13">Chapter 1.3 filler</option>
-                      </select>
-
-                </div>
-              </div>
-              <div class="row">
-                  <div class="large-12 columns">
-                    <label>Deadline
-                      <input type="date" name="date">
-                    </label>
-                  </div>
-              </div>
-              <div class="row">
-                <div class="large-7 columns">
-                    <label>Time
-                      <input type="time" name="time">
-                    </label>
-                  </div>
-                  <div class="large-5 columns">
-                    <label>Questions
-                        <select>
-                          <% counter = 5 %>
-                          <% while counter < 31 %>
-                            <option value="<%=counter%>"><%=counter%></option>
-                            <% counter += 1 %>
-                          <% end %>
-                        </select>
-                    </label>
-                  </div>
-              </div>
-              <div class="row">
-                <div class="large-12 columns">
-                  <button class="button small expand">Assign </button>
-                </div>
-              </div>
-        </form>
-      <%end%>
     </div>
     <br>
     <div class="row" id="search">
-
     </div>
   </div>
 </div>
 
 <script>
+window.classroomsAll = []
+<%@classrooms.each do |classroom| %>
+  classroomsAll.push("<%=classroom.name%>")
+<% end %>
 window.studentsAll = [];
 <% counter = 0 %>
 <% if @classrooms != nil %>
@@ -161,5 +105,6 @@ window.studentsAll = [];
   <% end %>
   <% end %>
 <% end%>
+
 </script>
 

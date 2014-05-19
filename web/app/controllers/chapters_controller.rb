@@ -1,5 +1,8 @@
 class ChaptersController < ApplicationController
-  def show
-    render json: Tyto.db.get_chapter(params[:chapter_id])
+  def index
+    classroom = Tyto.db.get_classroom_from_name(params[:name])
+    subtopics = Tyto.db.get_subtopics_from_course(classroom.course_id)
+    render json: subtopics
   end
+
 end

@@ -7,10 +7,136 @@ $(document).ready(function()
             classroom = $('#classroomName').val();
             teacherId = $('#teacherId').val();
             courseName = $('#courseName').val();
-            console.log(courseName);
             React.renderComponent(<StudentList classroomName = {classroom} teacherId = {teacherId} courseName = {courseName} />, document.getElementById('panelcreate'));
         });
     });
+
+var AssignHomework = React.createClass({
+    getInitialState: function() {
+    return {selectedClassroom: '', selectedSubtopic: '', subtopics: [], deadline: ''};
+    },
+    handleClassroomChange: function(e) {
+        this.setState({selectedClassroom: e.target.value});
+        $.ajax({
+          url: '/chapters/index',
+          dataType: 'json',
+          type: 'POST',
+          data: {name: e.target.value},
+          success: function(data) {
+            this.setState({subtopics: data});
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(this.props.url, status, err.toString());
+          }.bind(this)
+        });
+    },
+    handleSubtopicChange: function(e) {
+        this.setState({selectedSubtopic: e.target.value});
+    },
+    handleDeadlineChange: function(e) {
+        this.setState({deadline: e.target.value});
+    },
+    handleTimeChange: function(e) {
+        this.setState({time: e.target.value});
+    },
+    handleSizeChange: function(e) {
+        this.setState({size: e.target.value});
+    },
+    handleSubmit: function(e) {
+        e.preventDefault();
+        data = {name: this.state.selectedClassroom,
+                chapter_id: this.state.selectedSubtopic,
+                day: this.state.deadline,
+                time: this.state.time,
+                assignment_size: this.state.size,
+                teacher_id: $('#teacherId').val()
+                };
+        $.ajax({
+          url: '/assignments/create',
+          dataType: 'json',
+          type: 'POST',
+          data: data,
+          success: function(data) {
+            this.setState({subtopics: data});
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(this.props.url, status, err.toString());
+          }.bind(this)
+        });
+
+    },
+    render: function() {
+        var classrooms = this.props.classrooms.map(function(classroom) {
+          return (
+            <option key={classroom} value={classroom}>{classroom}</option>
+          );
+        });
+        var subtopics = this.state.subtopics.map(function(subtopic) {
+          return (
+            <option key={subtopic.id} value={subtopic.id}>{subtopic.name}</option>
+          );
+        });
+        var numbers = [];
+        for(var i=5; i<31; i++){
+            numbers.push(i)
+        };
+        var sizes = numbers.map(function(i) {
+          return (
+            <option key={i} value={i}>{i}</option>
+          );
+        });
+        return (
+        <div>
+            <h4> Assign Homework </h4>
+            <form id="AssignHomework" onSubmit={this.handleSubmit}>
+              <div className="row">
+                <div className="large-12 columns">
+                    <select id="classroomChosen" onChange={this.handleClassroomChange}>
+                        <option value="" disabled selected>Select Classroom</option>
+                        {classrooms}
+                    </select>
+                </div>
+              </div>
+              <div className="row">
+                <div className="large-12 columns">
+                      <select id="chosenTopic" onChange={this.handleSubtopicChange}>
+                        <option value="" disabled selected>Select Topic</option>
+                        {subtopics}
+                      </select>
+                </div>
+              </div>
+              <div className="row">
+                  <div className="large-12 columns">
+                    <label>Deadline
+                      <input onChange={this.handleDeadlineChange} type="date" value={this.state.deadline}></input>
+                    </label>
+                  </div>
+              </div>
+              <div className="row">
+                <div className="large-7 columns">
+                    <label>Time
+                      <input onChange={this.handleTimeChange} type="time" value={this.state.time}></input>
+                    </label>
+                  </div>
+                  <div className="large-5 columns">
+                    <label>Assignment
+                        <select onChange={this.handleSizeChange}>
+                            <option value="" disabled selected>Size</option>
+                            {sizes}
+                        </select>
+                    </label>
+                  </div>
+              </div>
+              <div className="row">
+                <div className="large-12 columns">
+                  <input type="submit" className="button small expand" value="Assign"> </input>
+                </div>
+              </div>
+            </form>
+        </div>
+            );
+    }
+});
 
 var classroomRow = React.createClass({
     render: function() {
@@ -34,7 +160,6 @@ var StudentList = React.createClass({
     var newstudents = this.state.students;
     newstudents.splice(i, 1);
     this.setState({students: newstudents});
-    console.log(this.state.students);
   },
   onChange: function(e) {
     this.setState({emailField: e.target.value});
@@ -45,7 +170,6 @@ var StudentList = React.createClass({
     }
     else {
     data = {students: this.state.students, name: this.props.classroomName, teacher_id: this.props.teacherId, course_name: this.props.courseName};
-    console.log(data);
     $.ajax({
       url: '/classrooms/create',
       dataType: 'json',
@@ -102,7 +226,6 @@ var studentRow = React.createClass({
 
 var StudentTable = React.createClass({
     render: function() {
-        console.log(this.props);
         var rows = [];
         var lastclassroom = null;
         this.props.students.forEach(function(Student) {
@@ -192,9 +315,8 @@ var FilterableStudentTable = React.createClass({
     }
 });
 
-
+React.renderComponent(<AssignHomework classrooms={window.classroomsAll} />, document.getElementById('assign'));
 React.renderComponent(<FilterableStudentTable students={window.studentsAll} />, document.getElementById('search'));
-
 
 
 
