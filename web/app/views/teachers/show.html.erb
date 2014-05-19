@@ -16,8 +16,8 @@
           <table class="classroomTable">
             <thead>
               <tr>
-                <th width="200">Student</th>
-                <th width="200">Text?</th>
+                <th width="150">Student</th>
+                <th width="50">Text?</th>
                 <%if @assignments[classroom.id] != nil %>
                   <%@assignments[classroom.id].each do |assignment| %>
                     <th><%=assignment.name%></th>
@@ -30,7 +30,7 @@
               <%@students[classroom.id].each do |student| %>
               <tr>
                 <td><%=student.username%></td>
-                <td>checkbox</td>
+                <td class="textCheckbox"><input id="checkbox1" type="checkbox"></td>
                 <% if @studenthomework[classroom.id][student.id] != nil %>
                 <%@studenthomework[classroom.id][student.id].each do |assignment| %>
                   <%if Time.now < assignment.deadline  %>
