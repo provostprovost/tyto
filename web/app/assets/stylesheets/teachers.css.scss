@@ -3,9 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #assign {
-  height: 250px;
+  height: 350px;
   border: 1px solid grey;
   text-align: center;
+}
+
+.button small full {
+  width: 100%;
 }
 
 #search {

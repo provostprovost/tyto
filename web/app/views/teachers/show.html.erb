@@ -86,7 +86,7 @@
         <form id="AssignHomework">
               <div class="row">
                 <div class="large-12 columns">
-                  <label>Classroom
+
                     <select>
                       <%if @classrooms != nil %>
                         <%@classrooms.each do |classroom| %>
@@ -94,7 +94,48 @@
                         <%end%>
                       <% end %>
                     </select>
-                  </label>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="large-12 columns">
+
+                      <select>
+                        <option value="chapter11">Chapter 1.1 filler</option>
+                        <option value="chapter12">Chapter 1.2 filler</option>
+                        <option value="chapter13">Chapter 1.3 filler</option>
+                      </select>
+
+                </div>
+              </div>
+              <div class="row">
+                  <div class="large-8 columns">
+                    <label>Deadline
+                      <input type="date" name="date">
+                    </label>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="large-6 columns">
+                    <label>Time
+                      <input type="time" name="time">
+                    </label>
+                  </div>
+                  <div class="large-6 columns">
+                    <label>Questions
+                        <select>
+                          <% counter = 5 %>
+                          <% while counter < 31 %>
+                            <option value="<%=counter%>"><%=counter%></option>
+                            <% counter += 1 %>
+                          <% end %>
+                        </select>
+                    </label>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="large-12 columns">
+                  <button class="button small full">Assign </button>
                 </div>
               </div>
         </form>
