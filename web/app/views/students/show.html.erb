@@ -16,7 +16,8 @@
                 <p class="course-name"><%= assignment.course_name %></p>
                 <p class="assignment-name"><%= assignment.name %></p>
                 <p class="questions-complete"><%= assignment.questions_answered %>/<%= assignment.assignment_size %></p>
-                <p class="deadline"><%= assignment.deadline %></p>
+                <p class="deadline" style="display:none"><%= assignment.deadline %></p>
+                <p class="due-date"><%= assignment.deadline.strftime("Due %b %d at %I:%M%p") %></p>
                 <div class="progress small-12 success round">
                   <span class="meter" style="width: <%= [assignment.proficiency, 1].min * 100 %>%"></span>
                 </div>
