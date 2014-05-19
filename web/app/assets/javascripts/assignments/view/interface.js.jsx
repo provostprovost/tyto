@@ -6,9 +6,17 @@
       return { answer: "", questionText: assignment.questionText, questionLevel: assignment.questionLevel, difficult: false, };
     },
     render: function() {
-      if (assignment.complete) {
+      console.log(this);
+      if (assignment.complete && !assignment.keepGoing) {
         return (
-          <div className="question">Done</div>
+          <div className="question">
+            <form onSubmit={this.onContinue}>
+              <fieldset>
+            Good job, continue?
+                <button className="round expand">Continue?</button>
+              </fieldset>
+            </form>
+          </div>
         );
       }
       else {
@@ -38,6 +46,10 @@
         );
       }
           // <button onClick={this.onClick} id="difficult" className='easy'> Difficult </button>
+    },
+    onContinue: function(e) {
+      e.preventDefault();
+      this.props.continue({keepGoing: true});
     },
     onClick: function(e) {
       e.preventDefault;
@@ -69,7 +81,6 @@
     render: function() {
       var ctx = document.getElementById("chart").getContext("2d");
       var chart = new Chart(ctx);
-      console.log(this.state.proficiencies);
       return (
         <canvas id="chart-canvas" width="300" height="200"></canvas>
       );
@@ -84,7 +95,6 @@
       var barWidth = Math.min((this.state.proficiency * 100), 100) + "%";
       var barStyle = {width: barWidth};
       var barColor = "";
-      console.log(this);
       if (this.state.proficiencies[this.state.proficiencies.length - 1] === this.state.proficiency) {
         barColor = "success";
       }

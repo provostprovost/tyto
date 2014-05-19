@@ -10,6 +10,7 @@
     this.questionLevel = assignment.question_level;
     this.proficiencies = assignment.proficiencies;
     this.complete = assignment.complete;
+    this.keepGoing = false;
   };
 })();
 
