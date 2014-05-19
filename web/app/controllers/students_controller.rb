@@ -21,6 +21,7 @@ class StudentsController < ApplicationController
       @student = result.student
       redirect_to "/students/#{@student.id}"
     else
+      flash.now[:error] = result.error
       render 'new'
     end
   end

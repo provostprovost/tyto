@@ -10,13 +10,16 @@
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   </head>
 
   <body>
     <%= render 'layouts/header' %>
+      <% flash.each do |key, value| %>
+        <div data-alert class="alert-box <%= key %>">
+          <%= value %>
+          <a href="#" class="close">&times;</a>
+        </div>
+      <% end %>
     <%= yield %>
     <%= render 'layouts/footer' %>
     <%= javascript_include_tag "application" %>
