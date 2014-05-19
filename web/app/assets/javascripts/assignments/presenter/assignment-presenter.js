@@ -21,13 +21,14 @@
             type: 'POST',
             data: data,
             success: function(data) {
-              result = data.table;
-              console.log(result);
+              var result = data.table;
+              var proficiency = Math.max.apply(null, result.proficiencies);
+              console.log(proficiency);
               assignment.questionText = result.question.questionText;
               assignment.questionsAnswered = result.number_answered;
               assignment.currentStreak = result.current_streak;
               assignment.longestStreak = result.longest_streak;
-              assignment.proficiency = result.response.proficiency;
+              assignment.proficiency = proficiency;
               assignment.questionLevel = result.question.level;
               assignment.proficiencies = result.proficiencies;
               assignment.complete = result.complete;
@@ -39,7 +40,7 @@
               presenter.chart.setState({proficiencies: result.proficiencies
               });
               presenter.progress.setState({questionsAnswered: result.number_answered,
-                                          proficiency: result.response.proficiency
+                                          proficiency: assignment.proficiency
               });
               presenter.streaks.setState({currentStreak: result.current_streak,
                                           longestStreak: result.longest_streak
