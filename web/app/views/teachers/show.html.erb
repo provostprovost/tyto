@@ -82,7 +82,7 @@
   <div class="small-12 large-3 columns sidebar">
     <div class="row" id="assign">
       <% if @classrooms != nil %>
-        <h3> Assign Homework </h3>
+        <h4> Assign Homework </h4>
         <form id="AssignHomework">
               <div class="row">
                 <div class="large-12 columns">
@@ -109,19 +109,19 @@
                 </div>
               </div>
               <div class="row">
-                  <div class="large-8 columns">
+                  <div class="large-12 columns">
                     <label>Deadline
                       <input type="date" name="date">
                     </label>
                   </div>
               </div>
               <div class="row">
-                <div class="large-6 columns">
+                <div class="large-7 columns">
                     <label>Time
                       <input type="time" name="time">
                     </label>
                   </div>
-                  <div class="large-6 columns">
+                  <div class="large-5 columns">
                     <label>Questions
                         <select>
                           <% counter = 5 %>
@@ -135,12 +135,13 @@
               </div>
               <div class="row">
                 <div class="large-12 columns">
-                  <button class="button small full">Assign </button>
+                  <button class="button small expand">Assign </button>
                 </div>
               </div>
         </form>
       <%end%>
     </div>
+    <br>
     <div class="row" id="search">
 
     </div>

@@ -78,7 +78,9 @@ var StudentList = React.createClass({
         <div><input type="text" placeholder="Parent Email:" value={this.state.emailField} onChange={this.onChange}></input><button className="button small" onClick={this.handleAdd}>Add Student</button>   <button className="button small" onClick={this.handleSubmit}>Finished adding?</button></div>
         <ReactCSSTransitionGroup transitionName="example">
           <p>{message}</p>
+          <div className="panel callout">
           {students}
+          </div>
         </ReactCSSTransitionGroup>
       </div>
     );
@@ -87,13 +89,7 @@ var StudentList = React.createClass({
 
 var studentRow = React.createClass({
     render: function() {
-        var name = <span>{this.props.Student.name}</span>
-        if(this.props.Student.struggling === true){
-            name = <span style={{color: 'red'}}>{this.props.Student.name}</span>;
-        }
-        else if(this.props.Student.late === true){
-            name = <span style={{color: 'orange'}}>{this.props.Student.name}</span>;
-        }
+        var name = <span>{this.props.Student.name}</span>;
         return (
             <tr>
                 <td>{name}</td>
