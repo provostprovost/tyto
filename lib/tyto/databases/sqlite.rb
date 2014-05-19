@@ -97,11 +97,13 @@ module Tyto
 
       def get_assignments_for_classroom(classroom_id, student_id)
         assignments = Assignment.where(classroom_id: classroom_id, student_id: student_id)
+        return nil if assignments.last == nil
         assignments.map { |assignment| get_assignment(assignment.id) }
       end
 
       def get_assignments_for_student(student_id)
         assignments = Assignment.where(student_id: student_id)
+        return nil if assignments.last == nil
         assignments.map { |assignment| get_assignment(assignment.id) }
       end
 
@@ -302,6 +304,11 @@ module Tyto
         course = Course.find_by(id: id)
         return nil if course == nil
         course = Tyto::Course.new(name: course.name)
+      end
+
+      def get_all_courses
+        courses = Course.all
+        courses.map {|course| get_course(course.id)}
       end
 
       def get_course_from_name(name)

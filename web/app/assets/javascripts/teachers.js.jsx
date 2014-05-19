@@ -4,8 +4,11 @@ $(document).ready(function()
         $(".classroomTable").tablesorter();
         $("form.createClassroom").on('submit', function(e){
             e.preventDefault();
-            console.log("hello");
-            React.renderComponent(<StudentList />, document.getElementById('panelcreate'));
+            classroom = $('#classroomName').val();
+            teacherId = $('#teacherId').val();
+            courseName = $('#courseName').val();
+            console.log(courseName);
+            React.renderComponent(<StudentList classroomName = {classroom} teacherId = {teacherId} courseName = {courseName} />, document.getElementById('panelcreate'));
         });
     });
 
@@ -19,7 +22,7 @@ var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var StudentList = React.createClass({
   getInitialState: function() {
-    return {students: ["pss8te@virginia.edu"],
+    return {students: [],
             emailField: ''      };
   },
   handleAdd: function() {
@@ -36,8 +39,31 @@ var StudentList = React.createClass({
   onChange: function(e) {
     this.setState({emailField: e.target.value});
   },
+   handleSubmit: function() {
+    if(this.state.students.length === 0){
+        console.log('Students list cannot be empty for this action')
+    }
+    else {
+    data = {students: this.state.students, name: this.props.classroomName, teacher_id: this.props.teacherId, course_name: this.props.courseName};
+    console.log(data);
+    $.ajax({
+      url: '/classrooms/create',
+      dataType: 'json',
+      type: 'POST',
+      data: data,
+      success: function(data) {
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    })};
+  },
   render: function() {
-    console.log(this.state.students)
+    var message = 'No students have been added'
+    if (this.state.students.length > 0){
+           var message = <p>Click on an email to remove from the list!</p>
+            };
     var students = this.state.students.map(function(student, i) {
       return (
         <div key={student} onClick={this.handleRemove.bind(this, i)}>
@@ -47,8 +73,11 @@ var StudentList = React.createClass({
     }.bind(this));
     return (
       <div>
-        <div><input type="text" placeholder="Parent Email:" value={this.state.emailField} onChange={this.onChange}></input><button className="button small" onClick={this.handleAdd}>Add Student</button></div>
+        <h3>{this.props.classroomName} </h3>
+        <h5>{this.props.courseName} </h5>
+        <div><input type="text" placeholder="Parent Email:" value={this.state.emailField} onChange={this.onChange}></input><button className="button small" onClick={this.handleAdd}>Add Student</button>   <button className="button small" onClick={this.handleSubmit}>Finished adding?</button></div>
         <ReactCSSTransitionGroup transitionName="example">
+          <p>{message}</p>
           {students}
         </ReactCSSTransitionGroup>
       </div>
