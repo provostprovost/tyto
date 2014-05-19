@@ -22,7 +22,13 @@ class SessionsController < ApplicationController
         redirect_to "/students/#{result.user.id}"
       end
     else
-      flash.now[:error] = result.error
+      if result.error == :user_not_found
+        flash.now[:alert] = "No user with that email address exists."
+      elsif result.error == :incorrect_password
+        flash.now[:alert] = "Incorrect password."
+      else
+        flash.now[:alert] = "There has been an error."
+      end
       render 'new'
     end
   end

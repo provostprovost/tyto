@@ -21,6 +21,17 @@ class StudentsController < ApplicationController
       @student = result.student
       redirect_to "/students/#{@student.id}"
     else
+      if result.error == :email_address_not_valid
+        flash.now[:alert] = "Not a valid email address."
+      elsif result.error == :password_confirmation_does_not_match
+        flash.now[:alert] = "Password confirmation does not match."
+      elsif result.error == :phone_number_not_valid
+        flash.now[:alert] = "Please enter a valid phone number."
+      elsif result.error == :email_address_taken
+        flash.now[:alert] = "An account with that email address already exists."
+      elsif result.error = :phone_number_taken
+        flash.now[:alert] = "An account with that phone number already exists."
+      end
       render 'new'
     end
   end
@@ -51,7 +62,19 @@ class StudentsController < ApplicationController
       flash[:success] = "Account updated."
       redirect_to "/students/#{@student.id}"
     else
-      flash.now[:error] = result.error
+      if result.error == :session_not_found
+        flash.now[:alert] = "Please sign in."
+      elsif result.error == :email_address_not_valid
+        flash.now[:alert] = "Not a valid email address."
+      elsif result.error == :password_confirmation_does_not_match
+        flash.now[:alert] = "Password confirmation does not match."
+      elsif result.error == :phone_number_not_valid
+        flash.now[:alert] = "Please enter a valid phone number."
+      elsif result.error == :email_address_taken
+        flash.now[:alert] = "An account with that email address already exists."
+      elsif result.error = :phone_number_taken
+        flash.now[:alert] = "An account with that phone number already exists."
+      end
       render 'edit'
     end
   end
