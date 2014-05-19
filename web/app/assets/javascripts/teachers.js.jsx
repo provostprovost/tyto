@@ -127,10 +127,15 @@ var StudentTable = React.createClass({
     }
 });
 
+function toTitleCase(str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
+
 var SearchBar = React.createClass({
     handleChange: function() {
         this.props.onUserInput(
-            this.refs.filterTextInput.getDOMNode().value,
+            toTitleCase(this.refs.filterTextInput.getDOMNode().value),
             this.refs.strugglingOnlyInput.getDOMNode().checked
         );
     },
