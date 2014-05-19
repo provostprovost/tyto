@@ -110,7 +110,7 @@ var StudentTable = React.createClass({
         var rows = [];
         var lastclassroom = null;
         this.props.students.forEach(function(Student) {
-            if (Student.name.indexOf(this.props.filterText) === -1 || (!Student.struggling && this.props.strugglingOnly)||(!Student.late && this.props.lateOnly)) {
+            if (Student.name.indexOf(this.props.filterText) === -1 || (!Student.struggling && this.props.strugglingOnly)) {
                 return;
             }
             if (Student.classroom !== lastclassroom) {
@@ -130,9 +130,8 @@ var StudentTable = React.createClass({
 var SearchBar = React.createClass({
     handleChange: function() {
         this.props.onUserInput(
-            this.refs.filterTextInput.getDOMNode().value.charAt(0).toUpperCase() + string.slice(1),
-            this.refs.strugglingOnlyInput.getDOMNode().checked,
-            this.refs.lateOnlyInput.getDOMNode().checked
+            this.refs.filterTextInput.getDOMNode().value,
+            this.refs.strugglingOnlyInput.getDOMNode().checked
         );
     },
     render: function() {
@@ -153,15 +152,6 @@ var SearchBar = React.createClass({
                         onChange={this.handleChange}
                     />
                     Only show struggling students
-                </p>
-                <p>
-                 <input
-                        type="checkbox"
-                        value={this.props.lateOnly}
-                        ref="lateOnlyInput"
-                        onChange={this.handleChange}
-                    />
-                    Only show students not completing work
                 </p>
             </form>
         );
@@ -207,6 +197,7 @@ var FilterableStudentTable = React.createClass({
 
 
 React.renderComponent(<FilterableStudentTable students={window.studentsAll} />, document.getElementById('search'));
+React.renderComponent(<AssignHomework />, document.getElementById('assign'));
 
 
 

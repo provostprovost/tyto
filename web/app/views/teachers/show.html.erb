@@ -64,7 +64,7 @@
             <div class="large-2 columns">
                 <select id="courseName">
                   <%@courses.each do |course| %>
-                  <option value="<%=course.name%>"><%=course.name.capitalize%></option>
+                    <option value="<%=course.name%>"><%=course.name.capitalize%></option>
                   <%end%>
                 </select>
             </div>
@@ -81,10 +81,27 @@
 
   <div class="small-12 large-3 columns sidebar">
     <div class="row" id="assign">
-      assign
+      <% if @classrooms != nil %>
+        <h3> Assign Homework </h3>
+        <form id="AssignHomework">
+              <div class="row">
+                <div class="large-12 columns">
+                  <label>Classroom
+                    <select>
+                      <%if @classrooms != nil %>
+                        <%@classrooms.each do |classroom| %>
+                          <option value="<%=classroom.name%>"><%=classroom.name.capitalize%></option>
+                        <%end%>
+                      <% end %>
+                    </select>
+                  </label>
+                </div>
+              </div>
+        </form>
+      <%end%>
     </div>
     <div class="row" id="search">
-      search
+
     </div>
   </div>
 </div>
@@ -96,7 +113,7 @@ window.studentsAll = [];
 <% @classrooms.each do |classroom| %>
   <% if @students[classroom.id] != nil %>
   <% @students[classroom.id].each do |student| %>
-    window.studentsAll.push({classroom: "<%=classroom.name%>", email: "<%=student.email%>", struggling: true, name: "<%=student.username%>", id: <%=counter%>, late: true  })
+    window.studentsAll.push({classroom: "<%=classroom.name%>", email: "<%=student.email%>", struggling: false, name: "<%=student.username%>", id: <%=counter%>, late: true  })
     <% counter += 1 %>
   <% end %>
   <% end %>
