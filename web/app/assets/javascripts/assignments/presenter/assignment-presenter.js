@@ -21,13 +21,12 @@
             type: 'POST',
             data: data,
             success: function(data) {
-              result = data.table;
-              console.log(result);
+              var result = data.table;
               assignment.questionText = result.question.questionText;
               assignment.questionsAnswered = result.number_answered;
               assignment.currentStreak = result.current_streak;
               assignment.longestStreak = result.longest_streak;
-              assignment.proficiency = result.response.proficiency;
+              assignment.proficiency = Math.max.apply(null, result.proficiencies);
               assignment.questionLevel = result.question.level;
               assignment.proficiencies = result.proficiencies;
               assignment.complete = result.complete;
@@ -36,13 +35,15 @@
                                           questionLevel: result.question.level,
                                           difficult: false,
               });
-              presenter.chart.setState({proficiencies: result.proficiencies
+              presenter.chart.setState({proficiencies: assignment.proficiencies
               });
-              presenter.progress.setState({questionsAnswered: result.number_answered,
-                                          proficiency: result.response.proficiency
+              presenter.progress.setState({questionsAnswered: assignment.number_answered,
+                                          proficiency: assignment.proficiency,
+                                          proficiencies: assignment.proficiencies,
+                                          complete: assignment.complete
               });
-              presenter.streaks.setState({currentStreak: result.current_streak,
-                                          longestStreak: result.longest_streak
+              presenter.streaks.setState({currentStreak: assignment.current_streak,
+                                          longestStreak: assignment.longest_streak
               });
 
 
