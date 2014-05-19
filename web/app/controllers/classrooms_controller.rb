@@ -8,7 +8,7 @@ class ClassroomsController < ApplicationController
     else
       @classrooms = Tyto.db.get_classrooms_for_teacher(current_session.teacher_id)
     end
-    redirect json: @classrooms
+    render json: @classrooms
   end
 
   def create
