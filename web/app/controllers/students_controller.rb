@@ -42,7 +42,7 @@ class StudentsController < ApplicationController
     @classrooms = Tyto.db.get_classrooms_for_student(params[:id])
     @invites = Tyto.db.get_invites_for_student(params[:id])
     @colors = {}
-    @assignments.each {|assignment| @colors[assignment.classroom_id] = 1}
+    @assignments.each {|assignment| @colors[assignment.classroom_id] = 1} if @assignments
     counter = 0
     @colors.each do |classroom_id, value|
       @colors[classroom_id] = "classroom#{counter % 8}"
