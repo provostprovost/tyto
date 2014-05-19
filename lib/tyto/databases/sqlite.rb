@@ -102,7 +102,7 @@ module Tyto
       end
 
       def get_assignments_for_student(student_id)
-        assignments = Assignment.where(student_id: student_id)
+        assignments = Assignment.where(student_id: student_id).order(:deadline)
         return nil if assignments.last == nil
         assignments.map { |assignment| get_assignment(assignment.id) }
       end
