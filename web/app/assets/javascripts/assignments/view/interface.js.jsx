@@ -3,17 +3,25 @@
 (function () {
   window.QuestionForm = React.createClass({
     getInitialState: function() {
-      return { answer: "", questionText: assignment.questionText, questionLevel: assignment.questionLevel, difficult: false, };
+      return { answer: "", questionText: assignment.questionText, questionLevel: assignment.questionLevel, difficult: false };
     },
     render: function() {
-      console.log(this);
       if (assignment.complete && !assignment.keepGoing) {
         return (
           <div className="question">
             <form onSubmit={this.onContinue}>
               <fieldset>
-            Good job, continue?
-                <button className="round expand">Continue?</button>
+                <div className="row">
+                  Congratulations, you have finished this assignment! Want to keep practicing?
+                </div>
+                <div className="row">
+                  <div className="small-6 columns">
+                    <a className="button round expand" href="/dashboards">Finished</a>
+                  </div>
+                  <div className="small-6 columns">
+                    <button className="round expand">Keep practicing</button>
+                  </div>
+                </div>
               </fieldset>
             </form>
           </div>
