@@ -8,17 +8,15 @@ class ClassroomsController < ApplicationController
     else
       @classrooms = Tyto.db.get_classrooms_for_teacher(current_session.teacher_id)
     end
-    redirect json: @classrooms
+    render json: @classrooms
   end
 
   def create
     params[:course_id] = Tyto.db.get_course_from_name(params[:course_name]).id
     classroom = Tyto.db.create_classroom(classroom_params)
     params[:classroom_id] = classroom.id
-    binding.pry
     invites = Tyto::AddStudentsToClass.run(params).invites
-    binding.pry
-    redirect '/teachers/params[:teacher_id]'
+    render json: invites
   end
 
   def update

@@ -52,7 +52,8 @@ var StudentList = React.createClass({
       type: 'POST',
       data: data,
       success: function(data) {
-        this.setState({data: data});
+        console.log(data);
+        location.reload(true);
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
@@ -197,7 +198,7 @@ var FilterableStudentTable = React.createClass({
 
 
 React.renderComponent(<FilterableStudentTable students={window.studentsAll} />, document.getElementById('search'));
-React.renderComponent(<AssignHomework />, document.getElementById('assign'));
+
 
 
 
