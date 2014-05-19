@@ -52,7 +52,6 @@ var StudentList = React.createClass({
       type: 'POST',
       data: data,
       success: function(data) {
-        console.log(data);
         location.reload(true);
       }.bind(this),
       error: function(xhr, status, err) {
@@ -163,16 +162,14 @@ var FilterableStudentTable = React.createClass({
     getInitialState: function() {
         return {
             filterText: '',
-            strugglingOnly: false,
-            lateOnly: false
+            strugglingOnly: false
         };
     },
 
-    handleUserInput: function(filterText, strugglingOnly, lateOnly) {
+    handleUserInput: function(filterText, strugglingOnly) {
         this.setState({
             filterText: filterText,
-            strugglingOnly: strugglingOnly,
-            lateOnly: lateOnly
+            strugglingOnly: strugglingOnly
         });
     },
 
@@ -182,14 +179,12 @@ var FilterableStudentTable = React.createClass({
                 <SearchBar
                     filterText={this.state.filterText}
                     strugglingOnly={this.state.strugglingOnly}
-                    lateOnly={this.state.lateOnly}
                     onUserInput={this.handleUserInput}
                 />
                 <StudentTable
                     students={this.props.students}
                     filterText={this.state.filterText}
                     strugglingOnly={this.state.strugglingOnly}
-                    lateOnly={this.state.lateOnly}
                 />
             </div>
         );
