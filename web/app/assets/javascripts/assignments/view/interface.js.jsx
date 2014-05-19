@@ -1,36 +1,65 @@
 /** @jsx React.DOM */
 
 (function () {
+  var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
   window.QuestionForm = React.createClass({
     getInitialState: function() {
-      return { answer: "", questionText: assignment.questionText, questionLevel: assignment.questionLevel, difficult: false, };
+      return { answer: "", questionText: assignment.questionText, questionLevel: assignment.questionLevel, difficult: false };
     },
     render: function() {
-      return (
-        <div className="question">
-          <form onSubmit={this.onSubmit}>
-            <fieldset>
-              <legend>Problem #{assignment.questionsAnswered + 1}</legend>
-              <div className="row">
-                <div className="small-12 columns question-text">
-                  {this.state.questionText}
+      if (assignment.complete && !assignment.keepGoing) {
+        return (
+          <div className="question">
+            <form onSubmit={this.onContinue}>
+              <fieldset>
+                <div className="row">
+                  Congratulations, you have finished this assignment! Want to keep practicing?
                 </div>
-              </div>
-              <div className="row">
-                <div className="small-12 medium-6 large-8 medium-centered columns">
-                  <input type="text" onChange={this.onChange} value={this.state.answer} />
+                <div className="row">
+                  <div className="small-6 columns">
+                    <a className="button round expand" href="/dashboards">Finished</a>
+                  </div>
+                  <div className="small-6 columns">
+                    <button className="round expand">Keep practicing</button>
+                  </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="small-12 medium-6 large-8 medium-centered columns">
-                  <button className="round expand">Submit</button>
+              </fieldset>
+            </form>
+          </div>
+        );
+      }
+      else {
+        return (
+          <div className="question">
+            <form onSubmit={this.onSubmit}>
+              <fieldset>
+                <legend>Problem #{assignment.questionsAnswered + 1}</legend>
+                <div className="row">
+                  <div className="small-12 columns question-text">
+                    {this.state.questionText}
+                  </div>
                 </div>
-              </div>
-            </fieldset>
-          </form>
-        </div>
-      );
+                <div className="row">
+                  <div className="small-12 medium-6 large-8 medium-centered columns">
+                    <input type="text" onChange={this.onChange} value={this.state.answer} />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="small-12 medium-6 large-8 medium-centered columns">
+                    <button className="round expand">Submit</button>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        );
+      }
           // <button onClick={this.onClick} id="difficult" className='easy'> Difficult </button>
+    },
+    onContinue: function(e) {
+      e.preventDefault();
+      this.props.continue({keepGoing: true});
     },
     onClick: function(e) {
       e.preventDefault;
@@ -62,7 +91,6 @@
     render: function() {
       var ctx = document.getElementById("chart").getContext("2d");
       var chart = new Chart(ctx);
-      console.log(this.state.proficiencies);
       return (
         <canvas id="chart-canvas" width="300" height="200"></canvas>
       );
@@ -77,7 +105,6 @@
       var barWidth = Math.min((this.state.proficiency * 100), 100) + "%";
       var barStyle = {width: barWidth};
       var barColor = "";
-      console.log(this);
       if (this.state.proficiencies[this.state.proficiencies.length - 1] === this.state.proficiency) {
         barColor = "success";
       }

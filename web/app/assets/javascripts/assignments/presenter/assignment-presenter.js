@@ -34,13 +34,13 @@
                                           answer: "",
                                           questionLevel: result.question.level,
                                           difficult: false,
+                                          keepGoing: assignment.keepGoing
               });
               presenter.chart.setState({proficiencies: assignment.proficiencies
               });
               presenter.progress.setState({questionsAnswered: assignment.number_answered,
                                           proficiency: assignment.proficiency,
-                                          proficiencies: assignment.proficiencies,
-                                          complete: assignment.complete
+                                          proficiencies: assignment.proficiencies
               });
               presenter.streaks.setState({currentStreak: assignment.current_streak,
                                           longestStreak: assignment.longest_streak
@@ -50,6 +50,10 @@
             }
           });
         }
+      },
+      continue: function(keepGoing) {
+        assignment.keepGoing = keepGoing;
+        presenter.questionForm.setState({keepGoing: assignment.keepGoing});
       }
     });
   }
