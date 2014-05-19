@@ -3,9 +3,8 @@ class AssignmentsController < ApplicationController
   before_action :correct_user,    only: [:show]
 
   def create
-    params[:session_id] = session[:app_session_id]
     result = Tyto::AssignHomework.run(params)
-    redirect_to '/teachers/#{result.classroom.teacher_id}'
+    render json: result
   end
 
   def show

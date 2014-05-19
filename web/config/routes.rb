@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :accounts, only: [:index]
   resources :assignments, :as => :tyto_assignments
-  resources :chapters
   resources :classrooms
   resources :courses
   resources :dashboards, only: [:index]
@@ -26,4 +25,5 @@ Rails.application.routes.draw do
   post '/classrooms/create' => 'classrooms#create'
   post '/responses/create' => 'responses#create'
   post '/classrooms/update' => 'classrooms#update'
+  post '/chapters/index' => 'chapters#index'
 end

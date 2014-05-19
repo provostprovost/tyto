@@ -204,6 +204,12 @@ module Tyto
                             name: chapter.name )
       end
 
+      def get_subtopics_from_course(course_id)
+        subtopics = Chapter.where(course_id: course_id)
+        subtopics = subtopics.select{|subtopic| subtopic.parent_id != nil}
+        subtopics.map{|subtopic| get_chapter(subtopic.id)}
+      end
+
       def edit_chapter(attrs)
         chapter = Chapter.find_by(id: attrs[:id])
         return nil if chapter == nil
@@ -283,6 +289,15 @@ module Tyto
       def get_classrooms_for_teacher(teacher_id)
         classrooms = Teacher.find_by(id: teacher_id).classrooms
         classrooms.map { |classroom| get_classroom(classroom.id) }
+      end
+
+      def get_classroom_from_name(name)
+        classroom = Classroom.find_by(:name => name)
+        return nil if classroom == nil
+        Tyto::Classroom.new(  id:         classroom.id,
+                              course_id:  classroom.course_id,
+                              teacher_id: classroom.teacher_id,
+                              name: classroom.name )
       end
 
       ###########

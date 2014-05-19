@@ -21,25 +21,20 @@ describe Tyto::AddStudentsToClass do
   end
 
   it "returns correct errors" do
-    result = subject.run(session_id:    @session.id,
+    result = subject.run(teacher_id:    @teacher.id,
                          classroom_id:  500000,
                          students:      ['parthshahva@gmail.com', 'pss8te@virginia.edu']
                                   )
     expect(result.error).to eq(:classroom_not_found)
-    result = subject.run(session_id:    @session.id,
+    result = subject.run(teacher_id:    @teacher.id,
                          classroom_id:  @classroom.id,
                          students:      []
                                   )
     expect(result.error).to eq(:no_students_added)
-    result = subject.run(session_id:    @session_two.id,
-                         classroom_id:  @classroom.id,
-                         students:      ['parthshahva@gmail.com', 'pss8te@virginia.edu']
-                                  )
-    expect(result.error).to eq(:not_your_classroom)
   end
 
   it "correctly adds students to a classroom" do
-    result = subject.run(session_id:    @session.id,
+    result = subject.run(teacher_id:    @teacher.id,
                          classroom_id:  @classroom.id,
                          students:      ['parthshahva@gmail.com', 'pss8te@virginia.edu']
                                   )
