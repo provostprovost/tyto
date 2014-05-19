@@ -6,11 +6,11 @@
   </ul>
 </div>
 <div class="body-container">
-  <div class="row" data-equalizer>
+  <div class="row">
     <div class="small-12 medium-9 large-10 columns">
       <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3 isotope-container">
         <% @assignments.each do |assignment| %>
-          <li class="assignment-li classroom<%= assignment.classroom_id %> <% if !assignment.complete %>in<% end %>complete" data-equalizer-watch>
+          <li class="assignment-li classroom<%= assignment.classroom_id %> <% if !assignment.complete %>in<% end %>complete">
             <%= link_to tyto_assignment_path(assignment.id) do %>
               <div class="assignment-container <%= @colors[assignment.classroom_id] %> <% if assignment.complete %>complete-grey<% end %>">
                 <p class="course-name"><%= assignment.course_name %></p>

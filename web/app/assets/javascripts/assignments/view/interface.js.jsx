@@ -6,30 +6,37 @@
       return { answer: "", questionText: assignment.questionText, questionLevel: assignment.questionLevel, difficult: false, };
     },
     render: function() {
-      return (
-        <div className="question">
-          <form onSubmit={this.onSubmit}>
-            <fieldset>
-              <legend>Problem #{assignment.questionsAnswered + 1}</legend>
-              <div className="row">
-                <div className="small-12 columns question-text">
-                  {this.state.questionText}
+      if (assignment.complete) {
+        return (
+          <div className="question">Done</div>
+        );
+      }
+      else {
+        return (
+          <div className="question">
+            <form onSubmit={this.onSubmit}>
+              <fieldset>
+                <legend>Problem #{assignment.questionsAnswered + 1}</legend>
+                <div className="row">
+                  <div className="small-12 columns question-text">
+                    {this.state.questionText}
+                  </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="small-12 medium-6 large-8 medium-centered columns">
-                  <input type="text" onChange={this.onChange} value={this.state.answer} />
+                <div className="row">
+                  <div className="small-12 medium-6 large-8 medium-centered columns">
+                    <input type="text" onChange={this.onChange} value={this.state.answer} />
+                  </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="small-12 medium-6 large-8 medium-centered columns">
-                  <button className="round expand">Submit</button>
+                <div className="row">
+                  <div className="small-12 medium-6 large-8 medium-centered columns">
+                    <button className="round expand">Submit</button>
+                  </div>
                 </div>
-              </div>
-            </fieldset>
-          </form>
-        </div>
-      );
+              </fieldset>
+            </form>
+          </div>
+        );
+      }
           // <button onClick={this.onClick} id="difficult" className='easy'> Difficult </button>
     },
     onClick: function(e) {
