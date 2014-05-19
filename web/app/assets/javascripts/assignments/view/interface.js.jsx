@@ -71,13 +71,22 @@
 
   window.Progress = React.createClass({
     getInitialState: function() {
-      return { proficiency: assignment.proficiency};
+      return { proficiency: assignment.proficiency, proficiencies: assignment.proficiencies};
     },
     render: function() {
       var barWidth = Math.min((this.state.proficiency * 100), 100) + "%";
       var barStyle = {width: barWidth};
+      var barColor = "";
+      console.log(this);
+      if (this.state.proficiencies[this.state.proficiencies.length - 1] === this.state.proficiency) {
+        barColor = "success";
+      }
+      else if (this.state.proficiencies[this.state.proficiencies.length - 1] < this.state.proficiencies[this.state.proficiencies.length - 2]) {
+        barColor = "secondary";
+      }
+      var divClass = "progress small-12 round " + barColor;
       return (
-        <div className="progress small-12 success round">
+        <div className={divClass} >
           <span className="meter" style={barStyle}></span>
         </div>
       );

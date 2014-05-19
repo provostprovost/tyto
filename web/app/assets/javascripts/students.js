@@ -3,7 +3,11 @@
 
   $container.isotope({
     itemSelector: '.assignment-li',
-    layoutMode: 'fitRows'
+    layoutMode: 'fitRows',
+    getSortData: {
+      deadline: '.deadline'
+    },
+    sortBy: 'deadline'
   });
 
   $('#filters, #classroom-container').on('click', 'a', function() {
