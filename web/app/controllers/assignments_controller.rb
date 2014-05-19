@@ -3,7 +3,6 @@ class AssignmentsController < ApplicationController
   before_action :correct_user,    only: [:show]
 
   def create
-    binding.pry
     result = Tyto::AssignHomework.run(params)
     render json: result
   end
