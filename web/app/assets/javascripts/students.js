@@ -13,6 +13,8 @@
   $('#filters, #classroom-container').on('click', 'a', function() {
     var filterValue = $(this).attr('data-filter');
     $container.isotope({ filter: filterValue });
+    $('#filters dd').removeClass('active');
+    $(this).closest('dd').addClass('active');
   });
 })();
 
