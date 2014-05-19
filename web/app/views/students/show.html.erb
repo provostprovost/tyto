@@ -1,8 +1,8 @@
 <div class="row button-header">
   <ul id="filters" class="button-group">
-    <li><a data-filter="*" href="#" class="button small">Show all</a></li>
-    <li><a data-filter=".complete" href="#" class="button small">Complete</a></li>
-    <li><a data-filter=".incomplete" href="#" class="button small">Incomplete</a></li>
+    <li><a data-filter="*" href="#" class="filter button small">Show all</a></li>
+    <li><a data-filter=".complete" href="#" class="filter button small">Complete</a></li>
+    <li><a data-filter=".incomplete" href="#" class="filter button small">Incomplete</a></li>
   </ul>
 </div>
 <div class="body-container">
@@ -16,6 +16,7 @@
                 <p class="course-name"><%= assignment.course_name %></p>
                 <p class="assignment-name"><%= assignment.name %></p>
                 <p class="questions-complete"><%= assignment.questions_answered %>/<%= assignment.assignment_size %></p>
+                <p class="deadline"><%= assignment.deadline %></p>
                 <div class="progress small-12 success round">
                   <span class="meter" style="width: <%= [assignment.proficiency, 1].min * 100 %>%"></span>
                 </div>
