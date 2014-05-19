@@ -53,7 +53,7 @@
           <dt>Filter:</dt>
           <dd><a data-filter="*" href="#">Show all</a></dd>
           <dd><a data-filter=".complete" href="#">Complete</a></dd>
-          <dd><a data-filter=".incomplete" href="#">Incomplete</a></dd>
+          <dd className="active"><a data-filter=".incomplete" href="#">Incomplete</a></dd>
           {classroomNodes}
         </dl>
       );

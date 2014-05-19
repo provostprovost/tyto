@@ -82,7 +82,7 @@
 }
 
 .complete-grey {
-  background-color: #ccc;
+  background-color: #aaa;
 }
 
 .button-group {
@@ -105,4 +105,9 @@
 
 .transition-leave.transition-leave-active {
   opacity: 0.01;
+}
+
+.button-header {
+  padding-top: 1em;
+  border-bottom: 1px solid #EEE;
 }

@@ -7,7 +7,8 @@
     getSortData: {
       deadline: '.deadline'
     },
-    sortBy: 'deadline'
+    sortBy: 'deadline',
+    filter: '.incomplete'
   });
 
   $('#filters, #classroom-container').on('click', 'a', function() {
