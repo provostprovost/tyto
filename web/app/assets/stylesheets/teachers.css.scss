@@ -12,6 +12,18 @@
   width: 100%;
 }
 
+.classEdit {
+  background-color: #2ba6cb;
+  padding: 1em;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.75);
+  box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.75);
+}
+
 #search {
   border: 1px solid grey;
   text-align: center;
