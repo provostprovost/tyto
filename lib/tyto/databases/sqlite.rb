@@ -621,9 +621,15 @@ module Tyto
                                       username: student.username,
                                       password: "temp",
                                       email: student.email,
-                                      phone_number: student.phone_number)
+                                      phone_number: student.phone_number,
+                                      struggling: is_student_struggling(student.id))
         retrieved.password_digest = BCrypt::Password.new(student.password_digest)
         retrieved
+      end
+
+      def is_student_struggling(student.id)
+
+
       end
 
       def edit_student(attrs)

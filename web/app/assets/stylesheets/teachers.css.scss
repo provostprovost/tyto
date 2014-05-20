@@ -3,23 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #assign {
-  height: 339px;
-  border: 1px solid grey;
+  border: 0.063em solid grey;
   text-align: center;
-}
-
-.button small full {
-  width: 100%;
 }
 
 .teacher-row {
   background-color: white;
   padding: 1em;
-  height: 100%;
-  border-radius: 5px;
-  border: 1px solid #DDD;
+  border-radius: 0.313em;
+  border: 0.063em solid #DDD;
 }
-
 
 .classEdit {
   background-color: #2ba6cb;
@@ -34,7 +27,7 @@
 }
 
 #search {
-  border: 1px solid grey;
+  border: 0.063em solid grey;
   text-align: center;
 }
 
@@ -48,9 +41,9 @@ th.header {
   font-weight: bold;
   background-repeat: no-repeat;
   background-position: center left;
-  padding-left: 20px;
-  border-right: 1px solid #dad9c7;
-  margin-left: -1px;
+  padding-left: 1.250em;
+  border-right: .063em solid #dad9c7;
+  margin-left: -.063em;
 }
 
 th.headerSortDown {
@@ -103,5 +96,21 @@ th.headerSortUp {
 
 .textCheckbox {
   text-align: center;
-  padding-top: 20px;
+  padding-top: 1.250em;
+}
+
+.studentTable {
+  width: 100%;
+  border-bottom: none;
+  margin-bottom: 0em;
+  margin-top: -1.563em;
+}
+
+.filterStruggling {
+  font-size: 0.7em;
+  margin-top: -0.5em;
+}
+
+.assign {
+  margin-bottom: 0em;
 }

@@ -1,5 +1,5 @@
 <div class="teacher-row row">
-  <div class="small-12 large-9 columns" id="tabs">
+  <div class="small-12 medium-9 columns" id="tabs">
     <dl class="tabs" data-tab>
       <% if @classrooms != nil %>
         <%@classrooms.each do |classroom| %>
@@ -57,28 +57,28 @@
         <div class="content active" id="panelcreate">
           <form class="createClassroom">
           <div class="row">
-            <div class="large-4 columns">
+            <div class="medium-4 columns">
               <input type="text" placeholder="Class Name" id="classroomName">
               <input type="text" id="teacherId" value="<%=@teacher.id%>">
             </div>
-            <div class="large-2 columns">
+            <div class="medium-2 columns">
                 <select id="courseName">
                   <%@courses.each do |course| %>
                     <option value="<%=course.name%>"><%=course.name.capitalize%></option>
                   <%end%>
                 </select>
             </div>
-            <div class="large-2 columns">
+            <div class="medium-2 columns">
               <input type="submit" class="button postfix" value="Create" >
             </div>
-            <div class="large-4 columns"></div>
+            <div class="medium-4 columns"></div>
           </div>
           </form>
         </div>
     </div>
   </div>
 
-  <div class="small-12 large-3 columns sidebar">
+  <div class="small-12 medium-3 columns sidebar">
     <div class="row" id="assign">
     </div>
     <br>

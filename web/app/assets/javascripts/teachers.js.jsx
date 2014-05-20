@@ -87,7 +87,7 @@ var AssignHomework = React.createClass({
         });
         return (
         <div>
-            <h4> Assign Homework </h4>
+            <h5> Assign Homework </h5>
             <form id="AssignHomework" onSubmit={this.handleSubmit}>
               <div className="row">
                 <div className="large-12 columns">
@@ -129,7 +129,7 @@ var AssignHomework = React.createClass({
               </div>
               <div className="row">
                 <div className="large-12 columns">
-                  <input type="submit" className="button small expand" value="Assign"> </input>
+                  <input type="submit" className="button small expand assign" value="Assign"> </input>
                 </div>
               </div>
             </form>
@@ -261,21 +261,22 @@ var SearchBar = React.createClass({
     render: function() {
         return (
             <form onSubmit={this.handleSubmit}>
+              <h5> Search Students </h5>
                 <input
                     type="text"
                     placeholder="Search..."
                     value={this.props.filterText}
                     ref="filterTextInput"
-                    onChange={this.handleChange}
-                />
-                <p>
+                    onChange={this.handleChange}>
+                </input>
+                <p className="filterStruggling">
                     <input
                         type="checkbox"
                         value={this.props.strugglingOnly}
                         ref="strugglingOnlyInput"
-                        onChange={this.handleChange}
-                    />
-                    Only show struggling students
+                        onChange={this.handleChange}>
+                    </input>
+                    Struggling Students Only
                 </p>
             </form>
         );
