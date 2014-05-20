@@ -57,7 +57,7 @@ var AssignHomework = React.createClass({
           type: 'POST',
           data: data,
           success: function(data) {
-            this.setState({subtopics: data});
+            location.reload(true);
           }.bind(this),
           error: function(xhr, status, err) {
             console.error(this.props.url, status, err.toString());
@@ -73,7 +73,7 @@ var AssignHomework = React.createClass({
         });
         var subtopics = this.state.subtopics.map(function(subtopic) {
           return (
-            <option key={subtopic.id} value={subtopic.id}>{subtopic.name}</option>
+            <option key={subtopic.id} value={subtopic.id}>{subtopic.subname}: {subtopic.name}</option>
           );
         });
         var numbers = [];
@@ -260,7 +260,7 @@ var SearchBar = React.createClass({
     },
     render: function() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} className="searchFixed">
               <h5> Search Students </h5>
                 <input
                     type="text"

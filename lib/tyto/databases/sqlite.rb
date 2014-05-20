@@ -78,7 +78,8 @@ module Tyto
                               proficiency: get_last_proficiency_score(assignment.student_id, assignment.chapter_id, true),
                               question_level: question_level,
                               proficiencies: get_responses_for_assignment(id).map { |response| response.proficiency},
-                              deadline: deadline )
+                              deadline: deadline,
+                              subname: get_chapter(assignment.chapter_id).subname)
       end
 
       def edit_assignment(attrs)
@@ -192,7 +193,8 @@ module Tyto
         Tyto::Chapter.new(  id: chapter.id,
                             parent_id: chapter.parent_id,
                             course_id: chapter.course_id,
-                            name: chapter.name )
+                            name: chapter.name,
+                            subname: chapter.subname )
       end
 
       def get_chapter(id)
@@ -201,7 +203,8 @@ module Tyto
         Tyto::Chapter.new(  id: chapter.id,
                             parent_id: chapter.parent_id,
                             course_id: chapter.course_id,
-                            name: chapter.name )
+                            name: chapter.name,
+                            subname: chapter.subname )
       end
 
       def get_subtopics_from_course(course_id)
@@ -218,7 +221,8 @@ module Tyto
         Tyto::Chapter.new(  id: chapter.id,
                             course_id: chapter.course_id,
                             parent_id: chapter.parent_id,
-                            name: chapter.name )
+                            name: chapter.name,
+                            subname: chapter.subname )
       end
 
       def delete_chapter(id)
@@ -318,7 +322,7 @@ module Tyto
       def get_course(id)
         course = Course.find_by(id: id)
         return nil if course == nil
-        course = Tyto::Course.new(name: course.name)
+        course = Tyto::Course.new(name: course.name, id: course.id)
       end
 
       def get_all_courses

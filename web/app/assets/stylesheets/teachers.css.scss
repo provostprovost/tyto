@@ -7,6 +7,17 @@
   text-align: center;
 }
 
+.assign {
+  margin-bottom: 0em;
+}
+
+#search {
+  border: 0.063em solid grey;
+  text-align: center;
+  height: 21.875em;
+  overflow-y: scroll;
+}
+
 .teacher-row {
   background-color: white;
   padding: 1em;
@@ -14,22 +25,6 @@
   border: 0.063em solid #DDD;
 }
 
-.classEdit {
-  background-color: #2ba6cb;
-  padding: 1em;
-  text-align: center;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.75);
-  box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.75);
-}
-
-#search {
-  border: 0.063em solid grey;
-  text-align: center;
-}
 
 .table {
   overflow: scroll;
@@ -111,6 +106,4 @@ th.headerSortUp {
   margin-top: -0.5em;
 }
 
-.assign {
-  margin-bottom: 0em;
-}
+
