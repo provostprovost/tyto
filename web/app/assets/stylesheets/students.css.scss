@@ -13,6 +13,8 @@
 
 .assignment-container{
   padding: 1em;
+  background-color: #fff;
+  background-image: url(subtle-stripes-pattern-2273.png);
   text-align: center;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -21,6 +23,19 @@
   -moz-box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.75);
   box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.75);
   margin: 1em;
+}
+
+.swing {
+  -webkit-transform-origin: top center;
+  -moz-transform-origin: top center;
+  -ms-transform-origin: top center;
+  -o-transform-origin: top center;
+  transform-origin: top center;
+  -webkit-animation-name: swing;
+  -moz-animation-name: swing;
+  -ms-animation-name: swing;
+  -o-animation-name: swing;
+  animation-name: swing;
 }
 
 .button-header {
@@ -36,7 +51,7 @@
 }
 
 .assignment-row {
-  background-color: white;
+  background-color: #fff;
   padding: 1em;
   height: 100%;
   border-radius: 5px;
@@ -44,64 +59,64 @@
 }
 
 .course-name {
-  color: #fff;
+  color: #222;
   text-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px;
   font-size: 2em;
   line-height: 1em;
 }
 
 .assignment-name {
-  color: #fff;
+  color: #222;
   text-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px;
 }
 
 .questions-complete {
-  color: #fff;
+  color: #222;
   text-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px;
   font-size: 2em;
   line-height: 1em;
 }
 
 .due-date {
-  color: #fff;
+  color: #222;
   text-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px;
 }
 
 
 .classroom0 {
-  background-color: #FF3136;
+  border-top: 10px solid #FF3136;
 }
 
 .classroom1 {
-  background-color: #AA2EE8;
+  border-top: 10px solid #AA2EE8;
 }
 
 .classroom2 {
-  background-color: #4065FF;
+  border-top: 10px solid #4065FF;
 }
 
 .classroom3 {
-  background-color: #2EE8E2;
+  border-top: 10px solid #2EE8E2;
 }
 
 .classroom4 {
-  background-color: #8FFF97;
+  border-top: 10px solid #8FFF97;
 }
 
 .classroom5 {
-  background-color: #c5127c;
+  border-top: 10px solid #c5127c;
 }
 
 .classroom6 {
-  background-color: #19ad1d;
+  border-top: 10px solid #19ad1d;
 }
 
 .classroom7 {
-  background-color: #fd9426;
+  border-top: 10px solid #fd9426;
 }
 
 .complete-grey {
-  background-color: #aaa;
+  background-color: #ddd;
 }
 
 .button-group {
@@ -130,3 +145,4 @@
   padding-top: 1em;
   border-bottom: 1px solid #EEE;
 }
+
