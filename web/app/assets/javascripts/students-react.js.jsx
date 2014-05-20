@@ -49,11 +49,13 @@
         return <Classroom key={classroom.id} name={classroom.name}></Classroom>
       });
       return (
-        <div className="classroom-box">
-          <ReactCSSTransitionGroup transitionName="transition">
-            {classroomNodes}
-          </ReactCSSTransitionGroup>
-        </div>
+        <dl id="filters" className="sub-nav">
+          <dt>Filter:</dt>
+          <dd><a data-filter="*" href="#">Show all</a></dd>
+          <dd><a data-filter=".complete" href="#">Complete</a></dd>
+          <dd className="active"><a data-filter=".incomplete" href="#">Incomplete</a></dd>
+          {classroomNodes}
+        </dl>
       );
     }
   });
@@ -62,9 +64,9 @@
     render: function() {
       classroomClass = ".classroom" + this.props.key
       return (
-        <div className="classroom">
-          <a data-filter={classroomClass} href="#" className="button small">{this.props.name}</a>
-        </div>
+        <dd className="classroom">
+          <a data-filter={classroomClass} href="#">{this.props.name}</a>
+        </dd>
       );
     }
   });
@@ -135,6 +137,6 @@
   );
   React.renderComponent(
     <ClassroomList url="/classrooms" />,
-    document.getElementById('classroom-container')
+    document.getElementById('filters-header')
   );
 })();

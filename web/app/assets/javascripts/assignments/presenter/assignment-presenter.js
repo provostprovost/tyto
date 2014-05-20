@@ -38,12 +38,12 @@
               });
               presenter.chart.setState({proficiencies: assignment.proficiencies
               });
-              presenter.progress.setState({questionsAnswered: assignment.number_answered,
-                                          proficiency: assignment.proficiency,
-                                          proficiencies: assignment.proficiencies
+              presenter.progress.setState({questionsAnswered: result.number_answered,
+                                          proficiency: Math.max.apply(null, result.proficiencies),
+                                          proficiencies: result.proficiencies
               });
-              presenter.streaks.setState({currentStreak: assignment.current_streak,
-                                          longestStreak: assignment.longest_streak
+              presenter.streaks.setState({currentStreak: result.current_streak,
+                                          longestStreak: result.longest_streak
               });
 
 

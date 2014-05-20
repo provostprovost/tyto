@@ -1,13 +1,10 @@
-<div class="row button-header">
-  <ul id="filters" class="button-group">
-    <li><a data-filter="*" href="#" class="filter button small">Show all</a></li>
-    <li><a data-filter=".complete" href="#" class="filter button small">Complete</a></li>
-    <li><a data-filter=".incomplete" href="#" class="filter button small">Incomplete</a></li>
-  </ul>
-</div>
+<div id="filters-header" class="row button-header"></div>
+<div id="invite-container" class="row"></div>
 <div class="body-container">
-  <div class="row">
-    <div class="small-12 medium-9 large-10 columns">
+  <div class="assignment-row row">
+      <h1>Assignments</h1>
+      <hr />
+    <div class="small-12 columns">
       <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3 isotope-container">
         <% @assignments.each do |assignment| %>
           <li class="assignment-li classroom<%= assignment.classroom_id %> <% if !assignment.complete %>in<% end %>complete">
@@ -24,12 +21,8 @@
               </div>
             <% end %>
           </li>
-        <% end %>
+        <% end if @assignments %>
       </ul>
-    </div>
-    <div class="small-12 medium-3 large-2 columns">
-      <div id="classroom-container"></div>
-      <div id="invite-container"></div>
     </div>
   </div>
 </div>

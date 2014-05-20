@@ -21,6 +21,7 @@
   -webkit-box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.75);
   box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.75);
+  margin: 1em;
 }
 
 .course-name {
@@ -49,23 +50,23 @@
 
 
 .classroom0 {
-  background-color: #0d61b5;
+  background-color: #FF3136;
 }
 
 .classroom1 {
-  background-color: #8cc726;
+  background-color: #AA2EE8;
 }
 
 .classroom2 {
-  background-color: #fc6621;
+  background-color: #4065FF;
 }
 
 .classroom3 {
-  background-color: #6315a4;
+  background-color: #2EE8E2;
 }
 
 .classroom4 {
-  background-color: #fec52e;
+  background-color: #8FFF97;
 }
 
 .classroom5 {
@@ -81,7 +82,7 @@
 }
 
 .complete-grey {
-  background-color: #ccc;
+  background-color: #aaa;
 }
 
 .button-group {
@@ -104,4 +105,9 @@
 
 .transition-leave.transition-leave-active {
   opacity: 0.01;
+}
+
+.button-header {
+  padding-top: 1em;
+  border-bottom: 1px solid #EEE;
 }
