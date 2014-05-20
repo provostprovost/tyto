@@ -20,7 +20,7 @@
                 <th width="50">Text?</th>
                 <%if @assignments[classroom.id] != nil %>
                   <%@assignments[classroom.id].each do |assignment| %>
-                    <th><%=assignment.name%></th>
+                    <th data-tooltip class="has-tip" title="<%=assignment.name%>"><%=assignment.deadline.strftime("%-m/%e")%></th>
                   <%end%>
                 <%end%>
               </tr>
@@ -34,13 +34,13 @@
                 <% if @studenthomework[classroom.id][student.id] != nil %>
                 <%@studenthomework[classroom.id][student.id].each do |assignment| %>
                   <%if Time.now < assignment.deadline  %>
-                    <td class="notLateAssignment"><%=(assignment.proficiency * 100).round %></td>
+                    <td class="notLateAssignment"><%= (assignment.proficiency * 100).round %></td>
                   <%elsif Time.now > assignment.deadline && assignment.complete == false  %>
-                    <td class="lateAssignment"><%=(assignment.proficiency * 100).round %></td>
+                    <td class="lateAssignment"><%= (assignment.proficiency * 100).round %></td>
                   <%elsif assignment.complete == true && assignment.question_level <= 2 %>
-                   <td class="poorPerformance"><%=(assignment.proficiency * 100).round %></td>
+                   <td class="poorPerformance"><%= (assignment.proficiency * 100).round %></td>
                   <%elsif assignment.complete == true && assignment.question_level > 2 %>
-                   <td class="goodPerformance"><%=(assignment.proficiency * 100).round %></td>
+                   <td class="goodPerformance"><%= (assignment.proficiency * 100).round %></td>
                   <% else %>
                    <td><%=q.proficiency.round(3)*100%>%</td>
                   <% end %>
