@@ -121,12 +121,13 @@
     },
     render: function() {
       return (
-        <div>
-          <label className="switch-light switch-candy" onChange={this.onClick}>
+        <div className="panel">
+          <p>Mark this problem difficult?</p>
+          <label className="switch-light switch-candy switch-candy-blue" onChange={this.onClick}>
             <input type="checkbox" checked={this.state.difficult} />
             <span>
-              <span>LOL no</span>
-              <span>Difficult?</span>
+              <span>No</span>
+              <span>Yes</span>
             </span>
             <a></a>
           </label>

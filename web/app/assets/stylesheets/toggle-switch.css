@@ -44,7 +44,7 @@
     position: relative;
     overflow: visible;
     padding: 0;
-    margin-left: 100px;
+    /*margin-left: 100px;*/
     /* Position the label over all the elements, except the slide-button (<a>)
    * Clicking anywhere on the label will change the switch-state
    */
