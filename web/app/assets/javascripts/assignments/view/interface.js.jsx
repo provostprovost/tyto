@@ -5,7 +5,22 @@
 
   window.QuestionForm = React.createClass({
     getInitialState: function() {
-      return { answer: "", questionText: assignment.questionText, questionLevel: assignment.questionLevel, difficult: false };
+      return {  answer: "",
+                questionText: assignment.questionText,
+                questionLevel: assignment.questionLevel,
+                difficult: false };
+    },
+    componentWillMount: function() {
+      thisQuestionForm = this;
+      $(window).on('markDifficult', function() {
+        thisQuestionForm.markDifficult();
+      });
+    },
+    componentDidMount: function() {
+      window.addEventListener('markDifficult', this.markDifficult);
+    },
+    componentWillUnmount: function() {
+      window.removeEventListener('markDifficult', this.markDifficult);
     },
     render: function() {
       if (assignment.complete && !assignment.keepGoing) {
@@ -55,44 +70,68 @@
           </div>
         );
       }
-          // <button onClick={this.onClick} id="difficult" className='easy'> Difficult </button>
     },
     onContinue: function(e) {
       e.preventDefault();
       this.props.continue({keepGoing: true});
     },
-    onClick: function(e) {
-      e.preventDefault;
-      var button = document.getElementById("difficult")
+    markDifficult: function() {
+      var button = document.getElementById("difficult-button")
       if(this.state.difficult===false){
         this.state.difficult = true;
-        button.className = "hard"
+        // button.className = "hard"
       }
       else{
         this.state.difficult=false;
-         button.className = "easy"
+         // button.className = "easy"
       }
     },
     onSubmit: function (e) {
       e.preventDefault();
       assignment_id = assignment.id;
+      $(window).trigger('questionSubmit');
       this.props.handleSubmit({answer: this.state.answer, assignment_id: assignment_id, difficult: this.state.difficult});
     },
-
     onChange: function(e) {
       this.setState({answer: e.target.value})
     }
   });
 
-  window.Chart = React.createClass({
+  window.Difficult = React.createClass({
     getInitialState: function() {
-      return { proficiencies: assignment.proficiencies};
+      return { difficult: false };
+    },
+    componentWillMount: function() {
+      thisDifficult = this;
+      $(window).on('questionSubmit', function() {
+        thisDifficult.resetSwitch();
+      });
+    },
+    onClick: function() {
+      $(window).trigger('markDifficult');
+      if (this.state.difficult === false) {
+        this.setState({difficult: true});
+      }
+      else {
+        this.setState({difficult: false});
+      }
+    },
+    resetSwitch: function() {
+      this.setState({difficult: false});
     },
     render: function() {
-      var ctx = document.getElementById("chart").getContext("2d");
-      var chart = new Chart(ctx);
       return (
-        <canvas id="chart-canvas" width="300" height="200"></canvas>
+        <div className="panel">
+          <p>Mark this problem difficult?</p>
+          <label className="switch-light switch-candy switch-candy-blue" onChange={this.onClick}>
+            <input type="checkbox" checked={this.state.difficult} />
+            <span>
+              <span>No</span>
+              <span>Yes</span>
+            </span>
+            <a></a>
+          </label>
+        </div>
       );
     }
   });

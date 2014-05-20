@@ -20,19 +20,18 @@
           console.error(this.props.url, status, err.toString());
         }.bind(this)
       });
-        $(window).on('inviteSubmit', function(e){
-          $.ajax({
-            url: thisClassroomList.props.url,
-            dataType: 'json',
-            success: function(data) {
-              thisClassroomList.setState({data: data});
-            }.bind(thisClassroomList),
-            error: function(xhr, status, err) {
-              console.error(thisClassroomList.props.url, status, err.toString());
-            }.bind(thisClassroomList)
-          });
-
+      $(window).on('inviteSubmit', function(e){
+        $.ajax({
+          url: thisClassroomList.props.url,
+          dataType: 'json',
+          success: function(data) {
+            thisClassroomList.setState({data: data});
+          }.bind(thisClassroomList),
+          error: function(xhr, status, err) {
+            console.error(thisClassroomList.props.url, status, err.toString());
+          }.bind(thisClassroomList)
         });
+      });
     },
     componentDidMount: function() {
       window.addEventListener('inviteSubmit', this.handleInviteSubmit);
@@ -41,7 +40,6 @@
       window.removeEventListener('inviteSubmit', this.handleInviteSubmit);
     },
     handleInviteSubmit: function() {
-      console.log("HELLO");
       this.componentWillMount();
     },
     render: function() {

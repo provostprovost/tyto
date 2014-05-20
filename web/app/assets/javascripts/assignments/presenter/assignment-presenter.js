@@ -1,7 +1,7 @@
 (function () {
   window.AssignmentPresenter = function (options){
     this.questionForm = options.questionForm;
-    this.chart = options.chart;
+    this.difficult = options.difficult;
     this.progress = options.progress;
     this.streaks = options.streaks;
     this.model = options.model;
@@ -36,8 +36,6 @@
                                           difficult: false,
                                           keepGoing: assignment.keepGoing
               });
-              presenter.chart.setState({proficiencies: assignment.proficiencies
-              });
               presenter.progress.setState({questionsAnswered: result.number_answered,
                                           proficiency: Math.max.apply(null, result.proficiencies),
                                           proficiencies: result.proficiencies
@@ -45,7 +43,7 @@
               presenter.streaks.setState({currentStreak: result.current_streak,
                                           longestStreak: result.longest_streak
               });
-
+              presenter.questionForm.setState({difficult: false});
 
             }
           });
