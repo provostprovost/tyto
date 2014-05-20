@@ -104,6 +104,8 @@
     onClick: function() {
       $(window).trigger('markDifficult');
       console.log('onClick has triggered markDifficult');
+      console.log(questionform);
+      window.QuestionForm.markDifficult();
     },
     render: function() {
       return (
