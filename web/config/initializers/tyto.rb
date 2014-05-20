@@ -1,4 +1,8 @@
 require '../lib/tyto.rb'
+Tyto.db_class = Timeline::Database::PostGres
+Tyto.env = 'development'
+Tyto.db.seed_database
+
 
 module Tyto
   class Entity

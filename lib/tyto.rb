@@ -15,6 +15,7 @@ require_relative 'tyto/entities/invite.rb'
 
 require_relative 'tyto/databases/in_memory.rb'
 require_relative 'tyto/databases/sqlite.rb'
+require_relative 'tyto/databases/postgres.rb'
 
 require_relative 'tyto/use_case.rb'
 require_relative 'tyto/use_cases/answer_question.rb'
@@ -29,6 +30,15 @@ require_relative 'tyto/use_cases/update_student.rb'
 
 module Tyto
   def self.db
-    @__db__ ||= Database::SQLite.new
+    @__db__ ||= Database::SQLite.new(nil)
+    @__db_instance ||= @db_class.new(@env || 'test')
+  end
+
+  def self.db_class=(db_class)
+    @db_class = db_class
+  end
+
+  def self.env=(env_name)
+    @env = env_name
   end
 end

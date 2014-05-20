@@ -5,10 +5,16 @@ require 'bcrypt'
 
 module Tyto
   module Database
-    class SQLite
+    class PostGres
       def initialize(env)
-        dbconfig = YAML::load(File.open('db/config.yml'))
-        ActiveRecord::Base.establish_connection(dbconfig["test"])
+          # binding.pry
+          #TO DO: edit this to work
+        # config_path = File.join(File.dirname(__FILE__), '../../../db/config.yml')
+        # puts "USING: #{env} - #{YAML.load_file(config_path)[env]}"
+        ActiveRecord::Base.establish_connection(
+          # YAML.load_file("db/config.yml")[env]
+          YAML.load_file('db/config.yml')[env]
+        )
       end
 
       def seed_database

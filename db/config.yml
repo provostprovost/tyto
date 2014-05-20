@@ -1,5 +1,17 @@
 test:
-  adapter: sqlite3
-  database: tyto_test
-  pool: 5
-  timeout: 5000
+  adapter: postgresql
+  database: tyto_prod
+  encoding: unicode
+  host: localhost
+
+development:
+  adapter: postgresql
+  database: tyto_prod
+  encoding: unicode
+  host: localhost
+
+production:
+  adapter: postgresql
+  database: tyto_prod
+  encoding: unicode
+  host: localhost
