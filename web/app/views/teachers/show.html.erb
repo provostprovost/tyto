@@ -20,7 +20,7 @@
                 <th width="50">Text?</th>
                 <%if @assignments[classroom.id] != nil %>
                   <%@assignments[classroom.id].each do |assignment| %>
-                    <th><%=assignment.name%></th>
+                    <th data-tooltip class="has-tip" title="<%=assignment.name%>"><%=assignment.deadline.strftime("%-m/%e")%></th>
                   <%end%>
                 <%end%>
               </tr>
