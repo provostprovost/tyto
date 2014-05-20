@@ -12,7 +12,6 @@
 }
 
 .assignment-container{
-  background-color: #2ba6cb;
   padding: 1em;
   text-align: center;
   -webkit-box-sizing: border-box;
@@ -22,6 +21,26 @@
   -moz-box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.75);
   box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.75);
   margin: 1em;
+}
+
+.button-header {
+  background-color: white;
+  -webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.75);
+}
+
+.student-sub {
+  margin: .4em;
+  padding-top: 0;
+}
+
+.assignment-row {
+  background-color: white;
+  padding: 1em;
+  height: 100%;
+  border-radius: 5px;
+  border: 1px solid #DDD;
 }
 
 .course-name {

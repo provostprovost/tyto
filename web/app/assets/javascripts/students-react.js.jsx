@@ -49,7 +49,7 @@
         return <Classroom key={classroom.id} name={classroom.name}></Classroom>
       });
       return (
-        <dl id="filters" className="sub-nav">
+        <dl id="filters" className="sub-nav student-sub">
           <dt>Filter:</dt>
           <dd><a data-filter="*" href="#">Show all</a></dd>
           <dd><a data-filter=".complete" href="#">Complete</a></dd>
