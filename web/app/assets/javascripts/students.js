@@ -1,4 +1,10 @@
 (function () {
+  $('.assignment-container').on('mouseenter', function() {
+    $(this).addClass('animated swing');
+  })
+  $('.assignment-container').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+    $(this).removeClass('animated swing');
+  });
   var $container = $('.isotope-container');
 
   $container.isotope({

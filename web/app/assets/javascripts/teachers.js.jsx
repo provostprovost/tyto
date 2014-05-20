@@ -9,6 +9,7 @@ $(document).ready(function()
             courseName = $('#courseName').val();
             React.renderComponent(<StudentList classroomName = {classroom} teacherId = {teacherId} courseName = {courseName} />, document.getElementById('panelcreate'));
         });
+});
 
 var AssignHomework = React.createClass({
     getInitialState: function() {
@@ -318,7 +319,6 @@ var FilterableStudentTable = React.createClass({
 React.renderComponent(<AssignHomework classrooms={window.classroomsAll} />, document.getElementById('assign'));
 React.renderComponent(<FilterableStudentTable students={window.studentsAll} />, document.getElementById('search'));
 
-});
 
 
 
