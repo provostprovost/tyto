@@ -260,7 +260,7 @@ var SearchBar = React.createClass({
     },
     render: function() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} className="searchFixed">
               <h5> Search Students </h5>
                 <input
                     type="text"
