@@ -7,6 +7,12 @@
     getInitialState: function() {
       return { answer: "", questionText: assignment.questionText, questionLevel: assignment.questionLevel, difficult: false };
     },
+    componentDidMount: function() {
+      window.addEventListener('markDifficult', this.markDifficult);
+    },
+    componentWillUnmount: function() {
+      window.removeEventListener('markDifficult', this.markDifficult);
+    },
     render: function() {
       if (assignment.complete && !assignment.keepGoing) {
         return (
@@ -55,14 +61,14 @@
           </div>
         );
       }
-          // <button onClick={this.onClick} id="difficult" className='easy'> Difficult </button>
     },
     onContinue: function(e) {
       e.preventDefault();
       this.props.continue({keepGoing: true});
     },
-    onClick: function(e) {
+    markDifficult: function(e) {
       e.preventDefault;
+      console.log("questionform markDifficult");
       var button = document.getElementById("difficult")
       if(this.state.difficult===false){
         this.state.difficult = true;
@@ -84,15 +90,16 @@
     }
   });
 
-  window.Chart = React.createClass({
-    getInitialState: function() {
-      return { proficiencies: assignment.proficiencies};
+  window.Difficult = React.createClass({
+    onClick: function() {
+      $(window).trigger('markDifficult');
+      console.log('onClick has triggered markDifficult');
     },
     render: function() {
-      var ctx = document.getElementById("chart").getContext("2d");
-      var chart = new Chart(ctx);
       return (
-        <canvas id="chart-canvas" width="300" height="200"></canvas>
+        <div>
+          <button onClick={this.onClick} id="difficult" className='easy'> Difficult </button>
+        </div>
       );
     }
   });
