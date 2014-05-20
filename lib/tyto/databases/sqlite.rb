@@ -602,6 +602,7 @@ module Tyto
       end
 
       def create_student(attrs)
+        attrs[:username] = attrs[:username].split.map(&:capitalize).join(' ')
         attrs[:password_digest] = BCrypt::Password.create(attrs.delete(:password))
 
         student = Tyto::Student.new(attrs)
@@ -691,6 +692,7 @@ module Tyto
 
       def create_teacher(attrs)
         attrs[:password_digest] = BCrypt::Password.create(attrs.delete(:password))
+        attrs[:username] = attrs[:username].split.map(&:capitalize).join(' ')
 
         teacher = Tyto::Teacher.new(attrs)
 

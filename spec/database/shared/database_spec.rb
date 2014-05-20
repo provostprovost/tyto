@@ -405,7 +405,7 @@ shared_examples_for "a database" do
                                     phone_number: '7576507728'})
     end
     it "creates a student" do
-      expect(@student.username).to eq("parth")
+      expect(@student.username).to eq("Parth")
       expect(@student.correct_password?("1234")).to eq true
       expect(@student.email).to eq("pss8te@virginia.edu")
       expect(@student.phone_number).to eq("7576507728")
@@ -418,7 +418,7 @@ shared_examples_for "a database" do
                                         phone_number: '1234567890')
       expect(new_student.correct_password?("5555")).to eq true
       fetched_student = db.get_student(new_student.id)
-      expect(fetched_student.username).to eq("Cool guy")
+      expect(fetched_student.username).to eq("Cool Guy")
       expect(fetched_student.correct_password?("5555")).to eq true
       expect(fetched_student.email).to eq("fake@email.com")
       expect(fetched_student.phone_number).to eq("1234567890")
@@ -443,7 +443,7 @@ shared_examples_for "a database" do
                                     phone_number: '7576507728'})
     end
     it "creates a teacher" do
-      expect(@teacher.username).to eq("parth")
+      expect(@teacher.username).to eq("Parth")
       expect(@teacher.correct_password?("1234")).to eq true
       expect(@teacher.email).to eq("pss8te@virginia.edu")
       expect(@teacher.phone_number).to eq("7576507728")
@@ -451,7 +451,7 @@ shared_examples_for "a database" do
 
     it "gets a teacher" do
       fetched_teacher = db.get_teacher(@teacher.id)
-      expect(fetched_teacher.username).to eq("parth")
+      expect(fetched_teacher.username).to eq("Parth")
       expect(fetched_teacher.correct_password?("1234")).to eq true
       expect(fetched_teacher.email).to eq("pss8te@virginia.edu")
       expect(fetched_teacher.phone_number).to eq("7576507728")
