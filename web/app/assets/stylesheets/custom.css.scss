@@ -5,6 +5,12 @@ body {
 .logo {
 }
 
+.top-bar {
+  -webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.75);
+}
+
 .body-container {
   padding-top: 1.5em;
 }
