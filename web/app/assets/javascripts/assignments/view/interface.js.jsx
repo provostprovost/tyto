@@ -2,10 +2,21 @@
 
 (function () {
   var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
-
+  $(window).on('markDifficult', function() {
+    console.log('window event');
+  });
   window.QuestionForm = React.createClass({
     getInitialState: function() {
-      return { answer: "", questionText: assignment.questionText, questionLevel: assignment.questionLevel, difficult: false };
+      return {  answer: "",
+                questionText: assignment.questionText,
+                questionLevel: assignment.questionLevel,
+                difficult: false };
+    },
+    componentWilMount: function() {
+      $(window).on('markDifficult', function() {
+        console.log('window on markd');
+        this.markDifficult();
+      });
     },
     componentDidMount: function() {
       window.addEventListener('markDifficult', this.markDifficult);
@@ -84,7 +95,6 @@
       assignment_id = assignment.id;
       this.props.handleSubmit({answer: this.state.answer, assignment_id: assignment_id, difficult: this.state.difficult});
     },
-
     onChange: function(e) {
       this.setState({answer: e.target.value})
     }
