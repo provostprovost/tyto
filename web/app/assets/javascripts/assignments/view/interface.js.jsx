@@ -76,20 +76,20 @@
       this.props.continue({keepGoing: true});
     },
     markDifficult: function() {
-      console.log("questionform markDifficult");
-      var button = document.getElementById("difficult")
+      var button = document.getElementById("difficult-button")
       if(this.state.difficult===false){
         this.state.difficult = true;
-        button.className = "hard"
+        // button.className = "hard"
       }
       else{
         this.state.difficult=false;
-         button.className = "easy"
+         // button.className = "easy"
       }
     },
     onSubmit: function (e) {
       e.preventDefault();
       assignment_id = assignment.id;
+      $(window).trigger('questionSubmit');
       this.props.handleSubmit({answer: this.state.answer, assignment_id: assignment_id, difficult: this.state.difficult});
     },
     onChange: function(e) {
@@ -98,13 +98,38 @@
   });
 
   window.Difficult = React.createClass({
+    getInitialState: function() {
+      return { difficult: false };
+    },
+    componentWillMount: function() {
+      thisDifficult = this;
+      $(window).on('questionSubmit', function() {
+        thisDifficult.resetSwitch();
+      });
+    },
     onClick: function() {
       $(window).trigger('markDifficult');
+      if (this.state.difficult === false) {
+        this.setState({difficult: true});
+      }
+      else {
+        this.setState({difficult: false});
+      }
+    },
+    resetSwitch: function() {
+      this.setState({difficult: false});
     },
     render: function() {
       return (
         <div>
-          <button onClick={this.onClick} id="difficult" className='easy'> Difficult </button>
+          <label className="switch-light switch-candy" onChange={this.onClick}>
+            <input type="checkbox" checked={this.state.difficult} />
+            <span>
+              <span>LOL no</span>
+              <span>Difficult?</span>
+            </span>
+            <a></a>
+          </label>
         </div>
       );
     }

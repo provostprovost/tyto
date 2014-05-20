@@ -43,7 +43,7 @@
               presenter.streaks.setState({currentStreak: result.current_streak,
                                           longestStreak: result.longest_streak
               });
-
+              presenter.questionForm.setState({difficult: false});
 
             }
           });
