@@ -12,7 +12,6 @@
 }
 
 .assignment-container{
-  background-color: #2ba6cb;
   padding: 1em;
   text-align: center;
   -webkit-box-sizing: border-box;
@@ -22,6 +21,15 @@
   -moz-box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.75);
   box-shadow: -1px 1px 3px 0px rgba(0,0,0,0.75);
   margin: 1em;
+}
+
+
+.assignment-row {
+  background-color: white;
+  padding: 1em;
+  height: 100%;
+  border-radius: 5px;
+  border: 1px solid #DDD;
 }
 
 .course-name {

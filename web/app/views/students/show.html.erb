@@ -11,6 +11,7 @@
             <%= link_to tyto_assignment_path(assignment.id) do %>
               <div class="assignment-container <%= @colors[assignment.classroom_id] %> <% if assignment.complete %>complete-grey<% end %>">
                 <p class="course-name"><%= assignment.course_name %></p>
+                <hr />
                 <p class="assignment-name"><%= assignment.name %></p>
                 <p class="questions-complete"><%= assignment.questions_answered %>/<%= assignment.assignment_size %></p>
                 <p class="deadline" style="display:none"><%= assignment.deadline %></p>
