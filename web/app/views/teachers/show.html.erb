@@ -98,12 +98,12 @@ window.studentsAll = [];
 <% @classrooms.each do |classroom| %>
   <% if @students[classroom.id] != nil %>
   <% @students[classroom.id].each do |student| %>
-    window.studentsAll.push({classroom: "<%=classroom.name%>", email: "<%=student.email%>", struggling: false, name: "<%=student.username%>", id: <%=counter%>, late: true  })
+    window.studentsAll.push({classroom: "<%=classroom.name%>", email: "<%=student.email%>", struggling: <%=student.struggling%>, name: "<%=student.username%>", id: <%=counter%>  })
     <% counter += 1 %>
   <% end %>
   <% end %>
   <% end %>
 <% end%>
-
+console.log(window.studentsAll);
 </script>
 
