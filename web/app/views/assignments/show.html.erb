@@ -15,7 +15,7 @@
     <div class="small-12 large-4 columns">
       <div class="row">
         <div class="small-12 medium-6 large-12 columns">
-          <canvas id="chart"></canvas>
+          <div id="difficult"></div>
         </div>
         <div class="small-12 medium-6 large-12 columns">
           <div id="streaks"></div>
@@ -34,9 +34,9 @@
     <QuestionForm />,
     document.getElementById('question')
   );
-  var chart = React.renderComponent(
-    <Chart />,
-    document.getElementById('chart')
+  var difficult = React.renderComponent(
+    <Difficult />,
+    document.getElementById('difficult')
   );
   var progress = React.renderComponent(
     <Progress />,
@@ -49,7 +49,7 @@
   var presenter = new AssignmentPresenter({
     model: assignment,
     questionForm: questionForm,
-    chart: chart,
+    difficult: difficult,
     progress: progress,
     streaks: streaks
   });
