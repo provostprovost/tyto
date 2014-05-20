@@ -2,9 +2,7 @@
 
 (function () {
   var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
-  $(window).on('markDifficult', function() {
-    console.log('window event');
-  });
+
   window.QuestionForm = React.createClass({
     getInitialState: function() {
       return {  answer: "",
@@ -12,10 +10,10 @@
                 questionLevel: assignment.questionLevel,
                 difficult: false };
     },
-    componentWilMount: function() {
+    componentWillMount: function() {
+      thisQuestionForm = this;
       $(window).on('markDifficult', function() {
-        console.log('window on markd');
-        this.markDifficult();
+        thisQuestionForm.markDifficult();
       });
     },
     componentDidMount: function() {
@@ -77,8 +75,7 @@
       e.preventDefault();
       this.props.continue({keepGoing: true});
     },
-    markDifficult: function(e) {
-      e.preventDefault;
+    markDifficult: function() {
       console.log("questionform markDifficult");
       var button = document.getElementById("difficult")
       if(this.state.difficult===false){
@@ -103,9 +100,6 @@
   window.Difficult = React.createClass({
     onClick: function() {
       $(window).trigger('markDifficult');
-      console.log('onClick has triggered markDifficult');
-      console.log(questionform);
-      window.QuestionForm.markDifficult();
     },
     render: function() {
       return (
