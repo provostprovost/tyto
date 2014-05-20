@@ -43,7 +43,10 @@ class TeachersController < ApplicationController
     @assignments = {}
     @studenthomework = {}
     @courses = Tyto.db.get_all_courses
-
+    @classroom_course = {}
+    @courses.each do |course|
+      @classroom_course[course.id] = course
+    end
     if @classrooms != nil
       @classrooms.each do |classroom|
           @students[classroom.id] = Tyto.db.get_students_in_classroom(classroom.id)

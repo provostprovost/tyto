@@ -13,6 +13,7 @@
       <% if @classrooms != nil %>
       <%@classrooms.each do |classroom| %>
         <div class="content" id="panel<%=classroom.id%>">
+          <h5> <%=@classroom_course[classroom.course_id].name%></h5>
           <table class="classroomTable">
             <thead>
               <tr>
@@ -20,7 +21,7 @@
                 <th width="50">Text?</th>
                 <%if @assignments[classroom.id] != nil %>
                   <%@assignments[classroom.id].each do |assignment| %>
-                    <th data-tooltip class="has-tip" title="<%=assignment.name%>"><%=assignment.deadline.strftime("%-m/%e")%></th>
+                    <th data-tooltip class="has-tip" title="<%=assignment.name%>"><%=assignment.subname%><br><%=assignment.deadline.strftime("%-m/%e")%></th>
                   <%end%>
                 <%end%>
               </tr>
