@@ -2,6 +2,9 @@ require_relative '../lib/tyto.rb'
 
 require_relative 'database/shared/database_spec.rb'
 
+Tyto.db_class = Tyto::Database::Persistence
+Tyto.env = "test"
+
 RSpec.configure do |config|
   # Auto-generated
   config.treat_symbols_as_metadata_keys_with_true_values = true
