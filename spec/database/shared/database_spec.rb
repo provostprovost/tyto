@@ -119,15 +119,16 @@ shared_examples_for "a database" do
 
   describe 'Classroom' do
     before do
+      @course = db.create_course(name: "algebra")
       @classroom = db.create_classroom( teacher_id: 55,
-                                        course_id:  66,
+                                        course_id:  @course.id,
                                         name: "Period 1" )
     end
 
     it "creates a classroom" do
       expect(@classroom).to be_a Tyto::Classroom
       expect(@classroom.teacher_id).to eq 55
-      expect(@classroom.course_id).to eq 66
+      expect(@classroom.course_id).to eq @course.id
       expect(@classroom.name).to eq "Period 1"
     end
 

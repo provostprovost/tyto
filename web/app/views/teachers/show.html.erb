@@ -58,11 +58,11 @@
         <div class="content active" id="panelcreate">
           <form class="createClassroom">
           <div class="row">
-            <div class="medium-4 columns">
+            <div class="medium-3 columns">
               <input type="text" placeholder="Class Name" id="classroomName">
               <input type="text" id="teacherId" value="<%=@teacher.id%>">
             </div>
-            <div class="medium-2 columns">
+            <div class="medium-3 columns">
                 <select id="courseName">
                   <%@courses.each do |course| %>
                     <option value="<%=course.name%>"><%=course.name.capitalize%></option>
@@ -72,7 +72,7 @@
             <div class="medium-2 columns">
               <input type="submit" class="button postfix" value="Create" >
             </div>
-            <div class="medium-4 columns"></div>
+            <div class="medium-3 columns"></div>
           </div>
           </form>
         </div>
