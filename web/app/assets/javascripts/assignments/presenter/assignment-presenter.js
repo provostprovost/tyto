@@ -31,10 +31,10 @@
               assignment.questionLevel = result.question.level;
               assignment.proficiencies = result.proficiencies;
               assignment.complete = result.complete;
-              assignment.previousQuestionText = "What's up?";
-              assignment.previousCorrect = false;
-              assignment.previousResponse = "chilling bro";
-              assignment.previousAnswer = "nm here";
+              assignment.previousQuestionText = result.question_text;
+              assignment.previousCorrect = result.response.correct;
+              assignment.previousResponse = result.response.answer;
+              assignment.previousAnswer = result.answer;
               presenter.questionForm.setState({questionText: result.question.question,
                                           answer: "",
                                           questionLevel: result.question.level,
@@ -49,11 +49,17 @@
                                           longestStreak: result.longest_streak
               });
               presenter.questionForm.setState({difficult: false});
-              presenter.previousQuestion.setState({ previousQuestionText: assignment.previousQuestionText,
-                                                    previousCorrect: assignment.previousCorrect,
-                                                    previousResponse: assignment.previousResponse,
-                                                    previousAnswer: assignment.previousAnswer
+              presenter.previousQuestion.setState({ previousQuestionText: result.question_text,
+                                                    previousCorrect: result.response.correct,
+                                                    previousResponse: result.response.answer,
+                                                    previousAnswer: result.answer
               });
+              if (result.response.correct) {
+                $('.previous-question').addClass('animated bounce');
+                $('.previous-question').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                  $(this).removeClass('animated bounce');
+                });
+              }
             }
           });
         }

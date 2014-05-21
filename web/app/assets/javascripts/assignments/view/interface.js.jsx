@@ -15,6 +15,9 @@
       $(window).on('markDifficult', function() {
         thisQuestionForm.markDifficult();
       });
+      $('.previous-question').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+        $('.previous-question').removeClass('animated bounce');
+      });
     },
     componentDidMount: function() {
       window.addEventListener('markDifficult', this.markDifficult);
@@ -192,15 +195,35 @@
     getInitialState: function() {
       return {
         previousQuestionText: "",
-        previousCorrect: false,
+        previousCorrect: 0,
         previousResponse: "",
         previousAnswer: ""
       }
     },
     render: function() {
-      return (
-        <div className="previous-question">Hi there</div>
-      );
+
+      if (this.state.previousCorrect === true) {
+        return (
+          <div className="previous-question previous-correct panel">
+            <i className="fa fa-check fa-3x"></i> COOL BRO
+          </div>
+        )
+      }
+      else if (this.state.previousCorrect ===false) {
+        return (
+          <div className="previous-question previous-incorrect panel">
+            <p>The question was {this.state.previousQuestionText}</p>
+            <p>Did you get it right? {this.state.previousCorrect.toString()}</p>
+            <p>The answer was {this.state.previousAnswer}</p>
+            <p>But you said {this.state.previousResponse}</p>
+          </div>
+        );
+      }
+      else {
+        return (
+          <div></div>
+        )
+      }
     }
   });
 })();

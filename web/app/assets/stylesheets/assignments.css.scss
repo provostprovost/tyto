@@ -52,6 +52,22 @@ body {
   margin-top: 1.6em;
 }
 
+#previous-question {
+}
+
+.previous-question {
+  border: 1px solid #ddd;
+  margin-top: 1.6em;
+
+}
+
+.previous-correct {
+  background-color: yellowgreen;
+}
+
+.previous-incorrect {
+  background-color: cornsilk;
+}
 
 .transition-enter {
   opacity: 0.01;
