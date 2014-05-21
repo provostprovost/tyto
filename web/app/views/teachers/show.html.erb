@@ -89,7 +89,9 @@
   </div>
 </div>
 
-<script>
+<% content_for :javascript do %>
+<script type="text/javascript">
+(function () {
 window.classroomsAll = []
 <%@classrooms.each do |classroom| %>
   classroomsAll.push("<%=classroom.name%>")
@@ -106,5 +108,9 @@ window.studentsAll = [];
   <% end %>
   <% end %>
 <% end%>
-</script>
 
+ React.renderComponent(AssignHomework( {classrooms:window.classroomsAll} ), document.getElementById('assign'));
+ React.renderComponent(FilterableStudentTable( {students:window.studentsAll} ), document.getElementById('search'));
+})();
+</script>
+<% end %>

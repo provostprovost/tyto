@@ -129,12 +129,4 @@
       );
     }
   });
-  React.renderComponent(
-    <InviteList url="/invites"/>,
-    document.getElementById('invite-container')
-  );
-  React.renderComponent(
-    <ClassroomList url="/classrooms" />,
-    document.getElementById('filters-header')
-  );
 })();
