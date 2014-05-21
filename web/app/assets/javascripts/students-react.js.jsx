@@ -4,7 +4,7 @@
 
   var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
-  var ClassroomList = React.createClass({
+  window.ClassroomList = React.createClass({
     getInitialState: function() {
       return {data: []};
     },
@@ -68,7 +68,7 @@
       );
     }
   });
-  var InviteList = React.createClass({
+  window.InviteList = React.createClass({
     getInitialState: function() {
       return {data: []};
     },
@@ -129,12 +129,4 @@
       );
     }
   });
-  React.renderComponent(
-    <InviteList url="/invites"/>,
-    document.getElementById('invite-container')
-  );
-  React.renderComponent(
-    <ClassroomList url="/classrooms" />,
-    document.getElementById('filters-header')
-  );
 })();

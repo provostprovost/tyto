@@ -33,3 +33,16 @@
     </div>
   </div>
 </div>
+
+<% content_for :javascript do %>
+<script type="text/javascript">
+
+(function () {
+  React.renderComponent(window.InviteList( {url:"/invites"} ), document.getElementById('invite-container'));
+
+  React.renderComponent(window.ClassroomList( {url:url="/classrooms"} ), document.getElementById('filters-header'));
+
+})();
+
+</script>
+<% end %>

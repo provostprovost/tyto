@@ -31,7 +31,11 @@
               <%@students[classroom.id].each do |student| %>
               <tr>
                 <td><%=student.username%></td>
-                <td class="textCheckbox"><input id="checkbox1<%=student.id%>" type="checkbox"></td>
+                <% if student.text == true %>
+                  <td class="textCheckbox"><input class="checkbox1" type="checkbox" data-student=<%=student.id%> data-classroom=<%=classroom.id%> checked></td>
+                <% else %>
+                  <td class="textCheckbox"><input class="checkbox1" type="checkbox" data-student=<%=student.id%> data-classroom=<%=classroom.id%>></td>
+                <% end %>
                 <% if @studenthomework[classroom.id][student.id] != nil %>
                 <%@studenthomework[classroom.id][student.id].each do |assignment| %>
                   <%if Time.now < assignment.deadline  %>
@@ -89,7 +93,9 @@
   </div>
 </div>
 
-<script>
+<% content_for :javascript do %>
+<script type="text/javascript">
+(function () {
 window.classroomsAll = []
 <%@classrooms.each do |classroom| %>
   classroomsAll.push("<%=classroom.name%>")
@@ -106,5 +112,9 @@ window.studentsAll = [];
   <% end %>
   <% end %>
 <% end%>
-</script>
 
+ React.renderComponent(AssignHomework( {classrooms:window.classroomsAll} ), document.getElementById('assign'));
+ React.renderComponent(FilterableStudentTable( {students:window.studentsAll} ), document.getElementById('search'));
+})();
+</script>
+<% end %>

@@ -33,6 +33,11 @@ class ClassroomsController < ApplicationController
     render json: result
   end
 
+  def update_text
+    student = Tyto.db.update_student_in_classroom(params[:student_id], params[:classroom_id], params[:text])
+    render json: student
+  end
+
   private
 
   def classroom_params

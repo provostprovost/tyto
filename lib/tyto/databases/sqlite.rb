@@ -1,7 +1,7 @@
 require "active_record"
 require "yaml"
-require 'pry-debugger'
 require 'bcrypt'
+require 'pry-debugger'
 
 module Tyto
   module Database
@@ -274,7 +274,14 @@ module Tyto
       end
 
       def add_student_to_classroom(attrs)
+        attrs[:false] if attrs[:text]==nil
         pair = ClassroomsUsers.create(attrs)
+      end
+
+      def update_student_in_classroom(student_id, classroom_id, text)
+        student = ClassroomsUsers.where(student_id: student_id, classroom_id: classroom_id).last
+        student.update(text: text)
+        get_student(student.student_id)
       end
 
       def get_students_in_classroom(id)
@@ -629,7 +636,8 @@ module Tyto
                                       password: "temp",
                                       email: student.email,
                                       phone_number: student.phone_number,
-                                      struggling: is_student_struggling(student.id, classroom_id))
+                                      struggling: is_student_struggling(student.id, classroom_id),
+                                      text: is_student_to_be_texted(student.id, classroom_id))
         retrieved.password_digest = BCrypt::Password.new(student.password_digest)
         retrieved
       end
@@ -657,6 +665,17 @@ module Tyto
           average = total_proficiency / proficiencies.length
           return true if average < 0.6
           return false if average >= 0.6
+        end
+      end
+
+      def is_student_to_be_texted(student_id, classroom_id)
+        if classroom_id == nil
+          return false
+        else
+          student = ClassroomsUsers.where(student_id: student_id, classroom_id: classroom_id).last
+          return false if student.text == nil
+          return true if student.text == true
+          return false if student.text == false
         end
       end
 

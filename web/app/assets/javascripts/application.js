@@ -15,6 +15,7 @@
 //= require foundation
 //= require foundation.equalizer.js
 //= require react
+//= req
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

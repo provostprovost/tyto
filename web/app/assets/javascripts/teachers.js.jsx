@@ -9,6 +9,13 @@ $(document).ready(function()
             courseName = $('#courseName').val();
             React.renderComponent(<StudentList classroomName = {classroom} teacherId = {teacherId} courseName = {courseName} />, document.getElementById('panelcreate'));
         });
+        $(".checkbox1").on('click', function(){
+          data={student_id: this.dataset.student, text: this.checked, classroom_id: this.dataset.classroom};
+          console.log(data);
+          $.post("/classrooms/text", data, function(data){
+            console.log(data);
+          })
+        });
 });
 
 var AssignHomework = React.createClass({
@@ -316,8 +323,7 @@ var FilterableStudentTable = React.createClass({
     }
 });
 
-React.renderComponent(<AssignHomework classrooms={window.classroomsAll} />, document.getElementById('assign'));
-React.renderComponent(<FilterableStudentTable students={window.studentsAll} />, document.getElementById('search'));
+
 
 
 
