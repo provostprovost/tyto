@@ -3,8 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #assign {
-  border: 0.063em solid grey;
+  border: 0.063em solid #DDD;
   text-align: center;
+  padding: 2em;
+  margin-bottom: 2em;
 }
 
 .assign {
@@ -12,10 +14,11 @@
 }
 
 #search {
-  border: 0.063em solid grey;
+  border: 0.063em solid #DDD;
   text-align: center;
-  height: 21.875em;
+  height: 29.8em;
   overflow-y: scroll;
+  padding: 2em;
 }
 
 .teacher-row {
@@ -100,9 +103,16 @@ th.headerSortUp {
 
 .studentTable {
   width: 100%;
-  border-bottom: none;
   margin-bottom: 0em;
   margin-top: -1.563em;
+}
+
+.searchFixed {
+
+}
+
+#tabs {
+  // border: 1px solid #ddd;
 }
 
 .filterStruggling {
