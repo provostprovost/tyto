@@ -55,9 +55,9 @@
                                                     previousAnswer: result.answer
               });
               if (result.response.correct) {
-                $('.previous-question').addClass('animated bounce');
+                $('.previous-question').addClass('animated pulse');
                 $('.previous-question').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-                  $(this).removeClass('animated bounce');
+                  $(this).removeClass('animated pulse');
                 });
               }
             }

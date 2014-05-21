@@ -40,9 +40,17 @@ body {
 
 }
 
+.streaks {
+  background-color: #fff;
+}
+
 #difficult {
   text-align: center;
   margin-top: 1.6em;
+}
+
+.difficult {
+  background-color: #fff;
 }
 
 #progress {
@@ -58,15 +66,27 @@ body {
 .previous-question {
   border: 1px solid #ddd;
   margin-top: 1.6em;
-
+  height: 6em;
 }
 
 .previous-correct {
-  background-color: yellowgreen;
+  background-color: #fff;
+  padding-top: -5em;
+  text-align: center;
+  border-top: 10px solid green;
+}
+
+.correct-message {
+  display: inline;
 }
 
 .previous-incorrect {
-  background-color: cornsilk;
+  background-color: #fff;
+}
+
+.previous-start {
+  text-align: center;
+  padding-top: 1.55em;
 }
 
 .transition-enter {

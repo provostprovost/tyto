@@ -124,7 +124,7 @@
     },
     render: function() {
       return (
-        <div className="panel">
+        <div className="panel difficult">
           <p>Mark this problem difficult?</p>
           <label className="switch-light switch-candy switch-candy-blue" onChange={this.onClick}>
             <input type="checkbox" checked={this.state.difficult} />
@@ -194,10 +194,10 @@
   window.PreviousQuestion = React.createClass({
     getInitialState: function() {
       return {
-        previousQuestionText: "",
-        previousCorrect: 0,
-        previousResponse: "",
-        previousAnswer: ""
+        previousQuestionText: assignment.previousQuestionText,
+        previousCorrect: assignment.previousCorrect,
+        previousResponse: assignment.previousReponse,
+        previousAnswer: assignment.previousAnswer
       }
     },
     render: function() {
@@ -205,23 +205,21 @@
       if (this.state.previousCorrect === true) {
         return (
           <div className="previous-question previous-correct panel">
-            <i className="fa fa-check fa-3x"></i> COOL BRO
+            <i className="fa fa-check fa-3x"></i>&nbsp;&nbsp;&nbsp;<h3 className="correct-message">Correct!</h3>
           </div>
         )
       }
-      else if (this.state.previousCorrect ===false) {
+      else if (this.state.previousCorrect === false) {
         return (
           <div className="previous-question previous-incorrect panel">
-            <p>The question was {this.state.previousQuestionText}</p>
-            <p>Did you get it right? {this.state.previousCorrect.toString()}</p>
-            <p>The answer was {this.state.previousAnswer}</p>
-            <p>But you said {this.state.previousResponse}</p>
+            <p>Previous question: {this.state.previousQuestionText}</p>
+            <p>Answer: {this.state.previousAnswer}</p>
           </div>
         );
       }
       else {
         return (
-          <div></div>
+          <div className="previous-question previous-start"><h3>Let's get started!</h3></div>
         )
       }
     }
