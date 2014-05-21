@@ -25,11 +25,13 @@
     render: function() {
       if (assignment.complete && !assignment.keepGoing) {
         return (
-          <div className="question">
+          <div className="continue">
             <form onSubmit={this.onContinue}>
               <fieldset>
-                <div className="row">
-                  Congratulations, you have finished this assignment! Want to keep practicing?
+                <div className="row congrats">
+                  <div className="large-8 medium-8 small-12 small-centered columns">
+                    <p>Congratulations, you have finished this assignment! Want to keep practicing?</p>
+                  </div>
                 </div>
                 <div className="row">
                   <div className="small-6 columns">
@@ -79,11 +81,9 @@
       var button = document.getElementById("difficult-button")
       if(this.state.difficult===false){
         this.state.difficult = true;
-        // button.className = "hard"
       }
       else{
         this.state.difficult=false;
-         // button.className = "easy"
       }
     },
     onSubmit: function (e) {
@@ -166,7 +166,7 @@
     render: function() {
       return (
         <div className="streaks panel">
-          <div className="row">Streaks</div>
+          <div className="row"><h4>Streaks</h4></div>
           <div className="row">
             <div className="small-8 columns">
               Current:

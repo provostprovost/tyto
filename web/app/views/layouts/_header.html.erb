@@ -18,7 +18,14 @@
           </ul>
         </li>
       <% else %>
-        <li class="active"><%= link_to "Sign in", signin_path %></li>
+        <li class="has-dropdown">
+          <a href="#">Sign in</a>
+          <ul class="dropdown">
+            <li><%= link_to "Students", "/student/signin" %></li>
+            <li><%= link_to "Teachers", "/teacher/signin" %></li>
+          </ul>
+        </li>
+
         <li class="has-dropdown">
           <a href="#">Sign up</a>
           <ul class="dropdown">
