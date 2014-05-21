@@ -1,9 +1,9 @@
 development:
-  adapter: postgresql
+  adapter:  postgresql
   database: tyto_dev
   encoding: unicode
-  host: localhost
-  username:
+  host:     localhost
+  username: parthshah
   password:
 
 production:

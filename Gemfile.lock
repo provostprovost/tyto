@@ -36,8 +36,6 @@ GEM
     method_source (0.8.2)
     minitest (5.3.4)
     pg (0.17.1)
-    postgres (0.8.1)
-      pg (~> 0)
     pry (0.9.12.6)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -70,7 +68,7 @@ DEPENDENCIES
   activerecord (~> 4.1.0)
   bcrypt
   chronic
-  postgres
+  pg
   pry-debugger (~> 0.2.2)
   rspec (~> 2.14.1)
   sqlite3

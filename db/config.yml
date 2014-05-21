@@ -9,7 +9,7 @@ development:
   database: tyto_dev
   encoding: unicode
   host: localhost
-  username:
+  username: parthshah
   password:
 
 production:
@@ -17,3 +17,4 @@ production:
   database: ar-ex_prod
   encoding: unicode
   host: localhost
+

@@ -1,6 +1,7 @@
 require '../lib/tyto.rb'
 Tyto.db_class = Tyto::Database::Persistence
 Tyto.env = 'development'
+binding.pry
 Tyto.db.seed_database
 module Tyto
   class Entity
