@@ -1,5 +1,7 @@
 require '../lib/tyto.rb'
-
+Tyto.db_class = Tyto::Database::Persistence
+Tyto.env = 'development'
+Tyto.db.seed_database
 module Tyto
   class Entity
     def persisted?

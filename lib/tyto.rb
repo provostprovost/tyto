@@ -29,6 +29,14 @@ require_relative 'tyto/use_cases/update_student.rb'
 
 module Tyto
   def self.db
-    @__db__ ||= Database::SQLite.new
+    @__db_instance ||= @db_class.new(@env || 'test')
+  end
+
+  def self.db_class=(db_class)
+    @db_class = db_class
+  end
+
+  def self.env=(env_name)
+    @env = env_name
   end
 end
