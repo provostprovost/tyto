@@ -8,7 +8,7 @@ development:
 
 production:
   adapter: postgresql
-  database: ar-ex_prod
+  database: tyto_prod
   encoding: unicode
   host: localhost
 

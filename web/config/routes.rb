@@ -27,4 +27,5 @@ Rails.application.routes.draw do
   post '/responses/create' => 'responses#create'
   post '/classrooms/update' => 'classrooms#update'
   post '/chapters/index' => 'chapters#index'
+  post '/classrooms/text' => 'classrooms#update_text'
 end
