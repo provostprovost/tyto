@@ -87,52 +87,52 @@ var AssignHomework = React.createClass({
         });
         return (
         <div>
-            <h5> Assign Homework </h5>
-            <form id="AssignHomework" onSubmit={this.handleSubmit}>
-              <div className="row">
-                <div className="large-12 columns">
-                    <select id="classroomChosen" onChange={this.handleClassroomChange}>
-                        <option value="" disabled selected>Select Classroom</option>
-                        {classrooms}
+          <h5> Assign Homework </h5>
+          <form id="AssignHomework" onSubmit={this.handleSubmit}>
+            <div className="row">
+              <div className="large-12 columns">
+                  <select id="classroomChosen" onChange={this.handleClassroomChange}>
+                      <option value="" disabled selected>Select Classroom</option>
+                      {classrooms}
+                  </select>
+              </div>
+            </div>
+            <div className="row">
+              <div className="large-12 columns">
+                    <select id="chosenTopic" onChange={this.handleSubtopicChange}>
+                      <option value="" disabled selected>Select Topic</option>
+                      {subtopics}
                     </select>
-                </div>
               </div>
-              <div className="row">
+            </div>
+            <div className="row">
                 <div className="large-12 columns">
-                      <select id="chosenTopic" onChange={this.handleSubtopicChange}>
-                        <option value="" disabled selected>Select Topic</option>
-                        {subtopics}
+                  <label>Deadline
+                    <input onChange={this.handleDeadlineChange} type="date" value={this.state.deadline}></input>
+                  </label>
+                </div>
+            </div>
+            <div className="row">
+              <div className="large-7 columns">
+                  <label>Time
+                    <input onChange={this.handleTimeChange} type="time" value={this.state.time}></input>
+                  </label>
+                </div>
+                <div className="large-5 columns">
+                  <label>Assignment
+                      <select onChange={this.handleSizeChange}>
+                          <option value="" disabled selected>Size</option>
+                          {sizes}
                       </select>
+                  </label>
                 </div>
+            </div>
+            <div className="row">
+              <div className="large-12 columns">
+                <input type="submit" className="button small expand assign" value="Assign"> </input>
               </div>
-              <div className="row">
-                  <div className="large-12 columns">
-                    <label>Deadline
-                      <input onChange={this.handleDeadlineChange} type="date" value={this.state.deadline}></input>
-                    </label>
-                  </div>
-              </div>
-              <div className="row">
-                <div className="large-7 columns">
-                    <label>Time
-                      <input onChange={this.handleTimeChange} type="time" value={this.state.time}></input>
-                    </label>
-                  </div>
-                  <div className="large-5 columns">
-                    <label>Assignment
-                        <select onChange={this.handleSizeChange}>
-                            <option value="" disabled selected>Size</option>
-                            {sizes}
-                        </select>
-                    </label>
-                  </div>
-              </div>
-              <div className="row">
-                <div className="large-12 columns">
-                  <input type="submit" className="button small expand assign" value="Assign"> </input>
-                </div>
-              </div>
-            </form>
+            </div>
+          </form>
         </div>
             );
     }
@@ -211,7 +211,7 @@ var StudentList = React.createClass({
   }
 });
 
-var studentRow = React.createClass({
+var StudentRow = React.createClass({
     render: function() {
         var name = <span>{this.props.Student.name}</span>;
         return (
@@ -235,7 +235,7 @@ var StudentTable = React.createClass({
             if (Student.classroom !== lastclassroom) {
                 rows.push(<classroomRow classroom={Student.classroom} key={Student.classroom} />);
             }
-            rows.push(<studentRow Student={Student} key={Student.id} />);
+            rows.push(<StudentRow Student={Student} key={Student.id} />);
             lastclassroom = Student.classroom;
         }.bind(this));
         return (

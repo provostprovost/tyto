@@ -1,6 +1,6 @@
 <div class="teacher-row row">
-  <div class="small-12 medium-7 columns" id="tabs">
-    <dl class="tabs" data-tab>
+  <div class="small-12 medium-8 columns" id="tabs">
+    <dl class="sub-nav" data-tab>
       <% if @classrooms != nil %>
         <%@classrooms.each do |classroom| %>
           <dd><a href="#panel<%=classroom.id%>"><%=classroom.name%></a></dd>
@@ -79,11 +79,12 @@
     </div>
   </div>
 
-  <div class="small-12 medium-3 columns sidebar">
-    <div class="row" id="assign">
-    </div>
-    <br>
-    <div class="row" id="search">
+  <div class="small-12 large-4 columns sidebar">
+      <div class="row">
+      <div class="small-12 medium-6 large-12 columns" id="assign">
+      </div>
+      <div class="small-12 medium-6 large-12 columns" id="search">
+      </div>
     </div>
   </div>
 </div>
