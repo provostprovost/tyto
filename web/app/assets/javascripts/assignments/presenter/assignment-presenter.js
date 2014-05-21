@@ -5,6 +5,7 @@
     this.progress = options.progress;
     this.streaks = options.streaks;
     this.model = options.model;
+    this.previousQuestion = options.previousQuestion;
 
     var presenter = this;
 
@@ -30,6 +31,10 @@
               assignment.questionLevel = result.question.level;
               assignment.proficiencies = result.proficiencies;
               assignment.complete = result.complete;
+              assignment.previousQuestionText = "What's up?";
+              assignment.previousCorrect = false;
+              assignment.previousResponse = "chilling bro";
+              assignment.previousAnswer = "nm here";
               presenter.questionForm.setState({questionText: result.question.question,
                                           answer: "",
                                           questionLevel: result.question.level,
@@ -44,7 +49,11 @@
                                           longestStreak: result.longest_streak
               });
               presenter.questionForm.setState({difficult: false});
-
+              presenter.previousQuestion.setState({ previousQuestionText: assignment.previousQuestionText,
+                                                    previousCorrect: assignment.previousCorrect,
+                                                    previousResponse: assignment.previousResponse,
+                                                    previousAnswer: assignment.previousAnswer
+              });
             }
           });
         }

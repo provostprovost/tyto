@@ -187,6 +187,22 @@
       );
     }
   });
+
+  window.PreviousQuestion = React.createClass({
+    getInitialState: function() {
+      return {
+        previousQuestionText: "",
+        previousCorrect: false,
+        previousResponse: "",
+        previousAnswer: ""
+      }
+    },
+    render: function() {
+      return (
+        <div className="previous-question">Hi there</div>
+      );
+    }
+  });
 })();
 
 
