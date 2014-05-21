@@ -32,9 +32,9 @@
 <script type="text/javascript">
 
 (function () {
-  React.renderComponent(InviteList( {url:"/invites"} ), document.getElementById('invite-container'));
+  React.renderComponent(window.InviteList( {url:"/invites"} ), document.getElementById('invite-container'));
 
-  React.renderComponent(ClassroomList( {url:url="/classrooms"} ), document.getElementById('filters-header'));
+  React.renderComponent(window.ClassroomList( {url:url="/classrooms"} ), document.getElementById('filters-header'));
 
 })();
 
