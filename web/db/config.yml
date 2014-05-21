@@ -3,7 +3,7 @@ development:
   database: tyto_dev
   encoding: unicode
   host:     localhost
-  username: parthshah
+  username: tyto_admin
   password:
 
 production:
