@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Tyto::Database::SQLite do
+describe Tyto::Database::Persistence do
   it_behaves_like "a database"
 end

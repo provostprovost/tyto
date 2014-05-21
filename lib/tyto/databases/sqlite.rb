@@ -5,10 +5,12 @@ require 'bcrypt'
 
 module Tyto
   module Database
-    class SQLite
-      def initialize
-        dbconfig = YAML::load(File.open('db/config.yml'))
-        ActiveRecord::Base.establish_connection(dbconfig["test"])
+    class Persistence
+
+      def initialize(env)
+        ActiveRecord::Base.establish_connection(
+          YAML.load_file('db/config.yml')[env]
+        )
       end
 
       def seed_database
