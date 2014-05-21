@@ -10,6 +10,13 @@ class SessionsController < ApplicationController
         redirect_to root_url
       end
     end
+    if params[:user_type] == 'teacher'
+      render 'new_teacher'
+    elsif params[:user_type] == 'student'
+      render 'new_student'
+    else
+      render 'new'
+    end
   end
 
   def create
