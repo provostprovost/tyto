@@ -44,7 +44,7 @@
     },
     render: function() {
       var classroomNodes = this.state.data.map(function (classroom) {
-        return <Classroom key={classroom.id} name={classroom.name}></Classroom>
+        return <Classroom key={classroom.id} name={classroom.course_name}></Classroom>
       });
       return (
         <dl id="filters" className="sub-nav student-sub">

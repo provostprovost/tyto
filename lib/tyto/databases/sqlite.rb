@@ -255,7 +255,8 @@ module Tyto
         Tyto::Classroom.new(  id:         classroom.id,
                               course_id:  classroom.course_id,
                               teacher_id: classroom.teacher_id,
-                              name: classroom.name )
+                              name: classroom.name,
+                              course_name: get_course(classroom.course_id).name )
       end
 
       def edit_classroom(attrs)
@@ -287,7 +288,7 @@ module Tyto
         return nil if classrooms.last.nil?
         classrooms.map do |pair|
           get_classroom(pair.classroom_id)
-        end
+        end.sort_by {|classroom| classroom.name }
       end
 
       def get_classrooms_for_teacher(teacher_id)
