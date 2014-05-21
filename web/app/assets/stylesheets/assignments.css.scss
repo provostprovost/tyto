@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 /* Assignment Show */
+$success-color: #80bd41;
 
 body {
   background-color: #f2f2f2;
@@ -25,6 +26,7 @@ body {
 .continue {
   margin-top: 1.6em;
   text-align: center;
+  background-image: url(bg.png);
 }
 
 .congrats {
@@ -36,12 +38,13 @@ body {
 }
 
 
-#question {
-
+.question {
+  // background-image: url(bg.png);
 }
 
 .streaks {
-  background-color: #fff;
+  background-image: url(bg.png);
+  // padding: 3em;
 }
 
 #difficult {
@@ -50,7 +53,7 @@ body {
 }
 
 .difficult {
-  background-color: #fff;
+  background-image: url(bg.png);
 }
 
 #progress {
@@ -67,17 +70,24 @@ body {
   border: 1px solid #ddd;
   margin-top: 1.6em;
   height: 6em;
+  background-image: url(bg.png);
 }
 
 .previous-correct {
-  background-color: #fff;
   padding-top: -5em;
   text-align: center;
-  border-top: 10px solid green;
+}
+
+.question-fieldset {
+  background-image: url(bg.png);
 }
 
 .correct-message {
   display: inline;
+}
+
+.fa-check {
+  color: $success-color;
 }
 
 .previous-incorrect {

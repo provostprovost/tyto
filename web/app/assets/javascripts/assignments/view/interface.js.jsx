@@ -38,10 +38,10 @@
                 </div>
                 <div className="row">
                   <div className="small-6 columns">
-                    <a className="button round expand" href="/dashboards">Finished</a>
+                    <a className="button radius expand" href="/dashboards">Finished</a>
                   </div>
                   <div className="small-6 columns">
-                    <button className="round expand">Keep practicing</button>
+                    <button className="radius expand">Keep practicing</button>
                   </div>
                 </div>
               </fieldset>
@@ -53,7 +53,7 @@
         return (
           <div className="question">
             <form onSubmit={this.onSubmit}>
-              <fieldset>
+              <fieldset className="question-fieldset">
                 <legend>Problem #{assignment.questionsAnswered + 1}</legend>
                 <div className="row">
                   <div className="small-12 columns question-text">

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require foundation.equalizer.js
 //= require react
 //= require_tree .
 

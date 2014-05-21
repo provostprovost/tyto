@@ -5,15 +5,21 @@
     <h1>Assignments</h1>
     <!-- <hr /> -->
     <div class="small-12 columns">
-      <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3 isotope-container">
+      <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3 isotope-container" data-equalizer-watch>
         <% @assignments.each do |assignment| %>
           <li class="assignment-li classroom<%= assignment.classroom_id %> <% if !assignment.complete %>in<% end %>complete">
             <%= link_to tyto_assignment_path(assignment.id) do %>
-              <div class="assignment-container <%= @colors[assignment.classroom_id] %> <% if assignment.complete %>complete-grey<% end %>">
+              <div class="assignment-container <%= @colors[assignment.classroom_id] %> <% if assignment.complete %>complete-grey<% end %>" data-equalizer-watch>
                 <h3 class="course-name"><%= assignment.course_name %></h3>
                 <hr />
                 <p class="assignment-name"><%= assignment.name %></p>
-                <p class="questions-complete"><%= assignment.questions_answered %>/<%= assignment.assignment_size %></p>
+                <p class="questions-complete">
+                  <% if assignment.complete %>
+                    Complete
+                  <% else %>
+                    <%= assignment.questions_answered %>/<%= assignment.assignment_size %>
+                  <% end %>
+                </p>
                 <p class="deadline" style="display:none"><%= assignment.deadline %></p>
                 <p class="due-date"><%= assignment.deadline.strftime("Due %b %d at %I:%M%p") %></p>
                 <div class="progress small-12 success round">
