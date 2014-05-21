@@ -31,7 +31,7 @@
               <%@students[classroom.id].each do |student| %>
               <tr>
                 <td><%=student.username%></td>
-                <td class="textCheckbox"><input id="checkbox1<%=student.id%>" type="checkbox"></td>
+                <td class="textCheckbox"><input class="checkbox1" type="checkbox" data-id=<%=student.id%>></td>
                 <% if @studenthomework[classroom.id][student.id] != nil %>
                 <%@studenthomework[classroom.id][student.id].each do |assignment| %>
                   <%if Time.now < assignment.deadline  %>

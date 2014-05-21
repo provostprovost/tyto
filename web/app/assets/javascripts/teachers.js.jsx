@@ -9,6 +9,12 @@ $(document).ready(function()
             courseName = $('#courseName').val();
             React.renderComponent(<StudentList classroomName = {classroom} teacherId = {teacherId} courseName = {courseName} />, document.getElementById('panelcreate'));
         });
+        $(".checkbox1").on('click', function(){
+          data={id: this.dataset.id, text: this.checked};
+          $.post("", data, function(data){
+
+          })
+        });
 });
 
 var AssignHomework = React.createClass({
