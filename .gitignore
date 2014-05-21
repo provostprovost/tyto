@@ -2,3 +2,4 @@
 vendor/bundle
 .DS_Store
 tyto_test
+/db/config.yml
