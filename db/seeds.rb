@@ -67,15 +67,19 @@ invite2 = Tyto.db.create_invite(email: student2.email,
                                 accepted: false)
 
 Tyto.db.add_student_to_classroom(classroom_id: classroom4.id,
-                                 student_id: student1.id)
+                                 student_id: student1.id
+                                  )
 Tyto.db.add_student_to_classroom(classroom_id: classroom5.id,
                                  student_id: student1.id)
 Tyto.db.add_student_to_classroom(classroom_id: classroom1.id,
-                                 student_id: student1.id)
+                                 student_id: student1.id,
+                                 text: true)
 Tyto.db.add_student_to_classroom(classroom_id: classroom1.id,
-                                 student_id: student2.id)
+                                 student_id: student2.id,
+                                 text: true)
 Tyto.db.add_student_to_classroom(classroom_id: classroom1.id,
-                                 student_id: student3.id)
+                                 student_id: student3.id,
+                                 text: false)
 
 Tyto.db.add_student_to_classroom(classroom_id: classroom2.id,
                                  student_id: student1.id)
