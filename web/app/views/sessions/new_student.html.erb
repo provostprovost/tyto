@@ -2,11 +2,12 @@
   <%= form_tag('/sessions', method: 'post') do %>
     <div class="row">
       <div class="large-5 medium-7 small-centered columns form-container">
+        <h3>Student Sign In</h3>
         <%= label_tag(:email, "Email address:") %>
         <%= text_field_tag(:email) %>
         <%= label_tag(:password, "Password:") %>
         <%= password_field_tag(:password) %>
-        <%= submit_tag "Sign in", class: "button" %>
+        <%= submit_tag "Sign in", class: "button expand radius" %>
       </div>
     </div>
   <% end %>
