@@ -45,7 +45,7 @@ class StudentsController < ApplicationController
     @assignments.each {|assignment| @colors[assignment.classroom_id] = 1} if @assignments
     counter = 0
     @colors.each do |classroom_id, value|
-      @colors[classroom_id] = "classroom#{counter % 8}"
+      @colors[classroom_id] = "classroom-color#{counter % 8}"
       counter += 1
     end
   end

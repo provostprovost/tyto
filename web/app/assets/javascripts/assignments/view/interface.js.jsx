@@ -15,6 +15,9 @@
       $(window).on('markDifficult', function() {
         thisQuestionForm.markDifficult();
       });
+      $('.previous-question').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+        $('.previous-question').removeClass('animated bounce');
+      });
     },
     componentDidMount: function() {
       window.addEventListener('markDifficult', this.markDifficult);
@@ -35,10 +38,10 @@
                 </div>
                 <div className="row">
                   <div className="small-6 columns">
-                    <a className="button round expand" href="/dashboards">Finished</a>
+                    <a className="button radius expand" href="/dashboards">Finished</a>
                   </div>
                   <div className="small-6 columns">
-                    <button className="round expand">Keep practicing</button>
+                    <button className="radius expand">Keep practicing</button>
                   </div>
                 </div>
               </fieldset>
@@ -50,7 +53,7 @@
         return (
           <div className="question">
             <form onSubmit={this.onSubmit}>
-              <fieldset>
+              <fieldset className="question-fieldset">
                 <legend>Problem #{assignment.questionsAnswered + 1}</legend>
                 <div className="row">
                   <div className="small-12 columns question-text">
@@ -64,7 +67,7 @@
                 </div>
                 <div className="row">
                   <div className="small-12 medium-6 large-8 medium-centered columns">
-                    <button className="round expand">Submit</button>
+                    <button className="radius expand">Submit</button>
                   </div>
                 </div>
               </fieldset>
@@ -121,7 +124,7 @@
     },
     render: function() {
       return (
-        <div className="panel">
+        <div className="panel difficult">
           <p>Mark this problem difficult?</p>
           <label className="switch-light switch-candy switch-candy-blue" onChange={this.onClick}>
             <input type="checkbox" checked={this.state.difficult} />
@@ -191,16 +194,34 @@
   window.PreviousQuestion = React.createClass({
     getInitialState: function() {
       return {
-        previousQuestionText: "",
-        previousCorrect: false,
-        previousResponse: "",
-        previousAnswer: ""
+        previousQuestionText: assignment.previousQuestionText,
+        previousCorrect: assignment.previousCorrect,
+        previousResponse: assignment.previousReponse,
+        previousAnswer: assignment.previousAnswer
       }
     },
     render: function() {
-      return (
-        <div className="previous-question">Hi there</div>
-      );
+
+      if (this.state.previousCorrect === true) {
+        return (
+          <div className="previous-question previous-correct panel">
+            <i className="fa fa-check fa-3x"></i>&nbsp;&nbsp;&nbsp;<h3 className="correct-message">Correct!</h3>
+          </div>
+        )
+      }
+      else if (this.state.previousCorrect === false) {
+        return (
+          <div className="previous-question previous-incorrect panel">
+            <p>Previous question: {this.state.previousQuestionText}</p>
+            <p>Answer: {this.state.previousAnswer}</p>
+          </div>
+        );
+      }
+      else {
+        return (
+          <div className="previous-question previous-start"><h3>Let's get started!</h3></div>
+        )
+      }
     }
   });
 })();

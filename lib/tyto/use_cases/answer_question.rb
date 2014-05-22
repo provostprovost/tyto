@@ -48,7 +48,9 @@ module Tyto
               :number_answered => number_answered,
               :longest_streak => longest_streak,
               :current_streak => current_streak,
-              :proficiencies => proficiencies
+              :proficiencies => proficiencies,
+              :question_text => question.question,
+              :answer => question.answer
     end
 
     def check_answer(question_id, answer)
