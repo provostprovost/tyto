@@ -26,7 +26,7 @@ body {
 .continue {
   margin-top: 1.6em;
   text-align: center;
-  background-image: url(bg.png);
+  background-image: image-url('bg.png');
 }
 
 .congrats {
@@ -39,11 +39,11 @@ body {
 
 
 .question {
-  // background-image: url(bg.png);
+  // background-image: image-url('bg.png');
 }
 
 .streaks {
-  background-image: url(bg.png);
+  background-image: image-url('bg.png');
   // padding: 3em;
 }
 
@@ -53,7 +53,7 @@ body {
 }
 
 .difficult {
-  background-image: url(bg.png);
+  background-image: image-url('bg.png');
 }
 
 #progress {
@@ -70,7 +70,7 @@ body {
   border: 1px solid #ddd;
   margin-top: 1.6em;
   height: 6em;
-  background-image: url(bg.png);
+  background-image: image-url('bg.png');
 }
 
 .previous-correct {
@@ -79,7 +79,7 @@ body {
 }
 
 .question-fieldset {
-  background-image: url(bg.png);
+  background-image: image-url('bg.png');
 }
 
 .correct-message {
