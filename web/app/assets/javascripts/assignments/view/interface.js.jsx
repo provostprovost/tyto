@@ -66,7 +66,7 @@
               <fieldset className="question-fieldset">
                 <legend>Problem #{assignment.questionsAnswered + 1}</legend>
                 <div className="row">
-                  <div style={fontSize} className="small-12 columns question-text">
+                  <div style={fontSize} className="small-10 medium-8 columns small-centered question-text">
                     {this.state.questionText}
                   </div>
                 </div>
