@@ -196,7 +196,8 @@ module Tyto
                             parent_id: chapter.parent_id,
                             course_id: chapter.course_id,
                             name: chapter.name,
-                            subname: chapter.subname )
+                            subname: chapter.subname,
+                            video_url: chapter.video_url )
       end
 
       def get_chapter(id)
@@ -206,7 +207,8 @@ module Tyto
                             parent_id: chapter.parent_id,
                             course_id: chapter.course_id,
                             name: chapter.name,
-                            subname: chapter.subname )
+                            subname: chapter.subname,
+                            video_url: chapter.video_url )
       end
 
       def get_subtopics_from_course(course_id)
