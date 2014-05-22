@@ -14,4 +14,5 @@ gem 'pg'
 gem 'activerecord', '~> 4.1.0'
 gem 'active_record_tasks', '~> 1.0.3'
 gem 'chronic'
-
+gem 'dotenv'
+gem 'twilio-ruby'

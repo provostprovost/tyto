@@ -679,6 +679,11 @@ module Tyto
         end
       end
 
+      def get_classroom_students_to_be_texted(classroom_id)
+        students = ClassroomsUsers.where(classroom_id: classroom_id, text: true)
+        students.map {|x| get_student(x.student_id) }
+      end
+
       def edit_student(attrs)
         student = Student.find_by(id: attrs[:id])
         return nil if student == nil
