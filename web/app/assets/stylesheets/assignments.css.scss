@@ -68,7 +68,7 @@ body {
 
 .previous-question {
   border: 1px solid #ddd;
-  margin-top: 1.6em;
+  margin-top: 1.2em;
   height: 6em;
   background-image: image-url('bg.png');
 }
@@ -76,6 +76,12 @@ body {
 .previous-correct {
   padding-top: -5em;
   text-align: center;
+  height: 6em;
+}
+
+.previous-start {
+  height: 6em;
+  margin-bottom: 1.28em;
 }
 
 .question-fieldset {
