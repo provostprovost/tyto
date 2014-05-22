@@ -67,7 +67,7 @@
                 </div>
                 <div className="row">
                   <div className="small-12 medium-6 large-8 medium-centered columns">
-                    <button className="round expand">Submit</button>
+                    <button className="radius expand">Submit</button>
                   </div>
                 </div>
               </fieldset>
