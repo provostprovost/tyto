@@ -27,6 +27,9 @@
       </div>
     </div>
   </div>
+  <% if @assignment.video_url %>
+    <%= @video_html %>
+  <% end %>
 </div>
 
 <script src="http://fb.me/JSXTransformer-0.10.0.js"></script>
