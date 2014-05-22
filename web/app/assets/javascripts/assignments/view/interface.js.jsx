@@ -50,13 +50,23 @@
         );
       }
       else {
+        var fontSize = 0;
+        if (this.state.questionText.length < 12) {
+          fontSize = {"font-size": "3em"};
+        }
+        else if (this.state.questionText.length < 30) {
+          fontSize = {"font-size": "2em"};
+        }
+        else {
+          fontSize = {"font-size": "1em"};
+        }
         return (
           <div className="question">
             <form onSubmit={this.onSubmit}>
               <fieldset className="question-fieldset">
                 <legend>Problem #{assignment.questionsAnswered + 1}</legend>
                 <div className="row">
-                  <div className="small-12 columns question-text">
+                  <div style={fontSize} className="small-12 columns question-text">
                     {this.state.questionText}
                   </div>
                 </div>

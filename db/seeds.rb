@@ -91,7 +91,7 @@ Tyto.db.add_student_to_classroom(classroom_id: classroom3.id,
 
 other_chapter = Tyto.db.create_chapter(course_id: other_course.id, name: "The Alamo")
 another_chapter = Tyto.db.create_chapter(course_id: another_course.id, name: "Gerunds")
-Tyto.db.create_question(level:1, question: "What is a gerund?", answer: "Who knows?", chapter_id: another_chapter.id)
+dumb_question = Tyto.db.create_question(level:1, question: "What is a gerund?", answer: "Who knows?", chapter_id: another_chapter.id)
 Tyto.db.create_question(level:1, question: "What's up?", answer: "Not much", chapter_id: other_chapter.id)
 assignment10 = Tyto.db.create_assignment(student_id: student1.id,
                                         chapter_id: other_chapter.id,
@@ -106,6 +106,45 @@ assignment11 = Tyto.db.create_assignment(student_id: student1.id,
                                         assignment_size: 20,
                                         deadline: Chronic.parse("yesterday") )
 
+[assignment10, assignment11].each do |y|
+    Tyto.db.update_last_question(question_id: dumb_question.id,
+                              student_id: student1.id,
+                              assignment_id: y.id)
+end
+
+ Tyto.db.create_question(level: 1, question: "1234 6789 1234 6789 1234 6789",
+                              answer: "3", chapter_id: another_chapter.id)
+ Tyto.db.create_question(level: 1, question: "1234 6789 1234 6789 1234 6789",
+                              answer: "4", chapter_id: another_chapter.id)
+ Tyto.db.create_question(level: 1, question: "1234 6789 1234 6789 1234 6789",
+                              answer: "5", chapter_id: another_chapter.id)
+ Tyto.db.create_question(level: 1, question: "1234 6789 1234 6789 1234 6789",
+                              answer: "6", chapter_id: another_chapter.id)
+ Tyto.db.create_question(level: 1, question: "1234 6789 1234 6789 1234 6789",
+                              answer: "7", chapter_id: another_chapter.id)
+ Tyto.db.create_question(level: 1, question: "1234 6789 1234 6789 1234 6789",
+                              answer: "8", chapter_id: another_chapter.id)
+ Tyto.db.create_question(level: 1, question: "1234 6789 1234 6789 1234 6789",
+                              answer: "9", chapter_id: another_chapter.id)
+ Tyto.db.create_question(level: 1, question: "1234 6789 1234 6789 1234 6789",
+                              answer: "10", chapter_id: another_chapter.id)
+
+  Tyto.db.create_question(level: 1, question: "What is the capital of texas?",
+                              answer: "3", chapter_id: other_chapter.id)
+ Tyto.db.create_question(level: 1, question: "What is the capital of texas?",
+                              answer: "4", chapter_id: other_chapter.id)
+ Tyto.db.create_question(level: 1, question: "What is the capital of texas?",
+                              answer: "5", chapter_id: other_chapter.id)
+ Tyto.db.create_question(level: 1, question: "What is the capital of texas?",
+                              answer: "6", chapter_id: other_chapter.id)
+ Tyto.db.create_question(level: 1, question: "What is the capital of texas?",
+                              answer: "7", chapter_id: other_chapter.id)
+ Tyto.db.create_question(level: 1, question: "What is the capital of texas?",
+                              answer: "8", chapter_id: other_chapter.id)
+ Tyto.db.create_question(level: 1, question: "What is the capital of texas?",
+                              answer: "9", chapter_id: other_chapter.id)
+ Tyto.db.create_question(level: 1, question: "What is the capital of texas?",
+                              answer: "10", chapter_id: other_chapter.id)
 
 chapter1 = Tyto.db.create_chapter(course_id: course.id, name: "Chapter One")
 chapter2 = Tyto.db.create_chapter(course_id: course.id, name: "Chapter Two")

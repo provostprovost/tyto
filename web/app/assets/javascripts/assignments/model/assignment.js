@@ -12,5 +12,7 @@
     this.complete = assignment.complete;
     this.keepGoing = false;
   };
+
+
 })();
 
