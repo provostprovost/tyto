@@ -19,7 +19,7 @@ body {
 
 .question-text {
   font-size: 3em;
-  padding: 0.5em;
+  padding: 1.5em 0.5em 0.5em 0.5em;
   text-align: center;
 }
 
@@ -29,27 +29,31 @@ body {
   background-image: image-url('bg.png');
 }
 
+.continue-fieldset {
+  padding: 6em 2.5em 2em 2.5em;
+  height: 25.15em;
+}
+
 .congrats {
-  padding: 2em;
+  padding: 1.5em;
 }
 
 .progress {
   /*margin-top: 0.7em;*/
 }
 
-
-.question {
-  // background-image: image-url('bg.png');
-}
-
 .streaks {
+  h4 {
+    padding-left: 0.85em;
+    padding-bottom: 0.3em;
+  }
   background-image: image-url('bg.png');
   // padding: 3em;
 }
 
 #difficult {
   text-align: center;
-  margin-top: 1.6em;
+  margin-top: 1em;
 }
 
 .difficult {
@@ -60,10 +64,7 @@ body {
 }
 
 #streaks {
-  margin-top: 1.6em;
-}
-
-#previous-question {
+  margin-top: 1em;
 }
 
 .previous-question {
@@ -71,15 +72,25 @@ body {
   margin-top: 1.6em;
   height: 6em;
   background-image: image-url('bg.png');
+  p {
+    padding-top: 0.2em;
+  }
 }
 
 .previous-correct {
   padding-top: -5em;
   text-align: center;
+  height: 6em;
+}
+
+.previous-start {
+  height: 6em;
+  margin-bottom: 1.28em;
 }
 
 .question-fieldset {
   background-image: image-url('bg.png');
+  height: 25.55em;
 }
 
 .correct-message {

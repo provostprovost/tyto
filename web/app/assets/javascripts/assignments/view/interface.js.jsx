@@ -30,18 +30,18 @@
         return (
           <div className="continue">
             <form onSubmit={this.onContinue}>
-              <fieldset>
+              <fieldset className="continue-fieldset">
                 <div className="row congrats">
                   <div className="large-8 medium-8 small-12 small-centered columns">
                     <p>Congratulations, you have finished this assignment! Want to keep practicing?</p>
                   </div>
                 </div>
                 <div className="row">
-                  <div className="small-6 columns">
+                  <div className="small-6 medium-6 columns">
                     <a className="button radius expand" href="/dashboards">Finished</a>
                   </div>
-                  <div className="small-6 columns">
-                    <button className="radius expand">Keep practicing</button>
+                  <div className="small-6 medium-6 columns">
+                    <button className="radius expand">Keep going!</button>
                   </div>
                 </div>
               </fieldset>
@@ -125,7 +125,7 @@
     render: function() {
       return (
         <div className="panel difficult">
-          <p>Mark this problem difficult?</p>
+          <p>Is this problem difficult?</p>
           <label className="switch-light switch-candy switch-candy-blue" onChange={this.onClick}>
             <input type="checkbox" checked={this.state.difficult} />
             <span>
@@ -212,8 +212,8 @@
       else if (this.state.previousCorrect === false) {
         return (
           <div className="previous-question previous-incorrect panel">
-            <p>Previous question: {this.state.previousQuestionText}</p>
-            <p>Answer: {this.state.previousAnswer}</p>
+            <p><strong>Previous question:</strong> {this.state.previousQuestionText}<br></br>
+            <strong>Answer:</strong> {this.state.previousAnswer}</p>
           </div>
         );
       }
