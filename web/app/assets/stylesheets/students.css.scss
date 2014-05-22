@@ -2,10 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.assignment {
-  /*margin-bottom: 1em;*/
-}
-
 .row.button-header {
   width: 100%;
   max-width: 100%;
@@ -52,6 +48,27 @@
   margin: .4em;
   padding-top: 0;
 }
+
+.invite {
+  h5 {
+    padding-top: 1em;
+    padding-left: 1.35em;
+  }
+  p {
+    padding-left: 1.5em;
+  }
+  .button {
+    margin-top: 1.35em;
+    float: right;
+    margin-right: 1.5em;
+  }
+  background-color: #fff;
+  height: 100%;
+  border-radius: 5px;
+  border: 1px solid #DDD;
+  margin-top: 1.6em;
+}
+
 
 .assignment-row {
   background-color: #fff;

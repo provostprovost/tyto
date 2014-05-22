@@ -115,16 +115,21 @@
     },
     render: function() {
       return (
-        <div className="invite">
-          <p className="inviteCourseName">
-            {this.props.courseName}
-          </p>
-          <p className="inviteTeacherName">
-            {this.props.teacherName}
-          </p>
-          <form className="acceptInviteButton" onSubmit={this.handleAccept}>
-            <input type="submit" className="button" value="Accept" />
-          </form>
+        <div className="invite small-12 large-6 columns">
+          <div className="row">
+            <div className="small-8 columns">
+              <h5>New Invitation:</h5>
+              <p className="inviteCourseName">
+                {this.props.courseName}:&nbsp;
+                {this.props.teacherName}
+              </p>
+            </div>
+            <div className="small-4 columns">
+              <form className="acceptInviteButton" onSubmit={this.handleAccept}>
+                <input type="submit" className="button radius success expand" value="Accept" />
+              </form>
+            </div>
+          </div>
         </div>
       );
     }
