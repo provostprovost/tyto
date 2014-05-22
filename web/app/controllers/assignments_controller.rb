@@ -11,10 +11,12 @@ class AssignmentsController < ApplicationController
     @assignment = Tyto.db.get_assignment(params[:id])
     respond_to do |format|
       format.html do
-        embedly_api = Embedly::API.new(:key => ENV['EMBEDLY'],
-          :user_agent => 'Mozilla/5.0 (compatible; tyto/1.0; brianmprovost@gmail.com)')
-        result = embedly_api.extract :url => @assignment.video_url
-        @video_html = result[0]["media"]["html"].html_safe
+        if @assignment.video_url
+          embedly_api = Embedly::API.new(:key => ENV['EMBEDLY'],
+            :user_agent => 'Mozilla/5.0 (compatible; tyto/1.0; brianmprovost@gmail.com)')
+          result = embedly_api.extract :url => @assignment.video_url
+          @video_html = result[0]["media"]["html"].html_safe
+        end
       end
       format.json { render json: @assignment }
     end
