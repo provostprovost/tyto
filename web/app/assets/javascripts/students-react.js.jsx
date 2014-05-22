@@ -49,7 +49,7 @@
       return (
         <dl id="filters" className="sub-nav student-sub">
           <dt>Filter:</dt>
-          <dd><a data-filter="*" href="#">Show all</a></dd>
+          <dd><a data-filter="*" href="#" className="topFilter">Show all</a></dd>
           <dd><a data-filter=".complete" href="#">Complete</a></dd>
           <dd className="active"><a data-filter=".incomplete" href="#">Incomplete</a></dd>
           {classroomNodes}
