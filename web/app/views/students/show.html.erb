@@ -56,7 +56,6 @@
   });
 
   $('#filters, #classroom-container').on('click', 'a', function() {
-    console.log("You clicked on filters");
     var filterValue = $(this).attr('data-filter');
     $container.isotope({ filter: filterValue });
     $('#filters dd').removeClass('active');
