@@ -212,8 +212,8 @@
       else if (this.state.previousCorrect === false) {
         return (
           <div className="previous-question previous-incorrect panel">
-            <p>Previous question: {this.state.previousQuestionText}</p>
-            <p>Answer: {this.state.previousAnswer}</p>
+            <p><strong>Previous question:</strong> {this.state.previousQuestionText}<br></br>
+            <strong>Answer:</strong> {this.state.previousAnswer}</p>
           </div>
         );
       }
