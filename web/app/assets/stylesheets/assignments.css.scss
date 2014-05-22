@@ -17,6 +17,10 @@ body {
   text-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px;
 }
 
+#video-drop {
+  max-width: 675px;
+}
+
 .question-text {
   font-size: 3em;
   padding: 1.5em 0.5em 0.5em 0.5em;
@@ -126,4 +130,8 @@ body {
 
 .transition-leave.transition-leave-active {
   opacity: 0.01;
+}
+
+.video-link {
+  padding-left: 0.9em;
 }

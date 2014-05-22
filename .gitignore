@@ -4,3 +4,4 @@ vendor/bundle
 tyto_test
 /db/config.yml
 /web/db/config.yml
+.env

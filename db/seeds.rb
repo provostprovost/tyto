@@ -149,13 +149,13 @@ end
 chapter1 = Tyto.db.create_chapter(course_id: course.id, name: "Chapter One")
 chapter2 = Tyto.db.create_chapter(course_id: course.id, name: "Chapter Two")
 
-section1 = Tyto.db.create_chapter(course_id: chapter1.course_id, parent_id: chapter1.id, name: "The Integers", subname: "1.1")
-section2 = Tyto.db.create_chapter(course_id: chapter1.course_id, parent_id: chapter1.id, name: "The Rational Numbers", subname: "1.2")
-section3 = Tyto.db.create_chapter(course_id: chapter1.course_id, parent_id: chapter1.id, name: "Numbers as Measurements", subname: "1.3")
+section1 = Tyto.db.create_chapter(course_id: chapter1.course_id, parent_id: chapter1.id, name: "The Integers", subname: "1.1", video_url: "https://www.youtube.com/watch?v=UxehrvhNMY8")
+section2 = Tyto.db.create_chapter(course_id: chapter1.course_id, parent_id: chapter1.id, name: "The Rational Numbers", subname: "1.2", video_url: "https://www.youtube.com/watch?v=UxehrvhNMY8")
+section3 = Tyto.db.create_chapter(course_id: chapter1.course_id, parent_id: chapter1.id, name: "Numbers as Measurements", subname: "1.3", video_url: "https://www.youtube.com/watch?v=UxehrvhNMY8")
 
-section4 = Tyto.db.create_chapter(course_id: chapter2.course_id, parent_id: chapter2.id, name: "Solving Equations Using More Than One Operation", subname: "1.4")
-section5 = Tyto.db.create_chapter(course_id: chapter2.course_id, parent_id: chapter2.id, name: "Simplifying Each Side of an Equation", subname: "1.5")
-section6 = Tyto.db.create_chapter(course_id: chapter2.course_id, parent_id: chapter2.id, name: "Solving Equations that Have the Variable in Both Sides", subname: "1.6")
+section4 = Tyto.db.create_chapter(course_id: chapter2.course_id, parent_id: chapter2.id, name: "Solving Equations Using More Than One Operation", subname: "1.4", video_url: "https://www.youtube.com/watch?v=UxehrvhNMY8")
+section5 = Tyto.db.create_chapter(course_id: chapter2.course_id, parent_id: chapter2.id, name: "Simplifying Each Side of an Equation", subname: "1.5", video_url: "https://www.youtube.com/watch?v=UxehrvhNMY8")
+section6 = Tyto.db.create_chapter(course_id: chapter2.course_id, parent_id: chapter2.id, name: "Solving Equations that Have the Variable in Both Sides", subname: "1.6", video_url: "https://www.youtube.com/watch?v=UxehrvhNMY8")
 question = nil
 subtopics = [section1, section2, section3, section4, section5, section6]
 subtopics.each do |x|
