@@ -17,7 +17,8 @@ module Tyto
                 :proficiency,
                 :question_level,
                 :deadline,
-                :subname
+                :subname,
+                :video_url
     validates_presence_of :id, :student_id, :chapter_id, :classroom_id, :assignment_size, :teacher_id
   end
 end

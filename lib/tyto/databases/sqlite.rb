@@ -81,7 +81,8 @@ module Tyto
                               question_level: question_level,
                               proficiencies: get_responses_for_assignment(id).map { |response| response.proficiency},
                               deadline: deadline,
-                              subname: get_chapter(assignment.chapter_id).subname)
+                              subname: chapter.subname,
+                              video_url: chapter.video_url)
       end
 
       def edit_assignment(attrs)
