@@ -37,29 +37,28 @@
   </div>
 </div>
 
-<script src="http://fb.me/JSXTransformer-0.10.0.js"></script>
-<script type="text/jsx">
-/** @jsx React.DOM **/
+<% content_for :javascript do %>
+<script type="text/javascript">
 (function () {
   window.assignment = new Assignment(<%= @assignment.to_json.html_safe %>);
   var questionForm = React.renderComponent(
-    <QuestionForm />,
+    QuestionForm(),
     document.getElementById('question')
   );
   var difficult = React.renderComponent(
-    <Difficult />,
+    Difficult(),
     document.getElementById('difficult')
   );
   var progress = React.renderComponent(
-    <Progress />,
+    Progress(),
     document.getElementById('progress')
   );
   var streaks = React.renderComponent(
-    <Streaks />,
+    Streaks(),
     document.getElementById('streaks')
   );
   var previousQuestion = React.renderComponent(
-    <PreviousQuestion />,
+    PreviousQuestion(),
     document.getElementById('previousQuestion')
   );
   var presenter = new AssignmentPresenter({
@@ -71,9 +70,6 @@
     previousQuestion: previousQuestion,
   });
 })();
-</script>
-<% content_for :javascript do %>
-<script type="text/javascript">
 $('.flex-video').embedly({key: "00a1ac6023a14ed98a7d7878a712ad4d"});
 </script>
 <% end %>
