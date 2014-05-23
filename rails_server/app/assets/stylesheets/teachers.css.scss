@@ -28,6 +28,9 @@
   border: 0.063em solid #DDD;
 }
 
+.classroomTable {
+  border-collapse: collapse;
+}
 
 .prof-score {
   text-align: center;
@@ -38,7 +41,7 @@
 }
 
 th.header {
-  background-image: url('http://tablesorter.com/themes/blue/bg.gif');
+  background-image: image-url('bg.gif');
   cursor: pointer;
   font-weight: bold;
   background-repeat: no-repeat;
@@ -49,13 +52,13 @@ th.header {
 }
 
 th.headerSortDown {
-    background-image: url('http://tablesorter.com/themes/blue/desc.gif');
-    background-color: #3399FF;
+    background-image: image-url('desc.gif');
+    background-color: #48a6cb;
 }
 
 th.headerSortUp {
-    background-image: url('http://tablesorter.com/themes/blue/asc.gif');
-    background-color: #3399FF;
+    background-image: image-url('asc.gif');
+    background-color: #48a6cb;
 }
 
 .notLateAssignment {

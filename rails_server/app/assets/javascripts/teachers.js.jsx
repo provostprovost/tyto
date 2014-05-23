@@ -94,14 +94,14 @@ var AssignHomework = React.createClass({
         });
         var date = new Date();
 
-        var day = date.getDate();
+        var day = date.getDate() + 1;
         var month = date.getMonth() + 1;
         var year = date.getFullYear();
 
         if (month < 10) month = "0" + month;
         if (day < 10) day = "0" + day;
 
-        var today = year + "-" + month + "-" + day;
+        var tomorrow = year + "-" + month + "-" + day;
         return (
         <div>
           <h5> Assign Homework </h5>
@@ -125,7 +125,7 @@ var AssignHomework = React.createClass({
             <div className="row">
                 <div className="large-12 columns">
                   <label>Deadline
-                    <input onChange={this.handleDeadlineChange} type="date" value={today}></input>
+                    <input onChange={this.handleDeadlineChange} type="date" value={tomorrow}></input>
                   </label>
                 </div>
             </div>
@@ -231,10 +231,11 @@ var StudentList = React.createClass({
 var StudentRow = React.createClass({
     render: function() {
         var name = <span>{this.props.Student.name}</span>;
+        var email = "mailto:" + this.props.Student.email;
         return (
             <tr>
                 <td>{name}</td>
-                <td><a href={this.props.Student.Email}>Email</a></td>
+                <td><a href={email}>Email</a></td>
                 <td><a href="#">Text</a></td>
             </tr>
         );
