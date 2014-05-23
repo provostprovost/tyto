@@ -22,7 +22,15 @@
                 <th width="50">Text?</th>
                 <%if @assignments[classroom.id] != nil %>
                   <%@assignments[classroom.id].each do |assignment| %>
-                    <th data-tooltip class="has-tip" title="<%=assignment.name%>"><%=assignment.subname%><br><%=assignment.deadline.strftime("%-m/%e")%></th>
+                    <th data-tooltip class="has-tip" title="<%=assignment.name%><br>
+                      <% if @difficult_questions[assignment.id] != [] %>
+                        <br>Difficult Questions:<br><br>
+                        <% @difficult_questions[assignment.id].each do |question| %>
+                          <%= question[1] %> student<% if question[1] != 1 %>s<% end %>: <%= question[0] %><br>
+                        <% end %>
+                      <% end %>">
+
+                      <%=assignment.subname%><br><%=assignment.deadline.strftime("%-m/%e")%></th>
                   <%end%>
                 <%end%>
               </tr>
@@ -32,11 +40,7 @@
               <%@students[classroom.id].each do |student| %>
               <tr>
                 <td><%=student.username%></td>
-                <% if student.text == true %>
-                  <td class="textCheckbox"><input class="checkbox1" type="checkbox" data-student=<%=student.id%> data-classroom=<%=classroom.id%> checked></td>
-                <% else %>
-                  <td class="textCheckbox"><input class="checkbox1" type="checkbox" data-student=<%=student.id%> data-classroom=<%=classroom.id%>></td>
-                <% end %>
+                  <td class="textCheckbox"><input class="checkbox1" type="checkbox" data-student=<%=student.id%> data-classroom=<%=classroom.id%><% if student.text %> checked<% end %>></td>
                 <% if @studenthomework[classroom.id][student.id] != nil %>
                 <%@studenthomework[classroom.id][student.id].each do |assignment| %>
                   <%if Time.now < assignment.deadline  %>
@@ -85,11 +89,11 @@
   </div>
 
   <div class="small-12 large-4 columns sidebar">
-      <div class="row">
+    <div class="row">
       <div class="small-12 medium-6 large-12 columns" id="assign">
-      </div>
-      <div class="small-12 medium-6 large-12 columns" id="search">
-      </div>
+    </div>
+    <div class="small-12 medium-6 large-12 columns" id="search">
+    </div>
     </div>
   </div>
 </div>
