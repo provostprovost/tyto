@@ -92,6 +92,16 @@ var AssignHomework = React.createClass({
             <option key={i} value={i}>{i}</option>
           );
         });
+        var date = new Date();
+
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var today = year + "-" + month + "-" + day;
         return (
         <div>
           <h5> Assign Homework </h5>
@@ -115,14 +125,14 @@ var AssignHomework = React.createClass({
             <div className="row">
                 <div className="large-12 columns">
                   <label>Deadline
-                    <input onChange={this.handleDeadlineChange} type="date" value={this.state.deadline}></input>
+                    <input onChange={this.handleDeadlineChange} type="date" value={today}></input>
                   </label>
                 </div>
             </div>
             <div className="row">
               <div className="large-7 columns">
                   <label>Time
-                    <input onChange={this.handleTimeChange} type="time" value={this.state.time}></input>
+                    <input onChange={this.handleTimeChange} type="time" value="08:00"></input>
                   </label>
                 </div>
                 <div className="large-5 columns">
