@@ -30,36 +30,35 @@
         <a href='#' class="video-link" data-options="align:top" data-dropdown="video-drop">Having trouble? Watch the video!</a>
         <div id="video-drop" data-dropdown-content class="f-dropdown content">
           <div class="flex-video">
-            <%= @video_html %>
+            <a href="<%= @assignment.video_url %>">Video</a>
           </div>
         </div>
       <% end %>
   </div>
 </div>
 
-<script src="http://fb.me/JSXTransformer-0.10.0.js"></script>
-<script type="text/jsx">
-/** @jsx React.DOM **/
+<% content_for :javascript do %>
+<script type="text/javascript">
 (function () {
   window.assignment = new Assignment(<%= @assignment.to_json.html_safe %>);
   var questionForm = React.renderComponent(
-    <QuestionForm />,
+    QuestionForm(),
     document.getElementById('question')
   );
   var difficult = React.renderComponent(
-    <Difficult />,
+    Difficult(),
     document.getElementById('difficult')
   );
   var progress = React.renderComponent(
-    <Progress />,
+    Progress(),
     document.getElementById('progress')
   );
   var streaks = React.renderComponent(
-    <Streaks />,
+    Streaks(),
     document.getElementById('streaks')
   );
   var previousQuestion = React.renderComponent(
-    <PreviousQuestion />,
+    PreviousQuestion(),
     document.getElementById('previousQuestion')
   );
   var presenter = new AssignmentPresenter({
@@ -68,7 +67,9 @@
     difficult: difficult,
     progress: progress,
     streaks: streaks,
-    previousQuestion: previousQuestion
+    previousQuestion: previousQuestion,
   });
 })();
+$('.flex-video').embedly({key: "00a1ac6023a14ed98a7d7878a712ad4d"});
 </script>
+<% end %>

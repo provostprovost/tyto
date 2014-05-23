@@ -8,7 +8,8 @@
       return {  answer: "",
                 questionText: assignment.questionText,
                 questionLevel: assignment.questionLevel,
-                difficult: false };
+                difficult: false,
+      };
     },
     componentWillMount: function() {
       thisQuestionForm = this;
@@ -148,6 +149,31 @@
       );
     }
   });
+
+  // window.VideoBox = React.createClass({
+  //   getInitialState: function() {
+  //     return { video_url: assignment.video_url };
+  //   },
+  //   render: function() {
+  //     if (this.state.video_url) {
+  //       return (
+  //         <div className="video-drop">
+  //           <a href='#' className="video-link" data-options="align:top" data-dropdown="video-drop">Having trouble? Watch the video!</a>
+  //           <div id="video-drop" className="f-dropdown content" data-dropdown-content>
+  //             <div className="flex-video">
+  //               <a href="{this.state.video_url}">{this.state.video_url}</a>
+  //             </div>
+  //           </div>
+  //         </div>
+  //       );
+  //     }
+  //     else {
+  //       return (
+  //         <div className="video-drop"></div>
+  //       );
+  //     }
+  //   }
+  // });
 
   window.Progress = React.createClass({
     getInitialState: function() {
