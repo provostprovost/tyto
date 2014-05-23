@@ -229,39 +229,39 @@ var StudentList = React.createClass({
 });
 
 var StudentRow = React.createClass({
-    render: function() {
-        var name = <span>{this.props.Student.name}</span>;
-        var email = "mailto:" + this.props.Student.email;
-        return (
-            <tr>
-                <td>{name}</td>
-                <td><a href={email}>Email</a></td>
-                <td><a href="#">Text</a></td>
-            </tr>
-        );
-    }
+  render: function() {
+    var name = <span>{this.props.Student.name}</span>;
+    var email = "mailto:" + this.props.Student.email;
+    return (
+        <tr>
+            <td>{name}</td>
+            <td><a href={email}>Email</a></td>
+            <td><a href="#">Text</a></td>
+        </tr>
+    );
+  }
 });
 
 var StudentTable = React.createClass({
-    render: function() {
-        var rows = [];
-        var lastclassroom = null;
-        this.props.students.forEach(function(Student) {
-            if (Student.name.indexOf(this.props.filterText) === -1 || (!Student.struggling && this.props.strugglingOnly)) {
-                return;
-            }
-            if (Student.classroom !== lastclassroom) {
-                rows.push(<classroomRow classroom={Student.classroom} key={Student.classroom} />);
-            }
-            rows.push(<StudentRow Student={Student} key={Student.id} />);
-            lastclassroom = Student.classroom;
-        }.bind(this));
-        return (
-            <table className="studentTable">
-                <tbody>{rows}</tbody>
-            </table>
-        );
-    }
+  render: function() {
+    var rows = [];
+    var lastclassroom = null;
+    this.props.students.forEach(function(Student) {
+        if (Student.name.indexOf(this.props.filterText) === -1 || (!Student.struggling && this.props.strugglingOnly)) {
+            return;
+        }
+        if (Student.classroom !== lastclassroom) {
+            rows.push(<classroomRow classroom={Student.classroom} key={Student.classroom} />);
+        }
+        rows.push(<StudentRow Student={Student} key={Student.id} />);
+        lastclassroom = Student.classroom;
+    }.bind(this));
+    return (
+        <table className="studentTable">
+            <tbody>{rows}</tbody>
+        </table>
+    );
+  }
 });
 
 function toTitleCase(str)
