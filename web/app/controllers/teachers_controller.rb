@@ -47,16 +47,20 @@ class TeachersController < ApplicationController
     @courses.each do |course|
       @classroom_course[course.id] = course
     end
+    @difficult_questions = {}
     if @classrooms != nil
       @classrooms.each do |classroom|
-          @students[classroom.id] = Tyto.db.get_students_in_classroom(classroom.id)
-          if @students[classroom.id] != nil
+        @students[classroom.id] = Tyto.db.get_students_in_classroom(classroom.id)
+        if @students[classroom.id] != nil
           @assignments[classroom.id] = Tyto.db.get_assignments_for_classroom(classroom.id, @students[classroom.id].first.id)
+          @assignments[classroom.id].each do |assignment|
+            @difficult_questions[assignment.id] = Tyto.db.get_difficult_questions_for_chapter(assignment.chapter_id, assignment.classroom_id)
+          end if @assignments[classroom.id]
           @studenthomework[classroom.id] = {}
-            @students[classroom.id].each do |x|
-              @studenthomework[classroom.id][x.id] = Tyto.db.get_assignments_for_classroom(classroom.id, x.id)
-            end
+          @students[classroom.id].each do |student|
+            @studenthomework[classroom.id][student.id] = Tyto.db.get_assignments_for_classroom(classroom.id, student.id)
           end
+        end
       end
     end
   end

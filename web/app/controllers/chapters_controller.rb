@@ -5,4 +5,7 @@ class ChaptersController < ApplicationController
     render json: subtopics
   end
 
+  def show
+
+  end
 end
