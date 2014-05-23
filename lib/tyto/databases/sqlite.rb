@@ -509,7 +509,6 @@ module Tyto
             else
               difficult[question.question] = 1
             end
-            # binding.pry if difficult != {}
           end
         end
         difficult.to_a.sort_by{|element| element[1]}.reverse

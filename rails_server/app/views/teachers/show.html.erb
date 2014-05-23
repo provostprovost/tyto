@@ -22,7 +22,15 @@
                 <th width="50">Text?</th>
                 <%if @assignments[classroom.id] != nil %>
                   <%@assignments[classroom.id].each do |assignment| %>
-                    <th data-tooltip class="has-tip" title="<%=assignment.name%>"><%=assignment.subname%><br><%=assignment.deadline.strftime("%-m/%e")%><br><%=@difficult_questions[assignment.id].to_s%></th>
+                    <th data-tooltip class="has-tip" title="<%=assignment.name%><br>
+                      <% if @difficult_questions[assignment.id] != [] %>
+                        <br>Difficult Questions:<br><br>
+                        <% @difficult_questions[assignment.id].each do |question| %>
+                          <%= question[1] %> student<% if question[1] != 1 %>s<% end %>: <%= question[0] %><br>
+                        <% end %>
+                      <% end %>">
+
+                      <%=assignment.subname%><br><%=assignment.deadline.strftime("%-m/%e")%></th>
                   <%end%>
                 <%end%>
               </tr>
