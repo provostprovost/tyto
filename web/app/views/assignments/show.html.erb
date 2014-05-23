@@ -30,7 +30,7 @@
         <a href='#' class="video-link" data-options="align:top" data-dropdown="video-drop">Having trouble? Watch the video!</a>
         <div id="video-drop" data-dropdown-content class="f-dropdown content">
           <div class="flex-video">
-            <%= @video_html %>
+            <a href="<%= @assignment.video_url %>">Video</a>
           </div>
         </div>
       <% end %>
@@ -68,7 +68,12 @@
     difficult: difficult,
     progress: progress,
     streaks: streaks,
-    previousQuestion: previousQuestion
+    previousQuestion: previousQuestion,
   });
 })();
 </script>
+<% content_for :javascript do %>
+<script type="text/javascript">
+$('.flex-video').embedly({key: "00a1ac6023a14ed98a7d7878a712ad4d"});
+</script>
+<% end %>
