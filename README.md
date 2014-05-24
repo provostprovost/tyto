@@ -39,3 +39,7 @@ Entities
 * Sessions
 * Students
 * Teachers
+
+Tyto?
+-----
+The genus Tyto includes all barn owls (family Tytonidae) except for the bay owls (subfamily Phodilinae, genus Phodilus) - that is, the true barn owls, the grass owls and the masked owls collectively making up the subfamily Tytoninae. Credit for the name goes to Ifu Aniemeka.

@@ -17,7 +17,7 @@
   border: 0.063em solid #DDD;
   text-align: center;
   height: 29.8em;
-  overflow-y: scroll;
+  // overflow-y: scroll;
   padding: 2em;
 }
 
@@ -110,8 +110,11 @@ th.headerSortUp {
 
 .studentTable {
   width: 100%;
-  margin-bottom: 0em;
+  margin-bottom: 1em;
   margin-top: -1.563em;
+  overflow-y: scroll;
+  display: block;
+  height: 19em;
 }
 
 .searchFixed {
