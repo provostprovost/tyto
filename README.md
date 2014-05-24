@@ -20,10 +20,14 @@ All of a teacher's functions are performed from their dashboard. They can:
 
 Tech
 ----
-Server-side: Ruby on Rails, Sinatra with Puma, PostgreSQL with ActiveRecord, bcrypt
+Server-side: Ruby on Rails, Puma with Faye Websockets, PostgreSQL with ActiveRecord, bcrypt
+
 Client-side: ReactJS, Isotope.js, jQuery, Zurb Foundation
+
 APIs: Twilio, Embedly
+
 Testing: RSpec
+
 Deployment: DigitalOcean, Heroku
 
 Entities
@@ -33,6 +37,7 @@ Entities
 * Classrooms
 * Courses
 * Invites
+* Messages
 * Questions
 * Responses
 * Sessions
