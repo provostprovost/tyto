@@ -89,6 +89,32 @@ shared_examples_for "a database" do
     end
   end
 
+   describe 'Message' do
+    before do
+      @message = db.create_message(username: "parth", classroom_id: 5, message: "hello")
+    end
+
+    it "creates a message" do
+      expect(@message.username).to eq("parth")
+      expect(@message.classroom_id).to eq(5)
+      expect(@message.message).to eq("hello")
+    end
+
+    it "gets a message" do
+      message = Tyto.db.get_message(@message.id)
+      expect(message.username).to eq("parth")
+      expect(message.classroom_id).to eq(5)
+      expect(message.message).to eq("hello")
+    end
+
+    it "gets previous 30 messages" do
+      40.times{db.create_message(username: "parth", classroom_id: 5, message: "hello")}
+      thirty_messages = db.get_past_messages(5, 30)
+      expect(thirty_messages.length).to eq(30)
+      expect(thirty_messages.first.username).to eq("parth")
+    end
+
+   end
 
    describe 'Chapter' do
     before do

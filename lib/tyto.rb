@@ -12,6 +12,7 @@ require_relative 'tyto/entities/session.rb'
 require_relative 'tyto/entities/student.rb'
 require_relative 'tyto/entities/teacher.rb'
 require_relative 'tyto/entities/invite.rb'
+require_relative 'tyto/entities/message.rb'
 
 require_relative 'tyto/databases/in_memory.rb'
 require_relative 'tyto/databases/sqlite.rb'

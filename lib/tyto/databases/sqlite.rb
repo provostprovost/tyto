@@ -243,6 +243,7 @@ module Tyto
         belongs_to :course
         has_many :invites
         has_many :assignments
+        has_many :messages
       end
 
       def create_classroom(attrs)
@@ -359,6 +360,30 @@ module Tyto
 
       def delete_course(id)
         Course.destroy(id)
+      end
+
+      ############
+      # Teachers #
+      ############
+
+      class Message < ActiveRecord::Base
+        belongs_to :classrooms
+      end
+
+      def create_message(attrs)
+        message = Message.create(attrs)
+        attrs[:id] = message.id
+        Tyto::Message.new(attrs)
+      end
+
+      def get_message(id)
+        message = Message.where(id: id).last
+        Tyto::Message.new(classroom_id: message.classroom_id, username: message.username, message: message.message)
+      end
+
+      def get_past_messages(classroom_id, size)
+        messages = Message.where(classroom_id: classroom_id).last(size)
+        messages.map{|message| get_message(message.id) }
       end
 
       ##############
