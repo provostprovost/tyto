@@ -24,6 +24,7 @@ Server-side: Ruby on Rails, Sinatra with Puma, PostgreSQL with ActiveRecord, bcr
 Client-side: ReactJS, Isotope.js, jQuery, Zurb Foundation
 APIs: Twilio, Embedly
 Testing: RSpec
+Deployment: DigitalOcean, Heroku
 
 Entities
 --------
