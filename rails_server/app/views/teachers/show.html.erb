@@ -53,8 +53,10 @@
                     <td class="lateAssignment prof-score"><%= @prof_value %></td>
                   <%elsif assignment.complete == true && assignment.question_level <= 2 %>
                    <td class="poorPerformance prof-score"><%= @prof_value %></td>
-                  <%elsif assignment.complete == true && assignment.question_level > 2 %>
+                  <%elsif assignment.complete == true && assignment.question_level <= 3 %>
                    <td class="goodPerformance prof-score"><%= @prof_value %></td>
+                  <%elsif assignment.complete == true && assignment.question_level > 3 %>
+                   <td class="excellentPerformance prof-score"><%= @prof_value %></td>
                   <% else %>
                    <td><%= @prof_value %></td>
                   <% end %>
@@ -104,27 +106,26 @@
 </div>
 
 <% content_for :javascript do %>
-<script type="text/javascript">
-(function () {
-window.classroomsAll = []
-<%@classrooms.each do |classroom| %>
-  classroomsAll.push("<%=classroom.name%>")
-<% end %>
-window.studentsAll = [];
-<% counter = 0 %>
-<% if @classrooms != nil %>
-<% @classrooms.each do |classroom| %>
-  <% if @students[classroom.id] != nil %>
-  <% @students[classroom.id].each do |student| %>
-    window.studentsAll.push({classroom: "<%=classroom.name%>", email: "<%=student.email%>", struggling: <%=student.struggling%>, name: "<%=student.username%>", id: <%=counter%>  })
-    <% counter += 1 %>
-  <% end %>
-  <% end %>
-  <% end %>
-<% end%>
-
- React.renderComponent(AssignHomework( {classrooms:window.classroomsAll} ), document.getElementById('assign'));
- React.renderComponent(FilterableStudentTable( {students:window.studentsAll} ), document.getElementById('search'));
-})();
-</script>
+  <script type="text/javascript">
+    (function () {
+      window.classroomsAll = []
+      <%@classrooms.each do |classroom| %>
+        classroomsAll.push("<%=classroom.name%>")
+      <% end %>
+      window.studentsAll = [];
+      <% counter = 0 %>
+      <% if @classrooms != nil %>
+        <% @classrooms.each do |classroom| %>
+          <% if @students[classroom.id] != nil %>
+            <% @students[classroom.id].each do |student| %>
+              window.studentsAll.push({classroom: "<%=classroom.name%>", email: "<%=student.email%>", struggling: <%=student.struggling%>, name: "<%=student.username%>", id: <%=counter%>  })
+              <% counter += 1 %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end%>
+       React.renderComponent(AssignHomework( {classrooms:window.classroomsAll} ), document.getElementById('assign'));
+       React.renderComponent(FilterableStudentTable( {students:window.studentsAll} ), document.getElementById('search'));
+    })();
+  </script>
 <% end %>
