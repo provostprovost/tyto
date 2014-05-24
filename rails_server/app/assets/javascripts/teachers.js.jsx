@@ -124,7 +124,7 @@ var AssignHomework = React.createClass({
             </div>
             <div className="row">
                 <div className="large-12 columns">
-                  <label>Deadline
+                  <label>Due Date
                     <input onChange={this.handleDeadlineChange} type="date" value={tomorrow}></input>
                   </label>
                 </div>
