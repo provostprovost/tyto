@@ -2,12 +2,5 @@ source "https://rubygems.org"
 ruby "2.1.1"
 
 gem "faye-websocket"
-gem 'data_mapper'
-gem 'sqlite3', :group => :development
-gem 'dm-sqlite-adapter', :group => :development
-gem 'dm-postgres-adapter', :group => :production
 gem "sinatra"
 gem "puma"
-gem 'pg', :group => :production
-gem 'rspec'
-gem 'json'
