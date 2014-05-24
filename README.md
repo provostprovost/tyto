@@ -1,7 +1,7 @@
 Tyto
 ====
 
-A web app for creating, assigning and completing classwork and homework. Created by Parth Shah and Brian Provost.
+A classroom assignment management app for creating, assigning and completing classwork and homework. Created by Parth Shah and Brian Provost.
 
 Students
 --------
@@ -20,7 +20,7 @@ All of a teacher's functions are performed from their dashboard. They can:
 
 Tech
 ----
-Server-side: Ruby on Rails, Sinatra with Puma, PostgreSQL with ActiveRecord
+Server-side: Ruby on Rails, Sinatra with Puma, PostgreSQL with ActiveRecord, bcrypt
 Client-side: ReactJS, Isotope.js, jQuery, Zurb Foundation
 APIs: Twilio, Embedly
 Testing: RSpec
