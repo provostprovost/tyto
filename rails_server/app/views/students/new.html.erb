@@ -4,7 +4,7 @@
     <div class="small-12 medium-7 large-5 small-centered columns form-container">
       <%= form_tag('/students', method: 'post') do %>
         <%= label_tag(:username, "Username:") %>
-        <%= text_field_tag(:username) %>
+        <%= text_field_tag(:username '', :autofocus => true) %>
 
         <%= label_tag(:email, "Parent's email address:") %>
         <%= text_field_tag(:email) %>
