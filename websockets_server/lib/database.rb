@@ -6,3 +6,4 @@ class Message
   property :message, String, :required => true
   property :classroom_id, Integer
 end
+DataMapper.finalize
