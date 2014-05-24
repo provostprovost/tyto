@@ -6,12 +6,24 @@ A web app for creating, assigning and completing classwork and homework. Created
 Students
 --------
 Students have two views:
-* A dashboard where they can view a list of their assignments and invitations to classes.
-* An assignment view where they complete problems in a problem set. Problems increase in difficulty as the student's measured proficiency increases. The assignment is complete when the proficiency score reaches a certain level or when a certain number of questions are completed.
+* A dashboard where they can view a list of their assignments and invitations to classes. They also have access to a chat box for each class they are in so they can discuss problems with teachers and classmates.
+* An assignment view where they complete problems in a problem set. Problems increase in difficulty as the student's measured proficiency increases. The assignment is complete when the proficiency score reaches a certain level or when a certain number of questions are completed. Students can also watch a video on the assignment topic and notify their teacher when a problem is difficult.
 
 Teachers
 --------
-All of a teacher's functions are performed from their dashboard. They can create classes, add students to classes, and assign work to students. They can also view students' progress and proficiency on assignments and filter by struggling students.
+All of a teacher's functions are performed from their dashboard. They can:
+* Assign work to students
+* Monitor individual proficiency levels for subjects
+* Automatically text selected parents when assignments are created
+* Filter class roster by struggling students
+* Send messages to classes in a chat window
+
+Tech
+----
+Server-side: Ruby on Rails, Sinatra with Puma, PostgreSQL with ActiveRecord
+Client-side: ReactJS, Isotope.js, jQuery, Zurb Foundation
+APIs: Twilio, Embedly
+Testing: RSpec
 
 Entities
 --------
