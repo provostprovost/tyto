@@ -73,7 +73,7 @@
     streaks: streaks,
     previousQuestion: previousQuestion,
   });
-  React.renderComponent(window.ChatBox(), document.getElementById('chatBox'));
+  React.renderComponent(window.ChatBox({classroomIds: [<%=@classroom.id%>]}), document.getElementById('chatBox'));
 })();
 $('.flex-video').embedly({key: "00a1ac6023a14ed98a7d7878a712ad4d"});
 </script>

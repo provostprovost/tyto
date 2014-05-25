@@ -48,7 +48,14 @@
 
   React.renderComponent(window.ClassroomList( {url:url="/classrooms"} ), document.getElementById('filters-header'));
 
-  React.renderComponent(window.ChatBox(), document.getElementById('chatBox'));
+<% if @classrooms != nil %>
+  var StudentClassrooms = [];
+  <% @classrooms.each do |classroom| %>
+    StudentClassrooms.push(<%=classroom.id%>);
+  <% end %>
+
+  React.renderComponent(window.ChatBox({classroomIds: StudentClassrooms}), document.getElementById('chatBox'));
+<% end %>
 
   var $container = $('.isotope-container');
 

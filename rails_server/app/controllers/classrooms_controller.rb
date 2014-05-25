@@ -38,6 +38,16 @@ class ClassroomsController < ApplicationController
     render json: student
   end
 
+  def chat
+    chats = []
+    params[:classroom_ids].each do |id|
+      classroom = Tyto.db.get_classroom(id)
+      chat = Tyto.db.get_past_messages(id, 5)
+      chats.push({name: classroom.name, id: classroom.id, chat: chat})
+    end
+    render json: chats
+  end
+
   private
 
   def classroom_params

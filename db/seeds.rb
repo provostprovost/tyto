@@ -55,6 +55,29 @@ classroom4 = Tyto.db.create_classroom(teacher_id: teacher2.id,
 classroom5 = Tyto.db.create_classroom(teacher_id: teacher3.id,
                                       course_id: another_course.id,
                                       name: "Period 5")
+[classroom2, classroom4].each do |classroom|
+  message1 = Tyto.db.create_message(classroom_id: classroom.id,
+                                    username: student1.username,
+                                    message: "hey there")
+
+  message2 = Tyto.db.create_message(classroom_id: classroom.id,
+                                    username: student2.username,
+                                    message: "hello")
+  message3 = Tyto.db.create_message(classroom_id: classroom.id,
+                                    username: student3.username,
+                                    message: "hiii")
+end
+ message1 = Tyto.db.create_message(classroom_id: classroom3.id,
+                                    username: student3.username,
+                                    message: "whats good")
+
+  message2 = Tyto.db.create_message(classroom_id: classroom3.id,
+                                    username: student1.username,
+                                    message: "you tell me")
+  message3 = Tyto.db.create_message(classroom_id: classroom3.id,
+                                    username: student2.username,
+                                    message: "nooooo")
+
 
 invite1 = Tyto.db.create_invite(email: student2.email,
                                 teacher_id: teacher2.id,

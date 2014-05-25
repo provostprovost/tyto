@@ -85,10 +85,6 @@
           </div>
           </form>
         </div>
-        <button class="button tiny chatFixed teacherChat">Chat</button>
-        <div class="chatBox teacherChatBox" style="display: none;">
-        <div id="chatBox"></div>
-        </div>
     </div>
   </div>
 
@@ -110,13 +106,13 @@
 <% content_for :javascript do %>
 <script type="text/javascript">
 (function () {
+<% if @classrooms != nil %>
 window.classroomsAll = []
 <%@classrooms.each do |classroom| %>
   classroomsAll.push("<%=classroom.name%>")
 <% end %>
 window.studentsAll = [];
 <% counter = 0 %>
-<% if @classrooms != nil %>
 <% @classrooms.each do |classroom| %>
   <% if @students[classroom.id] != nil %>
   <% @students[classroom.id].each do |student| %>
@@ -125,11 +121,17 @@ window.studentsAll = [];
   <% end %>
   <% end %>
   <% end %>
-<% end%>
+
 
  React.renderComponent(AssignHomework( {classrooms:window.classroomsAll} ), document.getElementById('assign'));
  React.renderComponent(FilterableStudentTable( {students:window.studentsAll} ), document.getElementById('search'));
- React.renderComponent(window.ChatBox(), document.getElementById('chatBox'));
+ var TeacherClassrooms = [];
+  <% @classrooms.each do |classroom| %>
+    TeacherClassrooms.push(<%=classroom.id%>);
+  <% end %>
+
+  React.renderComponent(window.ChatBox({classroomIds: TeacherClassrooms}), document.getElementById('chatBox'));
+<% end%>
 })();
 </script>
 <% end %>
