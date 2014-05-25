@@ -17,7 +17,7 @@
 }
 
 .intro-home-row {
-  background-color: #f2f2f2;
+  background-color: #f8f8f8;
   text-align: center;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .student-home-row {
-  background-color: #f2f2f2;
+  background-color: #f8f8f8;
 }
 
 .parent-home-row {
@@ -36,4 +36,16 @@
 
 .home-column {
   max-width: 960px;
+}
+
+.inner-intro {
+  margin-top: 3em;
+}
+
+.intro-container {
+  background-color: #fff;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  padding: 2em;
+  margin-bottom: 2em;
 }

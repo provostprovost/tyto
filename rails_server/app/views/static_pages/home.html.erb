@@ -1,9 +1,29 @@
 <div class="home-container">
   <div class="row intro-home-row full-width">
-    <div class="small-12 small-centered home-column columns">
+    <div class="small-12 large-6 small-centered columns">
       <h1>Welcome to Tyto</h1>
-      <a href="#" class="button radius">Teacher Demo</a>
-      <a href="#" class="button radius">Student Demo</a>
+      <p>A classroom assignment management app for creating, assigning and completing classwork and homework.</p>
+    </div>
+    <div class="small-12 small-centered home-column columns inner-intro">
+      <div class="small-12 large-5 columns intro-container">
+        <h4>Teachers:</h4>
+        <p>A short summary of what teachers can do!</p>
+        <%= form_tag('/sessions', method: 'post') do %>
+          <%= hidden_field_tag(:email, 'demo@teacher.com') %>
+          <%= hidden_field_tag(:password, 'password1') %>
+          <%= hidden_field_tag(:teacher, 1) %>
+          <%= submit_tag "Teacher Demo", class: "button radius success" %>
+        <% end %>
+      </div>
+      <div class="small-12 large-5 columns intro-container">
+        <h4>Students:</h4>
+        <p>A short summary of what students can do!</p>
+        <%= form_tag('/sessions', method: 'post') do %>
+          <%= hidden_field_tag(:email, 'demo@student.com') %>
+          <%= hidden_field_tag(:password, 'password1') %>
+          <%= submit_tag "Student Demo", class: "button radius success" %>
+        <% end %>
+      </div>
     </div>
   </div>
 
@@ -20,7 +40,7 @@
         </ul>
       </div>
       <div class="small-12 large-7 columns">
-        screenshot
+        <%= image_tag('teacher-dashboard.png') %>
       </div>
     </div>
   </div>
@@ -28,7 +48,7 @@
   <div class="row student-home-row full-width">
     <div class="small-12 small-centered columns home-column">
       <div class="small-12 large-7 columns">
-        screenshot
+        <%= image_tag('student-dashboard-chat.png') %>
       </div>
       <div class="small-12 large-5 columns">
         <h3>Student dashboard:</h3>
