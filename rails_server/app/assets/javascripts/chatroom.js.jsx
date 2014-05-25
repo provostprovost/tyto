@@ -4,6 +4,7 @@ $(document).ready(function() {
     $('.chatBox').slideToggle("fast");
     messaging = $('.chatMessages');
     messaging.scrollTop(messaging.prop("scrollHeight"));
+    $(".chatFixed").css("background-color","#2ba6cb");
   });
 });
 
@@ -12,26 +13,19 @@ var ws = new WebSocket("ws://fierce-tundra-6534.herokuapp.com/");
 ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
   classrooms = [];
-  ChattingBox.state.classrooms.forEach(function(classroom){
+  if($('.chatBox').css('display') == 'none'){
+    $(".chatFixed").css("background-color","green");
+  }
+  ChattingBox.state.classrooms.forEach(function(classroom, index){
     if(classroom.id===data.classroom_id){
       classroom.chat.push(data);
+      ChattingBox.setState({selectedIndex: index});
     }
     classrooms.push(classroom);
   });
   ChattingBox.setState({classrooms: classrooms});
   messaging = $('.chatMessages');
   messaging.scrollTop(messaging.prop("scrollHeight"));
-  $.ajax({
-    url: '/messages/create',
-    dataType: 'json',
-    type: 'POST',
-    data: data,
-    success: function(data) {
-    }.bind(this),
-    error: function(xhr, status, err) {
-      console.error(this.props.url, status, err.toString());
-    }.bind(this)
-  });
 };
 
 window.ChatBox = React.createClass({
@@ -65,19 +59,36 @@ window.ChatBox = React.createClass({
     var message   = this.state.message;
     var classroom_id = this.state.classrooms[this.state.selectedIndex].id;
     var struggling = this.props.struggling;
-    ws.send(JSON.stringify({username: username, message: message, classroom_id: classroom_id, struggling: struggling}));
+    var object = {username: username, message: message, classroom_id: classroom_id, struggling: struggling}
+    ws.send(JSON.stringify(object));
     this.setState({message: ''});
+    $.ajax({
+      url: '/messages/create',
+      dataType: 'json',
+      type: 'POST',
+      data: object,
+      success: function(data) {
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
   },
   handleMessageChange: function(e){
     this.setState({message: e.target.value })
   },
   render: function() {
     var counter = -1;
-    var classrooms = this.state.classrooms.map(function(classroom) {
+    var classrooms = this.state.classrooms.map(function(classroom, index) {
       counter = counter + 1;
-      return (
-        <option value={counter}>{classroom.name}</option>
-      );
+      if(index === ChattingBox.state.selectedIndex){
+        return (
+          <option value selected={counter}>{classroom.name}</option>);
+      }
+      else {
+        return(
+          <option value={counter}>{classroom.name}</option>);
+      }
     });
     if(this.state.classrooms.length > 0){
       var messages = this.state.classrooms[this.state.selectedIndex].chat.map(function(message) {
