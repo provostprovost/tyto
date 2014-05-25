@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 .home-container {
   margin: 0 auto;
   padding: 0;
@@ -14,20 +15,45 @@
   max-width: initial;
   border-bottom: 1px solid #ddd;
   padding: 8em;
-  @media only screen and (max-width: 40em) { padding: 0.5em }
+  @media only screen and (max-width: 40em) { padding: 1.5em }
+}
+
+.title-column {
+  max-width: 28em;
 }
 
 .intro-home-row {
-  background-color: #f8f8f8;
+  background-color: #48a6cb;
   text-align: center;
 }
 
+.white-text {
+  color: #fff;
+  text-shadow: rgba(0, 0, 0, 0.5) 0 1px 1px;
+}
+
+h1.white-text{
+  font-size: 5em;
+  line-height: .9em;
+  padding-bottom: 0.5em;
+  text-shadow: rgba(0, 0, 0, 0.5) 0 2px 2px;
+}
+
+.intro.white-text {
+  font-size: 1.5em;
+  line-height: 1.2em;
+}
+
+.black-text {
+  text-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px;
+}
+
 .teacher-home-row {
-  background-color: #FFF;
+  background-color: #fff;
 }
 
 .student-home-row {
-  background-color: #f8f8f8;
+  background-color: #48a6cb;
 }
 
 .parent-home-row {
@@ -44,8 +70,8 @@
 }
 
 .intro-container {
-  background-color: #fff;
-  border-radius: 3px;
+  background-image: image-url('bg.png');
+  border-radius: 5px;
   border: 1px solid #ddd;
   padding: 2em;
   margin-bottom: 2em;
