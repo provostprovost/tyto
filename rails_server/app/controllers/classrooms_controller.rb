@@ -11,12 +11,40 @@ class ClassroomsController < ApplicationController
     render json: @classrooms
   end
 
+  def students
+    students = Tyto.db.get_students_in_classroom(params[:classroom_id]).map{|student|student.email}
+    render json: students
+  end
+
   def create
+    if params[:id] == nil
     params[:course_id] = Tyto.db.get_course_from_name(params[:course_name]).id
     classroom = Tyto.db.create_classroom(classroom_params)
     params[:classroom_id] = classroom.id
-    invites = Tyto::AddStudentsToClass.run(params).invites
-    render json: invites
+    @invites = Tyto::AddStudentsToClass.run(params).invites
+    else
+      current = Tyto.db.get_students_in_classroom(params[:id])
+      edited = params[:students]
+      current.each do |current_student|
+        edited.each do |edited_student|
+          if current_student.email == edited_student
+             current.delete(current_student)
+             edited.delete(edited_student)
+          end
+        end
+      end
+      if current != []
+        current.each do |student|
+          Tyto.db.delete_student_from_classroom(student.id, params[:id])
+        end
+      end
+      if edited != []
+        params[:students] = edited
+        params[:classroom_id] = params[:id]
+        @invites = Tyto::AddStudentsToClass.run(params).invites
+      end
+    end
+    render json: @invites
   end
 
   def update
