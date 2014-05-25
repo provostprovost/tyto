@@ -35,7 +35,9 @@
   </div>
 </div>
 
-<div class="chatFixed">Chat
+<button class="button tiny chatFixed">Chat</button>
+<div class="chatBox" style="display: none;">
+<div id="chatBox"></div>
 </div>
 
 <% content_for :javascript do %>
@@ -45,6 +47,8 @@
   React.renderComponent(window.InviteList( {url:"/invites"} ), document.getElementById('invite-container'));
 
   React.renderComponent(window.ClassroomList( {url:url="/classrooms"} ), document.getElementById('filters-header'));
+
+  React.renderComponent(window.ChatBox(), document.getElementById('chatBox'));
 
   var $container = $('.isotope-container');
 

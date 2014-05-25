@@ -85,6 +85,10 @@
           </div>
           </form>
         </div>
+        <button class="button tiny chatFixed teacherChat">Chat</button>
+        <div class="chatBox teacherChatBox" style="display: none;">
+        <div id="chatBox"></div>
+        </div>
     </div>
   </div>
 
@@ -96,6 +100,11 @@
     </div>
     </div>
   </div>
+</div>
+
+<button class="button tiny chatFixed teacherChat">Chat</button>
+<div class="chatBox teacherChatBox" style="display: none;">
+<div id="chatBox"></div>
 </div>
 
 <% content_for :javascript do %>
@@ -120,6 +129,7 @@ window.studentsAll = [];
 
  React.renderComponent(AssignHomework( {classrooms:window.classroomsAll} ), document.getElementById('assign'));
  React.renderComponent(FilterableStudentTable( {students:window.studentsAll} ), document.getElementById('search'));
+ React.renderComponent(window.ChatBox(), document.getElementById('chatBox'));
 })();
 </script>
 <% end %>

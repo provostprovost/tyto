@@ -1,0 +1,28 @@
+.chatFixed {
+  position:fixed;
+  font-family: "Roboto Slab", "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  bottom: 0.313em;
+  right: 0.313em;
+  border-radius: 0.313em;
+  width: 11.250em;
+  background-color: #2ba6cb;
+  text-align: center;
+}
+
+.teacherChat {
+  left: 0.313em;
+}
+
+.chatBox {
+  bottom: 3.688em;
+  right: 0.313em;
+  position:fixed;
+  width: 15.625em;
+  height: 25.000em;
+  background-image: url(/assets/bg.png);
+  border: 0.063em solid black;
+}
+
+.teacherChatBox {
+  left: 0.313em;
+}

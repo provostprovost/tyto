@@ -36,6 +36,10 @@
       <% end %>
   </div>
 </div>
+<button class="button tiny chatFixed">Chat</button>
+<div class="chatBox" style="display: none;">
+<div id="chatBox"></div>
+</div>
 
 <% content_for :javascript do %>
 <script type="text/javascript">
@@ -69,6 +73,7 @@
     streaks: streaks,
     previousQuestion: previousQuestion,
   });
+  React.renderComponent(window.ChatBox(), document.getElementById('chatBox'));
 })();
 $('.flex-video').embedly({key: "00a1ac6023a14ed98a7d7878a712ad4d"});
 </script>
