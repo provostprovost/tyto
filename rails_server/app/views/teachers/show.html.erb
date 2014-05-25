@@ -19,7 +19,7 @@
             <thead>
               <tr>
                 <th width="150">Student</th>
-                <th width="50">Text?</th>
+                <th width="50" data-tooltip class="has-tip" title="The parents of checked <br>students will be notified <br>when assignments are <br>created. <br><br>Selections are <br>automatically saved.">Text?</th>
                 <%if @assignments[classroom.id] != nil %>
                   <%@assignments[classroom.id].each do |assignment| %>
                     <th data-tooltip class="has-tip" title="<%=assignment.name%><br>
