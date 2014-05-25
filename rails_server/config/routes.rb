@@ -30,4 +30,5 @@ Rails.application.routes.draw do
   post '/classrooms/text' => 'classrooms#update_text'
   post '/messages/index' => 'messages#index'
   post '/messages/create' => 'messages#create'
+  post '/classrooms/accepted' => 'classrooms#accepted'
 end

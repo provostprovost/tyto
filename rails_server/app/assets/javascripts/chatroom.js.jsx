@@ -6,6 +6,9 @@ $(document).ready(function() {
     messaging.scrollTop(messaging.prop("scrollHeight"));
     $(".chatClick").css("background-color","#2ba6cb");
   });
+  $(window).on('inviteSubmit', function(){
+    window.ChattingBox.invitesWillUpdate();
+  });
 });
 
 var ws = new WebSocket("ws://fierce-tundra-6534.herokuapp.com/");
@@ -39,6 +42,21 @@ window.ChatBox = React.createClass({
       dataType: 'json',
       type: 'POST',
       data: data,
+      success: function(data) {
+        this.setState({classrooms: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
+  invitesWillUpdate: function(){
+    object = {student_id: this.props.id};
+    $.ajax({
+      url: '/classrooms/accepted',
+      dataType: 'json',
+      type: 'POST',
+      data: object,
       success: function(data) {
         this.setState({classrooms: data});
       }.bind(this),
