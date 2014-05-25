@@ -4,6 +4,7 @@ $(document).ready(function() {
     $('.chatBox').slideToggle("fast");
     messaging = $('.chatMessages');
     messaging.scrollTop(messaging.prop("scrollHeight"));
+    $(".chatFixed").css("background-color","#2ba6cb");
   });
 });
 
@@ -12,12 +13,15 @@ var ws = new WebSocket("ws://fierce-tundra-6534.herokuapp.com/");
 ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
   classrooms = [];
+  if($('.chatBox').css('display') == 'none'){
+    $(".chatFixed").css("background-color","green");
+  }
   ChattingBox.state.classrooms.forEach(function(classroom, index){
     if(classroom.id===data.classroom_id){
       classroom.chat.push(data);
+      ChattingBox.setState({selectedIndex: index});
     }
     classrooms.push(classroom);
-    console.log(index);
   });
   ChattingBox.setState({classrooms: classrooms});
   messaging = $('.chatMessages');
@@ -64,7 +68,6 @@ window.ChatBox = React.createClass({
       type: 'POST',
       data: object,
       success: function(data) {
-      console.log(data)
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
@@ -76,11 +79,16 @@ window.ChatBox = React.createClass({
   },
   render: function() {
     var counter = -1;
-    var classrooms = this.state.classrooms.map(function(classroom) {
+    var classrooms = this.state.classrooms.map(function(classroom, index) {
       counter = counter + 1;
-      return (
-        <option value={counter}>{classroom.name}</option>
-      );
+      if(index === ChattingBox.state.selectedIndex){
+        return (
+          <option value selected={counter}>{classroom.name}</option>);
+      }
+      else {
+        return(
+          <option value={counter}>{classroom.name}</option>);
+      }
     });
     if(this.state.classrooms.length > 0){
       var messages = this.state.classrooms[this.state.selectedIndex].chat.map(function(message) {
