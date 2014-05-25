@@ -1,17 +1,80 @@
 <div class="home-container">
-  <div class="row intro-row">
-    <div class="small-12 columns">
+  <div class="row intro-home-row full-width">
+    <div class="small-12 large-6 small-centered columns">
       <h1>Welcome to Tyto</h1>
+      <p>A classroom assignment management app for creating, assigning and completing classwork and homework.</p>
+    </div>
+    <div class="small-12 small-centered home-column columns inner-intro">
+      <div class="small-12 large-5 columns intro-container">
+        <h4>Teachers:</h4>
+        <p>A short summary of what teachers can do!</p>
+        <%= form_tag('/sessions', method: 'post') do %>
+          <%= hidden_field_tag(:email, 'demo@teacher.com') %>
+          <%= hidden_field_tag(:password, 'password1') %>
+          <%= hidden_field_tag(:teacher, 1) %>
+          <%= submit_tag "Teacher Demo", class: "button radius success" %>
+        <% end %>
+      </div>
+      <div class="small-12 large-5 columns intro-container">
+        <h4>Students:</h4>
+        <p>A short summary of what students can do!</p>
+        <%= form_tag('/sessions', method: 'post') do %>
+          <%= hidden_field_tag(:email, 'demo@student.com') %>
+          <%= hidden_field_tag(:password, 'password1') %>
+          <%= submit_tag "Student Demo", class: "button radius success" %>
+        <% end %>
+      </div>
     </div>
   </div>
-  <div class="row student-row">
-    <div class="small-12 columns">
-      <p>Student stuff!</p>
+
+  <div class="row teacher-home-row full-width">
+    <div class="small-12 small-centered columns home-column">
+      <div class="small-12 large-5 columns">
+        <h3>Teachers:</h3>
+        <ul>
+          <li>Assign work to students</li>
+          <li>Monitor individual proficiency levels for subjects</li>
+          <li>Automatically text selected parents when assignments are created</li>
+          <li>Filter class roster by struggling students</li>
+          <li>Send messages to classes in a chat window</li>
+        </ul>
+      </div>
+      <div class="small-12 large-7 columns">
+        <%= image_tag('teacher-dashboard.png') %>
+      </div>
     </div>
   </div>
-  <div class="row teacher-row">
-    <div class="small-12 columns">
-      <p>Teacher stuff!</p>
+
+  <div class="row student-home-row full-width">
+    <div class="small-12 small-centered columns home-column">
+      <div class="small-12 large-7 columns">
+        <%= image_tag('student-dashboard-chat.png') %>
+      </div>
+      <div class="small-12 large-5 columns">
+        <h3>Student dashboard:</h3>
+        <p>Students can view a list of their assignments and invitations to classes. They also have access to a chat box for each class they are in so they can discuss problems with teachers and classmates.<p>
+      </div>
+    </div>
+    <div class="small-12 small-centered columns home-column">
+      <div class="small-12 large-5 columns">
+        <h3>Student assignments:</h3>
+        <p>Students complete problems in a problem set. Problems increase in difficulty as the student's measured proficiency increases. The assignment is complete when the proficiency score reaches a certain level or when the assigned number of questions are completed. Students can also watch a video on the assignment topic and notify their teacher when a problem is difficult.</p>
+      </div>
+      <div class="small-12 large-7 columns">
+        <%= image_tag('student-dashboard-chat.png') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row parent-home-row full-width">
+    <div class="small-12 small-centered columns home-column">
+      <div class="small-12 large-6 columns">
+        <%= image_tag('iphone.png') %>
+      </div>
+      <div class="small-12 large-6 columns">
+        <h3>Parents:</h3>
+        <p>Parents can choose to receive texts when their children get new assignments.</p>
+      </div>
     </div>
   </div>
 </div>

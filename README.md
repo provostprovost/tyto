@@ -7,7 +7,7 @@ Students
 --------
 Students have two views:
 * A dashboard where they can view a list of their assignments and invitations to classes. They also have access to a chat box for each class they are in so they can discuss problems with teachers and classmates.
-* An assignment view where they complete problems in a problem set. Problems increase in difficulty as the student's measured proficiency increases. The assignment is complete when the proficiency score reaches a certain level or when a certain number of questions are completed. Students can also watch a video on the assignment topic and notify their teacher when a problem is difficult.
+* An assignment view where they complete problems in a problem set. Problems increase in difficulty as the student's measured proficiency increases. The assignment is complete when the proficiency score reaches a certain level or when the assigned number of questions are completed. Students can also watch a video on the assignment topic and notify their teacher when a problem is difficult.
 
 Teachers
 --------

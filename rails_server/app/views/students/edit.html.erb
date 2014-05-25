@@ -4,7 +4,7 @@
     <div class="small-12 medium-7 large-5 small-centered columns form-container">
       <%= form_tag("/students/#{@student.id}", method: 'patch') do %>
         <%= label_tag(:username, "Username:") %>
-        <%= text_field_tag(:username, @student.username '', :autofocus => true) %>
+        <%= text_field_tag(:username, @student.username, :autofocus => true) %>
 
         <%= label_tag(:email, "Parent's email address:") %>
         <%= text_field_tag(:email, @student.email) %>
