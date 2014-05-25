@@ -1,10 +1,12 @@
 class MessagesController < ApplicationController
   def index
-    classroom_messages = {}
+    chats = []
     params[:classroom_ids].each do |id|
-      classroom_messages[id] = Tyto.db.get_past_message(id, 30)
+      classroom = Tyto.db.get_classroom(id)
+      chat = Tyto.db.get_past_messages(id, 30)
+      chats.push({name: classroom.name, id: classroom.id, chat: chat})
     end
-    render json: classroom_messages
+    render json: chats
   end
 
   def create

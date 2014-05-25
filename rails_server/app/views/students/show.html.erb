@@ -55,7 +55,7 @@
     StudentClassrooms.push(<%=classroom.id%>);
   <% end %>
 
-  React.renderComponent(window.ChatBox({username: "<%=@student.username%>", classroomIds: StudentClassrooms}), document.getElementById('chatBox'));
+  window.ChattingBox = React.renderComponent(window.ChatBox({username: "<%=@student.username%>", classroomIds: StudentClassrooms}), document.getElementById('chatBox'));
 <% end %>
 
   var $container = $('.isotope-container');

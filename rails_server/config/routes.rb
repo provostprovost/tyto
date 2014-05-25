@@ -28,5 +28,6 @@ Rails.application.routes.draw do
   post '/classrooms/update' => 'classrooms#update'
   post '/chapters/index' => 'chapters#index'
   post '/classrooms/text' => 'classrooms#update_text'
-  post '/classrooms/chat' => 'classrooms#chat'
+  post '/messages/index' => 'messages#index'
+  post '/messages/create' => 'messages#create'
 end
