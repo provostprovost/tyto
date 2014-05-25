@@ -37,7 +37,8 @@
 
 <button class="button tiny chatFixed">Chat</button>
 <div class="chatBox" style="display: none;">
-<div id="chatBox"></div>
+<div id="chatBox">
+</div>
 </div>
 
 <% content_for :javascript do %>
@@ -54,7 +55,7 @@
     StudentClassrooms.push(<%=classroom.id%>);
   <% end %>
 
-  React.renderComponent(window.ChatBox({classroomIds: StudentClassrooms}), document.getElementById('chatBox'));
+  React.renderComponent(window.ChatBox({username: "<%=@student.username%>", classroomIds: StudentClassrooms}), document.getElementById('chatBox'));
 <% end %>
 
   var $container = $('.isotope-container');

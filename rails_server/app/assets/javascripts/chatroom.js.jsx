@@ -6,9 +6,15 @@ $(document).ready(function() {
 
 
 });
+
+  var ws = new WebSocket("ws://fierce-tundra-6534.herokuapp.com/");
+  ws.onmessage = function(message) {
+    var data = JSON.parse(message.data);
+    React.
+  };
   window.ChatBox = React.createClass({
     getInitialState: function() {
-    return {classrooms: [], selectedIndex: 0};
+    return {classrooms: [], selectedIndex: 0, message: ''};
     },
     componentWillMount: function() {
       data = {classroom_ids: this.props.classroomIds};
@@ -28,6 +34,13 @@ $(document).ready(function() {
     handleChatChange: function(e){
       this.setState({selectedIndex: e.target.value});
     },
+    handleSubmit: function(e){
+      e.preventDefault();
+    },
+    handleMessageChange: function(e){
+      this.setState({message: e.target.value })
+      console.log(e.target.value)
+    },
     render: function() {
       var counter = -1;
       var classrooms = this.state.classrooms.map(function(classroom) {
@@ -43,15 +56,20 @@ $(document).ready(function() {
           );
         })};
       return (
-        <div>
+        <div className="reactChatBox">
           <div className="topChatBar row">
-              <div className="small-12 columns">
                 <select className="classroomList" onChange={this.handleChatChange}>
                   {classrooms}
                 </select>
-              </div>
           </div>
-          {messages}
+          <div className="chatMessages">
+            {messages}
+          </div>
+          <div className="chatInput row">
+            <form onSubmit={this.handleSubmit}>
+              <input type="text" placeholder="start chatting" value={this.state.message} onChange={this.handleMessageChange} />
+            </form>
+          </div>
         </div>
         );
     }

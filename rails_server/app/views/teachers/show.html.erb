@@ -130,7 +130,7 @@ window.studentsAll = [];
     TeacherClassrooms.push(<%=classroom.id%>);
   <% end %>
 
-  React.renderComponent(window.ChatBox({classroomIds: TeacherClassrooms}), document.getElementById('chatBox'));
+  React.renderComponent(window.ChatBox({username: "Teacher",classroomIds: TeacherClassrooms}), document.getElementById('chatBox'));
 <% end%>
 })();
 </script>
