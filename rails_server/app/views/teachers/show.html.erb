@@ -19,7 +19,7 @@
             <thead>
               <tr>
                 <th width="150">Student</th>
-                <th width="50">Text?</th>
+                <th width="50" data-tooltip class="has-tip" title="The parents of checked <br>students will be notified <br>when assignments are <br>created. <br><br>Selections are <br>automatically saved.">Text?</th>
                 <%if @assignments[classroom.id] != nil %>
                   <%@assignments[classroom.id].each do |assignment| %>
                     <th data-tooltip class="has-tip" title="<%=assignment.name%><br>
@@ -29,7 +29,6 @@
                           <%= question[1] %> student<% if question[1] != 1 %>s<% end %>: <%= question[0] %><br>
                         <% end %>
                       <% end %>">
-
                       <%=assignment.subname%><br><%=assignment.deadline.strftime("%-m/%e")%></th>
                   <%end%>
                 <%end%>
@@ -43,16 +42,23 @@
                   <td class="textCheckbox"><input class="checkbox1" type="checkbox" data-student=<%=student.id%> data-classroom=<%=classroom.id%><% if student.text %> checked<% end %>></td>
                 <% if @studenthomework[classroom.id][student.id] != nil %>
                 <%@studenthomework[classroom.id][student.id].each do |assignment| %>
-                  <%if Time.now < assignment.deadline  %>
-                    <td class="notLateAssignment prof-score"><%= (assignment.proficiency * 100).round %></td>
-                  <%elsif Time.now > assignment.deadline && assignment.complete == false  %>
-                    <td class="lateAssignment prof-score"><%= (assignment.proficiency * 100).round %></td>
-                  <%elsif assignment.complete == true && assignment.question_level <= 2 %>
-                   <td class="poorPerformance prof-score"><%= (assignment.proficiency * 100).round %></td>
-                  <%elsif assignment.complete == true && assignment.question_level > 2 %>
-                   <td class="goodPerformance prof-score"><%= (assignment.proficiency * 100).round %></td>
+                  <% if assignment.questions_answered == 0 %>
+                    <% @prof_value = '-' %>
                   <% else %>
-                   <td><%= (assignment.proficiency * 100).round %></td>
+                    <% @prof_value = (assignment.proficiency * 100).round %>
+                  <% end %>
+                  <%if Time.now < assignment.deadline  %>
+                    <td class="notLateAssignment prof-score"><%= @prof_value %></td>
+                  <%elsif Time.now > assignment.deadline && assignment.complete == false  %>
+                    <td class="lateAssignment prof-score"><%= @prof_value %></td>
+                  <%elsif assignment.complete == true && assignment.question_level <= 2 %>
+                   <td class="poorPerformance prof-score"><%= @prof_value %></td>
+                  <%elsif assignment.complete == true && assignment.question_level <= 3 %>
+                   <td class="goodPerformance prof-score"><%= @prof_value %></td>
+                  <%elsif assignment.complete == true && assignment.question_level > 3 %>
+                   <td class="excellentPerformance prof-score"><%= @prof_value %></td>
+                  <% else %>
+                   <td><%= @prof_value %></td>
                   <% end %>
                 <%end%>
                 <%end%>
@@ -66,6 +72,7 @@
       <%end%>
         <div class="content active" id="panelcreate">
           <form class="createClassroom">
+            <h5>Add a class:</h5>
           <div class="row">
             <div class="medium-3 columns">
               <input type="text" placeholder="Class Name" id="classroomName">
@@ -79,7 +86,7 @@
                 </select>
             </div>
             <div class="medium-2 columns">
-              <input type="submit" class="button postfix" value="Create" >
+              <input type="submit" class="button postfix radius" value="Create" >
             </div>
             <div class="medium-3 columns"></div>
           </div>

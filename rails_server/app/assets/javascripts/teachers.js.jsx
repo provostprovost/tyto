@@ -92,6 +92,16 @@ var AssignHomework = React.createClass({
             <option key={i} value={i}>{i}</option>
           );
         });
+        var date = new Date();
+
+        var day = date.getDate() + 1;
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var tomorrow = year + "-" + month + "-" + day;
         return (
         <div>
           <h5> Assign Homework </h5>
@@ -99,7 +109,7 @@ var AssignHomework = React.createClass({
             <div className="row">
               <div className="large-12 columns">
                   <select id="classroomChosen" onChange={this.handleClassroomChange}>
-                      <option value="" disabled selected>Select Classroom</option>
+                      <option value="" disabled selected>Select Class</option>
                       {classrooms}
                   </select>
               </div>
@@ -114,15 +124,15 @@ var AssignHomework = React.createClass({
             </div>
             <div className="row">
                 <div className="large-12 columns">
-                  <label>Deadline
-                    <input onChange={this.handleDeadlineChange} type="date" value={this.state.deadline}></input>
+                  <label>Due Date
+                    <input onChange={this.handleDeadlineChange} type="date" value={tomorrow}></input>
                   </label>
                 </div>
             </div>
             <div className="row">
               <div className="large-7 columns">
                   <label>Time
-                    <input onChange={this.handleTimeChange} type="time" value={this.state.time}></input>
+                    <input onChange={this.handleTimeChange} type="time" value="08:00"></input>
                   </label>
                 </div>
                 <div className="large-5 columns">
@@ -136,7 +146,7 @@ var AssignHomework = React.createClass({
             </div>
             <div className="row">
               <div className="large-12 columns">
-                <input type="submit" className="button small expand assign" value="Assign"> </input>
+                <input type="submit" className="button small radius expand assign" value="Assign"> </input>
               </div>
             </div>
           </form>
@@ -173,7 +183,6 @@ var StudentList = React.createClass({
   },
    handleSubmit: function() {
     if(this.state.students.length === 0){
-        console.log('Students list cannot be empty for this action')
     }
     else {
     data = {students: this.state.students, name: this.props.classroomName, teacher_id: this.props.teacherId, course_name: this.props.courseName};
@@ -191,7 +200,7 @@ var StudentList = React.createClass({
     })};
   },
   render: function() {
-    var message = 'No students have been added'
+    var message = 'No students have been added.'
     if (this.state.students.length > 0){
            var message = <p>Click on an email to remove from the list!</p>
             };
@@ -206,7 +215,7 @@ var StudentList = React.createClass({
       <div>
         <h3>{this.props.classroomName} </h3>
         <h5>{this.props.courseName} </h5>
-        <div><input type="text" placeholder="Parent Email:" value={this.state.emailField} onChange={this.onChange}></input><button className="button small" onClick={this.handleAdd}>Add Student</button>   <button className="button small" onClick={this.handleSubmit}>Finished adding?</button></div>
+        <div><input type="text" placeholder="Parent Email:" value={this.state.emailField} onChange={this.onChange}></input><button className="button radius small" onClick={this.handleAdd}>Add Student</button>   <button className="button small" onClick={this.handleSubmit}>Finished adding?</button></div>
         <ReactCSSTransitionGroup transitionName="example">
           <p>{message}</p>
           <div className="panel callout">
@@ -219,38 +228,39 @@ var StudentList = React.createClass({
 });
 
 var StudentRow = React.createClass({
-    render: function() {
-        var name = <span>{this.props.Student.name}</span>;
-        return (
-            <tr>
-                <td>{name}</td>
-                <td><a href={this.props.Student.Email}>Email</a></td>
-                <td><a href="#">Text</a></td>
-            </tr>
-        );
-    }
+  render: function() {
+    var name = <span>{this.props.Student.name}</span>;
+    var email = "mailto:" + this.props.Student.email;
+    return (
+        <tr>
+            <td>{name}</td>
+            <td><a href={email}>Email</a></td>
+            <td><a href="#">Text</a></td>
+        </tr>
+    );
+  }
 });
 
 var StudentTable = React.createClass({
-    render: function() {
-        var rows = [];
-        var lastclassroom = null;
-        this.props.students.forEach(function(Student) {
-            if (Student.name.indexOf(this.props.filterText) === -1 || (!Student.struggling && this.props.strugglingOnly)) {
-                return;
-            }
-            if (Student.classroom !== lastclassroom) {
-                rows.push(<classroomRow classroom={Student.classroom} key={Student.classroom} />);
-            }
-            rows.push(<StudentRow Student={Student} key={Student.id} />);
-            lastclassroom = Student.classroom;
-        }.bind(this));
-        return (
-            <table className="studentTable">
-                <tbody>{rows}</tbody>
-            </table>
-        );
-    }
+  render: function() {
+    var rows = [];
+    var lastclassroom = null;
+    this.props.students.forEach(function(Student) {
+        if (Student.name.indexOf(this.props.filterText) === -1 || (!Student.struggling && this.props.strugglingOnly)) {
+            return;
+        }
+        if (Student.classroom !== lastclassroom) {
+            rows.push(<classroomRow classroom={Student.classroom} key={Student.classroom} />);
+        }
+        rows.push(<StudentRow Student={Student} key={Student.id} />);
+        lastclassroom = Student.classroom;
+    }.bind(this));
+    return (
+        <table className="studentTable">
+            <tbody>{rows}</tbody>
+        </table>
+    );
+  }
 });
 
 function toTitleCase(str)

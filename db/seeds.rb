@@ -108,9 +108,15 @@ Tyto.db.add_student_to_classroom(classroom_id: classroom2.id,
                                  student_id: student1.id)
 Tyto.db.add_student_to_classroom(classroom_id: classroom2.id,
                                  student_id: student2.id)
+Tyto.db.add_student_to_classroom(classroom_id: classroom2.id,
+                                 student_id: student3.id)
 
 Tyto.db.add_student_to_classroom(classroom_id: classroom3.id,
                                  student_id: student1.id)
+Tyto.db.add_student_to_classroom(classroom_id: classroom3.id,
+                                 student_id: student2.id)
+Tyto.db.add_student_to_classroom(classroom_id: classroom3.id,
+                                 student_id: student3.id)
 
 other_chapter = Tyto.db.create_chapter(course_id: other_course.id, name: "The Alamo")
 another_chapter = Tyto.db.create_chapter(course_id: another_course.id, name: "Gerunds")
