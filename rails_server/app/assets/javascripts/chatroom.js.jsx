@@ -12,26 +12,16 @@ var ws = new WebSocket("ws://fierce-tundra-6534.herokuapp.com/");
 ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
   classrooms = [];
-  ChattingBox.state.classrooms.forEach(function(classroom){
+  ChattingBox.state.classrooms.forEach(function(classroom, index){
     if(classroom.id===data.classroom_id){
       classroom.chat.push(data);
     }
     classrooms.push(classroom);
+    console.log(index);
   });
   ChattingBox.setState({classrooms: classrooms});
   messaging = $('.chatMessages');
   messaging.scrollTop(messaging.prop("scrollHeight"));
-  $.ajax({
-    url: '/messages/create',
-    dataType: 'json',
-    type: 'POST',
-    data: data,
-    success: function(data) {
-    }.bind(this),
-    error: function(xhr, status, err) {
-      console.error(this.props.url, status, err.toString());
-    }.bind(this)
-  });
 };
 
 window.ChatBox = React.createClass({
@@ -65,8 +55,21 @@ window.ChatBox = React.createClass({
     var message   = this.state.message;
     var classroom_id = this.state.classrooms[this.state.selectedIndex].id;
     var struggling = this.props.struggling;
-    ws.send(JSON.stringify({username: username, message: message, classroom_id: classroom_id, struggling: struggling}));
+    var object = {username: username, message: message, classroom_id: classroom_id, struggling: struggling}
+    ws.send(JSON.stringify(object));
     this.setState({message: ''});
+    $.ajax({
+      url: '/messages/create',
+      dataType: 'json',
+      type: 'POST',
+      data: object,
+      success: function(data) {
+      console.log(data)
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
   },
   handleMessageChange: function(e){
     this.setState({message: e.target.value })
