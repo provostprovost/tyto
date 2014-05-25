@@ -2,10 +2,10 @@
   <div class="row intro-home-row full-width">
     <div class="small-12 large-6 small-centered title-column columns">
       <h1 class="white-text"><strong>Welcome to Tyto!</strong></h1>
-      <p class="intro white-text">A classroom assignment management app for creating, assigning and completing classwork and homework.</p>
+      <p class="intro white-text">A classroom assignment management app for creating, assigning and completing personalized classwork and homework.</p>
     </div>
-    <div class="small-12 small-centered home-column columns inner-intro">
-      <div class="small-12 large-5 columns intro-container">
+    <div class="small-12 small-centered columns inner-intro" data-equalizer>
+      <div class="small-12 large-5 columns intro-container" data-equalizer-watch>
         <h4 class="black-text">Teachers:</h4>
         <p class="black-text">Assign classwork to students, monitor their proficiency in subjects and discuss difficult problems. Try it out!</p>
         <%= form_tag('/sessions', method: 'post') do %>
@@ -15,7 +15,7 @@
           <%= submit_tag "Teacher Demo", class: "button radius success" %>
         <% end %>
       </div>
-      <div class="small-12 large-5 columns intro-container">
+      <div class="small-12 large-5 columns intro-container" data-equalizer-watch>
         <h4 class="black-text">Students:</h4>
         <p class="black-text">View and work on your assignments and discuss problems with your teachers and classmates. Give it a shot!</p>
         <%= form_tag('/sessions', method: 'post') do %>
