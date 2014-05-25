@@ -1,10 +1,10 @@
 /** @jsx React.DOM */
 $(document).ready(function() {
-  $('.chatFixed').click(function() {
+  $('.chatClick').click(function() {
     $('.chatBox').slideToggle("fast");
     messaging = $('.chatMessages');
     messaging.scrollTop(messaging.prop("scrollHeight"));
-    $(".chatFixed").css("background-color","#2ba6cb");
+    $(".chatClick").css("background-color","#2ba6cb");
   });
 });
 
@@ -14,7 +14,7 @@ ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
   classrooms = [];
   if($('.chatBox').css('display') == 'none'){
-    $(".chatFixed").css("background-color","#80bd41");
+    $(".chatClick").css("background-color","#80bd41");
   }
   ChattingBox.state.classrooms.forEach(function(classroom, index){
     if(classroom.id===data.classroom_id){
