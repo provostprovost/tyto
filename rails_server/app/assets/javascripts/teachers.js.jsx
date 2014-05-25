@@ -192,10 +192,6 @@ var StudentList = React.createClass({
     })};
   },
   render: function() {
-    var message = 'No students have been added.'
-    if (this.state.students.length > 0){
-           var message = <p>Click on an email to remove from the list!</p>
-            };
     var students = this.state.students.map(function(student, i) {
       return (
         <div key={student} onClick={this.handleRemove.bind(this, i)}>
@@ -209,7 +205,6 @@ var StudentList = React.createClass({
         <h5>{this.props.courseName} </h5>
         <div><input type="text" placeholder="Parent Email:" value={this.state.emailField} onChange={this.onChange}></input><button className="button radius small" onClick={this.handleAdd}>Add Student</button>   <button className="button small" onClick={this.handleSubmit}>Finished adding?</button></div>
         <ReactCSSTransitionGroup transitionName="example">
-          <p>{message}</p>
           <div className="panel callout">
           {students}
           </div>
