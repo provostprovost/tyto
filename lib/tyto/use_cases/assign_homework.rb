@@ -1,6 +1,8 @@
 require 'chronic'
 require 'dotenv'
 require 'twilio-ruby'
+Dotenv.load
+
 module Tyto
   class AssignHomework < UseCase
     def run(inputs)
@@ -29,13 +31,14 @@ module Tyto
      students_texted = Tyto.db.get_classroom_students_to_be_texted(classroom.id)
      @twilio_number = '5122706595'
      students_texted.each do |student|
+
       if deadline != nil
         @client = Twilio::REST::Client.new ENV['account_sid'], ENV['auth_token']
         @client.account.sms.messages.create(
           :from => @twilio_number,
           :to => student.phone_number,
-          :body => "Assigned homework for #{student.username}. #{inputs[:assignment_size]} problems from #{chapter.name} due by #{inputs[:day] + " " + inputs[:time]}")
-      end
+          :body => "New homework for #{student.username}. #{inputs[:assignment_size]} problems from #{chapter.name} due by #{inputs[:day]} at #{inputs[:time]}.")
+       end
      end
      success :assignments => assignments, :classroom => classroom, :chapter => chapter
    end
