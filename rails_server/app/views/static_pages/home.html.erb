@@ -1,8 +1,8 @@
 <div class="home-container">
   <div class="row intro-home-row full-width">
-    <div class="small-12 large-6 small-centered columns">
+    <div class="small-12 large-6 small-centered title-column columns">
       <h1 class="white-text"><strong>Welcome to Tyto!</strong></h1>
-      <p class="white-text">A classroom assignment management app for creating, assigning and completing classwork and homework.</p>
+      <p class="intro white-text">A classroom assignment management app for creating, assigning and completing classwork and homework.</p>
     </div>
     <div class="small-12 small-centered home-column columns inner-intro">
       <div class="small-12 large-5 columns intro-container">
@@ -17,7 +17,7 @@
       </div>
       <div class="small-12 large-5 columns intro-container">
         <h4 class="black-text">Students:</h4>
-        <p class="black-text"></p>
+        <p class="black-text">View and work on your assignments and discuss problems with your teachers and classmates. Give it a shot!</p>
         <%= form_tag('/sessions', method: 'post') do %>
           <%= hidden_field_tag(:email, 'demo@student.com') %>
           <%= hidden_field_tag(:password, 'password1') %>

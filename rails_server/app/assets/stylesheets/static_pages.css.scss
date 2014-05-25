@@ -15,7 +15,11 @@
   max-width: initial;
   border-bottom: 1px solid #ddd;
   padding: 8em;
-  @media only screen and (max-width: 40em) { padding: 0.5em }
+  @media only screen and (max-width: 40em) { padding: 1.5em }
+}
+
+.title-column {
+  max-width: 28em;
 }
 
 .intro-home-row {
@@ -26,6 +30,18 @@
 .white-text {
   color: #fff;
   text-shadow: rgba(0, 0, 0, 0.5) 0 1px 1px;
+}
+
+h1.white-text{
+  font-size: 5em;
+  line-height: .9em;
+  padding-bottom: 0.5em;
+  text-shadow: rgba(0, 0, 0, 0.5) 0 2px 2px;
+}
+
+.intro.white-text {
+  font-size: 1.5em;
+  line-height: 1.2em;
 }
 
 .black-text {
