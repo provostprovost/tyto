@@ -3,9 +3,17 @@
   font-family: "Roboto Slab", "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
   bottom: 1em;
   right: 1em;
-  width: 11.250em;
   background-color: #2ba6cb;
   margin: 0;
+  width: 11.250em;
+}
+
+.fixed-bottom-row {
+  position:fixed;
+  bottom: 0em;
+  background-image: image-url('bg.png');
+  border-top: 1px solid #ddd;
+  padding-top: 1em;
 }
 
 .teacherChat {
