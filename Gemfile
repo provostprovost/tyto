@@ -10,9 +10,9 @@ gem 'rspec', '~> 2.14.1'
 gem 'pry-debugger', '~>0.2.2'
 
 # Database
+gem 'dotenv'
 gem 'pg'
 gem 'activerecord', '~> 4.1.0'
 gem 'active_record_tasks', '~> 1.0.3'
 gem 'chronic'
-gem 'dotenv'
 gem 'twilio-ruby'
