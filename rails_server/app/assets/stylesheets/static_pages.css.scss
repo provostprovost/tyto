@@ -3,22 +3,50 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .home-container {
-  text-align: center;
   margin: 0 auto;
   padding: 0;
 }
 
-.intro-row {
-  background-color: #f8f8f8;
-  border-bottom: #ddd;
+.full-width {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: initial;
+  border-bottom: 1px solid #ddd;
+  padding: 8em;
+  @media only screen and (max-width: 40em) { padding: 0.5em }
 }
 
-.teacher-row {
+.intro-home-row {
   background-color: #f8f8f8;
-  border-bottom: #ddd;
+  text-align: center;
 }
 
-.student-row {
+.teacher-home-row {
+  background-color: #FFF;
+}
+
+.student-home-row {
+  background-color: #f8f8f8;
+}
+
+.parent-home-row {
   background-color: #fff;
-  border-bottom: #ddd;
+  text-align: center;
+}
+
+.home-column {
+  max-width: 960px;
+}
+
+.inner-intro {
+  margin-top: 3em;
+}
+
+.intro-container {
+  background-color: #fff;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  padding: 2em;
+  margin-bottom: 2em;
 }
