@@ -675,6 +675,11 @@ module Tyto
         student
       end
 
+      def delete_student_from_classroom(student_id, classroom_id)
+        ClassroomsUsers.where(:classroom_id => classroom_id, student_id: student_id).destroy_all
+        Assignment.where(:classroom_id => classroom_id, student_id: student_id).destroy_all
+      end
+
       def get_student(id, classroom_id=nil)
         student = Student.find_by(id: id)
         return nil if student == nil
