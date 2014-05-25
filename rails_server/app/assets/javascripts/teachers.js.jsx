@@ -9,11 +9,16 @@ $(document).ready(function()
         courseName = $('#courseName').val();
         React.renderComponent(<StudentList classroomName = {classroom} teacherId = {teacherId} courseName = {courseName} />, document.getElementById('panelcreate'));
     });
+    $('.classroomEditList').on('click', function(){
+      teacherId = $('#teacherId').val();
+      classroom = this.dataset.name;
+      courseName = this.dataset.course;
+      id = this.dataset.id;
+      React.renderComponent(<StudentList classroomName = {classroom} teacherId = {teacherId} courseName = {courseName} edit = {true} id = {id} />, document.getElementById('panelcreate'));
+    });
     $(".checkbox1").on('click', function(){
       data={student_id: this.dataset.student, text: this.checked, classroom_id: this.dataset.classroom};
-      console.log(data);
       $.post("/classrooms/text", data, function(data){
-        console.log(data);
       })
     });
   }
@@ -165,6 +170,23 @@ var StudentList = React.createClass({
     this.setState({students: newstudents});
     this.setState({emailField: ''});
   },
+  componentWillMount: function() {
+    if(this.props.edit===true){
+    object = {classroom_id: this.props.id};
+    $.ajax({
+      url: '/classrooms/students',
+      dataType: 'json',
+      type: 'POST',
+      data: object,
+      success: function(data) {
+        this.setState({students: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+   }
+  },
   handleRemove: function(i) {
     var newstudents = this.state.students;
     newstudents.splice(i, 1);
@@ -177,7 +199,7 @@ var StudentList = React.createClass({
     if(this.state.students.length === 0){
     }
     else {
-    data = {students: this.state.students, name: this.props.classroomName, teacher_id: this.props.teacherId, course_name: this.props.courseName};
+    data = {students: this.state.students, name: this.props.classroomName, teacher_id: this.props.teacherId, course_name: this.props.courseName, id: this.props.id};
     $.ajax({
       url: '/classrooms/create',
       dataType: 'json',
@@ -192,14 +214,10 @@ var StudentList = React.createClass({
     })};
   },
   render: function() {
-    var message = 'No students have been added.'
-    if (this.state.students.length > 0){
-           var message = <p>Click on an email to remove from the list!</p>
-            };
     var students = this.state.students.map(function(student, i) {
       return (
         <div key={student} onClick={this.handleRemove.bind(this, i)}>
-          {student}
+          <i className="fa fa-minus-circle"></i> {student} <br></br><br></br>
         </div>
       );
     }.bind(this));
@@ -209,7 +227,6 @@ var StudentList = React.createClass({
         <h5>{this.props.courseName} </h5>
         <div><input type="text" placeholder="Parent Email:" value={this.state.emailField} onChange={this.onChange}></input><button className="button radius small" onClick={this.handleAdd}>Add Student</button>   <button className="button small" onClick={this.handleSubmit}>Finished adding?</button></div>
         <ReactCSSTransitionGroup transitionName="example">
-          <p>{message}</p>
           <div className="panel callout">
           {students}
           </div>

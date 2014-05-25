@@ -101,17 +101,18 @@ window.ChatBox = React.createClass({
       counter = counter + 1;
       if(index === ChattingBox.state.selectedIndex){
         return (
-          <option value selected={counter}>{classroom.name}</option>);
+          <option key={counter} value selected={counter}>{classroom.name}</option>);
       }
       else {
         return(
-          <option value={counter}>{classroom.name}</option>);
+          <option key={counter} value={counter}>{classroom.name}</option>);
       }
     });
     if(this.state.classrooms.length > 0){
       var messages = this.state.classrooms[this.state.selectedIndex].chat.map(function(message) {
+         counter = counter + 1;
         return (
-          <p>{message.username}: {message.message}</p>
+          <p key={counter}>{message.username}: {message.message}</p>
         );
       })};
     return (
