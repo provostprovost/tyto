@@ -10,7 +10,6 @@ $(document).ready(function() {
   var ws = new WebSocket("ws://fierce-tundra-6534.herokuapp.com/");
   ws.onmessage = function(message) {
     var data = JSON.parse(message.data);
-    React.
   };
   window.ChatBox = React.createClass({
     getInitialState: function() {

@@ -1,5 +1,4 @@
 require 'sinatra/base'
-require 'json'
 
 module TytoChat
   class App < Sinatra::Base

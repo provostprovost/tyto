@@ -1,6 +1,6 @@
 <form id="input-form">
-  <input id="handle" type="text" />
-  <input id="text" type="text" />
+  <input id="username" type="text" />
+  <input id="message" type="text" />
   <input type="submit">
 </form>
 
@@ -11,16 +11,22 @@ var scheme   = "ws://";
 var uri      = scheme + window.document.location.host + "/";
 var ws       = new WebSocket(uri);
 
-u
+ws.onmessage = function(message) {
+  var data = JSON.parse(message.data);
+  $("#chat-text").append("<div>" + data.username + ": " + data.message + "</div>");
+  $("#chat-text").stop().animate({
+    scrollTop: $('#chat-text')[0].scrollHeight
+  }, 800);
+};
 
 $("#input-form").on("submit", function(event) {
   event.preventDefault();
-  var handle = $("#handle").val();
-  var text   = $("#text").val();
-  console.log(handle);
-  console.log(text);
-  ws.send(JSON.stringify({ handle: handle, text: text }));
-  $("#text").value = "";
+  var username = $("#username").val();
+  var message   = $("#message").val();
+  console.log(username);
+  console.log(message);
+  ws.send(JSON.stringify({ username: username, message: message }));
+  $("#message").value = "";
 });
 
 </script>
