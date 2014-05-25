@@ -12,7 +12,20 @@ module Tyto
       classroom_id = invite.classroom_id
       classroom_user = Tyto.db.add_student_to_classroom(student_id: student_id,
                                                         classroom_id: classroom_id
-                                                                        )
+                                                  )
+      students = Tyto.db.get_students_in_classroom(classroom_id)
+      assignments = Tyto.db.get_assignments_for_classroom(classroom_id, students.first.id) if students != nil
+      if assignments != nil
+        assignments.each do |assignment|
+          Tyto.db.create_assignment(student_id: student.id,
+                                          chapter_id: assignment.chapter_id,
+                                          classroom_id: classroom_id,
+                                          teacher_id: assignment.teacher_id,
+                                          assignment_size: assignment.assignment_size,
+                                          deadline: assignment.deadline
+            )
+        end
+      end
       success :classroom_user => classroom_user, :invite => invite
 
    end

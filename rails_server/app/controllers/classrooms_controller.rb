@@ -27,9 +27,9 @@ class ClassroomsController < ApplicationController
       edited = params[:students]
       current.each do |current_student|
         edited.each do |edited_student|
-          if current_student.email.downcase == edited_student.downcase
-            current.delete(current_student)
-            edited.delete(edited_student)
+          if current_student.email == edited_student
+             current.delete(current_student)
+             edited.delete(edited_student)
           end
         end
       end
@@ -39,11 +39,9 @@ class ClassroomsController < ApplicationController
         end
       end
       if edited != []
-        edited.each do |email|
-          params[:students] = edited
-          binding.pry
-          @invites = Tyto::AddStudentsToClass.run(params).invites
-        end
+        params[:students] = edited
+        params[:classroom_id] = params[:id]
+        @invites = Tyto::AddStudentsToClass.run(params).invites
       end
     end
     render json: @invites
