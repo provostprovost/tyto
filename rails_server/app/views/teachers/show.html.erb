@@ -4,32 +4,32 @@
     <dl class="sub-nav" data-tab>
       <% if @classrooms != nil %>
         <%@classrooms.each do |classroom| %>
-          <dd><a href="#panel<%=classroom.id%>"><%=classroom.name%></a></dd>
+          <dd<% if classroom == @classrooms.first %> class="active"<% end %>><a href="#panel<%=classroom.id%>"><%=classroom.name%></a></dd>
         <%end%>
       <%end%>
-      <dd class="active"><a href="#panelcreate"><i class="fa fa-plus"></i></a></dd>
+      <dd><a href="#panelcreate"><i class="fa fa-plus"></i></a></dd>
     </dl>
 
     <div class="tabs-content table">
       <% if @classrooms != nil %>
       <%@classrooms.each do |classroom| %>
-        <div class="content" id="panel<%=classroom.id%>">
+        <div class="content<% if classroom == @classrooms.first %> active<% end %>" id="panel<%=classroom.id%>">
           <h5> <%=@classroom_course[classroom.course_id].name%></h5>
           <table class="classroomTable">
             <thead>
               <tr>
-                <th width="150">Student</th>
+                <th width="150" class="student-name">Student</th>
                 <th width="50" data-tooltip class="has-tip" title="The parents of checked <br>students will be notified <br>when assignments are <br>created. <br><br>Selections are <br>automatically saved.">Text?</th>
                 <%if @assignments[classroom.id] != nil %>
                   <%@assignments[classroom.id].each do |assignment| %>
-                    <th data-tooltip class="has-tip" title="<%=assignment.name%><br>
+                    <th data-tooltip class="has-tip assignment-table-header" title="<%=assignment.name%><br>
                       <% if @difficult_questions[assignment.id] != [] %>
                         <br>Difficult Questions:<br><br>
                         <% @difficult_questions[assignment.id].each do |question| %>
                           <%= question[1] %> student<% if question[1] != 1 %>s<% end %>: <%= question[0] %><br>
                         <% end %>
                       <% end %>">
-                      <%=assignment.subname%><br><%=assignment.deadline.strftime("%-m/%e")%></th>
+                    <%=assignment.subname%><br><%=assignment.deadline.strftime("%-m/%e").gsub(" ","")%></th>
                   <%end%>
                 <%end%>
               </tr>
@@ -70,7 +70,7 @@
         </div>
       <%end%>
       <%end%>
-        <div class="content active" id="panelcreate">
+        <div class="content" id="panelcreate">
           <form class="createClassroom">
             <h5>Add a class:</h5>
           <div class="row">

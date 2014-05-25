@@ -17,7 +17,7 @@
   border: 0.063em solid #DDD;
   text-align: center;
   height: 29.8em;
-  // overflow-y: scroll;
+  overflow-y: scroll;
   padding: 2em;
 }
 
@@ -30,6 +30,14 @@
 
 .classroomTable {
   border-collapse: collapse;
+  width: 100%;
+  overflow-x: scroll;
+  display: block;
+}
+
+.student-name {
+  min-width: 12em;
+  max-width: 12em;
 }
 
 .prof-score {
@@ -37,7 +45,7 @@
 }
 
 .table {
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 th.header {
@@ -62,7 +70,7 @@ th.headerSortUp {
 }
 
 .notLateAssignment {
-  background-color: white;
+  // background-color: white;
 }
 
 .lateAssignment {
