@@ -1,22 +1,23 @@
 /** @jsx React.DOM */
 $(document).ready(function()
-    {
-        $(".classroomTable").tablesorter();
-        $("form.createClassroom").on('submit', function(e){
-            e.preventDefault();
-            classroom = $('#classroomName').val();
-            teacherId = $('#teacherId').val();
-            courseName = $('#courseName').val();
-            React.renderComponent(<StudentList classroomName = {classroom} teacherId = {teacherId} courseName = {courseName} />, document.getElementById('panelcreate'));
-        });
-        $(".checkbox1").on('click', function(){
-          data={student_id: this.dataset.student, text: this.checked, classroom_id: this.dataset.classroom};
-          console.log(data);
-          $.post("/classrooms/text", data, function(data){
-            console.log(data);
-          })
-        });
-});
+  {
+    $(".classroomTable").tablesorter();
+    $("form.createClassroom").on('submit', function(e){
+        e.preventDefault();
+        classroom = $('#classroomName').val();
+        teacherId = $('#teacherId').val();
+        courseName = $('#courseName').val();
+        React.renderComponent(<StudentList classroomName = {classroom} teacherId = {teacherId} courseName = {courseName} />, document.getElementById('panelcreate'));
+    });
+    $(".checkbox1").on('click', function(){
+      data={student_id: this.dataset.student, text: this.checked, classroom_id: this.dataset.classroom};
+      console.log(data);
+      $.post("/classrooms/text", data, function(data){
+        console.log(data);
+      })
+    });
+  }
+);
 
 var AssignHomework = React.createClass({
     getInitialState: function() {
