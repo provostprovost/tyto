@@ -1,26 +1,26 @@
 .chatFixed {
   position:fixed;
   font-family: "Roboto Slab", "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-  bottom: 0.313em;
-  right: 0.313em;
-  border-radius: 0.313em;
+  bottom: 1em;
+  right: 1em;
   width: 11.250em;
   background-color: #2ba6cb;
-  text-align: center;
+  margin: 0;
 }
 
 .teacherChat {
-  left: 0.313em;
+  left: 1em;
 }
 
 .chatBox {
   bottom: 3.688em;
   right: 0.313em;
+  padding: 1em;
   position: fixed;
-  width: 15.625em;
+  width: 20em;
   height: 25.000em;
-   background-image: image-url('bg.png');
-  border: 0.063em solid black;
+  background-image: image-url('bg.png');
+  border: 1px solid #ccc;
 }
 
 #chatBox {
@@ -29,12 +29,12 @@
 }
 
 .teacherChatBox {
-  left: 0.313em;
+  left: .75em;
 }
 
 .topChatBar{
   height: 9.5%;
-  border-bottom: 0.063em solid black;
+  border-bottom: 1px solid #ccc;
 }
 
 .reactChatBox {

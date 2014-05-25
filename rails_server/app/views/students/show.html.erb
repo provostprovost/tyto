@@ -4,7 +4,6 @@
 <div class="body-container">
   <div class="assignment-row row">
     <h1>Assignments</h1>
-    <!-- <hr /> -->
     <div class="small-12 columns">
       <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3 isotope-container" data-equalizer-watch>
         <% @assignments.each do |assignment| %>
@@ -35,10 +34,9 @@
   </div>
 </div>
 
-<button class="button tiny chatFixed">Chat</button>
+<button class="button tiny radius chatFixed">Chat</button>
 <div class="chatBox" style="display: none;">
-<div id="chatBox">
-</div>
+  <div id="chatBox"></div>
 </div>
 
 <% content_for :javascript do %>
@@ -49,13 +47,13 @@
 
   React.renderComponent(window.ClassroomList( {url:url="/classrooms"} ), document.getElementById('filters-header'));
 
-<% if @classrooms != nil %>
-  var StudentClassrooms = [];
+<% if @classrooms %>
+  var studentClassrooms = [];
   <% @classrooms.each do |classroom| %>
-    StudentClassrooms.push(<%=classroom.id%>);
+    studentClassrooms.push(<%=classroom.id%>);
   <% end %>
 
-  window.ChattingBox = React.renderComponent(window.ChatBox({username: "<%=@student.username%>", classroomIds: StudentClassrooms}), document.getElementById('chatBox'));
+  window.ChattingBox = React.renderComponent(window.ChatBox({username: "<%=@student.username%>", classroomIds: studentClassrooms}), document.getElementById('chatBox'));
 <% end %>
 
   var $container = $('.isotope-container');
