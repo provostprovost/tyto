@@ -21,9 +21,13 @@ All of a teacher's functions are performed from their dashboard. They can:
 Tech
 ----
 Server-side: Ruby on Rails, Puma with Faye Websockets, PostgreSQL with ActiveRecord, bcrypt
+
 Client-side: ReactJS, Isotope.js, jQuery, Zurb Foundation
+
 APIs: Twilio, Embedly
+
 Testing: RSpec
+
 Deployment: DigitalOcean, Heroku
 
 Entities
@@ -42,4 +46,4 @@ Entities
 
 Tyto?
 -----
-The genus Tyto includes all barn owls (family Tytonidae) except for the bay owls (subfamily Phodilinae, genus Phodilus) - that is, the true barn owls, the grass owls and the masked owls collectively making up the subfamily Tytoninae. Credit for the name goes to Ifu Aniemeka.
+Tyto is the genus name for barn owls. Credit for the name goes to Ifu Aniemeka.

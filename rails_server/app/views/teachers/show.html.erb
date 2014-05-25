@@ -105,15 +105,15 @@
   </div>
 </div>
 
-<button class="button tiny chatFixed teacherChat">Chat</button>
+<button class="button tiny radius chatFixed teacherChat">Chat</button>
 <div class="chatBox teacherChatBox" style="display: none;">
-<div id="chatBox"></div>
+  <div id="chatBox"></div>
 </div>
 
 <% content_for :javascript do %>
 <script type="text/javascript">
 (function () {
-<% if @classrooms != nil %>
+<% if @classrooms %>
 window.classroomsAll = []
 <%@classrooms.each do |classroom| %>
   classroomsAll.push("<%=classroom.name%>")
@@ -132,12 +132,12 @@ window.studentsAll = [];
 
  React.renderComponent(AssignHomework( {classrooms:window.classroomsAll} ), document.getElementById('assign'));
  React.renderComponent(FilterableStudentTable( {students:window.studentsAll} ), document.getElementById('search'));
- var TeacherClassrooms = [];
+ var teacherClassrooms = [];
   <% @classrooms.each do |classroom| %>
-    TeacherClassrooms.push(<%=classroom.id%>);
+    teacherClassrooms.push(<%=classroom.id%>);
   <% end %>
 
-  window.ChattingBox = React.renderComponent(window.ChatBox({username: "Teacher",classroomIds: TeacherClassrooms}), document.getElementById('chatBox'));
+  window.ChattingBox = React.renderComponent(window.ChatBox({username: "Teacher",classroomIds: teacherClassrooms}), document.getElementById('chatBox'));
 <% end%>
 })();
 </script>
