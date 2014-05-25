@@ -14,16 +14,21 @@ module Tyto
                                                         classroom_id: classroom_id
                                                   )
       students = Tyto.db.get_students_in_classroom(classroom_id)
+      assignments = nil
       assignments = Tyto.db.get_assignments_for_classroom(classroom_id, students.first.id) if students != nil
       if assignments != nil
         assignments.each do |assignment|
-          Tyto.db.create_assignment(student_id: student.id,
+          assignment = Tyto.db.create_assignment(student_id: student_id,
                                           chapter_id: assignment.chapter_id,
-                                          classroom_id: classroom_id,
+                                          classroom_id: assignment.classroom_id,
                                           teacher_id: assignment.teacher_id,
                                           assignment_size: assignment.assignment_size,
                                           deadline: assignment.deadline
             )
+        question = Tyto.db.get_next_question(0, student_id, assignment.chapter_id)
+        Tyto.db.update_last_question(question_id: question.id,
+                              student_id: student_id,
+                              assignment_id: assignment.id)
         end
       end
       success :classroom_user => classroom_user, :invite => invite
