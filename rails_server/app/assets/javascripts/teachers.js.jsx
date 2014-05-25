@@ -199,7 +199,7 @@ var StudentList = React.createClass({
     var students = this.state.students.map(function(student, i) {
       return (
         <div key={student} onClick={this.handleRemove.bind(this, i)}>
-          {student}
+          <i className="fa fa-minus-circle"></i> {student}
         </div>
       );
     }.bind(this));
