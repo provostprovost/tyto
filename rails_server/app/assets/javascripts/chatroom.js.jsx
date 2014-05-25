@@ -14,7 +14,7 @@ ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
   classrooms = [];
   if($('.chatBox').css('display') == 'none'){
-    $(".chatFixed").css("background-color","green");
+    $(".chatFixed").css("background-color","#80bd41");
   }
   ChattingBox.state.classrooms.forEach(function(classroom, index){
     if(classroom.id===data.classroom_id){
