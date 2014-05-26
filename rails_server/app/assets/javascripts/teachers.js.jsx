@@ -326,7 +326,7 @@ var FilterableStudentTable = React.createClass({
 
     render: function() {
         return (
-            <div>
+            <div class="search-container">
                 <SearchBar
                     filterText={this.state.filterText}
                     strugglingOnly={this.state.strugglingOnly}

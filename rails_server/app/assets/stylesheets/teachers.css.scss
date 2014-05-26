@@ -17,7 +17,7 @@
   border: 0.063em solid #DDD;
   text-align: center;
   height: 29.8em;
-  overflow-y: scroll;
+  overflow-y: hidden;
   padding: 2em;
 }
 
@@ -33,6 +33,8 @@
   width: 100%;
   overflow-x: scroll;
   display: block;
+  max-height: 50.65em;
+  overflow-y: scroll;
 }
 
 .student-name {
@@ -45,7 +47,7 @@
 }
 
 .table {
-  overflow-y: scroll;
+  // overflow-y: scroll;
 }
 
 th.header {
@@ -123,10 +125,6 @@ th.headerSortUp {
   overflow-y: scroll;
   display: block;
   height: 19em;
-}
-
-.searchFixed {
-
 }
 
 #tabs {
