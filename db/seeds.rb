@@ -1,6 +1,5 @@
 require 'chronic'
 Tyto.db.clear_everything
-
 teacher1 = Tyto.db.create_teacher(username: "Demo Teacher",
                               password: "password1",
                               email: "demo@teacher.com",
