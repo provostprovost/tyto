@@ -51,15 +51,14 @@
   React.renderComponent(window.InviteList( {url:"/invites"} ), document.getElementById('invite-container'));
 
   React.renderComponent(window.ClassroomList( {url:url="/classrooms"} ), document.getElementById('filters-header'));
-
+var studentClassrooms = [];
 <% if @classrooms %>
-  var studentClassrooms = [];
   <% @classrooms.each do |classroom| %>
     studentClassrooms.push(<%=classroom.id%>);
   <% end %>
-
-  window.ChattingBox = React.renderComponent(window.ChatBox({username: "<%=@student.username%>", id: <%=@student.id%>, classroomIds: studentClassrooms}), document.getElementById('chatBox'));
 <% end %>
+  window.ChattingBox = React.renderComponent(window.ChatBox({username: "<%=@student.username%>", id: <%=@student.id%>, classroomIds: studentClassrooms}), document.getElementById('chatBox'));
+
 
   var $container = $('.isotope-container');
 

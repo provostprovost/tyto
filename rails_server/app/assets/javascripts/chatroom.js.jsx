@@ -16,11 +16,11 @@ var ws = new WebSocket("ws://fierce-tundra-6534.herokuapp.com/");
 ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
   classrooms = [];
-  if($('.chatBox').css('display') == 'none'){
-    $(".chatClick").css("background-color","#80bd41");
-  }
   ChattingBox.state.classrooms.forEach(function(classroom, index){
     if(classroom.id===data.classroom_id){
+      if($('.chatBox').css('display') == 'none'){
+        $(".chatClick").css("background-color","#80bd41");
+      }
       classroom.chat.push(data);
       ChattingBox.setState({selectedIndex: index});
     }
@@ -36,34 +36,38 @@ window.ChatBox = React.createClass({
   return {classrooms: [], selectedIndex: 0, message: ''};
   },
   componentWillMount: function() {
-    data = {classroom_ids: this.props.classroomIds};
-    $.ajax({
-      url: '/messages/index',
-      dataType: 'json',
-      type: 'POST',
-      data: data,
-      success: function(data) {
-        this.setState({classrooms: data});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
+    if(this.props.classroomIds.length > 0){
+      data = {classroom_ids: this.props.classroomIds};
+      $.ajax({
+        url: '/messages/index',
+        dataType: 'json',
+        type: 'POST',
+        data: data,
+        success: function(data) {
+          this.setState({classrooms: data});
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error(this.props.url, status, err.toString());
+        }.bind(this)
+      });
+    }
   },
   invitesWillUpdate: function(){
     object = {student_id: this.props.id};
-    $.ajax({
-      url: '/classrooms/accepted',
-      dataType: 'json',
-      type: 'POST',
-      data: object,
-      success: function(data) {
-        this.setState({classrooms: data});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
+    setTimeout(function(){
+      $.ajax({
+            url: '/classrooms/accepted',
+            dataType: 'json',
+            type: 'POST',
+            data: object,
+            success: function(data) {
+              window.ChattingBox.setState({classrooms: data});
+            }.bind(this),
+            error: function(xhr, status, err) {
+              console.error(this.props.url, status, err.toString());
+            }.bind(this)
+          });
+    },1000);
   },
   handleChatChange: function(e){
     this.setState({selectedIndex: e.target.value}, function() {

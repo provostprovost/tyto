@@ -43,9 +43,14 @@
       this.componentWillMount();
     },
     render: function() {
-      var classroomNodes = this.state.data.map(function (classroom) {
+      if(this.state.data==undefined){
+      var classroomNodes = ''
+      }
+      else{
+       classroomNodes = this.state.data.map(function (classroom) {
         return <Classroom key={classroom.id} name={classroom.course_name}></Classroom>
       });
+      }
       return (
         <dl id="filters" className="sub-nav student-sub">
           <dt>Filter:</dt>

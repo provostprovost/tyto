@@ -25,20 +25,34 @@ class ClassroomsController < ApplicationController
     else
       current = Tyto.db.get_students_in_classroom(params[:id])
       edited = params[:students]
-      current.each do |current_student|
-        edited.each do |edited_student|
-          if current_student.email == edited_student
-             current.delete(current_student)
-             edited.delete(edited_student)
+      to_delete = []
+      to_add = []
+      current.each do |existing|
+        matched = false
+        edited.each do |recent|
+          if existing.email == recent
+             matched = true
           end
         end
+        to_delete.push(existing) if matched==false
       end
-      if current != []
-        current.each do |student|
+
+      edited.each do |recent|
+        matched = false
+        current.each do |existing|
+          if existing.email == recent
+            matched = true
+          end
+        end
+        to_add.push(recent) if matched==false
+      end
+
+      if to_delete != []
+        to_delete.each do |student|
           Tyto.db.delete_student_from_classroom(student.id, params[:id])
         end
       end
-      if edited != []
+      if to_add != []
         params[:students] = edited
         params[:classroom_id] = params[:id]
         @invites = Tyto::AddStudentsToClass.run(params).invites

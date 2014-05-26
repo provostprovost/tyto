@@ -125,6 +125,22 @@ student30 = Tyto.db.create_student(username: "Martha Roby",
                                   password: "password1",
                                   email: "z@student.com",
                                   phone_number: "5125555555")
+student31 = Tyto.db.create_student(username: "Janet Bosry",
+                                  password: "password1",
+                                  email: "aa@student.com",
+                                  phone_number: "5125555555")
+student32 = Tyto.db.create_student(username: "Hilde Franklin",
+                                  password: "password1",
+                                  email: "ab@student.com",
+                                  phone_number: "5125555555")
+student33 = Tyto.db.create_student(username: "Lindsey Borda",
+                                  password: "password1",
+                                  email: "ac@student.com",
+                                  phone_number: "5125555555")
+student34 = Tyto.db.create_student(username: "Hakeem Franklin",
+                                  password: "password1",
+                                  email: "ad@student.com",
+                                  phone_number: "5125555555")
 
 
 algebra = Tyto.db.create_course(name: "Algebra")
@@ -154,7 +170,7 @@ invite2 = Tyto.db.create_invite(email: "demo@student.com",
                                 teacher_id: teacher1.id,
                                 classroom_id: classroom4.id,
                                 accepted: false)
-[student1, student2, student3, student5, student6, student7, student8, student9, student10, student11, student12, student13, student14, student15].each do |student|
+[student1, student2, student3, student5, student6, student7, student8, student9, student10, student11, student12, student13, student14, student15, student31, student33].each do |student|
   Tyto.db.add_student_to_classroom(classroom_id: classroom1.id,
                                  student_id: student.id
                                   )
@@ -163,7 +179,7 @@ invite2 = Tyto.db.create_invite(email: "demo@student.com",
                                   )
 end
 
-[student16, student17, student18, student19, student20, student21, student22, student23, student24, student25, student26, student27, student28, student29, student30].each do |student|
+[student16, student17, student18, student19, student20, student21, student22, student23, student24, student25, student26, student27, student28, student29, student30, student32, student34].each do |student|
   Tyto.db.add_student_to_classroom(classroom_id: classroom2.id,
                                  student_id: student.id
                                   )

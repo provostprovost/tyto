@@ -14,7 +14,7 @@
       <% if @classrooms != nil %>
       <%@classrooms.each do |classroom| %>
         <div class="content<% if classroom == @classrooms.first %> active<% end %>" id="panel<%=classroom.id%>">
-          <h5> <%=@classroom_course[classroom.course_id].name%></h5>
+          <h4> <%=@classroom_course[classroom.course_id].name%></h4>
           <table class="classroomTable">
             <thead>
               <tr>

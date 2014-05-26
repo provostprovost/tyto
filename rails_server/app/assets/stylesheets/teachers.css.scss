@@ -11,7 +11,10 @@
 
 @media only screen and (min-width: 64.063em) {
   #assign {
-    margin-top: 101px;
+    margin-top: 5.313em;
+  }
+  #tabs .sub-nav {
+    margin-bottom: -0.313em;
   }
 }
 
@@ -22,7 +25,7 @@
 #search {
   border: 0.063em solid #DDD;
   text-align: center;
-  height: 29.8em;
+  height: 29.813em;
   overflow-y: hidden;
   padding: 2em;
 }
@@ -39,7 +42,7 @@
   width: 100%;
   overflow-x: scroll;
   display: block;
-  max-height: 50.65em;
+  max-height: 57em;
   overflow-y: scroll;
 }
 
@@ -140,6 +143,10 @@ th.headerSortUp {
 .filterStruggling {
   font-size: 0.7em;
   margin-top: -0.5em;
+}
+
+.createClassroom {
+  margin-top: 10px;
 }
 
 

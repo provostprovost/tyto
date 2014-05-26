@@ -22,7 +22,7 @@ Tech
 ----
 Server-side: Ruby on Rails, Puma with Faye Websockets, PostgreSQL with ActiveRecord, bcrypt
 
-Client-side: ReactJS, Isotope.js, jQuery, Zurb Foundation
+Client-side: ReactJS, Isotope.js, jQuery, Zurb Foundation, Google Analytics
 
 APIs: Twilio, Embedly
 
