@@ -9,6 +9,12 @@
   margin-bottom: 2em;
 }
 
+@media only screen and (min-width: 64.063em) {
+  #assign {
+    margin-top: 101px;
+  }
+}
+
 .assign {
   margin-bottom: 0em;
 }
