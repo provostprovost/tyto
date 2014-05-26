@@ -148,14 +148,14 @@ var AssignHomework = React.createClass({
             </div>
           </form>
         </div>
-            );
+      );
     }
 });
 
 var classroomRow = React.createClass({
-    render: function() {
-        return (<tr><th colSpan="3">{this.props.classroom}</th></tr>);
-    }
+  render: function() {
+    return (<tr><th colSpan="3">{this.props.classroom}</th></tr>);
+  }
 });
 
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
@@ -228,7 +228,7 @@ var StudentList = React.createClass({
         <div><input type="text" placeholder="Parent Email:" value={this.state.emailField} onChange={this.onChange}></input><button className="button radius small" onClick={this.handleAdd}>Add Student</button>   <button className="button radius small" onClick={this.handleSubmit}>Finished adding?</button></div>
         <ReactCSSTransitionGroup transitionName="example">
           <div className="panel callout">
-          {students}
+            {students}
           </div>
         </ReactCSSTransitionGroup>
       </div>
@@ -241,11 +241,11 @@ var StudentRow = React.createClass({
     var name = <span>{this.props.Student.name}</span>;
     var email = "mailto:" + this.props.Student.email;
     return (
-        <tr>
-            <td>{name}</td>
-            <td><a href={email}>Email</a></td>
-            <td><a href="#">Text</a></td>
-        </tr>
+      <tr>
+        <td>{name}</td>
+        <td><a href={email}>Email</a></td>
+        <td><a href="#">Text</a></td>
+      </tr>
     );
   }
 });
