@@ -148,14 +148,14 @@ var AssignHomework = React.createClass({
             </div>
           </form>
         </div>
-            );
+      );
     }
 });
 
 var classroomRow = React.createClass({
-    render: function() {
-        return (<tr><th colSpan="3">{this.props.classroom}</th></tr>);
-    }
+  render: function() {
+    return (<tr><th colSpan="3">{this.props.classroom}</th></tr>);
+  }
 });
 
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
@@ -216,8 +216,8 @@ var StudentList = React.createClass({
   render: function() {
     var students = this.state.students.map(function(student, i) {
       return (
-        <div key={student} onClick={this.handleRemove.bind(this, i)}>
-          <i className="fa fa-minus-circle"></i> {student} <br></br><br></br>
+        <div key={student}>
+          <p><i className="fa fa-minus-circle click-pointer" onClick={this.handleRemove.bind(this, i)}></i> {student} </p>
         </div>
       );
     }.bind(this));
@@ -225,10 +225,10 @@ var StudentList = React.createClass({
       <div>
         <h3>{this.props.classroomName} </h3>
         <h5>{this.props.courseName} </h5>
-        <div><input type="text" placeholder="Parent Email:" value={this.state.emailField} onChange={this.onChange}></input><button className="button radius small" onClick={this.handleAdd}>Add Student</button>   <button className="button small" onClick={this.handleSubmit}>Finished adding?</button></div>
+        <div><input type="text" placeholder="Parent Email:" value={this.state.emailField} onChange={this.onChange}></input><button className="button radius small" onClick={this.handleAdd}>Add Student</button>   <button className="button radius small" onClick={this.handleSubmit}>Finished adding?</button></div>
         <ReactCSSTransitionGroup transitionName="example">
           <div className="panel callout">
-          {students}
+            {students}
           </div>
         </ReactCSSTransitionGroup>
       </div>
@@ -241,11 +241,11 @@ var StudentRow = React.createClass({
     var name = <span>{this.props.Student.name}</span>;
     var email = "mailto:" + this.props.Student.email;
     return (
-        <tr>
-            <td>{name}</td>
-            <td><a href={email}>Email</a></td>
-            <td><a href="#">Text</a></td>
-        </tr>
+      <tr>
+        <td>{name}</td>
+        <td><a href={email}>Email</a></td>
+        <td><a href="#">Text</a></td>
+      </tr>
     );
   }
 });
@@ -272,74 +272,71 @@ var StudentTable = React.createClass({
   }
 });
 
-function toTitleCase(str)
-{
-    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+function toTitleCase(str) {
+  return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
 var SearchBar = React.createClass({
-    handleChange: function() {
-        this.props.onUserInput(
-            toTitleCase(this.refs.filterTextInput.getDOMNode().value),
-            this.refs.strugglingOnlyInput.getDOMNode().checked
-        );
-    },
-    render: function() {
-        return (
-            <form onSubmit={this.handleSubmit} className="searchFixed">
-              <h5> Search Students </h5>
-                <input
-                    type="text"
-                    placeholder="Search..."
-                    value={this.props.filterText}
-                    ref="filterTextInput"
-                    onChange={this.handleChange}>
-                </input>
-                <p className="filterStruggling">
-                    <input
-                        type="checkbox"
-                        value={this.props.strugglingOnly}
-                        ref="strugglingOnlyInput"
-                        onChange={this.handleChange}>
-                    </input>
-                    Struggling Students Only
-                </p>
-            </form>
-        );
-    }
+  handleChange: function() {
+    this.props.onUserInput(
+      toTitleCase(this.refs.filterTextInput.getDOMNode().value),
+      this.refs.strugglingOnlyInput.getDOMNode().checked
+      );
+  },
+  render: function() {
+    return (
+      <form onSubmit={this.handleSubmit} className="searchFixed">
+        <h5> Search Students </h5>
+        <input
+            type="text"
+            placeholder="Search..."
+            value={this.props.filterText}
+            ref="filterTextInput"
+            onChange={this.handleChange}>
+        </input>
+        <p className="filterStruggling">
+            <input
+                type="checkbox"
+                value={this.props.strugglingOnly}
+                ref="strugglingOnlyInput"
+                onChange={this.handleChange}>
+            </input>
+            Struggling Students Only
+        </p>
+      </form>
+    );
+  }
 });
 
 var FilterableStudentTable = React.createClass({
-    getInitialState: function() {
-        return {
-            filterText: '',
-            strugglingOnly: false
-        };
-    },
-
-    handleUserInput: function(filterText, strugglingOnly) {
-        this.setState({
-            filterText: filterText,
-            strugglingOnly: strugglingOnly
-        });
-    },
-
-    render: function() {
-        return (
-            <div className="search-container">
-                <SearchBar
-                    filterText={this.state.filterText}
-                    strugglingOnly={this.state.strugglingOnly}
-                    onUserInput={this.handleUserInput}
-                />
-                <StudentTable
-                    students={this.props.students}
-                    filterText={this.state.filterText}
-                    strugglingOnly={this.state.strugglingOnly}
-                />
-            </div>
-        );
-    }
+  getInitialState: function() {
+    return {
+      filterText: '',
+      strugglingOnly: false
+      };
+  },
+  handleUserInput: function(filterText, strugglingOnly) {
+    this.setState({
+      filterText: filterText,
+      strugglingOnly: strugglingOnly
+    });
+  },
+  render: function() {
+    return (
+      <div className="search-container">
+        <SearchBar
+          filterText={this.state.filterText}
+          strugglingOnly={this.state.strugglingOnly}
+          onUserInput={this.handleUserInput}
+        />
+        <StudentTable
+          students={this.props.students}
+          filterText={this.state.filterText}
+          strugglingOnly={this.state.strugglingOnly}
+        />
+      </div>
+    );
+  }
 });
 
 

@@ -91,12 +91,11 @@
             <div class="medium-3 columns"></div>
           </div>
           </form>
-            <% if @classrooms != nil %>
-              <h5>  Edit an existing class:</h5>
+            <% if @classrooms %>
+              <h5>Edit an existing class:</h5>
               <div class="panel callout">
-
                 <% @classrooms.each do |classroom| %>
-               <div class="classroomEditList" data-name='<%=classroom.name%>' data-course='<%=@classroom_course[classroom.course_id].name%>' data-id=<%=classroom.id%>> <i class="fa fa-pencil-square-o"></i> <%=classroom.name%><br><br></div>
+                  <div class="classroomEditList" data-name='<%=classroom.name%>' data-course='<%=@classroom_course[classroom.course_id].name%>' data-id=<%=classroom.id%>><p><i class="click-pointer fa fa-pencil-square-o"></i> <%=classroom.name%></p></div>
                 <% end %>
               </div>
             <%end%>
