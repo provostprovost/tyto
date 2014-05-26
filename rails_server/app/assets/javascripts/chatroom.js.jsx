@@ -16,11 +16,11 @@ var ws = new WebSocket("ws://fierce-tundra-6534.herokuapp.com/");
 ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
   classrooms = [];
-  if($('.chatBox').css('display') == 'none'){
-    $(".chatClick").css("background-color","#80bd41");
-  }
   ChattingBox.state.classrooms.forEach(function(classroom, index){
     if(classroom.id===data.classroom_id){
+      if($('.chatBox').css('display') == 'none'){
+        $(".chatClick").css("background-color","#80bd41");
+      }
       classroom.chat.push(data);
       ChattingBox.setState({selectedIndex: index});
     }

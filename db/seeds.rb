@@ -135,11 +135,11 @@ student32 = Tyto.db.create_student(username: "Hilde Franklin",
                                   phone_number: "5125555555")
 student33 = Tyto.db.create_student(username: "Lindsey Borda",
                                   password: "password1",
-                                  email: "aa@student.com",
+                                  email: "ac@student.com",
                                   phone_number: "5125555555")
 student34 = Tyto.db.create_student(username: "Hakeem Franklin",
                                   password: "password1",
-                                  email: "ab@student.com",
+                                  email: "ad@student.com",
                                   phone_number: "5125555555")
 
 
