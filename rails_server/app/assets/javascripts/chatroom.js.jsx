@@ -54,18 +54,20 @@ window.ChatBox = React.createClass({
   },
   invitesWillUpdate: function(){
     object = {student_id: this.props.id};
-    $.ajax({
-      url: '/classrooms/accepted',
-      dataType: 'json',
-      type: 'POST',
-      data: object,
-      success: function(data) {
-        this.setState({classrooms: data});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
+    setTimeout(function(){
+      $.ajax({
+            url: '/classrooms/accepted',
+            dataType: 'json',
+            type: 'POST',
+            data: object,
+            success: function(data) {
+              window.ChattingBox.setState({classrooms: data});
+            }.bind(this),
+            error: function(xhr, status, err) {
+              console.error(this.props.url, status, err.toString());
+            }.bind(this)
+          });
+    },1000);
   },
   handleChatChange: function(e){
     this.setState({selectedIndex: e.target.value}, function() {
