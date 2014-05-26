@@ -14,8 +14,7 @@ require_relative 'tyto/entities/teacher.rb'
 require_relative 'tyto/entities/invite.rb'
 require_relative 'tyto/entities/message.rb'
 
-require_relative 'tyto/databases/in_memory.rb'
-require_relative 'tyto/databases/sqlite.rb'
+require_relative 'tyto/databases/activerecord.rb'
 
 require_relative 'tyto/use_case.rb'
 require_relative 'tyto/use_cases/answer_question.rb'
