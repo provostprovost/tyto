@@ -34,6 +34,7 @@
   overflow-x: scroll;
   display: block;
   max-height: 50.65em;
+  overflow-y: scroll;
 }
 
 .student-name {
@@ -46,7 +47,7 @@
 }
 
 .table {
-  overflow-y: scroll;
+  // overflow-y: scroll;
 }
 
 th.header {
