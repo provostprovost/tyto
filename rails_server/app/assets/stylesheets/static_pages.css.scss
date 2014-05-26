@@ -34,6 +34,7 @@
 
 h1.white-text{
   font-size: 5em;
+  @media only screen and (max-width: 40em) { font-size: 4em; };
   line-height: .9em;
   padding-bottom: 0.5em;
   text-shadow: rgba(0, 0, 0, 0.5) 0 2px 2px;
@@ -75,4 +76,40 @@ h1.white-text{
   border: 1px solid #ddd;
   padding: 2em;
   margin-bottom: 2em;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 2px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 2px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 2px 2px;
+}
+
+.img-column {
+  text-align: center;
+}
+
+.screen-img {
+  max-width: 100%;
+}
+
+.landing-teachers {
+  // @media only screen and (min-width: 64em) { padding-top: 10em; };
+}
+
+.landing-student-dashboard {
+  // @media only screen and (min-width: 64em) { padding-top: 10em; };
+}
+
+.landing-student-assignments {
+  // @media only screen and (min-width: 64em) { padding-top: 10em; };
+}
+
+.landing-parents {
+  // @media only screen and (min-width: 64em) { padding-top: 10em; };
+}
+
+.outer-table-div {
+  display: table;
+}
+
+.inner-table-div {
+  display: table-cell;
+  vertical-align: middle;
 }
