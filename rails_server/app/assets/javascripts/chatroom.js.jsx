@@ -36,19 +36,21 @@ window.ChatBox = React.createClass({
   return {classrooms: [], selectedIndex: 0, message: ''};
   },
   componentWillMount: function() {
-    data = {classroom_ids: this.props.classroomIds};
-    $.ajax({
-      url: '/messages/index',
-      dataType: 'json',
-      type: 'POST',
-      data: data,
-      success: function(data) {
-        this.setState({classrooms: data});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
+    if(this.props.classroomIds.length > 0){
+      data = {classroom_ids: this.props.classroomIds};
+      $.ajax({
+        url: '/messages/index',
+        dataType: 'json',
+        type: 'POST',
+        data: data,
+        success: function(data) {
+          this.setState({classrooms: data});
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error(this.props.url, status, err.toString());
+        }.bind(this)
+      });
+    }
   },
   invitesWillUpdate: function(){
     object = {student_id: this.props.id};
