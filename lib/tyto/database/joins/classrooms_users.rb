@@ -34,6 +34,27 @@ module Tyto
           get_classroom(pair.classroom_id)
         end.sort_by {|classroom| classroom.name }
       end
+
+      def is_student_to_be_texted(student_id, classroom_id)
+        if classroom_id == nil
+          return false
+        else
+          student = ClassroomsUsers.where(student_id: student_id, classroom_id: classroom_id).last
+          return false if student.text == nil
+          return true if student.text == true
+          return false if student.text == false
+        end
+      end
+
+      def get_classroom_students_to_be_texted(classroom_id)
+        students = ClassroomsUsers.where(classroom_id: classroom_id, text: true)
+        students.map {|x| get_student(x.student_id) }
+      end
+
+      def delete_student_from_classroom(student_id, classroom_id)
+        ClassroomsUsers.where(:classroom_id => classroom_id, student_id: student_id).destroy_all
+        Assignment.where(:classroom_id => classroom_id, student_id: student_id).destroy_all
+      end
     end
   end
 end

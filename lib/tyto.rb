@@ -31,6 +31,17 @@ require_relative 'tyto/database/crud/teacher.rb'
 require_relative 'tyto/database/joins/classrooms_users.rb'
 require_relative 'tyto/database/joins/users_questions.rb'
 
+require_relative 'tyto/database/queries/assignment.rb'
+require_relative 'tyto/database/queries/chapter.rb'
+require_relative 'tyto/database/queries/classroom.rb'
+require_relative 'tyto/database/queries/course.rb'
+require_relative 'tyto/database/queries/invite.rb'
+require_relative 'tyto/database/queries/message.rb'
+require_relative 'tyto/database/queries/question.rb'
+require_relative 'tyto/database/queries/response.rb'
+require_relative 'tyto/database/queries/student.rb'
+require_relative 'tyto/database/queries/teacher.rb'
+
 require_relative 'tyto/database/statistics/proficiency.rb'
 require_relative 'tyto/database/statistics/streaks.rb'
 
