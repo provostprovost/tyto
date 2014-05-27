@@ -227,82 +227,11 @@ module Tyto
       # Statistics #
       ##############
 
-      def get_proficiency(response_id)
-        response = get_response(response_id)
-        student_id = response.student_id
-        chapter_id = response.chapter_id
-        assignment = get_assignment(response.assignment_id)
-        responses = Response.where(student_id: student_id, chapter_id: chapter_id).order(:created_at).to_a
 
-        responses.map! do |response|
-          question = get_question(response.question_id)
-          if response.correct
-            question.level
-          else
-            -1 + 0.5 * (question.level - 1)
-          end
-        end
 
-        score(responses, assignment.assignment_size)
-      end
 
-      def get_last_proficiency_score(student_id, chapter_id, actual=nil)
-        responses = Response.where(student_id: student_id, chapter_id: chapter_id)
-        return 0 if responses.last == nil
-        response = responses.last(2)[0]
-        response = responses.last if actual
-        if response.proficiency
-          return response.proficiency
-        else
-          return 0
-        end
-      end
 
-      def get_longest_streak(student_id, chapter_id)
-        responses = Response.where(student_id: student_id, chapter_id: chapter_id).order(:created_at)
 
-        counter = 0
-        current_response = responses.where(correct: true).last
-        longest_streak = 0
-        streak = 0
-        until counter == responses.length
-          streak += 1 if responses[counter].correct == true
-          streak = 0 if responses[counter].correct == false
-          longest_streak = streak if streak > longest_streak
-          counter += 1
-        end
-        return longest_streak
-      end
-
-      def current_chapter_streak(student_id, chapter_id)
-        responses = Response.where(student_id: student_id, chapter_id: chapter_id).order(:created_at)
-        streak = 0
-        counter = responses.size - 1
-        while counter >= 0
-          break if !responses[counter].correct
-          counter -= 1
-          streak += 1
-        end
-        streak
-      end
-
-      def ema(array, alpha_n=1)
-        alpha = alpha_n.to_f / array.count
-        n = (1..array.count).to_a.map{|tidx| (1 - alpha) ** (tidx - 1) * array[array.count - tidx]}.sum
-        d = (1..array.count).to_a.map{|tidx| (1 - alpha) ** (tidx -1)}.sum
-        n / d
-      end
-
-      def score(array, assignment_size, alpha_n=1)
-        multiplier = array.size / (assignment_size.to_f / 3)
-        multiplier = 1 if multiplier > 1
-        score = Math.log(ema(array, alpha_n)+1) * multiplier
-        if score > 0
-          return score
-        else
-          return 0
-        end
-      end
 
       ############
       # Sessions #
