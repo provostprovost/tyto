@@ -85,62 +85,7 @@ student20 = Tyto.db.create_student(username: "Scott Peters",
                                   password: "password1",
                                   email: "p@student.com",
                                   phone_number: "5125555555")
-student21 = Tyto.db.create_student(username: "Karen Bass",
-                                  password: "password1",
-                                  email: "q@student.com",
-                                  phone_number: "5125555555")
-student22 = Tyto.db.create_student(username: "Brad Sherman",
-                                  password: "password1",
-                                  email: "r@student.com",
-                                  phone_number: "5125555555")
-student23 = Tyto.db.create_student(username: "Julia Brown",
-                                  password: "password1",
-                                  email: "s@student.com",
-                                  phone_number: "5125555555")
-student24 = Tyto.db.create_student(username: "Mike Honda",
-                                  password: "password1",
-                                  email: "t@student.com",
-                                  phone_number: "5125555555")
-student25 = Tyto.db.create_student(username: "Jim Costa",
-                                  password: "password1",
-                                  email: "u@student.com",
-                                  phone_number: "5125555555")
-student26 = Tyto.db.create_student(username: "Barbara Lee",
-                                  password: "password1",
-                                  email: "v@student.com",
-                                  phone_number: "5125555555")
-student27 = Tyto.db.create_student(username: "Ami Bera",
-                                  password: "password1",
-                                  email: "w@student.com",
-                                  phone_number: "5125555555")
-student28 = Tyto.db.create_student(username: "Ed Pastor",
-                                  password: "password1",
-                                  email: "x@student.com",
-                                  phone_number: "5125555555")
-student29 = Tyto.db.create_student(username: "Don Young",
-                                  password: "password1",
-                                  email: "y@student.com",
-                                  phone_number: "5125555555")
-student30 = Tyto.db.create_student(username: "Martha Roby",
-                                  password: "password1",
-                                  email: "z@student.com",
-                                  phone_number: "5125555555")
-student31 = Tyto.db.create_student(username: "Janet Bosry",
-                                  password: "password1",
-                                  email: "aa@student.com",
-                                  phone_number: "5125555555")
-student32 = Tyto.db.create_student(username: "Hilde Franklin",
-                                  password: "password1",
-                                  email: "ab@student.com",
-                                  phone_number: "5125555555")
-student33 = Tyto.db.create_student(username: "Lindsey Borda",
-                                  password: "password1",
-                                  email: "ac@student.com",
-                                  phone_number: "5125555555")
-student34 = Tyto.db.create_student(username: "Hakeem Franklin",
-                                  password: "password1",
-                                  email: "ad@student.com",
-                                  phone_number: "5125555555")
+
 
 
 algebra = Tyto.db.create_course(name: "Math")
@@ -151,12 +96,6 @@ history = Tyto.db.create_course(name: "History")
 classroom1 = Tyto.db.create_classroom(teacher_id: teacher1.id,
                                       course_id:  algebra.id,
                                       name: "P1 Math" )
-classroom2 = Tyto.db.create_classroom(teacher_id: teacher1.id,
-                                      course_id:  algebra.id,
-                                      name: "P2 Math" )
-classroom3 = Tyto.db.create_classroom(teacher_id: teacher1.id,
-                                      course_id:  biology.id,
-                                      name: "P1 Biology" )
 classroom4 = Tyto.db.create_classroom(teacher_id: teacher1.id,
                                       course_id: biology.id,
                                       name: "P2 Biology")
@@ -169,7 +108,7 @@ invite1 = Tyto.db.create_invite(email: "demo@student.com",
                                 classroom_id: classroom5.id,
                                 accepted: false)
 
-[student1, student2, student3, student4, student5, student6, student7, student8, student9, student10, student11, student12, student13, student14, student15, student31, student33].each do |student|
+[student1, student2, student3, student4, student5, student6, student7, student8, student9, student10, student11, student12, student13, student14, student15, student16, student17, student18, student19, student20].each do |student|
   Tyto.db.add_student_to_classroom(classroom_id: classroom1.id,
                                  student_id: student.id
                                   )
@@ -178,14 +117,6 @@ invite1 = Tyto.db.create_invite(email: "demo@student.com",
                                   )
 end
 
-[student16, student17, student18, student19, student20, student21, student22, student23, student24, student25, student26, student27, student28, student29, student30, student32, student34].each do |student|
-  Tyto.db.add_student_to_classroom(classroom_id: classroom2.id,
-                                 student_id: student.id
-                                  )
-  Tyto.db.add_student_to_classroom(classroom_id: classroom3.id,
-                                 student_id: student.id
-                                  )
-end
 
 chapter1 = Tyto.db.create_chapter(course_id: algebra.id, name: "Chapter 1")
           section_algebra_11 = Tyto.db.create_chapter(course_id: algebra.id, name: "Addition", parent_id: chapter1.id, subname: "1.1", video_url: 'https://www.youtube.com/watch?v=AuX7nPBqDts' )
@@ -235,59 +166,6 @@ assignment = Tyto.db.create_assignment(student_id: student.id,
 assignment = Tyto.db.create_assignment(student_id: student.id,
                                           chapter_id: section_algebra_24.id,
                                           classroom_id: classroom1.id,
-                                          teacher_id: teacher1.id,
-                                          assignment_size: 15,
-                                          deadline: Chronic.parse('next wednesday')
- )
-end
-
-students = Tyto.db.get_students_in_classroom(classroom2.id)
-students.each do |student|
-assignment = Tyto.db.create_assignment(student_id: student.id,
-                                          chapter_id: section_algebra_11.id,
-                                          classroom_id: classroom2.id,
-                                          teacher_id: teacher1.id,
-                                          assignment_size: 25,
-                                          deadline: Chronic.parse('tomorrow')
- )
-Tyto.db.update_last_question(question_id: question.id,
-                              student_id: student.id,
-                              assignment_id: assignment.id)
-assignment = Tyto.db.create_assignment(student_id: student.id,
-                                          chapter_id: section_algebra_22.id,
-                                          classroom_id: classroom2.id,
-                                          teacher_id: teacher1.id,
-                                          assignment_size: 20,
-                                          deadline: Chronic.parse('next monday')
- )
-assignment = Tyto.db.create_assignment(student_id: student.id,
-                                          chapter_id: section_algebra_24.id,
-                                          classroom_id: classroom2.id,
-                                          teacher_id: teacher1.id,
-                                          assignment_size: 15,
-                                          deadline: Chronic.parse('next wednesday')
- )
-end
-
-students = Tyto.db.get_students_in_classroom(classroom3.id)
-students.each do |student|
-assignment = Tyto.db.create_assignment(student_id: student.id,
-                                          chapter_id: section_biology_31.id,
-                                          classroom_id: classroom3.id,
-                                          teacher_id: teacher1.id,
-                                          assignment_size: 25,
-                                          deadline: Chronic.parse('tomorrow')
- )
-assignment = Tyto.db.create_assignment(student_id: student.id,
-                                          chapter_id: section_biology_33.id,
-                                          classroom_id: classroom3.id,
-                                          teacher_id: teacher1.id,
-                                          assignment_size: 20,
-                                          deadline: Chronic.parse('next monday')
- )
-assignment = Tyto.db.create_assignment(student_id: student.id,
-                                          chapter_id: section_biology_34.id,
-                                          classroom_id: classroom3.id,
                                           teacher_id: teacher1.id,
                                           assignment_size: 15,
                                           deadline: Chronic.parse('next wednesday')
