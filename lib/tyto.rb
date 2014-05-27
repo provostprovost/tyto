@@ -15,6 +15,7 @@ require_relative 'tyto/entities/invite.rb'
 require_relative 'tyto/entities/message.rb'
 
 require_relative 'tyto/database/activerecord.rb'
+
 require_relative 'tyto/database/crud/assignment.rb'
 require_relative 'tyto/database/crud/chapter.rb'
 require_relative 'tyto/database/crud/classroom.rb'
@@ -26,6 +27,9 @@ require_relative 'tyto/database/crud/response.rb'
 require_relative 'tyto/database/crud/session.rb'
 require_relative 'tyto/database/crud/student.rb'
 require_relative 'tyto/database/crud/teacher.rb'
+
+require_relative 'tyto/database/joins/classrooms_users.rb'
+require_relative 'tyto/database/joins/users_questions.rb'
 
 require_relative 'tyto/use_case.rb'
 require_relative 'tyto/use_cases/answer_question.rb'
