@@ -207,7 +207,11 @@ chapter3 = Tyto.db.create_chapter(course_id: biology.id, name: "Chapter 1")
           section_biology_34 = Tyto.db.create_chapter(course_id: biology.id, name: "Photosynthesis", parent_id: chapter3.id, subname: '1.4', video_url: 'https://www.youtube.com/watch?v=JUmT24R8CyA')
           section_biology_35 = Tyto.db.create_chapter(course_id: biology.id, name: "Cell Cycle and Mitosis", parent_id: chapter3.id, subname: '1.5', video_url: 'https://www.youtube.com/watch?v=2aVnN4RePyI')
 
-
+question = Tyto.db.create_question(question: "____ + 6 = 100",
+                        answer: "94",
+                        level: 1,
+                        chapter_id: section_algebra_11.id
+                                    )
 
 students = Tyto.db.get_students_in_classroom(classroom1.id)
 students.each do |student|
@@ -218,6 +222,9 @@ assignment = Tyto.db.create_assignment(student_id: student.id,
                                           assignment_size: 25,
                                           deadline: Chronic.parse('tomorrow')
  )
+Tyto.db.update_last_question(question_id: question.id,
+                              student_id: student.id,
+                              assignment_id: assignment.id)
 assignment = Tyto.db.create_assignment(student_id: student.id,
                                           chapter_id: section_algebra_22.id,
                                           classroom_id: classroom1.id,
@@ -243,6 +250,9 @@ assignment = Tyto.db.create_assignment(student_id: student.id,
                                           assignment_size: 25,
                                           deadline: Chronic.parse('tomorrow')
  )
+Tyto.db.update_last_question(question_id: question.id,
+                              student_id: student.id,
+                              assignment_id: assignment.id)
 assignment = Tyto.db.create_assignment(student_id: student.id,
                                           chapter_id: section_algebra_22.id,
                                           classroom_id: classroom2.id,
@@ -308,6 +318,108 @@ assignment = Tyto.db.create_assignment(student_id: student.id,
                                           deadline: Chronic.parse('next wednesday')
  )
 end
+
+
+Tyto.db.create_question(question: "20 + 39 = ____",
+                        answer: "59",
+                        level: 1,
+                        chapter_id: section_algebra_11.id
+                                    )
+Tyto.db.create_question(question: "60 + ____ = 91",
+                        answer: "31",
+                        level: 1,
+                        chapter_id: section_algebra_11.id
+                                    )
+Tyto.db.create_question(question: "94 + 7 = ____",
+                        answer: "101",
+                        level: 1,
+                        chapter_id: section_algebra_11.id
+                                    )
+Tyto.db.create_question(question: "91 + ____ = 96",
+                        answer: "5",
+                        level: 1,
+                        chapter_id: section_algebra_11.id
+                                    )
+
+Tyto.db.create_question(question: "3 + 41 + 9 = ____",
+                        answer: "53",
+                        level: 2,
+                        chapter_id: section_algebra_11.id
+                                    )
+Tyto.db.create_question(question: "865 + 5 = ____",
+                        answer: "870",
+                        level: 2,
+                        chapter_id: section_algebra_11.id
+                                    )
+Tyto.db.create_question(question: "50 + 8 + 7 + 50 = ____",
+                        answer: "115",
+                        level: 2,
+                        chapter_id: section_algebra_11.id
+                                    )
+Tyto.db.create_question(question: "28 + 3 + 6 = ____",
+                        answer: "37",
+                        level: 2,
+                        chapter_id: section_algebra_11.id
+                                    )
+Tyto.db.create_question(question: "15 + 4 + 9 = ____",
+                        answer: "28",
+                        level: 2,
+                        chapter_id: section_algebra_11.id
+                                    )
+
+Tyto.db.create_question(question: "63 + 8 + 11 + 70 = ____",
+                        answer: "152",
+                        level: 3,
+                        chapter_id: section_algebra_11.id
+                                    )
+Tyto.db.create_question(question: "90 + 3 + 6 + 36 = ____",
+                        answer: "135",
+                        level: 3,
+                        chapter_id: section_algebra_11.id
+                                    )
+Tyto.db.create_question(question: "63 + 80 + 5 + 4 = ____",
+                        answer: "152",
+                        level: 3,
+                        chapter_id: section_algebra_11.id
+                                    )
+Tyto.db.create_question(question: "22 + 10 + 3 + 70 = ____",
+                        answer: "105",
+                        level: 3,
+                        chapter_id: section_algebra_11.id
+                                    )
+Tyto.db.create_question(question: "93 + 47 + 6 + 2 = ____",
+                        answer: "148",
+                        level: 3,
+                        chapter_id: section_algebra_11.id
+                                    )
+
+Tyto.db.create_question(question: "2200 + 1305 = ____",
+                        answer: "3505",
+                        level: 4,
+                        chapter_id: section_algebra_11.id
+                                    )
+Tyto.db.create_question(question: "3000 + 5859 = ____",
+                        answer: "8859",
+                        level: 4,
+                        chapter_id: section_algebra_11.id
+                                    )
+Tyto.db.create_question(question: "6325 + 1089 = ____",
+                        answer: "7414",
+                        level: 4,
+                        chapter_id: section_algebra_11.id
+                                    )
+Tyto.db.create_question(question: "5211 + 4864 = ____",
+                        answer: "10075",
+                        level: 4,
+                        chapter_id: section_algebra_11.id
+                                    )
+Tyto.db.create_question(question: "4935 + 4260 = ____",
+                        answer: "9195",
+                        level: 4,
+                        chapter_id: section_algebra_11.id
+                                    )
+
+
 
 
 
