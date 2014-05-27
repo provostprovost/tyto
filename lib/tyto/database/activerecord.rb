@@ -1,7 +1,5 @@
 require "active_record"
 require "yaml"
-require 'bcrypt'
-require 'pry-debugger'
 
 module Tyto
   module Database
