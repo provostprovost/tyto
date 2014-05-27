@@ -26,10 +26,10 @@ More recent responses are then weighted more strongly using an exponential weigh
 
 If a student has not answered many questions in the topic of the assignment we also scale down the proficiency score of the first few responses.
 
-We consider a score of > 1 to be "proficient." This equates to about 10 consecutive correct responses of increasingly difficult questions, but a teacher can increase the number of questions required to complete the assignment by increasing the number of problems assigned.
+We consider a score of > 1 to be "proficient." This equates to about 10 consecutive correct responses of increasingly difficult questions, but a teacher can increase the number of questions required to complete the assignment by increasing the number of problems assigned. An assignment is marked complete when a student reaches proficiency or when they reach the number of problems assigned by the teacher.
 
 ### Weaknesses of our algorithm
-We think this algorithm is very good for measuring proficiency in performing a specific task, like basic addition, solving for x, etc. It would not be good for measuring *knowledge* like memorized state capitals or dates.
+We think this algorithm is very good for measuring proficiency in performing a specific task, like basic addition, solving for x, etc. It would not be good for measuring *knowledge* like memorized state capitals or dates, so for those type of assignments it would be preferable to assign a specific number of problems rather than relying on our algorithm.
 
 Tech
 ----
