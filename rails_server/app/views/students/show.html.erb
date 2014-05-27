@@ -21,7 +21,7 @@
                   <% end %>
                 </p>
                 <p class="deadline" style="display:none"><%= assignment.deadline %></p>
-                <p class="due-date"><%= assignment.deadline.strftime("Due %b %d at %I:%M%p") %></p>
+                <p class="due-date"><%= assignment.deadline.strftime("Due %b %e at %l:%M%p") %></p>
                 <div class="progress small-12 success round">
                   <span class="meter" style="width: <%= [assignment.proficiency, 1].min * 100 %>%"></span>
                 </div>

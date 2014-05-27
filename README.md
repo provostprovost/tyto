@@ -18,6 +18,19 @@ All of a teacher's functions are performed from their dashboard. They can:
 * Filter class roster by struggling students
 * Send messages to classes in a chat window
 
+Measuring Proficiency
+---------------------
+To measure proficiency, we collect all responses a student has made to questions in a particular chapter. Each response is assigned a weighted value based on whether or not it is correct. Correct responses receive a value of whatever the question difficulty level is, which is a number between +1 and +4. Incorrect responses get a negative or smaller value between -1 for level 1 questions and 0.5 for level 4 questions.
+
+More recent responses are then weighted more strongly using an exponential weighted moving average. This has the effect of making the score climb exponentially, so we take the log of that to make the increase in score look more linear.
+
+If a student has not answered many questions in the topic of the assignment we also scale down the proficiency score of the first few responses.
+
+We consider a score of > 1 to be "proficient." This equates to about 10 consecutive correct responses of increasingly difficult questions, but a teacher can increase the number of questions required to complete the assignment by increasing the number of problems assigned. An assignment is marked complete when a student reaches proficiency or when they reach the number of problems assigned by the teacher.
+
+### Weaknesses of our algorithm
+We think this algorithm is very good for measuring proficiency in performing a specific task, like basic addition, solving for x, etc. It would not be good for measuring *knowledge* like memorized state capitals or dates, so for those type of assignments it would be preferable to assign a specific number of problems rather than relying on our algorithm.
+
 Tech
 ----
 Server-side: Ruby on Rails, Puma with Faye Websockets, PostgreSQL with ActiveRecord, bcrypt

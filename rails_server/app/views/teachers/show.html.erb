@@ -4,7 +4,7 @@
     <dl class="sub-nav" data-tab>
       <% if @classrooms != nil %>
         <%@classrooms.each do |classroom| %>
-          <dd<% if classroom == @classrooms.first %> class="active"<% end %>><a href="#panel<%=classroom.id%>"><%=classroom.name%></a></dd>
+          <dd<% if classroom == @classrooms.first %> class="active"<% end %>><a href="#panel<%=classroom.id%>"><%=raw(classroom.name)%></a></dd>
         <%end%>
       <%end%>
       <dd><a href="#panelcreate"><i class="fa fa-plus"></i></a></dd>
