@@ -93,7 +93,7 @@ invite1 = Tyto.db.create_invite(email: "demo@student.com",
                                 classroom_id: classroom5.id,
                                 accepted: false)
 
-[student1, student2, student3, student4, student5, student6, student7, student8, student9, student10, student11, student12, student13, student14, student15, student16].each do |student|
+[student1, student2, student3, student5, student6, student7, student8, student9, student10, student11, student12, student13, student14, student15, student16].each do |student|
   Tyto.db.add_student_to_classroom(classroom_id: classroom1.id,
                                  student_id: student.id
                                   )
@@ -101,7 +101,14 @@ invite1 = Tyto.db.create_invite(email: "demo@student.com",
                                  student_id: student.id
                                   )
 end
-
+ Tyto.db.add_student_to_classroom(classroom_id: classroom1.id,
+                                 student_id: student4.id,
+                                 text: true
+                                  )
+ Tyto.db.add_student_to_classroom(classroom_id: classroom4.id,
+                                 student_id: student4.id,
+                                 text: true
+                                  )
 
 chapter1 = Tyto.db.create_chapter(course_id: algebra.id, name: "Chapter 1")
           section_algebra_11 = Tyto.db.create_chapter(course_id: algebra.id, name: "Addition", parent_id: chapter1.id, subname: "1.1", video_url: 'https://www.youtube.com/watch?v=AuX7nPBqDts' )
