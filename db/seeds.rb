@@ -101,7 +101,6 @@ invite1 = Tyto.db.create_invite(email: "demo@student.com",
                                  student_id: student.id
                                   )
 end
-
  Tyto.db.add_student_to_classroom(classroom_id: classroom1.id,
                                  student_id: student4.id,
                                  text: true
