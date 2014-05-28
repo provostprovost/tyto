@@ -3,6 +3,32 @@ Tyto
 
 A classroom assignment management app for creating, assigning and completing classwork and homework. Created by Parth Shah and Brian Provost.
 
+Tech
+----
+Server-side: Ruby on Rails, Puma with Faye Websockets, PostgreSQL with ActiveRecord, bcrypt
+
+Client-side: ReactJS, Isotope.js, jQuery, Zurb Foundation, Google Analytics
+
+APIs: Twilio, Embedly
+
+Testing: RSpec
+
+Deployment: DigitalOcean, Heroku
+
+Entities
+--------
+* Assignments
+* Chapters (inherits from courses)
+* Classrooms
+* Courses
+* Invites
+* Messages
+* Questions
+* Responses
+* Sessions
+* Students
+* Teachers
+
 Students
 --------
 Students have two views:
@@ -30,32 +56,6 @@ We consider a score of > 1 to be "proficient." This equates to about 10 consecut
 
 ### Weaknesses of our algorithm
 We think this algorithm is very good for measuring proficiency in performing a specific task, like basic addition, solving for x, etc. It would not be good for measuring *knowledge* like memorized state capitals or dates, so for those type of assignments it would be preferable to assign a specific number of problems rather than relying on our algorithm.
-
-Tech
-----
-Server-side: Ruby on Rails, Puma with Faye Websockets, PostgreSQL with ActiveRecord, bcrypt
-
-Client-side: ReactJS, Isotope.js, jQuery, Zurb Foundation, Google Analytics
-
-APIs: Twilio, Embedly
-
-Testing: RSpec
-
-Deployment: DigitalOcean, Heroku
-
-Entities
---------
-* Assignments
-* Chapters (inherits from courses)
-* Classrooms
-* Courses
-* Invites
-* Messages
-* Questions
-* Responses
-* Sessions
-* Students
-* Teachers
 
 Tyto?
 -----
