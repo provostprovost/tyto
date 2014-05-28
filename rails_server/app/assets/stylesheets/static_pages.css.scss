@@ -61,7 +61,20 @@ h1.white-text{
   background-color: #48a6cb;
 }
 
-.info-home-row a, a:visited, a:active  {
+.info-home-row a  {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  border-bottom: 1px #fff dotted;
+}
+
+.info-home-row a:active  {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  border-bottom: 1px #fff dotted;
+}
+.info-home-row a:visited {
   color: #fff;
   font-weight: bold;
   text-decoration: none;
@@ -101,7 +114,6 @@ h1.white-text{
 
 .img-column {
   text-align: center;
-
 }
 
 .screen-img {
