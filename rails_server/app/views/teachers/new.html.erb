@@ -20,6 +20,12 @@
 
         <%= submit_tag "Create my account", class: "button expand" %>
       <% end %>
+      <%= form_tag('/sessions', method: 'post') do %>
+          <%= hidden_field_tag(:email, 'demo@teacher.com') %>
+          <%= hidden_field_tag(:password, 'password1') %>
+          <%= hidden_field_tag(:teacher, 1) %>
+          <%= submit_tag "Teacher Demo", class: "button radius success expand" %>
+      <% end %>
     </div>
   </div>
 </div>

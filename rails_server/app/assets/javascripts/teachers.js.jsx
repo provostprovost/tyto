@@ -243,8 +243,7 @@ var StudentRow = React.createClass({
     return (
       <tr>
         <td>{name}</td>
-        <td><a href={email}>Email</a></td>
-        <td><a href="#">Text</a></td>
+        <td width="120"><a href={email}>Email</a></td>
       </tr>
     );
   }
