@@ -1,7 +1,7 @@
 Tyto
 ====
 
-A classroom assignment management app for creating, assigning and completing classwork and homework. Created by Parth Shah and Brian Provost.
+A classroom assignment management app for creating, assigning and completing classwork and homework. Created by . [Parth Shah and Brian Provost](https://recruit.makersquare.com/?v=bprovost5+pshah5)
 
 Tech
 ----
