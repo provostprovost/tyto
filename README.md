@@ -15,6 +15,8 @@ Testing: RSpec
 
 Deployment: DigitalOcean, Heroku
 
+![Application Structure](https://raw.github.com/bmprovost/tyto/master/rails_server/app/assets/images/application.png "Application Structure")
+
 Entities
 --------
 * Assignments
@@ -28,6 +30,8 @@ Entities
 * Sessions
 * Students
 * Teachers
+
+![Entity Relationship Diagram](https://raw.github.com/bmprovost/tyto/master/rails_server/app/assets/images/entities.png "Entity Relationship Diagram")
 
 Students
 --------
