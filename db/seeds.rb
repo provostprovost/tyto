@@ -136,7 +136,7 @@ question2 = Tyto.db.create_question(question: "5 x 7 = ____",
 students = Tyto.db.get_students_in_classroom(classroom1.id)
 students.each do |student|
 complete = true
-complete = false if rand(0..3) == 0
+complete = false if rand(0..5) == 0
 complete = false if student.email == "demo@student.com"
 assignment = Tyto.db.create_assignment(student_id: student.id,
                                           chapter_id: section_algebra_12.id,
@@ -199,7 +199,7 @@ question5 = Tyto.db.create_question(question: "Demo. See math assignments.",
                                     )
 students.each do |student|
 complete = true
-complete = false if rand(0..3) == 0
+complete = false if rand(0..5) == 0
 complete = false if student.email == "demo@student.com"
 assignment = Tyto.db.create_assignment(student_id: student.id,
                                           chapter_id: section_biology_31.id,
@@ -223,7 +223,7 @@ if student.email != "demo@student.com"
                                           proficiency: rand(35..125).to_f/100 )
 end
 complete = true
-complete = false if rand(0..3) == 0
+complete = false if rand(0..5) == 0
 complete = false if student.email == "demo@student.com"
 assignment = Tyto.db.create_assignment(student_id: student.id,
                                           chapter_id: section_biology_32.id,
