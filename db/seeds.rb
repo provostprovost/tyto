@@ -142,7 +142,7 @@ assignment = Tyto.db.create_assignment(student_id: student.id,
                                           chapter_id: section_algebra_12.id,
                                           classroom_id: classroom1.id,
                                           teacher_id: teacher1.id,
-                                          assignment_size: 25,
+                                          assignment_size: 20,
                                           deadline: Chronic.parse('yesterday'),
                                           complete: complete
  )
@@ -198,32 +198,60 @@ question5 = Tyto.db.create_question(question: "Demo. See math assignments.",
                         chapter_id: section_biology_33.id
                                     )
 students.each do |student|
+complete = true
+complete = false if rand(0..3) == 0
+complete = false if student.email == "demo@student.com"
 assignment = Tyto.db.create_assignment(student_id: student.id,
                                           chapter_id: section_biology_31.id,
                                           classroom_id: classroom4.id,
                                           teacher_id: teacher1.id,
                                           assignment_size: 15,
-                                          deadline: Chronic.parse('tomorrow')
+                                          deadline: Chronic.parse('last monday'),
+                                          complete: complete
  )
 Tyto.db.update_last_question(question_id: question3.id,
                               student_id: student.id,
                               assignment_id: assignment.id)
+if student.email != "demo@student.com"
+  response = Tyto.db.create_response( question_id: question3.id,
+                                          student_id:  student.id,
+                                          assignment_id: assignment.id,
+                                          difficult: true,
+                                          correct: true,
+                                          chapter_id: assignment.chapter_id,
+                                          answer: "hello",
+                                          proficiency: rand(0..100).to_f/100 )
+end
+complete = true
+complete = false if rand(0..3) == 0
+complete = false if student.email == "demo@student.com"
 assignment = Tyto.db.create_assignment(student_id: student.id,
                                           chapter_id: section_biology_32.id,
                                           classroom_id: classroom4.id,
                                           teacher_id: teacher1.id,
                                           assignment_size: 25,
-                                          deadline: Chronic.parse('next monday')
+                                          deadline: Chronic.parse('yesterday'),
+                                          complete: complete
  )
 Tyto.db.update_last_question(question_id: question4.id,
                               student_id: student.id,
                               assignment_id: assignment.id)
+if student.email != "demo@student.com"
+  response = Tyto.db.create_response( question_id: question4.id,
+                                          student_id:  student.id,
+                                          assignment_id: assignment.id,
+                                          difficult: true,
+                                          correct: true,
+                                          chapter_id: assignment.chapter_id,
+                                          answer: "hello",
+                                          proficiency: rand(0..100).to_f/100 )
+end
 assignment = Tyto.db.create_assignment(student_id: student.id,
                                           chapter_id: section_biology_33.id,
                                           classroom_id: classroom4.id,
                                           teacher_id: teacher1.id,
                                           assignment_size: 30,
-                                          deadline: Chronic.parse('next wednesday')
+                                          deadline: Chronic.parse('next monday')
  )
 Tyto.db.update_last_question(question_id: question5.id,
                               student_id: student.id,
