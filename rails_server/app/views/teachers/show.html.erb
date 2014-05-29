@@ -51,11 +51,11 @@
                     <td class="notLateAssignment prof-score"><%= @prof_value %></td>
                   <%elsif Time.now > assignment.deadline && assignment.complete == false  %>
                     <td class="lateAssignment prof-score"><%= @prof_value %></td>
-                  <%elsif assignment.complete == true && assignment.question_level <= 2 %>
+                  <%elsif assignment.complete == true && assignment.proficiency <= 0.7 %>
                    <td class="poorPerformance prof-score"><%= @prof_value %></td>
-                  <%elsif assignment.complete == true && assignment.question_level <= 3 %>
+                  <%elsif assignment.complete == true && assignment.proficiency <= 0.9 %>
                    <td class="goodPerformance prof-score"><%= @prof_value %></td>
-                  <%elsif assignment.complete == true && assignment.question_level > 3 %>
+                  <%elsif assignment.complete == true && assignment.proficiency > 0.9 %>
                    <td class="excellentPerformance prof-score"><%= @prof_value %></td>
                   <% else %>
                    <td><%= @prof_value %></td>
