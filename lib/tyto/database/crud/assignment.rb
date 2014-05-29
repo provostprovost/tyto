@@ -11,7 +11,7 @@ module Tyto
       end
 
       def create_assignment(attrs)
-        attrs[:complete] = false
+        attrs[:complete] = false if attrs[:complete] == nil
         assignment = Assignment.create(attrs)
         Tyto::Assignment.new( id:         assignment.id,
                               student_id: assignment.student_id,

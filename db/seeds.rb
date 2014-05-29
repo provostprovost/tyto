@@ -114,7 +114,6 @@ chapter1 = Tyto.db.create_chapter(course_id: algebra.id, name: "Chapter 1")
           section_algebra_11 = Tyto.db.create_chapter(course_id: algebra.id, name: "Addition", parent_id: chapter1.id, subname: "1.1", video_url: 'https://www.youtube.com/watch?v=AuX7nPBqDts' )
           section_algebra_12 = Tyto.db.create_chapter(course_id: algebra.id, name: "Subtraction", parent_id: chapter1.id, subname: '1.2', video_url: 'https://www.youtube.com/watch?v=aNqG4ChKShI')
           section_algebra_13 = Tyto.db.create_chapter(course_id: algebra.id, name: "Multiplication", parent_id: chapter1.id, subname: '1.3', video_url: 'https://www.youtube.com/watch?v=mvOkMYCygps')
-          section_algebra_14 = Tyto.db.create_chapter(course_id: algebra.id, name: "Division", parent_id: chapter1.id, subname: '1.4', video_url: 'https://www.youtube.com/watch?v=MTzTqvzWzm8')
 
 
 chapter3 = Tyto.db.create_chapter(course_id: biology.id, name: "Chapter 1")
@@ -128,24 +127,38 @@ question = Tyto.db.create_question(question: "16 - 6 = ____",
                         level: 1,
                         chapter_id: section_algebra_12.id
                                     )
-
-students = Tyto.db.get_students_in_classroom(classroom1.id)
-students.each do |student|
-assignment = Tyto.db.create_assignment(student_id: student.id,
-                                          chapter_id: section_algebra_12.id,
-                                          classroom_id: classroom1.id,
-                                          teacher_id: teacher1.id,
-                                          assignment_size: 25,
-                                          deadline: Chronic.parse('tomorrow')
- )
-Tyto.db.update_last_question(question_id: question.id,
-                              student_id: student.id,
-                              assignment_id: assignment.id)
 question2 = Tyto.db.create_question(question: "5 x 7 = ____",
                         answer: "35",
                         level: 1,
                         chapter_id: section_algebra_13.id
                                     )
+
+students = Tyto.db.get_students_in_classroom(classroom1.id)
+students.each do |student|
+complete = true
+complete = false if rand(0..2) == 0
+complete = false if student.email == "demo@student.com"
+assignment = Tyto.db.create_assignment(student_id: student.id,
+                                          chapter_id: section_algebra_12.id,
+                                          classroom_id: classroom1.id,
+                                          teacher_id: teacher1.id,
+                                          assignment_size: 25,
+                                          deadline: Chronic.parse('yesterday'),
+                                          complete: complete
+ )
+Tyto.db.update_last_question(question_id: question.id,
+                              student_id: student.id,
+                              assignment_id: assignment.id)
+if student.email != "demo@student.com"
+response = Tyto.db.create_response( question_id: question.id,
+                                          student_id:  student.id,
+                                          assignment_id: assignment.id,
+                                          difficult: true,
+                                          correct: true,
+                                          chapter_id: assignment.chapter_id,
+                                          answer: "hello",
+                                          proficiency: rand(0..100).to_f/100 )
+end
 assignment = Tyto.db.create_assignment(student_id: student.id,
                                           chapter_id: section_algebra_13.id,
                                           classroom_id: classroom1.id,
@@ -156,9 +169,34 @@ assignment = Tyto.db.create_assignment(student_id: student.id,
 Tyto.db.update_last_question(question_id: question2.id,
                               student_id: student.id,
                               assignment_id: assignment.id)
+if student.email != "demo@student.com"
+  response = Tyto.db.create_response( question_id: question2.id,
+                                          student_id:  student.id,
+                                          assignment_id: assignment.id,
+                                          difficult: true,
+                                          correct: true,
+                                          chapter_id: assignment.chapter_id,
+                                          answer: "hello",
+                                          proficiency: rand(0..100).to_f/100 )
+end
 end
 
 students = Tyto.db.get_students_in_classroom(classroom4.id)
+question3 = Tyto.db.create_question(question: "Demo. See math assignments.",
+                        answer: "Demo",
+                        level: 1,
+                        chapter_id: section_biology_31.id
+                                    )
+question4 = Tyto.db.create_question(question: "Demo. See math assignments.",
+                        answer: "Demo",
+                        level: 1,
+                        chapter_id: section_biology_32.id
+                                    )
+question5 = Tyto.db.create_question(question: "Demo. See math assignments.",
+                        answer: "Demo",
+                        level: 1,
+                        chapter_id: section_biology_33.id
+                                    )
 students.each do |student|
 assignment = Tyto.db.create_assignment(student_id: student.id,
                                           chapter_id: section_biology_31.id,
@@ -167,6 +205,9 @@ assignment = Tyto.db.create_assignment(student_id: student.id,
                                           assignment_size: 15,
                                           deadline: Chronic.parse('tomorrow')
  )
+Tyto.db.update_last_question(question_id: question3.id,
+                              student_id: student.id,
+                              assignment_id: assignment.id)
 assignment = Tyto.db.create_assignment(student_id: student.id,
                                           chapter_id: section_biology_32.id,
                                           classroom_id: classroom4.id,
@@ -174,6 +215,9 @@ assignment = Tyto.db.create_assignment(student_id: student.id,
                                           assignment_size: 25,
                                           deadline: Chronic.parse('next monday')
  )
+Tyto.db.update_last_question(question_id: question4.id,
+                              student_id: student.id,
+                              assignment_id: assignment.id)
 assignment = Tyto.db.create_assignment(student_id: student.id,
                                           chapter_id: section_biology_33.id,
                                           classroom_id: classroom4.id,
@@ -181,6 +225,9 @@ assignment = Tyto.db.create_assignment(student_id: student.id,
                                           assignment_size: 30,
                                           deadline: Chronic.parse('next wednesday')
  )
+Tyto.db.update_last_question(question_id: question5.id,
+                              student_id: student.id,
+                              assignment_id: assignment.id)
 end
 
 
@@ -481,6 +528,67 @@ Tyto.db.create_question(question: "4 x 9 x 11 x 2 = ____",
                         level: 4,
                         chapter_id: section_algebra_13.id
                                     )
+
+
+Tyto.db.create_question(question: "Demo. See math assignments.",
+                        answer: "Demo",
+                        level: 1,
+                        chapter_id: section_biology_31.id)
+Tyto.db.create_question(question: "Demo. See math assignments.",
+                        answer: "Demo",
+                        level: 1,
+                        chapter_id: section_biology_32.id)
+Tyto.db.create_question(question: "Demo. See math assignments.",
+                        answer: "Demo",
+                        level: 1,
+                        chapter_id: section_biology_33.id)
+
+Tyto.db.create_question(question: "Demo. See math assignments.",
+                        answer: "Demo",
+                        level: 2,
+                        chapter_id: section_biology_31.id
+                                    )
+Tyto.db.create_question(question: "Demo. See math assignments.",
+                        answer: "Demo",
+                        level: 2,
+                        chapter_id: section_biology_32.id
+                                    )
+Tyto.db.create_question(question: "Demo. See math assignments.",
+                        answer: "Demo",
+                        level: 2,
+                        chapter_id: section_biology_33.id
+                                    )
+Tyto.db.create_question(question: "Demo. See math assignments.",
+                        answer: "Demo",
+                        level: 3,
+                        chapter_id: section_biology_31.id
+                                    )
+Tyto.db.create_question(question: "Demo. See math assignments.",
+                        answer: "Demo",
+                        level: 3,
+                        chapter_id: section_biology_32.id
+                                    )
+Tyto.db.create_question(question: "Demo. See math assignments.",
+                        answer: "Demo",
+                        level: 3,
+                        chapter_id: section_biology_33.id
+                                    )
+Tyto.db.create_question(question: "Demo. See math assignments.",
+                        answer: "Demo",
+                        level: 4,
+                        chapter_id: section_biology_31.id
+                                    )
+Tyto.db.create_question(question: "Demo. See math assignments.",
+                        answer: "Demo",
+                        level: 4,
+                        chapter_id: section_biology_32.id
+                                    )
+Tyto.db.create_question(question: "Demo. See math assignments.",
+                        answer: "Demo",
+                        level: 4,
+                        chapter_id: section_biology_33.id
+                                    )
+
 
 
 

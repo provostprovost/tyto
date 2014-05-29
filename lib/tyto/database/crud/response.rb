@@ -13,7 +13,7 @@ module Tyto
       def create_response(attrs)
         ar_response = Response.create(attrs)
         attrs[:id] = ar_response.id
-        attrs[:proficiency] = get_proficiency(ar_response.id)
+        attrs[:proficiency] = get_proficiency(ar_response.id) if attrs[:proficiency] == nil
         ar_response.proficiency = attrs[:proficiency]
         ar_response.save
         response = Tyto::Response.new(attrs)
