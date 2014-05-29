@@ -136,7 +136,7 @@ question2 = Tyto.db.create_question(question: "5 x 7 = ____",
 students = Tyto.db.get_students_in_classroom(classroom1.id)
 students.each do |student|
 complete = true
-complete = false if rand(0..2) == 0
+complete = false if rand(0..3) == 0
 complete = false if student.email == "demo@student.com"
 assignment = Tyto.db.create_assignment(student_id: student.id,
                                           chapter_id: section_algebra_12.id,
@@ -157,7 +157,7 @@ response = Tyto.db.create_response( question_id: question.id,
                                           correct: true,
                                           chapter_id: assignment.chapter_id,
                                           answer: "hello",
-                                          proficiency: rand(0..100).to_f/100 )
+                                          proficiency: rand(35..125).to_f/100 )
 end
 assignment = Tyto.db.create_assignment(student_id: student.id,
                                           chapter_id: section_algebra_13.id,
@@ -177,7 +177,7 @@ if student.email != "demo@student.com"
                                           correct: true,
                                           chapter_id: assignment.chapter_id,
                                           answer: "hello",
-                                          proficiency: rand(0..100).to_f/100 )
+                                          proficiency: rand(35..125).to_f/100 )
 end
 end
 
@@ -220,7 +220,7 @@ if student.email != "demo@student.com"
                                           correct: true,
                                           chapter_id: assignment.chapter_id,
                                           answer: "hello",
-                                          proficiency: rand(0..100).to_f/100 )
+                                          proficiency: rand(35..125).to_f/100 )
 end
 complete = true
 complete = false if rand(0..3) == 0
@@ -244,7 +244,7 @@ if student.email != "demo@student.com"
                                           correct: true,
                                           chapter_id: assignment.chapter_id,
                                           answer: "hello",
-                                          proficiency: rand(0..100).to_f/100 )
+                                          proficiency: rand(35..125).to_f/100 )
 end
 assignment = Tyto.db.create_assignment(student_id: student.id,
                                           chapter_id: section_biology_33.id,
