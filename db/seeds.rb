@@ -116,30 +116,23 @@ chapter1 = Tyto.db.create_chapter(course_id: algebra.id, name: "Chapter 1")
           section_algebra_13 = Tyto.db.create_chapter(course_id: algebra.id, name: "Multiplication", parent_id: chapter1.id, subname: '1.3', video_url: 'https://www.youtube.com/watch?v=mvOkMYCygps')
           section_algebra_14 = Tyto.db.create_chapter(course_id: algebra.id, name: "Division", parent_id: chapter1.id, subname: '1.4', video_url: 'https://www.youtube.com/watch?v=MTzTqvzWzm8')
 
-chapter2 = Tyto.db.create_chapter(course_id: algebra.id, name: "Chapter 2")
-          section_algebra_21 = Tyto.db.create_chapter(course_id: algebra.id, name: "Order of Operations", parent_id: chapter2.id, subname: "2.1", video_url: 'https://www.youtube.com/watch?v=GiSpzFKI5_w')
-          section_algebra_22 = Tyto.db.create_chapter(course_id: algebra.id, name: "Place Value and Rounding", parent_id: chapter2.id, subname: "2.2", video_url: 'https://www.youtube.com/watch?v=jxA8MffVmPs')
-          section_algebra_23 = Tyto.db.create_chapter(course_id: algebra.id, name: "Fractions and Decimals", parent_id: chapter2.id, subname: "2.3", video_url: 'https://www.youtube.com/watch?v=Gn2pdkvdbGQ')
-          section_algebra_24 = Tyto.db.create_chapter(course_id: algebra.id, name: "Word Problems", parent_id: chapter2.id, subname: "2.4", video_url: 'https://www.youtube.com/watch?v=l4MgRPRoRhs')
-
 
 chapter3 = Tyto.db.create_chapter(course_id: biology.id, name: "Chapter 1")
           section_biology_31 = Tyto.db.create_chapter(course_id: biology.id, name: "Biochemistry", parent_id: chapter3.id, subname: "1.1", video_url: 'https://www.youtube.com/watch?v=rD7DqDVrbV8' )
           section_biology_32 = Tyto.db.create_chapter(course_id: biology.id, name: "Cell Biology", parent_id: chapter3.id, subname: '1.2', video_url: 'https://www.youtube.com/watch?v=1Z9pqST72is')
           section_biology_33 = Tyto.db.create_chapter(course_id: biology.id, name: "Energy and Enzymes", parent_id: chapter3.id, subname: '1.3', video_url: 'https://www.youtube.com/watch?v=UhCmt1dCtXY')
-          section_biology_34 = Tyto.db.create_chapter(course_id: biology.id, name: "Photosynthesis", parent_id: chapter3.id, subname: '1.4', video_url: 'https://www.youtube.com/watch?v=JUmT24R8CyA')
-          section_biology_35 = Tyto.db.create_chapter(course_id: biology.id, name: "Cell Cycle and Mitosis", parent_id: chapter3.id, subname: '1.5', video_url: 'https://www.youtube.com/watch?v=2aVnN4RePyI')
 
-question = Tyto.db.create_question(question: "____ + 6 = 100",
-                        answer: "94",
+
+question = Tyto.db.create_question(question: "16 - 6 = ____",
+                        answer: "10",
                         level: 1,
-                        chapter_id: section_algebra_11.id
+                        chapter_id: section_algebra_12.id
                                     )
 
 students = Tyto.db.get_students_in_classroom(classroom1.id)
 students.each do |student|
 assignment = Tyto.db.create_assignment(student_id: student.id,
-                                          chapter_id: section_algebra_11.id,
+                                          chapter_id: section_algebra_12.id,
                                           classroom_id: classroom1.id,
                                           teacher_id: teacher1.id,
                                           assignment_size: 25,
@@ -148,20 +141,21 @@ assignment = Tyto.db.create_assignment(student_id: student.id,
 Tyto.db.update_last_question(question_id: question.id,
                               student_id: student.id,
                               assignment_id: assignment.id)
+question2 = Tyto.db.create_question(question: "5 x 7 = ____",
+                        answer: "35",
+                        level: 1,
+                        chapter_id: section_algebra_13.id
+                                    )
 assignment = Tyto.db.create_assignment(student_id: student.id,
-                                          chapter_id: section_algebra_22.id,
+                                          chapter_id: section_algebra_13.id,
                                           classroom_id: classroom1.id,
                                           teacher_id: teacher1.id,
                                           assignment_size: 20,
                                           deadline: Chronic.parse('next monday')
  )
-assignment = Tyto.db.create_assignment(student_id: student.id,
-                                          chapter_id: section_algebra_24.id,
-                                          classroom_id: classroom1.id,
-                                          teacher_id: teacher1.id,
-                                          assignment_size: 15,
-                                          deadline: Chronic.parse('next wednesday')
- )
+Tyto.db.update_last_question(question_id: question2.id,
+                              student_id: student.id,
+                              assignment_id: assignment.id)
 end
 
 students = Tyto.db.get_students_in_classroom(classroom4.id)
@@ -291,7 +285,202 @@ Tyto.db.create_question(question: "4935 + 4260 = ____",
 
 
 
+Tyto.db.create_question(question: "20 - 39 = ____",
+                        answer: "-19",
+                        level: 1,
+                        chapter_id: section_algebra_12.id
+                                    )
+Tyto.db.create_question(question: "60 - ____ = 91",
+                        answer: "-31",
+                        level: 1,
+                        chapter_id: section_algebra_12.id
+                                    )
+Tyto.db.create_question(question: "94 - 7 = ____",
+                        answer: "87",
+                        level: 1,
+                        chapter_id: section_algebra_12.id
+                                    )
+Tyto.db.create_question(question: "91 - ____ = 96",
+                        answer: "-5",
+                        level: 1,
+                        chapter_id: section_algebra_12.id
+                                    )
 
+Tyto.db.create_question(question: "3 - 41 - 9 = ____",
+                        answer: "-47",
+                        level: 2,
+                        chapter_id: section_algebra_12.id
+                                    )
+Tyto.db.create_question(question: "865 - 5 = ____",
+                        answer: "860",
+                        level: 2,
+                        chapter_id: section_algebra_12.id
+                                    )
+Tyto.db.create_question(question: "50 - 8 - 7 - 50 = ____",
+                        answer: "-15",
+                        level: 2,
+                        chapter_id: section_algebra_12.id
+                                    )
+Tyto.db.create_question(question: "28 - 3 - 6 = ____",
+                        answer: "19",
+                        level: 2,
+                        chapter_id: section_algebra_12.id
+                                    )
+Tyto.db.create_question(question: "15 - 4 - 9 = ____",
+                        answer: "2",
+                        level: 2,
+                        chapter_id: section_algebra_12.id
+                                    )
+
+Tyto.db.create_question(question: "63 - 8 - 11 - 70 = ____",
+                        answer: "-26",
+                        level: 3,
+                        chapter_id: section_algebra_12.id
+                                    )
+Tyto.db.create_question(question: "90 - 3 - 6 - 36 = ____",
+                        answer: "45",
+                        level: 3,
+                        chapter_id: section_algebra_12.id
+                                    )
+Tyto.db.create_question(question: "63 - 80 - 5 - 4 = ____",
+                        answer: "-26",
+                        level: 3,
+                        chapter_id: section_algebra_12.id
+                                    )
+Tyto.db.create_question(question: "22 - 10 - 3 - 70 = ____",
+                        answer: "-61",
+                        level: 3,
+                        chapter_id: section_algebra_12.id
+                                    )
+Tyto.db.create_question(question: "93 - 47 - 6 - 2 = ____",
+                        answer: "38",
+                        level: 3,
+                        chapter_id: section_algebra_12.id
+                                    )
+
+Tyto.db.create_question(question: "2200 - 1305 = ____",
+                        answer: "895",
+                        level: 4,
+                        chapter_id: section_algebra_12.id
+                                    )
+Tyto.db.create_question(question: "3000 - 5859 = ____",
+                        answer: "-2859",
+                        level: 4,
+                        chapter_id: section_algebra_12.id
+                                    )
+Tyto.db.create_question(question: "6325 - 1089 = ____",
+                        answer: "5236",
+                        level: 4,
+                        chapter_id: section_algebra_12.id
+                                    )
+Tyto.db.create_question(question: "5211 - 4864 = ____",
+                        answer: "347",
+                        level: 4,
+                        chapter_id: section_algebra_12.id
+                                    )
+Tyto.db.create_question(question: "4935 - 4260 = ____",
+                        answer: "675",
+                        level: 4,
+                        chapter_id: section_algebra_12.id
+                                    )
+
+
+
+
+
+Tyto.db.create_question(question: "8 x 6 = ____",
+                        answer: "48",
+                        level: 1,
+                        chapter_id: section_algebra_13.id
+                                    )
+Tyto.db.create_question(question: "7 x 6 = ____",
+                        answer: "42",
+                        level: 1,
+                        chapter_id: section_algebra_13.id
+                                    )
+Tyto.db.create_question(question: "6 x 4 = ____",
+                        answer: "24",
+                        level: 1,
+                        chapter_id: section_algebra_13.id
+                                    )
+
+Tyto.db.create_question(question: "8 x 11 = ____",
+                        answer: "88",
+                        level: 2,
+                        chapter_id: section_algebra_13.id
+                                    )
+Tyto.db.create_question(question: "12 x 9 = ____",
+                        answer: "108",
+                        level: 2,
+                        chapter_id: section_algebra_13.id
+                                    )
+Tyto.db.create_question(question: "5 x 8 x 7 = ____",
+                        answer: "280",
+                        level: 2,
+                        chapter_id: section_algebra_13.id
+                                    )
+Tyto.db.create_question(question: "2 x 8 x 7 = ____",
+                        answer: "112",
+                        level: 2,
+                        chapter_id: section_algebra_13.id
+                                    )
+Tyto.db.create_question(question: "6 x 10 x 3 = ____",
+                        answer: "180",
+                        level: 2,
+                        chapter_id: section_algebra_13.id
+                                    )
+
+Tyto.db.create_question(question: "6 x 8 x 2 x 7 = ____",
+                        answer: "672",
+                        level: 3,
+                        chapter_id: section_algebra_13.id
+                                    )
+Tyto.db.create_question(question: "9 x 3 x 6 x 3 = ____",
+                        answer: "972",
+                        level: 3,
+                        chapter_id: section_algebra_13.id
+                                    )
+Tyto.db.create_question(question: "6 x 4 x 2 x 5 = ____",
+                        answer: "240",
+                        level: 3,
+                        chapter_id: section_algebra_13.id
+                                    )
+Tyto.db.create_question(question: "7 x 9 x 5 x 6 = ____",
+                        answer: "1890",
+                        level: 3,
+                        chapter_id: section_algebra_13.id
+                                    )
+Tyto.db.create_question(question: "2 x 3 x 8 x 6 = ____",
+                        answer: "288",
+                        level: 3,
+                        chapter_id: section_algebra_13.id
+                                    )
+
+Tyto.db.create_question(question: "3 x 4 x 8 x 16 = ____",
+                        answer: "1536",
+                        level: 4,
+                        chapter_id: section_algebra_13.id
+                                    )
+Tyto.db.create_question(question: "7 x 9 x 15 x 6 = ____",
+                        answer: "5670",
+                        level: 4,
+                        chapter_id: section_algebra_13.id
+                                    )
+Tyto.db.create_question(question: "6 x 4 x 12 x 10 = ____",
+                        answer: "2880",
+                        level: 4,
+                        chapter_id: section_algebra_13.id
+                                    )
+Tyto.db.create_question(question: "13 x 8 x 3 x 4 = ____",
+                        answer: "1248",
+                        level: 4,
+                        chapter_id: section_algebra_13.id
+                                    )
+Tyto.db.create_question(question: "4 x 9 x 11 x 2 = ____",
+                        answer: "792",
+                        level: 4,
+                        chapter_id: section_algebra_13.id
+                                    )
 
 
 
