@@ -65,4 +65,4 @@ We think this algorithm is very good for measuring proficiency in performing a s
 
 Tyto?
 -----
-Tyto is the genus name for barn owls. Credit for the name goes to Ifu Aniemeka.
+Tyto is the genus name for barn owls. Credit for the name goes to <a href="https://github.com/Miaplacidus">Ifu Aniemeka.</a>
